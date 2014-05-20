@@ -19,6 +19,9 @@
     "grains",
     "gigasecond"
   ],
+  "deprecated": [
+
+  ],
   "ignore": [
 
   ]
