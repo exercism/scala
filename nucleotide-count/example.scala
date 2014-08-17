@@ -2,7 +2,7 @@ class DNA(strand: String) {
   strand.foreach(validate)
 
   def count(nucleotide: Char) = {
-    validateCountable(nucleotide)
+    validate(nucleotide)
     strand.count(_ == nucleotide)
   }
 
@@ -17,18 +17,10 @@ class DNA(strand: String) {
     if (!isNucleotide(nucleotide))
       throw new IllegalArgumentException
 
-  private def validateCountable(nucleotide: Char) =
-    if (!isCountable(nucleotide))
-      throw new IllegalArgumentException
-
-  private def isCountable(nucleotide: Char) =
-    DNA.countable.contains(nucleotide)
-
   private def isNucleotide(nucleotide: Char) =
     DNA.nucleotides.contains(nucleotide)
 }
 
 object DNA {
   val nucleotides = "ATCG"
-  val countable = nucleotides + 'U'
 }
