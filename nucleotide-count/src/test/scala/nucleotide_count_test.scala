@@ -34,15 +34,10 @@ class NucleotideCountSpecs extends FlatSpec with Matchers {
     dna.count('T') should be (2)
   }
 
-  "dna" should "have no uracil" in {
-    pending
-    new DNA("GATTACA").count('U') should be (0)
-  }
-
-  it should "not change counts after counting uracil" in {
+  it should "not change counts after counting adenosine" in {
     pending
     val dna = new DNA("GATTACA")
-    dna.count('U')
+    dna.count('A')
     val expected = Map('A' -> 3, 'T' -> 2, 'C' -> 1, 'G' -> 1)
     dna.nucleotideCounts should be (expected)
   }
