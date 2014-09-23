@@ -11,7 +11,7 @@ class BobSpecs extends FlatSpec with Matchers {
   it should "respond to shouting" in {
     pending
     val response = teenager.hey("WATCH OUT!")
-    response should be ("Woah, chill out!")
+    response should be ("Whoa, chill out!")
   }
 
   it should "respond to questions" in {
@@ -41,13 +41,13 @@ class BobSpecs extends FlatSpec with Matchers {
   it should "see forceful questions as shouting" in {
     pending
     val response = teenager.hey("WHAT THE HELL WERE YOU THINKING?")
-    response should be ("Woah, chill out!")
+    response should be ("Whoa, chill out!")
   }
 
   it should "allow numbers when shouting" in {
     pending
     val response = teenager.hey("1, 2, 3, GO!")
-    response should be ("Woah, chill out!")
+    response should be ("Whoa, chill out!")
   }
 
   it should "see only numbers as speech" in {
@@ -65,7 +65,7 @@ class BobSpecs extends FlatSpec with Matchers {
   it should "respond to shouting with no exclamation mark" in {
     pending
     val response = teenager.hey("I HATE YOU")
-    response should be ("Woah, chill out!")
+    response should be ("Whoa, chill out!")
   }
 
   it should "respond to statements with ? in the middle" in {
