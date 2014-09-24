@@ -1,6 +1,6 @@
 class Bob {
   def hey(statement: String): String = statement match {
-    case Shouting() => "Woah, chill out!"
+    case Shouting() => "Whoa, chill out!"
     case Question() => "Sure."
     case Silence() => "Fine. Be that way!"
     case _ => "Whatever."
