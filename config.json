@@ -17,7 +17,9 @@
     "meetup",
     "space-age",
     "grains",
-    "gigasecond"
+    "gigasecond",
+	"accumulate",
+	"sublist"
   ],
   "deprecated": [
 
