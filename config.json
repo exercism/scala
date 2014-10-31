@@ -18,8 +18,9 @@
     "space-age",
     "grains",
     "gigasecond",
-	"accumulate",
-	"sublist"
+    "accumulate",
+    "sublist",
+    "scrabble-score"
   ],
   "deprecated": [
 
