@@ -24,6 +24,6 @@ class GigasecondTests extends FunSuite with Matchers {
     pending
     // val yourBirthday = new GregorianCalendar(year, month-1, day)
     // val gs = Gigasecond(yourBirthday)
-    // gs.date should be (GregorianCalendar(2009, 0, 31))
+    // gs.date should be (new GregorianCalendar(2009, 0, 31))
   }
 }
