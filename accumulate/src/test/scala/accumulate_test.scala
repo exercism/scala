@@ -1,14 +1,34 @@
-/**
- * Copyright 2014 © Denmar Technical Services Inc
- * The U.S. Government has unlimited rights per DFAR 252.227-7014, all other
- * rights reserved.
- *
- * WARNING - This software contains Technical Data whose export is restricted by
- * the Arms Export Control Act (Title 22, U.S.C., Sec 2751, et seq.) or the
- * Export Administration Act of 1979, as amended (Title 50, U.S. C. App. 2401
- * et seq.). Violations of these export laws are subject to severe criminal
- * penalties.
- */
-class accumulate_test {
+import org.scalatest.{Matchers, FlatSpec}
 
+class AccumulateTest extends FlatSpec with Matchers {
+
+  it should "allow empty accumulation" in {
+    val accumulate = new Accumulate
+    val accumulation = accumulate.accumulate[Int, Int](x => x * x, List.empty)
+    accumulation should be (List.empty)
+  }
+
+  it should "accumulate squares" in {
+    val accumulate = new Accumulate
+    val accumulation = accumulate.accumulate[Int, Int](x => x * x, List(1, 2, 3))
+    accumulation should be (List(1, 4, 9))
+  }
+
+  it should "accumulate upcases" in {
+    val accumulate = new Accumulate
+    val accumulation = accumulate.accumulate[String, String](_.map(_.toUpper), List("hello", "world"))
+    accumulation should be (List("HELLO", "WORLD"))
+  }
+
+  it should "accumulate reversed strings" in {
+    val accumulate = new Accumulate
+    val accumulation = accumulate.accumulate[String, String](_.reverse, List("eht", "kciuq", "nworb", "xof", "cte"))
+    accumulation should be (List("the", "quick", "brown", "fox", "etc"))
+  }
+
+  it should "allow different return type" in {
+    val accumulate = new Accumulate
+    val accumulation = accumulate.accumulate[Int, String](_.toString, List(1, 2, 3))
+    accumulation should be (List("1", "2", "3"))
+  }
 }
