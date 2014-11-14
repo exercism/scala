@@ -19,7 +19,8 @@
     "grains",
     "gigasecond",
     "scrabble-score",
-    "difference-of-squares"
+    "difference-of-squares",
+    "accumulate"
   ],
   "deprecated": [
 
