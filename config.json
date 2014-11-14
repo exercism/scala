@@ -20,7 +20,8 @@
     "gigasecond",
     "scrabble-score",
     "difference-of-squares",
-    "accumulate"
+    "accumulate",
+    "sublist"
   ],
   "deprecated": [
 
