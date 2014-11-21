@@ -23,7 +23,8 @@
     "accumulate",
     "sublist",
     "rna-transcription",
-    "triangle"
+    "triangle",
+    "binary"
   ],
   "deprecated": [
 
