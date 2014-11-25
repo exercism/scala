@@ -1,18 +1,15 @@
 class Dna {
 
-  def toRna(dnaStrand: String) : String = dnaStrand.map(toRna)
+  val dnaToRna = Map(
+    'G' -> 'C',
+    'C' -> 'G',
+    'T' -> 'A',
+    'A' -> 'U'
+  )
 
-  private def toRna(nucleotide: Char) : Char =
-    nucleotide match {
-      case 'G' => 'C'
-      case 'C' => 'G'
-      case 'T' => 'A'
-      case 'A' => 'U'
-      case _ => throw new IllegalArgumentException("Invalid nucleotide - " + nucleotide)
-    }
+  def toRna(dna: String) = dna.map(dnaToRna)
 }
 
 object Dna {
-
-  def apply() = new Dna
+  def apply() = new Dna()
 }
