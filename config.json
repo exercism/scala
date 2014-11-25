@@ -22,7 +22,11 @@
     "difference-of-squares",
     "accumulate",
     "sublist",
-    "rna-transcription"
+    "rna-transcription",
+    "triangle",
+    "binary",
+    "roman-numerals",
+    "prime-factors"
   ],
   "deprecated": [
 
