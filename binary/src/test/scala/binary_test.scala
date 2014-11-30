@@ -5,8 +5,20 @@ class BinaryTest extends FunSuite with Matchers {
     Binary("").toDecimal should be (0)
   }
 
-  test("invalid string") {
+  test("invalid string - all chars invalid") {
     Binary("carrot").toDecimal should be (0)
+  }
+
+  test("invalid string - leading char invalid") {
+    Binary("a1111").toDecimal should be (0)
+  }
+
+  test("invalid string - trailing char invalid") {
+    Binary("1111a").toDecimal should be (0)
+  }
+
+  test("invalid string - middle char invalid") {
+    Binary("0101F0").toDecimal should be (0)
   }
 
   test("1") {
