@@ -1,9 +1,8 @@
-class Binary(s: String) {
-  val toDecimal: Int = s.foldLeft(0)((r, c) => r * 2 + convertChar(c))
-
-  private def convertChar(c: Char): Int = if (c == '1') 1 else 0
+case class Binary(s: String) {
+  val toDecimal: Int = s.foldLeft[Option[Int]](Some(0)){
+    case (Some(acc), '0') => Some(acc * 2)
+    case (Some(acc), '1') => Some(acc * 2 + 1)
+    case _ => None
+  }.getOrElse(0)
 }
 
-object Binary {
-  def apply(s: String) = new Binary(s)
-}
