@@ -32,7 +32,8 @@
     "atbash-cipher",
     "bank-account",
     "crypto-square",
-    "kindergarten-garden"
+    "kindergarten-garden",
+    "robot-simulator"
   ],
   "deprecated": [
 
