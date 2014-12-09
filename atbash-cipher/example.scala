@@ -4,7 +4,6 @@ case class Atbash() {
 
   private def substitute(c: Char) =
     if (c.isDigit) c.toString
-    else if(c.isLetter) ('a'.toInt + ('z'.toInt - c.toLower.toInt)).toChar.toString
+    else if (c.isLetter) ('a' + ('z' - c.toLower)).toChar.toString
     else ""
-
 }
