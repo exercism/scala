@@ -34,7 +34,8 @@
     "crypto-square",
     "kindergarten-garden",
     "robot-simulator",
-    "queen-attack"
+    "queen-attack",
+    "binary-search-tree"
   ],
   "deprecated": [
 
