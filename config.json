@@ -37,7 +37,8 @@
     "queen-attack",
     "binary-search-tree",
     "hexadecimal",
-    "largest-series-product"
+    "largest-series-product",
+    "luhn"
   ],
   "deprecated": [
 
