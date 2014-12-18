@@ -38,7 +38,8 @@
     "binary-search-tree",
     "hexadecimal",
     "largest-series-product",
-    "luhn"
+    "luhn",
+    "clock"
   ],
   "deprecated": [
 
