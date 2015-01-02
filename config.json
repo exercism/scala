@@ -41,7 +41,8 @@
     "luhn",
     "clock",
     "matrix",
-    "house"
+    "house",
+    "minesweeper"  
   ],
   "deprecated": [
 
