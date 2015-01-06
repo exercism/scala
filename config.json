@@ -42,7 +42,8 @@
     "clock",
     "matrix",
     "house",
-    "minesweeper"  
+    "minesweeper",
+    "ocr-numbers"
   ],
   "deprecated": [
 
