@@ -43,7 +43,8 @@
     "matrix",
     "house",
     "minesweeper",
-    "ocr-numbers"
+    "ocr-numbers",
+    "octal"
   ],
   "deprecated": [
 
