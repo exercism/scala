@@ -45,7 +45,8 @@
     "minesweeper",
     "ocr-numbers",
     "octal",
-    "trinary"
+    "trinary",
+    "wordy"
   ],
   "deprecated": [
 
