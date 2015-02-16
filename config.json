@@ -47,7 +47,8 @@
     "octal",
     "trinary",
     "wordy",
-    "food-chain"
+    "food-chain",
+    "linked-list"
   ],
   "deprecated": [
 
