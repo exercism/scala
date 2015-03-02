@@ -50,7 +50,8 @@
     "food-chain",
     "linked-list",
     "custom-set",
-    "nth-prime"
+    "nth-prime",
+    "palindrome-products"
   ],
   "deprecated": [
 
