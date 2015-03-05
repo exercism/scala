@@ -34,19 +34,19 @@ class RomanNumeralsSpecs extends FunSpec with Matchers {
     RomanNumeral(9).value should be ("IX")
   }
 
-  it ("27 equals IX") {
+  it ("27 equals XXVII") {
     RomanNumeral(27).value should be ("XXVII")
   }
 
-  it ("48 equals IX") {
+  it ("48 equals XLVIII") {
     RomanNumeral(48).value should be ("XLVIII")
   }
 
-  it ("59 equals IX") {
+  it ("59 equals LIX") {
     RomanNumeral(59).value should be ("LIX")
   }
 
-  it ("93 equals IX") {
+  it ("93 equals XCIII") {
     RomanNumeral(93).value should be ("XCIII")
   }
 
@@ -62,7 +62,7 @@ class RomanNumeralsSpecs extends FunSpec with Matchers {
     RomanNumeral(402).value should be ("CDII")
   }
 
-  it ("575 equals IX") {
+  it ("575 equals DLXXV") {
     RomanNumeral(575).value should be ("DLXXV")
   }
 
