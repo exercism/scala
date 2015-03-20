@@ -51,7 +51,8 @@
     "linked-list",
     "custom-set",
     "nth-prime",
-    "palindrome-products"
+    "palindrome-products",
+    "pascals-triangle"
   ],
   "deprecated": [
 
