@@ -53,7 +53,8 @@
     "nth-prime",
     "palindrome-products",
     "pascals-triangle",
-    "pig-latin"
+    "pig-latin",
+    "pythagorean-triplet"
   ],
   "deprecated": [
 
