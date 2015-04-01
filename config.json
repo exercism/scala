@@ -54,7 +54,8 @@
     "palindrome-products",
     "pascals-triangle",
     "pig-latin",
-    "pythagorean-triplet"
+    "pythagorean-triplet",
+    "saddle-points"
   ],
   "deprecated": [
 
