@@ -50,10 +50,6 @@ class RomanNumeralsSpecs extends FunSpec with Matchers {
     RomanNumeral(93).value should be ("XCIII")
   }
 
-  it ("93 equals XCIII") {
-    RomanNumeral(93).value should be ("XCIII")
-  }
-
   it ("141 equals CXLI") {
     RomanNumeral(141).value should be ("CXLI")
   }
