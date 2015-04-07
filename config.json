@@ -55,7 +55,8 @@
     "pascals-triangle",
     "pig-latin",
     "pythagorean-triplet",
-    "saddle-points"
+    "saddle-points",
+    "say"
   ],
   "deprecated": [
 
