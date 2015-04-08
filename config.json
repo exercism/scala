@@ -56,7 +56,8 @@
     "pig-latin",
     "pythagorean-triplet",
     "saddle-points",
-    "say"
+    "say",
+    "secret-handshake"
   ],
   "deprecated": [
 
