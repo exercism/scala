@@ -57,7 +57,8 @@
     "pythagorean-triplet",
     "saddle-points",
     "say",
-    "secret-handshake"
+    "secret-handshake",
+    "series"
   ],
   "deprecated": [
 
