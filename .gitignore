@@ -3,3 +3,5 @@
 .DS_Store
 tmp
 target/
+bin/configlet
+bin/configlet.exe
