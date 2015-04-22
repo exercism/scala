@@ -58,7 +58,8 @@
     "saddle-points",
     "say",
     "secret-handshake",
-    "series"
+    "series",
+    "sieve"
   ],
   "deprecated": [
 
