@@ -59,7 +59,8 @@
     "say",
     "secret-handshake",
     "series",
-    "sieve"
+    "sieve",
+    "simple-cipher"
   ],
   "deprecated": [
 
