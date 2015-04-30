@@ -60,7 +60,8 @@
     "secret-handshake",
     "series",
     "sieve",
-    "simple-cipher"
+    "simple-cipher",
+    "connect"
   ],
   "deprecated": [
 
