@@ -61,7 +61,8 @@
     "series",
     "sieve",
     "simple-cipher",
-    "connect"
+    "connect",
+    "parallel-letter-frequency"
   ],
   "deprecated": [
 
