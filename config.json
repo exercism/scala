@@ -4,6 +4,7 @@
   "repository": "https://github.com/exercism/xscala",
   "active": true,
   "problems": [
+    "hello-world",
     "bob",
     "hamming",
     "word-count",
