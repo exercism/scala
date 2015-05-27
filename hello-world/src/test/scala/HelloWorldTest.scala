@@ -2,7 +2,7 @@ import org.scalatest.{Matchers, FunSuite}
 
 class HelloWorldTest extends FunSuite with Matchers {
   test("Without name") {
-    HelloWorld.hello() should be ("Hello, world!")
+    HelloWorld.hello() should be ("Hello, World!")
   }
 
   test("with name") {
