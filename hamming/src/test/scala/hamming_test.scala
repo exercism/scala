@@ -30,13 +30,10 @@ class HammingSpecs extends FlatSpec with Matchers {
     Hamming.compute("ACCAGGG", "ACTATGG") should be (2)
   }
 
-  it should "ignore extra length on other strand when longer" in {
+  it should "be undefined for strands of unequal length" in {
     pending
-    Hamming.compute("AAACTAGGGG", "AGGCTAGCGGTAGGAC") should be (3)
-  }
-
-  it should "ignore extra length on original strand when longer" in {
-    pending
-    Hamming.compute("GACTACGGACAGGGTAGGGAAT", "GACATCGCACACC") should be (5)
+    an[IllegalArgumentException] should be thrownBy {
+      Hamming.compute("AAACTAGGGG", "AGGCTAGCGGTAGGAC")
+    }
   }
 }
