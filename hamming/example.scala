@@ -1,4 +1,7 @@
 class Hamming(strand1: String, strand2: String) {
+	
+  require(strand1.length == strand2.length)
+
   def distance = commonPairs.count {
     case (a, b) => a != b
   }
