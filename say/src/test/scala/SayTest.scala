@@ -41,8 +41,8 @@ class SayTest extends FunSuite with Matchers {
     Say.inEnglish(1000) should be (Some("one thousand"))
   }
 
-  test("one thousand two hundred thirty four") {
-    Say.inEnglish(1234) should be (Some("one thousand two hundred thirty four"))
+  test("one thousand two hundred thirty-four") {
+    Say.inEnglish(1234) should be (Some("one thousand two hundred thirty-four"))
   }
 
   test("one million") {
