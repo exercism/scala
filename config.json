@@ -69,7 +69,9 @@
 
   ],
   "ignored": [
-    "docs"
+    "docs",
+    "project",
+    "target"
   ],
   "foregone": [
 
