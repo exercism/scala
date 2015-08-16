@@ -1,6 +1,11 @@
+sudo: false
 language: scala
 scala:
-  - 2.10.3
+  - 2.11.7
+
+jdk:
+  - openjdk7
+  - oraclejdk8
 
 before_script:
   - bin/fetch-configlet

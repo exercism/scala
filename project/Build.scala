@@ -6,9 +6,9 @@ import sbt._
 import scala.io.Source
 import scala.util.parsing.json.{JSONArray, JSONObject, JSON}
 
-object ThisBuild extends Build {
+object XScalaBuild extends Build {
 
-  scalaVersion := "2.10.3"
+  scalaVersion := "2.11.7"
   name := "xscala"
 
   val commonSettings = Seq(
