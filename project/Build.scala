@@ -6,7 +6,7 @@ import sbt._
 import scala.io.Source
 import scala.util.parsing.json.{JSONArray, JSONObject, JSON}
 
-object ThisBuild extends Build {
+object XScalaBuild extends Build {
 
   scalaVersion := "2.10.3"
   name := "xscala"
