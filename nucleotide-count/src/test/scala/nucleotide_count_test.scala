@@ -1,8 +1,8 @@
 import org.scalatest._
 
 class NucleotideCountSpecs extends FlatSpec with Matchers {
-  "empty dna string" should "have no adenosine" in {
-    new DNA("").count('A') should be (0)
+  "empty dna string" should "have no adenine" in {
+    new DNA("").nucleotideCounts('A') should be (0)
   }
 
   it should "have no nucleotides" in {
@@ -11,56 +11,50 @@ class NucleotideCountSpecs extends FlatSpec with Matchers {
     new DNA("").nucleotideCounts should be (expected)
   }
 
-  "a repetitive sequence" should "count cytidine" in {
+  "a repetitive sequence" should "count cytosine" in {
     pending
-    new DNA("CCCCC").count('C') should be (5)
+    new DNA("CCCCC").nucleotideCounts('C') should be (5)
   }
 
-  it should "have only guanosine" in {
+  it should "have only guanine" in {
     pending
     val expected = Map('A' -> 0, 'T' -> 0, 'C' -> 0, 'G' -> 8)
     new DNA("GGGGGGGG").nucleotideCounts should be (expected)
   }
 
-  "a mixed dna string" should "count only thymidine" in {
+  "a mixed dna string" should "count only thymine" in {
     pending
-    new DNA("GGGGGTAACCCGG").count('T') should be (1)
+    new DNA("GGGGGTAACCCGG").nucleotideCounts('T') should be (1)
   }
 
   it should "count a nucleotide only once" in {
     pending
     val dna = new DNA("CGATTGGG")
-    dna.count('T')
-    dna.count('T') should be (2)
+    dna.nucleotideCounts('T')
+    dna.nucleotideCounts('T') should be (2)
   }
 
-  it should "not change counts after counting adenosine" in {
+  it should "not change counts after counting adenine" in {
     pending
     val dna = new DNA("GATTACA")
-    dna.count('A')
+    dna.nucleotideCounts('A')
     val expected = Map('A' -> 3, 'T' -> 2, 'C' -> 1, 'G' -> 1)
     dna.nucleotideCounts should be (expected)
   }
 
   it should "validate nucleotides" in {
     pending
-    evaluating {
-      new DNA("GACT").count('X')
-    } should produce [IllegalArgumentException]
+    a [RuntimeException] should be thrownBy new DNA("GACT").nucleotideCounts('X')
   }
 
   it should "validate dna not rna" in {
     pending
-    evaluating {
-      new DNA("ACGU")
-    } should produce [IllegalArgumentException]
+    a [RuntimeException] should be thrownBy new DNA("ACGU")
   }
 
   it should "validate dna" in {
     pending
-    evaluating {
-      new DNA("John")
-    } should produce [IllegalArgumentException]
+    a [RuntimeException] should be thrownBy new DNA("John")
   }
 
   it should "count all nucleotides" in {
