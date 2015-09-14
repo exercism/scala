@@ -1,26 +1,16 @@
 class DNA(strand: String) {
-  strand.foreach(validate)
+  strand foreach validate
 
-  def count(nucleotide: Char) = {
-    validate(nucleotide)
-    strand.count(_ == nucleotide)
+  lazy val nucleotideCounts = {
+    Map('A' -> 0, 'T' -> 0, 'C' -> 0, 'G' -> 0) ++
+    strand.toCharArray.groupBy(identity).mapValues(_.length)
   }
 
-  def nucleotideCounts = Map(
-    'A' -> count('A'),
-    'T' -> count('T'),
-    'C' -> count('C'),
-    'G' -> count('G')
-  )
-
   private def validate(nucleotide: Char) =
-    if (!isNucleotide(nucleotide))
-      throw new IllegalArgumentException
-
-  private def isNucleotide(nucleotide: Char) =
-    DNA.nucleotides.contains(nucleotide)
+    if (!DNA.isNucleotide(nucleotide)) throw new IllegalArgumentException
 }
 
 object DNA {
   val nucleotides = "ATCG"
+  def isNucleotide(c: Char) = nucleotides.contains(c)
 }
