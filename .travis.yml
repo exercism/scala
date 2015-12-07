@@ -1,16 +1,14 @@
+---
 sudo: false
 language: scala
 scala:
-  - 2.11.7
-
+- 2.11.7
 jdk:
-  - openjdk7
-  - oraclejdk8
-
+- openjdk7
+- oraclejdk8
 before_script:
-  - bin/fetch-configlet
-  - sbt test:compile
-
+- bin/fetch-configlet
+- sbt test:compile
 script:
-  - bin/configlet .
-  - sbt test
+- bin/configlet .
+- sbt test
