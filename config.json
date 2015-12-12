@@ -63,7 +63,8 @@
     "sieve",
     "simple-cipher",
     "connect",
-    "parallel-letter-frequency"
+    "parallel-letter-frequency",
+    "acronym"
   ],
   "deprecated": [
 
