@@ -6,3 +6,9 @@ Exercism provides exercises and feedback but can be difficult to jump into for t
 * [Simply Scala](http://www.simplyscala.com/)
 * [Programming Scala](http://www.oreilly.com/ofps/)
 * [StackOverflow](http://stackoverflow.com/)
+
+## Linting
+
+Scala projects can be linted for further code analysis via a third party tool - [Scalastyle](http://www.scalastyle.org/).
+
+There are several ways of using Scalastyle including Maven, SBT, Gradle, IntelliJ and Eclipse. For instructions on usage visit [Scalastyle](http://www.scalastyle.org/).
