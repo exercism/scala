@@ -64,7 +64,8 @@
     "simple-cipher",
     "connect",
     "parallel-letter-frequency",
-    "acronym"
+    "acronym",
+    "forth"
   ],
   "deprecated": [
 
