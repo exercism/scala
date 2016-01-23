@@ -6,9 +6,9 @@ object Series {
     digits(s).tails.filter(xs => xs.length >= n).map(xs => xs.take(n)).toList
   }
 
-  def largestProduct(n: Int, s: String): Int =
+  def largestProduct(n: Int, s: String): Option[Int] =
     slices(n, s) match {
-      case Nil => 1
-      case xs => xs.map(slice => slice.foldLeft(1)(_ * _)).max
+      case Nil => None
+      case xs => Some(xs.map(slice => slice.foldLeft(1)(_ * _)).max)
     }
 }
