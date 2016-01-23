@@ -41,6 +41,7 @@ class SeriesTest extends FlatSpec with Matchers {
     Series.largestProduct(1, "") should equal(None)
     Series.largestProduct(4, "123") should equal(None)
     Series.largestProduct(2, "00") should equal(Some(0))
+    Series.largestProduct(3, "99099") should equal(Some(0))
   }
 }
 
