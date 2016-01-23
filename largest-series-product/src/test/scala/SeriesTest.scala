@@ -36,6 +36,8 @@ class SeriesTest extends FlatSpec with Matchers {
   }
 
   it should "find largestProduct boundary conditions" in {
+    Series.largestProduct(0, "") should equal(Some(1))
+    Series.largestProduct(0, "123") should equal(Some(1))
     Series.largestProduct(1, "") should equal(None)
     Series.largestProduct(4, "123") should equal(None)
     Series.largestProduct(2, "00") should equal(Some(0))
