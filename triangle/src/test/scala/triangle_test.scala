@@ -25,10 +25,6 @@ class TriangleTest extends FlatSpec with Matchers {
     Triangle(1, 1, 50).triangleType should equal(TriangleType.Illogical)
   }
 
-  it should "calc Illogical2" in {
-    Triangle(1, 2, 1).triangleType should equal(TriangleType.Illogical)
-  }
-
   it should "calc Illogical with zero length side" in {
     Triangle(0, 2, 1).triangleType should equal(TriangleType.Illogical)
   }

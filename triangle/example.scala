@@ -7,7 +7,7 @@ class Triangle(a: Int, b: Int, c: Int) {
     else if (a == b || a == c || b == c) TriangleType.Isosceles
     else TriangleType.Scalene
 
-  private def checkInequality = a + b > c  &&  a + c > b && b + c > a
+  private def checkInequality = a + b >= c  &&  a + c >= b && b + c >= a
 }
 
 object Triangle {
