@@ -1,7 +1,7 @@
 object Series {
-  def digits(s: String): List[Int] = s.map(c => c.asDigit).toList
+  private def digits(s: String): List[Int] = s.map(c => c.asDigit).toList
 
-  def slices(n: Int, s: String): List[List[Int]] = {
+  private def slices(n: Int, s: String): List[List[Int]] = {
     assert(n >= 0, "slice length must be non-negative")
     digits(s).tails.filter(xs => xs.length >= n).map(xs => xs.take(n)).toList
   }
