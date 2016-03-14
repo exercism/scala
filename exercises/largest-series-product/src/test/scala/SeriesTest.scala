@@ -1,25 +1,6 @@
 import org.scalatest.{Matchers, FlatSpec}
 
 class SeriesTest extends FlatSpec with Matchers {
-  it should "map digits" in {
-    Series.digits(('0' to '9').mkString) should equal (0 to 9)
-    Series.digits(('0' to '9').reverse.mkString) should equal ((0 to 9).reverse)
-    Series.digits(('4' to '8').reverse.mkString) should equal ((4 to 8).reverse)
-    Series.digits("936923468") should equal (List(9, 3, 6, 9, 2, 3, 4, 6, 8))
-  }
-
-  it should "slice" in {
-    Series.slices(2, "98273463") should equal(List(List(9, 8), List(8, 2),
-      List(2, 7), List(7, 3), List(3, 4), List(4, 6), List(6, 3)))
-    Series.slices(3, "982347") should equal(List(List(9, 8, 2), List(8, 2, 3),
-      List(2, 3, 4), List(3, 4, 7)))
-  }
-
-  it should "slice boundary conditions" in {
-    Series.slices(4, "982") should equal(List())
-    Series.slices(3, "982") should equal(List(List(9, 8, 2)))
-  }
-
   it should "find largestProduct" in {
     Series.largestProduct(2, "0123456789") should equal(Some(72))
     Series.largestProduct(2, "19") should equal(Some(9))
