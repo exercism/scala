@@ -8,6 +8,7 @@
     "bob",
     "hamming",
     "word-count",
+    "pangram",
     "anagram",
     "nucleotide-count",
     "phone-number",
