@@ -21,6 +21,10 @@ class BinaryTest extends FunSuite with Matchers {
     Binary("0101F0").toDecimal should be (0)
   }
 
+  test("invalid string - invalid digits") {
+    Binary("22").toDecimal should be (0)
+  }
+
   test("1") {
     Binary("1").toDecimal should be (1)
   }
