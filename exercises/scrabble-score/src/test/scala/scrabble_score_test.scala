@@ -22,11 +22,11 @@ class scrabble_score_test extends FunSuite with Matchers {
   }
 
   test("score capitalized word") {
-    new Scrabble().scoreWord("MULTIBILLIONAIRE") should be (20)
+    new Scrabble().scoreWord("OXYPHENBUTAZONE") should be (41)
   }
 
   test("score mixed case word") {
-    new Scrabble().scoreWord("MultiBillionAire") should be (20)
+    new Scrabble().scoreWord("Oxyphenbutazone") should be (41)
   }
 }
 
