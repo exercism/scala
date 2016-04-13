@@ -1,7 +1,11 @@
 case class Clock(minutes: Int) {
-  private val normalized = minutes % (24 * 60)
-  private val hour = minutes / 60
-  private val min = minutes % 60
+  private val normalized = {
+    val tmp = minutes % (24 * 60)
+    if (tmp >= 0) tmp else (24 * 60) + tmp
+  }
+
+  private val hour = normalized / 60
+  private val min = normalized % 60
 
   def +(that: Clock) =
     Clock(normalized + that.normalized)
