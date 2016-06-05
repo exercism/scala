@@ -74,7 +74,8 @@
   "ignored": [
     "docs",
     "project",
-    "target"
+    "target",
+    "testgen"
   ],
   "foregone": [
 
