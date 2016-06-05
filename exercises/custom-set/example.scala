@@ -64,8 +64,7 @@ object CustomSet {
     foldLeft(setA, setB)((acc, a) => insert(acc, a))
 
   def difference[A](setA: CustomSet[A], setB: CustomSet[A]): CustomSet[A] =  {
-    val tmp = foldLeft(setA, Nil: CustomSet[A])((acc, a) => if (member(setB, a)) acc else Cons(a, acc))
-    foldLeft(setB, tmp)((acc, a) => if (member(setA, a)) acc else Cons(a, acc))
+    foldLeft(setA, Nil: CustomSet[A])((acc, a) => if (member(setB, a)) acc else Cons(a, acc))
   }
 
   def intersection[A](setA: CustomSet[A], setB: CustomSet[A]): CustomSet[A] =
@@ -84,5 +83,8 @@ object CustomSet {
       case Nil => true
       case Cons(a, tail) => !member(setB, a) && isDisjointFrom(tail, setB)
     }
+
+  def isEqual[A](setA: CustomSet[A], setB: CustomSet[A]): Boolean =
+    empty(difference(setA, setB)) && empty(difference(setB, setA))
 }
 
