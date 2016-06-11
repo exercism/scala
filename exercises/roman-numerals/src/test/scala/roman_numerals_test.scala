@@ -26,7 +26,7 @@ class RomanNumeralsSpecs extends FunSpec with Matchers {
     RomanNumeral(5).value should be ("V")
   }
 
-  it ("6 equals III") {
+  it ("6 equals VI") {
     RomanNumeral(6).value should be ("VI")
   }
 
