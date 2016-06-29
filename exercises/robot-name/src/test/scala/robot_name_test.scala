@@ -1,7 +1,7 @@
 import org.scalatest._
 
 class RobotNameSpecs extends FunSpec with Matchers {
-  val nameRegex = """\w{2}\d{3}"""
+  val nameRegex = """[A-Z]{2}\d{3}"""
 
   it ("has a name") {
     new Robot().name should fullyMatch regex (nameRegex)
