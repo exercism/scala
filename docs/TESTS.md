@@ -6,6 +6,13 @@ Execute the tests with:
 $ sbt test
 ```
 
+You can also use sbt to re-run your tests whenever the source files change:
+
+```bash
+$ sbt
+>~ test
+```
+
 You should place your code in:
 
 ```bash
