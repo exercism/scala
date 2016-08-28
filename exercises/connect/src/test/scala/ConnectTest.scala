@@ -11,7 +11,7 @@ class ConnectTest extends FunSuite with Matchers {
                     ,"  . . . . ."
                     ,"   . . . . ."
                     ,"    . . . . .")
-    Connect(lines).result should be (None)
+    Connect(mkBoard(lines)).result should be (None)
   }
 
   test("black single item board") {
