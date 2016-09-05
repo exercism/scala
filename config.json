@@ -26,19 +26,18 @@
     "sublist",
     "rna-transcription",
     "triangle",
-    "binary",
     "roman-numerals",
     "prime-factors",
     "raindrops",
     "allergies",
     "atbash-cipher",
+    "all-your-base",
     "bank-account",
     "crypto-square",
     "kindergarten-garden",
     "robot-simulator",
     "queen-attack",
     "binary-search-tree",
-    "hexadecimal",
     "largest-series-product",
     "luhn",
     "clock",
@@ -46,8 +45,6 @@
     "house",
     "minesweeper",
     "ocr-numbers",
-    "octal",
-    "trinary",
     "wordy",
     "food-chain",
     "linked-list",
@@ -69,7 +66,10 @@
     "forth"
   ],
   "deprecated": [
-
+    "binary",
+    "hexadecimal",
+    "octal",
+    "trinary"
   ],
   "ignored": [
     "docs",
