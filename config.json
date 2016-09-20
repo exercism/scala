@@ -405,6 +405,12 @@
       ]
 		},
     {
+      "slug": "change",
+      "difficulty": 1,
+      "topics": [
+      ]
+		},
+    {
       "slug": "connect",
       "difficulty": 1,
       "topics": [
@@ -418,6 +424,12 @@
 		},
     {
       "slug": "acronym",
+      "difficulty": 1,
+      "topics": [
+      ]
+		},
+    {
+      "slug": "zipper",
       "difficulty": 1,
       "topics": [
       ]
