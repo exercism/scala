@@ -64,6 +64,7 @@
     "connect",
     "parallel-letter-frequency",
     "acronym",
+    "zipper",
     "forth"
   ],
   "deprecated": [
