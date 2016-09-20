@@ -1,16 +1,37 @@
-class DNA(strand: String) {
-  strand foreach validate
+import DNA._
 
-  lazy val nucleotideCounts = {
-    Map('A' -> 0, 'T' -> 0, 'C' -> 0, 'G' -> 0) ++
-    strand.toCharArray.groupBy(identity).mapValues(_.length)
+class DNA(dna: String) {
+
+  def count(char: Char): OrError[Int] =
+    for {
+      nucleotide <- toNucleotide(char).right
+      counts <- nucleotideCounts.right
+    } yield counts(nucleotide)
+
+  lazy val nucleotideCounts: OrError[NucleotideCounts] = {
+    val zeroCounts: Either[String, NucleotideCounts] =
+      Right(EmptyNucleotideCounts)
+
+    dna.foldLeft(zeroCounts) { case (nucleotideCounts, char) =>
+      for {
+        nucleotide <- toNucleotide(char).right
+        counts <- nucleotideCounts.right
+      } yield counts updated (nucleotide, counts.getOrElse(nucleotide, 0) + 1)
+    }
   }
 
-  private def validate(nucleotide: Char) =
-    if (!DNA.isNucleotide(nucleotide)) throw new IllegalArgumentException
+  private def toNucleotide(char: Char): OrError[Nucleotide] =
+    if (DnaNucleotides.contains(char)) Right(char)
+    else Left(s"invalid nucleotide '$char'")
 }
 
 object DNA {
-  val nucleotides = "ATCG"
-  def isNucleotide(c: Char) = nucleotides.contains(c)
+  type Nucleotide = Char
+  type NucleotideCounts = Map[Nucleotide,Int]
+  type OrError[T] = Either[String, T]
+
+  val DnaNucleotides: Set[Nucleotide] = Set('A', 'T', 'C', 'G')
+
+  val EmptyNucleotideCounts: NucleotideCounts =
+    DnaNucleotides map (_ -> 0) toMap
 }
