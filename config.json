@@ -86,8 +86,11 @@
 		},
     {
       "slug": "hamming",
-      "difficulty": 1,
+      "difficulty": 2,
       "topics": [
+        "Strings",
+        "Filtering",
+				"Optional values"
       ]
 		},
     {
