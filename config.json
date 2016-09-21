@@ -79,6 +79,9 @@
       "slug": "bob",
       "difficulty": 1,
       "topics": [
+				"Strings",
+        "Control-flow (if-else statements)",
+				"Pattern matching"
       ]
 		},
     {
