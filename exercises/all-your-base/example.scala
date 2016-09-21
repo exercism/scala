@@ -2,8 +2,10 @@ import scala.annotation.tailrec
 
 object AllYourBase {
   def rebase(inputBase: Int, inputDigits: List[Int], outputBase: Int): Option[List[Int]] = {
-    if (inputBase < 2 || outputBase < 2 || inputDigits.isEmpty)
+    if (inputBase < 2 || outputBase < 2)
       None
+    else if (inputDigits.isEmpty)
+      Some(List())
     else {
       fromDigits(0, inputBase, inputDigits) match {
         case None => None

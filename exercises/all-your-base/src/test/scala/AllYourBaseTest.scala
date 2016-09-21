@@ -51,7 +51,7 @@ class AllYourBaseTest extends FunSuite with Matchers {
   test("empty list") {
     pending
     AllYourBase.rebase(2, List(),
-      10) should be (None)
+      10) should be (Some(List()))
   }
 
   test("single zero") {
