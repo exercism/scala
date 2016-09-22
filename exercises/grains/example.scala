@@ -10,7 +10,7 @@ object Grains {
     def isValidChessboardSquare(n: Int) =
       1 <= n && n <= ChessboardSquares
 
-    def sq(n: Int): BigInt = {
+    def powerOfTwo(n: Int): BigInt = {
       @tailrec
       def loop(n: Int, acc: BigInt): BigInt =
         if (n == 0) acc
@@ -21,7 +21,7 @@ object Grains {
 
     val pred = (_:Int) - 1
 
-    Option(cbSquare) filter isValidChessboardSquare map pred.andThen(sq)
+    Option(cbSquare) filter isValidChessboardSquare map pred.andThen(powerOfTwo)
   }
 
   def total: Grains =
