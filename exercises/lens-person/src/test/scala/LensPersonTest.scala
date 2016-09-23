@@ -29,18 +29,22 @@ class LensPersonTest extends FunSuite with Matchers {
   }
 
   test("setCurrentStreet") {
+    pending
     (setCurrentStreet("Middleroad")(testPerson))._address._street should be ("Middleroad")
   }
 
   test("setBirthMonth") {
+    pending
     setBirthMonth(9)(testPerson)._born._bornOn should be (toEpochDay(1984, 9, 12))
   }
 
   test("renameStreets birth") {
+    pending
     renameStreets(_.toUpperCase)(testPerson)._born._bornAt._street should be ("LONGWAY")
   }
 
   test("renameStreets current") {
+    pending
     renameStreets(_.toUpperCase)(testPerson)._address._street should be ("SHORTLANE")
   }
 }
