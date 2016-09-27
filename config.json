@@ -65,7 +65,8 @@
     "parallel-letter-frequency",
     "acronym",
     "zipper",
-    "forth"
+    "forth",
+    "lens-person"
   ],
   "exercises": [
     {
@@ -443,6 +444,12 @@
 		},
     {
       "slug": "forth",
+      "difficulty": 1,
+      "topics": [
+      ]
+		},
+    {
+      "slug": "lens-person",
       "difficulty": 1,
       "topics": [
       ]
