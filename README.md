@@ -11,3 +11,6 @@ Please see the [contributing guide](https://github.com/exercism/x-api/blob/maste
 The MIT License (MIT)
 
 Copyright (c) 2014 Katrina Owen, _@kytrinyx.com
+
+## Scala icon
+The Scala icon used on Exercism is inspired by the official Scala logo, which is copyright École Polytechnique Fédérale de Lausanne.
