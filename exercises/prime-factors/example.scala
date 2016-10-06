@@ -1,8 +1,8 @@
 import scala.annotation.tailrec
 
 // Algorithm from - http://fldit-www.cs.uni-dortmund.de/~peter/PS07/HR.pdf
-class PrimeFactors {
-  def primeFactors(n: Long): List[Long] = {
+object PrimeFactors {
+  def forNumber(n: Long): List[Long] = {
     assert(n >= 1, "Argument must be positive")
 
     @tailrec
@@ -26,7 +26,4 @@ class PrimeFactors {
     else ldf(k + 1, n)
 }
 
-object PrimeFactors {
-  def apply() = new PrimeFactors
-}
 
