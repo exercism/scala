@@ -6,6 +6,7 @@
   "problems": [
     "hello-world",
     "bob",
+    "sum-of-multiples",
     "hamming",
     "word-count",
     "pangram",
@@ -83,6 +84,13 @@
 				"Strings",
         "Control-flow (if-else statements)",
 				"Pattern matching"
+      ]
+		},
+    {
+      "slug": "sum-of-multiples",
+      "difficulty": 1,
+      "topics": [
+	"Filtering"
       ]
 		},
     {
