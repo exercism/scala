@@ -37,6 +37,7 @@
     "crypto-square",
     "kindergarten-garden",
     "robot-simulator",
+    "bracket-push",
     "queen-attack",
     "binary-search-tree",
     "largest-series-product",
@@ -272,6 +273,12 @@
 		},
     {
       "slug": "robot-simulator",
+      "difficulty": 1,
+      "topics": [
+      ]
+		},
+    {
+      "slug": "bracket-push",
       "difficulty": 1,
       "topics": [
       ]
