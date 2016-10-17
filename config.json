@@ -44,6 +44,7 @@
     "clock",
     "matrix",
     "house",
+    "zebra-puzzle",
     "minesweeper",
     "ocr-numbers",
     "wordy",
@@ -314,6 +315,12 @@
 		},
     {
       "slug": "house",
+      "difficulty": 1,
+      "topics": [
+      ]
+		},
+    {
+      "slug": "zebra-puzzle",
       "difficulty": 1,
       "topics": [
       ]
