@@ -66,6 +66,7 @@
     "change",
     "connect",
     "parallel-letter-frequency",
+    "sgf-parsing",
     "acronym",
     "zipper",
     "forth",
@@ -448,6 +449,12 @@
 		},
     {
       "slug": "parallel-letter-frequency",
+      "difficulty": 1,
+      "topics": [
+      ]
+		},
+    {
+      "slug": "sgf-parsing",
       "difficulty": 1,
       "topics": [
       ]
