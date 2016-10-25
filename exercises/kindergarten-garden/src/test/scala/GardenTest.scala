@@ -7,6 +7,7 @@ class GardenTest extends FunSuite with Matchers {
   }
 
   test("alice tests") {
+    pending
     Garden.defaultGarden("RC\nGG").getPlants("Alice") should
       equal(List(Plant.Radishes, Plant.Clover, Plant.Grass, Plant.Grass))
     Garden.defaultGarden("VC\nRC").getPlants("Alice") should
@@ -14,11 +15,13 @@ class GardenTest extends FunSuite with Matchers {
   }
 
   test("small garden") {
+    pending
     Garden.defaultGarden("VVCG\nVVRC").getPlants("Bob") should
       equal(List(Plant.Clover, Plant.Grass, Plant.Radishes, Plant.Clover))
   }
 
   test("medium garden") {
+    pending
     val garden = Garden.defaultGarden("VVCCGG\nVVCCGG")
     garden.getPlants("Bob") should
       equal(List(Plant.Clover, Plant.Clover, Plant.Clover, Plant.Clover))
@@ -27,6 +30,7 @@ class GardenTest extends FunSuite with Matchers {
   }
 
   test("full garden") {
+    pending
     val garden = Garden.defaultGarden("VRCGVVRVCGGCCGVRGCVCGCGV\nVRCCCGCRRGVCGCRVVCVGCGCV")
     garden.getPlants("Alice") should
       equal(List(Plant.Violets, Plant.Radishes, Plant.Violets, Plant.Radishes))
@@ -53,6 +57,7 @@ class GardenTest extends FunSuite with Matchers {
   }
 
   test("surprise garden") {
+    pending
     val garden = Garden(List("Samantha", "Patricia", "Xander", "Roger"), "VCRRGVRG\nRVGCCGCV")
     garden.getPlants("Patricia") should
       equal(List(Plant.Violets, Plant.Clover, Plant.Radishes, Plant.Violets))
