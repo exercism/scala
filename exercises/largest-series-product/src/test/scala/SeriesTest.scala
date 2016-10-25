@@ -10,6 +10,7 @@ class SeriesTest extends FlatSpec with Matchers {
   }
 
   it should "find largestProduct in long strings" in {
+    pending
     Series.largestProduct(6,
       "73167176531330624919225119674426574742355349194934") should equal(Some(23520))
     Series.largestProduct(6,
@@ -17,6 +18,7 @@ class SeriesTest extends FlatSpec with Matchers {
   }
 
   it should "find largestProduct boundary conditions" in {
+    pending
     Series.largestProduct(0, "") should equal(Some(1))
     Series.largestProduct(0, "123") should equal(Some(1))
     Series.largestProduct(1, "") should equal(None)
