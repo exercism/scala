@@ -44,11 +44,11 @@ object XScalaBuild extends Build {
         throw new IllegalArgumentException(s"Could not parse $configJsonFile as JSON")
       }
     configObj
-      .get("problems")
+      .get("exercises")
       .map(_.asInstanceOf[JSONArray].list)
       .getOrElse {
-        throw new IllegalArgumentException(s"Could not find array 'problems' in $configJsonFile")
+        throw new IllegalArgumentException(s"Could not find array 'exercises' in $configJsonFile")
       }
-      .collect { case problem: String => problem }
+      .collect { case problem: JSONObject => problem.obj("slug").toString }
   }
 }
