@@ -12,6 +12,7 @@ class DequeTest extends FlatSpec with Matchers {
   }
 
   it should "handle push then shift" in {
+    pending
     val deque = Deque[Char]()
     deque.push('a')
     deque.push('b')
@@ -21,6 +22,7 @@ class DequeTest extends FlatSpec with Matchers {
   }
 
   it should "handle unshift then shift" in {
+    pending
     val deque = Deque[Char]()
     deque.unshift('a')
     deque.unshift('b')
@@ -29,6 +31,7 @@ class DequeTest extends FlatSpec with Matchers {
   }
 
   it should "handle unshift then pop" in {
+    pending
     val deque = Deque[Char]()
     deque.unshift('a')
     deque.unshift('b')
@@ -37,6 +40,7 @@ class DequeTest extends FlatSpec with Matchers {
   }
 
   it should "handle complex interaction" in {
+    pending
     val deque = Deque[Int]()
     deque.push(1)
     deque.push(2)
