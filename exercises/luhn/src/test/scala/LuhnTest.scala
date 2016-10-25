@@ -8,11 +8,13 @@ class LuhnTest extends FlatSpec with Matchers {
   }
 
   it should "create addends" in {
+    pending
     Luhn(12121).addends should equal(List(1, 4, 1, 4, 1))
     Luhn(8631).addends should equal(List(7, 6, 6, 1))
   }
 
   it should "create checksum" in {
+    pending
     //  NOTE: this differs from the ruby and js, the checksum really should
     //        be mod 10 like we are testing here.
     Luhn(4913).checksum should equal(2)
@@ -20,11 +22,13 @@ class LuhnTest extends FlatSpec with Matchers {
   }
 
   it should "check validity" in {
+    pending
     Luhn(738).isValid should be (false)
     Luhn(8739567).isValid should be (true)
   }
 
   it should "create luhn values" in {
+    pending
     Luhn(123).create should be (1230)
     Luhn(873956).create should be (8739567)
     Luhn(837263756).create should be (8372637564L)
