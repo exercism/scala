@@ -9,6 +9,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize one" in {
+    pending
     Ocr(List("   "
            , "  |"
            , "  |"
@@ -16,6 +17,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize two" in {
+    pending
     Ocr(List(" _ "
            , " _|"
            , "|_ "
@@ -23,6 +25,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize three" in {
+    pending
     Ocr(List(" _ "
            , " _|"
            , " _|"
@@ -30,6 +33,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize four" in {
+    pending
     Ocr(List("   "
            , "|_|"
            , "  |"
@@ -37,6 +41,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize five" in {
+    pending
     Ocr(List(" _ "
            , "|_ "
            , " _|"
@@ -44,6 +49,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize six" in {
+    pending
     Ocr(List(" _ "
            , "|_ "
            , "|_|"
@@ -51,6 +57,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize seven" in {
+    pending
     Ocr(List(" _ "
            , "  |"
            , "  |"
@@ -58,6 +65,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize eight" in {
+    pending
     Ocr(List(" _ "
            , "|_|"
            , "|_|"
@@ -65,6 +73,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize nine" in {
+    pending
     Ocr(List(" _ "
            , "|_|"
            , " _|"
@@ -72,6 +81,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize garble" in {
+    pending
     Ocr(List("   "
            , "| |"
            , "| |"
@@ -79,6 +89,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize ten" in {
+    pending
     Ocr(List("    _ "
            , "  || |"
            , "  ||_|"
@@ -86,6 +97,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize 110101100" in {
+    pending
     Ocr(List("       _     _        _  _ "
            , "  |  || |  || |  |  || || |"
            , "  |  ||_|  ||_|  |  ||_||_|"
@@ -93,6 +105,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize garbled multi digit ocr" in {
+    pending
     Ocr(List("       _     _           _ "
            , "  |  || |  || |     || || |"
            , "  |  | _|  ||_|  |  ||_||_|"
@@ -100,6 +113,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize 1234567890" in {
+    pending
     Ocr(List("    _  _     _  _  _  _  _  _ "
            , "  | _| _||_||_ |_   ||_||_|| |"
            , "  ||_  _|  | _||_|  ||_| _||_|"
@@ -107,6 +121,7 @@ class OcrTest extends FlatSpec with Matchers {
   }
 
   it should "recognize 123,456,789" in {
+    pending
     Ocr(List("    _  _ "
            , "  | _| _|"
            , "  ||_  _|"
