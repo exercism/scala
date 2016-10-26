@@ -15,16 +15,19 @@ class ConnectTest extends FunSuite with Matchers {
   }
 
   test("black single item board") {
+    pending
     val lines = List("X")
     Connect(mkBoard(lines)).result should be (Some(Color.Black))
   }
 
   test("white single item board") {
+    pending
     val lines = List("O")
     Connect(mkBoard(lines)).result should be (Some(Color.White))
   }
 
   test("convoluted path") {
+    pending
     val lines = List(". X X . ."
                     ," X . X . X"
                     ,"  . X . X ."
@@ -34,6 +37,7 @@ class ConnectTest extends FunSuite with Matchers {
   }
 
   test("rectangle - black wins") {
+    pending
     val lines = List(". O . ."
                     ," O X X X"
                     ,"  O X O ."
@@ -43,6 +47,7 @@ class ConnectTest extends FunSuite with Matchers {
   }
 
   test("rectangle - white wins") {
+    pending
     val lines = List(". O . ."
                     ," O X X X"
                     ,"  O O O ."
@@ -52,6 +57,7 @@ class ConnectTest extends FunSuite with Matchers {
   }
 
   test("spiral - black wins") {
+    pending
     val lines = List("OXXXXXXXX"
                     ,"OXOOOOOOO"
                     ,"OXOXXXXXO"
@@ -65,6 +71,7 @@ class ConnectTest extends FunSuite with Matchers {
   }
 
   test("spiral - none") {
+    pending
     val lines = List("OXXXXXXXX"
                     ,"OXOOOOOOO"
                     ,"OXOXXXXXO"
