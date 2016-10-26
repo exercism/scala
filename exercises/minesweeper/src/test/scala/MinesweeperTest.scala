@@ -7,6 +7,7 @@ class MinesweeperTest extends FlatSpec with Matchers {
   }
 
   it should "handle empty board" in {
+    pending
     Minesweeper.annotate(List("   ",
                               "   ",
                               "   ")) should
@@ -16,6 +17,7 @@ class MinesweeperTest extends FlatSpec with Matchers {
   }
 
   it should "handle board full of mines" in {
+    pending
     Minesweeper.annotate(List("***",
                               "***",
                               "***")) should
@@ -25,6 +27,7 @@ class MinesweeperTest extends FlatSpec with Matchers {
   }
 
   it should "handle surrounded" in {
+    pending
     Minesweeper.annotate(List("***",
                               "* *",
                               "***")) should
@@ -34,12 +37,14 @@ class MinesweeperTest extends FlatSpec with Matchers {
   }
 
   it should "handle horizontal line" in {
+    pending
     Minesweeper.annotate(List(" * * ")) should
       equal(List("1*2*1"))
   }
 
 
   it should "handle vertical line" in {
+    pending
     Minesweeper.annotate(List(" ",
                               "*",
                               " ",
@@ -53,6 +58,7 @@ class MinesweeperTest extends FlatSpec with Matchers {
   }
 
   it should "handle cross" in {
+    pending
     Minesweeper.annotate(List("  *  ",
                               "  *  ",
                               "*****",
