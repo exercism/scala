@@ -5,11 +5,13 @@ class SieveTest extends FunSuite with Matchers {
     Sieve.primesUpTo(10) should be (List(2, 3, 5, 7))
   }
 
-  test("primes up to 11") {
+  test("primes up to 11") { 
+    pending
     Sieve.primesUpTo(11) should be (List(2, 3, 5, 7, 11))
   }
 
-  test("primes up to 1000") {
+  test("primes up to 1000") { 
+    pending
     Sieve.primesUpTo(1000) should be (List(
       2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71,
       73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151,
@@ -24,11 +26,13 @@ class SieveTest extends FunSuite with Matchers {
       919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997))
   }
 
-  test("first thousand primes") {
+  test("first thousand primes") { 
+    pending
     Sieve.primesUpTo(7919).size should be (1000)
   }
 
-  test("edge cases") {
+  test("edge cases") { 
+    pending
     Sieve.primesUpTo(1) should be (List())
     Sieve.primesUpTo(2) should be (List(2))
   }
