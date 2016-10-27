@@ -41,31 +41,38 @@ class FrequencyTest extends FunSuite with Matchers {
   }
 
   test("Single letter") {
+    pending
     Frequency.frequency(10, Seq("a")) should be (Map('a' -> 1))
   }
 
   test("Case insensitivity") {
+    pending
     Frequency.frequency(1000, Seq("aA")) should be (Map('a' -> 2))
   }
 
   test("Many empty texts") {
+    pending
     Frequency.frequency(1, Iterator.fill(10000)("  ").toSeq) should be (Map())
   }
 
   test("many times the same text gives a predictable result") {
+    pending
     Frequency.frequency(1, Iterator.fill(1000)("abc").toSeq) should
       be (Map('a' -> 1000, 'b' -> 1000, 'c' -> 1000))
   }
 
   test("Ignore punctuation") {
+    pending
     Frequency.frequency(1, ode_an_die_freude).get(',') should be (None)
   }
 
   test("Ignore numbers") {
+    pending
     Frequency.frequency(1, Seq("Testing 1, 2, 3")).get('1') should be (None)
   }
 
   test("All three anthems - 1 worker") {
+    pending
     val freqs = Frequency.frequency(1, ode_an_die_freude ++ wilhelmus ++ star_spangled_banner)
     freqs.get('a') should be (Some(49))
     freqs.get('t') should be (Some(56))
@@ -73,6 +80,7 @@ class FrequencyTest extends FunSuite with Matchers {
   }
 
   test("All three anthems - 4 workers") {
+    pending
     val freqs = Frequency.frequency(4, ode_an_die_freude ++ wilhelmus ++ star_spangled_banner)
     freqs.get('a') should be (Some(49))
     freqs.get('t') should be (Some(56))
