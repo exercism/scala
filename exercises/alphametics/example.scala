@@ -16,23 +16,14 @@ object Alphametics {
     ExpressionParser.parse(str)
 
   private def solveExpression(uniqueLetters: String)(boolExpr: Expression[Boolean]): Option[Solution] = {
+    def isSolution(solution: Solution): Boolean =
+      boolExpr.eval(solution) getOrElse false
+
+    def toSolution(tenChars: String): Solution =
+      tenChars.zipWithIndex.toMap filterKeys (_.isLetter)
+
     val tenChars = uniqueLetters ++ Seq.fill(10 - uniqueLetters.size)('.')
-    val solutionSeq: Seq[String] =
-      tenChars.permutations filter isSolution(boolExpr) toSeq
-
-    solutionSeq.headOption map toSolution
-  }
-
-  private def toSolution(tenChars: String): Solution =
-    tenChars.zipWithIndex.toMap filterKeys (_ != '.')
-
-  private def isSolution(boolExpr: Expression[Boolean])(tenChars: String): Boolean = {
-    val solution = toSolution(tenChars)
-    boolExpr.eval(solution) getOrElse false
-  }
-
-  def main(args: Array[String]): Unit = {
-    println(solve("SEND + MORE == MONEY"))
+    tenChars.permutations map toSolution find isSolution
   }
 }
 
