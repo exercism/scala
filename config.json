@@ -15,16 +15,16 @@
       "slug": "bob",
       "difficulty": 1,
       "topics": [
-				"Strings",
+        "Strings",
         "Control-flow (if-else statements)",
-				"Pattern matching"
+        "Pattern matching"
       ]
 		},
     {
       "slug": "sum-of-multiples",
       "difficulty": 1,
       "topics": [
-	"Filtering"
+	    "Filtering"
       ]
 		},
     {
@@ -33,7 +33,7 @@
       "topics": [
         "Strings",
         "Filtering",
-				"Optional values"
+        "Optional values"
       ]
 		},
     {
@@ -413,7 +413,16 @@
       "difficulty": 1,
       "topics": [
       ]
-		}
+		},
+    {
+      "slug": "bowling",
+      "difficulty": 6,
+      "topics": [
+        "Algorithms",
+        "Control-flow (if-else statements)",
+        "Lists"
+      ]
+    }
 	],
   "deprecated": [
     "binary",
