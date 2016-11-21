@@ -385,6 +385,12 @@
       ]
 		},
     {
+      "slug": "dominoes",
+      "difficulty": 1,
+      "topics": [
+      ]
+		},
+    {
       "slug": "parallel-letter-frequency",
       "difficulty": 1,
       "topics": [
