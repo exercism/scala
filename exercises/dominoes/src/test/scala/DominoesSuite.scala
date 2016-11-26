@@ -71,7 +71,7 @@ class DominoesSuite extends FunSuite with Matchers {
 
   private def checkChain(result: List[(Int, Int)], input: List[(Int, Int)]): Unit = {
     def sortDomino(ab: (Int, Int)): (Int, Int) =
-      if (x._1 > x._2) x.swap else x
+      if (ab._1 > ab._2) ab.swap else ab
     def consecutivesShouldMatch(dominoes: List[((Int, Int), Int)]): Unit =
       dominoes.tails foreach {
         case (a@(_,x), i1)::(b@(y,_), i2)::_ =>
