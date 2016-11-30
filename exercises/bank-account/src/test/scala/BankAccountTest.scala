@@ -3,12 +3,12 @@ import org.scalatest.{Matchers, FunSuite}
 
 class BankAccountTest extends FunSuite with Matchers with Conductors with IntegrationPatience {
   test("open account") {
-    BankAccount().getBalance should be (Some(0))
+    Bank.openAccount().getBalance should be (Some(0))
   }
 
   test("incrementing and checking balance") {
     pending
-    val acct = BankAccount()
+    val acct = Bank.openAccount()
     acct.getBalance should be (Some(0))
     acct.incrementBalance(10) should be (Some(10))
     acct.getBalance should be (Some(10))
@@ -18,7 +18,7 @@ class BankAccountTest extends FunSuite with Matchers with Conductors with Integr
 
   test("closed account should hold no balance") {
     pending
-    val acct = BankAccount()
+    val acct = Bank.openAccount()
     acct.closeAccount()
     acct.incrementBalance(10)
     acct.incrementBalance(10)
@@ -30,7 +30,7 @@ class BankAccountTest extends FunSuite with Matchers with Conductors with Integr
     val conductor = new Conductor
     import conductor._
 
-    val acct = BankAccount()
+    val acct = Bank.openAccount()
 
     thread("t1") {
       acct.incrementBalance(10)
@@ -54,7 +54,7 @@ class BankAccountTest extends FunSuite with Matchers with Conductors with Integr
     val conductor = new Conductor
     import conductor._
 
-    val acct = BankAccount()
+    val acct = Bank.openAccount()
 
     thread("t1") {
       for (a <- 1 to 10)
