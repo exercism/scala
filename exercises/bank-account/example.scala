@@ -23,8 +23,6 @@ protected case class Account(var balance: Option[Int] = Some(0)) extends BankAcc
   }
 }
 
-object BankAccount {
-  def apply(): BankAccount = Account()
+object Bank {
+  def openAccount(): BankAccount = Account()
 }
-
-
