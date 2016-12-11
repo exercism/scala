@@ -1,5 +1,5 @@
 object SumOfMultiples {
-  def sumOfMultiples(factors: List[Int], limit: Int): Int = {
+  def sumOfMultiples(factors: Set[Int], limit: Int): Int = {
     def isDivisibleBy(x: Int)(y: Int): Boolean = x % y == 0
     def isMultiple(x: Int): Boolean = factors exists isDivisibleBy(x)
 

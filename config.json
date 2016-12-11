@@ -24,7 +24,8 @@
       "slug": "sum-of-multiples",
       "difficulty": 1,
       "topics": [
-	    "Filtering"
+	    "Filtering", 
+            "Sets"
       ]
 		},
     {
