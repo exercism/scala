@@ -1,21 +1,18 @@
 import scala.util.Random
 
-class Robot {
-  private var _name: String = makeName
-
-  def name: String = _name
-
-  def reset(): Unit = _name = makeName
-
-  private def makeName = prefix + suffix
-
-  private def prefix = Random.shuffle(Robot.alphabet).take(2).mkString
-
-  private def suffix = Random.shuffle(Robot.suffixes).head.toString
+object UniqueNames {
+  val names =
+    Random.shuffle(1 to 26 * 26 * 1000).iterator.map(n => {
+      val lettersPart = n / 1000
+      val firstLetter = 'A' + (lettersPart / 26)
+      val secondLetter = 'A' + (lettersPart % 26)
+      f"$firstLetter%c$secondLetter%c${n % 1000}%03d"
+    })
 }
 
-object Robot {
-  private val alphabet: Seq[Char] = 'A'.to('Z').toList
+class Robot {
+  private var storedName = UniqueNames.names.next()
 
-  private val suffixes: Seq[Int] = 100.to(999).toList
+  def name: String = storedName
+  def reset(): Unit = storedName = UniqueNames.names.next()
 }
