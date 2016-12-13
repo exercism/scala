@@ -6,42 +6,52 @@ class PrimeFactorsTest extends FlatSpec with Matchers {
   }
 
   it should "calc prime factors of 2" in {
+    pending
     PrimeFactors.forNumber(2) should be (List(2))
   }
 
   it should "calc prime factors of 3" in {
+    pending
     PrimeFactors.forNumber(3) should be (List(3))
   }
 
   it should "calc prime factors of 4" in {
+    pending
     PrimeFactors.forNumber(4) should be (List(2, 2))
   }
 
   it should "calc prime factors of 6" in {
+    pending
     PrimeFactors.forNumber(6) should be (List(2, 3))
   }
 
   it should "calc prime factors of 8" in {
+    pending
     PrimeFactors.forNumber(8) should be (List(2, 2, 2))
   }
 
   it should "calc prime factors of 9" in {
+    pending
     PrimeFactors.forNumber(9) should be (List(3, 3))
   }
 
   it should "calc prime factors of 27" in {
+    pending
     PrimeFactors.forNumber(27) should be (List(3, 3, 3))
   }
 
   it should "calc prime factors of 625" in {
+    pending
     PrimeFactors.forNumber(625) should be (List(5, 5, 5, 5))
   }
 
   it should "calc prime factors of 901255" in {
+    pending
     PrimeFactors.forNumber(901255) should be (List(5, 17, 23, 461))
   }
 
   it should "calc prime factors of 93819012551" in {
+    pending
     PrimeFactors.forNumber(Long.MaxValue) should be (List(7, 7, 73, 127, 337, 92737, 649657))
   }
 }
