@@ -1,6 +1,7 @@
 *.beam
 *.swp
 .DS_Store
+.idea
 tmp
 target/
 bin/configlet
