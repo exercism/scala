@@ -7,16 +7,19 @@ class SaddlePointsSpecs extends FlatSpec with Matchers {
   }
 
   it should "handle multiple saddles" in {
+    pending
     val points = Matrix(List(List(5, 3, 5, 4), List(6, 4, 7, 3), List(5, 1, 5, 3))).saddlePoints
     points should be (Set((0, 0), (0, 2), (2, 0), (2, 2)))
   }
 
   it should "handle no saddles" in {
+    pending
     val points = Matrix(List(List(2, 1), List(1, 2))).saddlePoints
     points should be (Set())
   }
 
   it should "handle empty matrix" in {
+    pending
     val points = Matrix(List()).saddlePoints
     points should be (Set())
   }
