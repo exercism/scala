@@ -6,30 +6,37 @@ class TriangleTest extends FlatSpec with Matchers {
   }
 
   it should "calc Equilateral2" in {
+    pending
     Triangle(10, 10, 10).triangleType should equal(TriangleType.Equilateral)
   }
 
   it should "calc Isosceles" in {
+    pending
     Triangle(3, 4, 4).triangleType should equal(TriangleType.Isosceles)
   }
 
   it should "calc Isosceles2" in {
+    pending
     Triangle(4, 3, 4).triangleType should equal(TriangleType.Isosceles)
   }
 
   it should "calc Scalene" in {
+    pending
     Triangle(3, 4, 5).triangleType should equal(TriangleType.Scalene)
   }
 
   it should "calc Illogical" in {
+    pending
     Triangle(1, 1, 50).triangleType should equal(TriangleType.Illogical)
   }
 
   it should "calc Illogical with zero length side" in {
+    pending
     Triangle(0, 2, 1).triangleType should equal(TriangleType.Illogical)
   }
 
   it should "calc Illogical with negative length side" in {
+    pending
     Triangle(1, 1, -1).triangleType should equal(TriangleType.Illogical)
   }
 }

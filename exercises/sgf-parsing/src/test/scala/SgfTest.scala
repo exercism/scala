@@ -22,6 +22,7 @@ class SgfTest extends FunSuite with Matchers {
   }
 
   test("parse \"(;A[B])\"") {
+    pending
     Sgf.parseSgf("(;A[B])") should be (Some(Node(Map("A" -> List("B")))))
   }
 

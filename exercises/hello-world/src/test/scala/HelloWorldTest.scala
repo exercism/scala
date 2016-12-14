@@ -6,10 +6,12 @@ class HelloWorldTest extends FunSuite with Matchers {
   }
 
   test("with name") {
+    pending
     HelloWorld.hello("Jane") should be ("Hello, Jane!")
   }
 
   test("with umlaut name") {
+    pending
     HelloWorld.hello("Jürgen") should be ("Hello, Jürgen!")
   }
 }
