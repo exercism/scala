@@ -173,6 +173,9 @@
       "slug": "allergies",
       "difficulty": 1,
       "topics": [
+         "Lists",
+         "Enumerations",
+         "Filtering"
       ]
 		},
     {
