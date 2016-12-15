@@ -1,4 +1,4 @@
-class Raindrops {
+object Raindrops {
   private val sounds = List((3, "Pling"), (5, "Plang"), (7, "Plong"))
 
   def convert(n: Int): String =
@@ -6,8 +6,4 @@ class Raindrops {
       case "" => n.toString
       case s => s
     }
-}
-
-object Raindrops {
-  def apply() = new Raindrops
 }
