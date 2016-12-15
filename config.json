@@ -203,6 +203,10 @@
       "slug": "crypto-square",
       "difficulty": 1,
       "topics": [
+         "Strings",
+         "Lists",
+         "Security",
+         "Transforming"
       ]
 		},
     {
