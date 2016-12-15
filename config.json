@@ -221,6 +221,10 @@
       "slug": "queen-attack",
       "difficulty": 1,
       "topics": [
+         "Strings",
+         "Optional values",
+         "Logic",
+         "Games"
       ]
 		},
     {

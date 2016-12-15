@@ -1,4 +1,4 @@
-case class Queens() {
+object Queens {
 
   def boardString(white: Option[Position], black: Option[Position]): String = {
 
@@ -34,3 +34,4 @@ case class Queens() {
 }
 
 case class Position(x: Int, y: Int)
+
