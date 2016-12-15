@@ -1,6 +1,6 @@
 import Allergen.Allergen
 
-class Allergies {
+object Allergies {
   private lazy val allergenList = Allergen.values
 
   def isAllergicTo(allergen: Allergen, score: Int): Boolean =
@@ -8,10 +8,6 @@ class Allergies {
 
   def allergies(score: Int): List[Allergen] =
     allergenList.filter(a => isAllergicTo(a, score)).toList
-}
-
-object Allergies {
-  def apply() = new Allergies
 }
 
 object Allergen extends Enumeration {
