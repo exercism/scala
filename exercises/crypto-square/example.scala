@@ -1,4 +1,4 @@
-case class CryptoSquare() {
+object CryptoSquare {
   def normalizePlaintext(text: String): String =
     text.filter(c => c.isLetterOrDigit).toLowerCase
 
