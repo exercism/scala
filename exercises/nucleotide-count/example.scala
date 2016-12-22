@@ -4,8 +4,8 @@ class DNA(dna: String) {
 
   def count(char: Char): OrError[Int] =
     for {
-      nucleotide <- toNucleotide(char).right
-      counts <- nucleotideCounts.right
+      nucleotide <- toNucleotide(char)
+      counts <- nucleotideCounts
     } yield counts(nucleotide)
 
   lazy val nucleotideCounts: OrError[NucleotideCounts] = {
@@ -14,8 +14,8 @@ class DNA(dna: String) {
 
     dna.foldLeft(zeroCounts) { case (nucleotideCounts, char) =>
       for {
-        nucleotide <- toNucleotide(char).right
-        counts <- nucleotideCounts.right
+        nucleotide <- toNucleotide(char)
+        counts <- nucleotideCounts
       } yield counts updated (nucleotide, counts.getOrElse(nucleotide, 0) + 1)
     }
   }
