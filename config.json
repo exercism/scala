@@ -430,6 +430,9 @@
       "slug": "zipper",
       "difficulty": 1,
       "topics": [
+         "Generics",
+         "Optional values",
+         "Trees"
       ]
 		},
     {
