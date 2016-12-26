@@ -418,6 +418,8 @@
       "slug": "sgf-parsing",
       "difficulty": 1,
       "topics": [
+        "Parsing",
+        "Transforming"
       ]
 		},
     {
