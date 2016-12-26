@@ -412,6 +412,12 @@
       "slug": "parallel-letter-frequency",
       "difficulty": 1,
       "topics": [
+        "Maps",
+        "Sequences",
+        "Strings",
+        "Parallellism",
+        "Transforming",
+        "Dictionaries"
       ]
 		},
     {
