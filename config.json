@@ -388,6 +388,10 @@
       "slug": "simple-cipher",
       "difficulty": 1,
       "topics": [
+        "Optional values",
+        "Strings",
+        "Algorithms",
+        "Transforming"
       ]
 		},
     {
