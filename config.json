@@ -113,6 +113,9 @@
       "slug": "gigasecond",
       "difficulty": 1,
       "topics": [
+        "Dates",
+        "Time",
+        "Function Overloading"
       ]
 		},
     {

@@ -1,3 +1,2 @@
 ## Hints
-Note that `GregorianCalendar` is a mutable object.
-You should not change this mutable object to avoid any side effects!
+Note that `addGigaseconds` accepts two different types of input.
