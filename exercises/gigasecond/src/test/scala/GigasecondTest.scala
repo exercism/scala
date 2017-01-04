@@ -1,55 +1,57 @@
-import org.scalatest._
-import java.util.{TimeZone, GregorianCalendar}
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+
+import org.scalatest.FunSuite
+import org.scalatest.Matchers
 
 class GigasecondTests extends FunSuite with Matchers {
-  test ("1") {
-    // Note: Months are 0-indexed. 3 = April
-    val cal = new GregorianCalendar(2011, 3, 25)
-    cal.setTimeZone(TimeZone.getTimeZone("GMT"))
-    val gs = Gigasecond(cal)
 
-    val expected = new GregorianCalendar(2043, 0, 1, 1, 46, 40)
-    expected.setTimeZone(TimeZone.getTimeZone("GMT"))
-    gs.date should be (expected)
+  private def dateTime(str: String): LocalDateTime =
+    LocalDateTime.from(DateTimeFormatter.ISO_DATE_TIME.parse(str))
+
+  private def date(str: String): LocalDate =
+    LocalDate.from(DateTimeFormatter.ISO_DATE.parse(str))
+
+
+  test("modern time") {
+    val input = date("2011-04-25")
+    val expected = dateTime("2043-01-01T01:46:40")
+    Gigasecond.addGigaseconds(input) should be (expected)
   }
 
-  test ("2") {
+  test("after epoch time") {
     pending
-    val cal = new GregorianCalendar(1977, 5, 13)
-    cal.setTimeZone(TimeZone.getTimeZone("GMT"))
-    val gs = Gigasecond(cal)
-
-    val expected = new GregorianCalendar(2009, 1, 19, 1, 46, 40)
-    expected.setTimeZone(TimeZone.getTimeZone("GMT"))
-    gs.date should be (expected)
+    val input = date("1977-06-13")
+    val expected = dateTime("2009-02-19T01:46:40")
+    Gigasecond.addGigaseconds(input) should be (expected)
   }
 
-  test ("3") {
+  test("before epoch time") {
     pending
-    val cal = new GregorianCalendar(1959, 6, 19)
-    cal.setTimeZone(TimeZone.getTimeZone("GMT"))
-    val gs = Gigasecond(cal)
-
-    val expected = new GregorianCalendar(1991, 2, 27, 1, 46, 40)
-    expected.setTimeZone(TimeZone.getTimeZone("GMT"))
-    gs.date should be (expected)
+    val input = date("1959-07-19")
+    val expected = dateTime("1991-03-27T01:46:40")
+    Gigasecond.addGigaseconds(input) should be (expected)
   }
 
-  test ("4") {
+  test("full time specified") {
     pending
-    val cal = new GregorianCalendar(2015, 0, 24, 23, 59, 59)
-    cal.setTimeZone(TimeZone.getTimeZone("GMT"))
-    val gs = Gigasecond(cal)
-
-    val expected = new GregorianCalendar(2046, 9, 3, 1, 46, 39)
-    expected.setTimeZone(TimeZone.getTimeZone("GMT"))
-    gs.date should be (expected)
+    val input = dateTime("2015-01-24T22:00:00")
+    val expected = dateTime("2046-10-02T23:46:40")
+    Gigasecond.addGigaseconds(input) should be (expected)
   }
 
-  test ("yourself") {
+  test("full time with day roll-over") {
     pending
-    // val yourBirthday = new GregorianCalendar(year, month-1, day)
-    // val gs = Gigasecond(yourBirthday)
-    // gs.date should be (new GregorianCalendar(2009, 0, 31, 0, 46, 40))
+    val input = dateTime("2015-01-24T23:59:59")
+    val expected = dateTime("2046-10-03T01:46:39")
+    Gigasecond.addGigaseconds(input) should be (expected)
+  }
+
+  test("your birthday") {
+    pending
+    val yourBirthday = date(???)
+    val expected = dateTime(???)
+    Gigasecond.addGigaseconds(yourBirthday) should be (expected)
   }
 }
