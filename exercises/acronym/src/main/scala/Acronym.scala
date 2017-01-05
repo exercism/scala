@@ -1,3 +1,3 @@
-case class Acronym(phrase: String) {
-  def abbreviate: String = ???
+object Acronym {
+  def abbreviate(phrase: String): String = ???
 }
