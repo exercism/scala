@@ -10,6 +10,6 @@ class AcronymTest extends FlatSpec with Matchers {
     ("Complementary metal-oxide semiconductor", "CMOS"))
 
   it should "create acronyms" in {
-    acronyms.foreach{case (phrase, acronym) => Acronym(phrase).abbreviate should equal(acronym)}
+    acronyms.foreach{case (phrase, acronym) => Acronym.abbreviate(phrase) should equal(acronym)}
   }
 }
