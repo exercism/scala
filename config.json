@@ -367,6 +367,10 @@
       "slug": "saddle-points",
       "difficulty": 1,
       "topics": [
+        "Matrices",
+        "Lists",
+        "Sets",
+        "Tuples"
       ]
 		},
     {
