@@ -385,6 +385,9 @@
       "slug": "secret-handshake",
       "difficulty": 1,
       "topics": [
+         "Lists",
+         "Strings",
+         "Bitwise operations"
       ]
 		},
     {
