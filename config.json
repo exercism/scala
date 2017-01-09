@@ -391,6 +391,9 @@
       "slug": "series",
       "difficulty": 1,
       "topics": [
+        "Strings",
+        "Sequences",
+        "Transforming"
       ]
 		},
     {
