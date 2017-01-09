@@ -373,6 +373,10 @@
       "slug": "say",
       "difficulty": 1,
       "topics": [
+        "Strings",
+        "Transforming",
+        "Text formatting",
+        "Optional values"
       ]
 		},
     {
