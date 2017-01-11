@@ -355,6 +355,8 @@
       "slug": "pig-latin",
       "difficulty": 1,
       "topics": [
+        "Strings",
+        "Transforming"
       ]
 		},
     {
