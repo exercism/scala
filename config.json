@@ -361,6 +361,10 @@
       "slug": "pythagorean-triplet",
       "difficulty": 1,
       "topics": [
+        "Integers",
+        "Mathematics",
+        "Sequences",
+        "Tuples"
       ]
 		},
     {
