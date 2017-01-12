@@ -271,6 +271,9 @@
       "slug": "luhn",
       "difficulty": 1,
       "topics": [
+         "Strings",
+         "Algorithms",
+         "Transforming"
       ]
 		},
     {

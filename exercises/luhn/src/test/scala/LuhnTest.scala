@@ -1,36 +1,33 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{FunSuite, Matchers}
 
-class LuhnTest extends FlatSpec with Matchers {
-  it should "create checkDigit" in {
-    Luhn(34567).checkDigit should equal(7)
-    Luhn(91370).checkDigit should equal(0)
-    Luhn(0).checkDigit should equal(0)
+class LuhnTest extends FunSuite with Matchers {
+  test("single digit strings can not be valid") {
+    Luhn.validate("1") should be (false)
   }
 
-  it should "create addends" in {
+  test("A single zero is invalid") {
     pending
-    Luhn(12121).addends should equal(List(1, 4, 1, 4, 1))
-    Luhn(8631).addends should equal(List(7, 6, 6, 1))
+    Luhn.validate("0") should be (false)
   }
 
-  it should "create checksum" in {
+  test("valid Canadian SIN") {
     pending
-    //  NOTE: this differs from the ruby and js, the checksum really should
-    //        be mod 10 like we are testing here.
-    Luhn(4913).checksum should equal(2)
-    Luhn(201773).checksum should equal(1)
+    Luhn.validate("046 454 286") should be (true)
   }
 
-  it should "check validity" in {
+  test("invalid Canadian SIN") {
     pending
-    Luhn(738).isValid should be (false)
-    Luhn(8739567).isValid should be (true)
+    Luhn.validate("046 454 287") should be (false)
   }
 
-  it should "create luhn values" in {
+  test("invalid credit card") {
     pending
-    Luhn(123).create should be (1230)
-    Luhn(873956).create should be (8739567)
-    Luhn(837263756).create should be (8372637564L)
+    Luhn.validate("8273 1232 7352 0569") should be (false)
+  }
+
+  test("strings that contain non-digits are not valid") {
+    pending
+    Luhn.validate("827a 1232 7352 0569") should be (false)
   }
 }
+
