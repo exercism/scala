@@ -1,22 +1,28 @@
-case class Luhn(number: Long) {
-  lazy val checkDigit: Int = (number % 10).toInt
+object Luhn {
 
-  lazy val addends: List[Int] = {
+  def validate(numberStr: String): Boolean = {
+    def isCandidate(numberStr: String): Boolean =
+      numberStr.length > 1 &&
+      numberStr.forall(c => c.isDigit || c.isSpaceChar)
+
+    def toLong(numberStr: String): Long =
+      numberStr.filter(_.isDigit).toLong
+
+    val number =
+      Option(numberStr) filter isCandidate map toLong
+
+    number map (checksum(_) == 0) getOrElse false
+  }
+
+  private def checkDigit(number: Long): Int = (number % 10).toInt
+
+  private def addends(number: Long): List[Int] = {
     val zippedDigits = digits(number).zipWithIndex.reverse
 
     zippedDigits.map{case (m, i) => if (isOdd(i)) dbl(m) else m}
   }
 
-  lazy val checksum: Int = addends.sum % 10
-
-  lazy val isValid: Boolean = checksum % 10 == 0
-
-  lazy val create: Long = {
-    val m = number * 10
-    val luhn = Luhn(m)
-
-    if (luhn.isValid) m else m + (10 - luhn.checksum)
-  }
+  private def checksum(number: Long): Int = addends(number).sum % 10
 
   private def digits(n: Long): List[Int] = n match {
     case 0 => Nil
@@ -31,3 +37,4 @@ case class Luhn(number: Long) {
 
   private def isOdd(i: Int) = i % 2 == 1
 }
+
