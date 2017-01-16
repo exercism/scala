@@ -304,6 +304,10 @@
       "slug": "minesweeper",
       "difficulty": 1,
       "topics": [
+         "Lists",
+         "Strings",
+         "Parsing",
+         "Transforming"
       ]
 		},
     {
