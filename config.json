@@ -316,6 +316,11 @@
       "slug": "wordy",
       "difficulty": 1,
       "topics": [
+        "Mathematics",
+        "Optional values",
+        "Parsing",
+        "Strings",
+        "Transforming"
       ]
 		},
     {

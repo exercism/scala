@@ -1,4 +1,4 @@
-scalaVersion := "2.11.7"
+scalaVersion := "2.12.1"
 
-libraryDependencies += "org.scalatest" % "scalatest_2.11" % "2.2.5" % "test"
-libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.5"
