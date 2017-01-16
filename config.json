@@ -310,6 +310,11 @@
       "slug": "ocr-numbers",
       "difficulty": 1,
       "topics": [
+        "Lists",
+        "Strings",
+        "Parsing",
+        "Pattern recognition",
+        "Transforming"
       ]
 		},
     {
