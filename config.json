@@ -259,6 +259,10 @@
       "slug": "binary-search-tree",
       "difficulty": 1,
       "topics": [
+         "Searching",
+         "Lists",
+         "Trees",
+         "Generics"
       ]
 		},
     {
