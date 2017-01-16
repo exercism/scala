@@ -286,6 +286,10 @@
       "slug": "matrix",
       "difficulty": 1,
       "topics": [
+        "Strings",
+        "Matrices",
+        "Parsing",
+        "Vectors"   
       ]
 		},
     {
