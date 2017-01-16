@@ -265,6 +265,11 @@
       "slug": "largest-series-product",
       "difficulty": 1,
       "topics": [
+         "Strings",
+         "Integers",
+         "Optional values",
+         "Transforming",
+         "Mathematics"
       ]
 		},
     {
