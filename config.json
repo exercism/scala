@@ -341,6 +341,9 @@
       "slug": "custom-set",
       "difficulty": 1,
       "topics": [
+         "Sets",
+         "Lists",
+         "Generics"
       ]
 		},
     {
