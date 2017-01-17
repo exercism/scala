@@ -294,6 +294,9 @@
       "slug": "house",
       "difficulty": 1,
       "topics": [
+         "Strings",
+         "Text formatting",
+         "Algorithms"
       ]
 		},
     {
