@@ -351,6 +351,10 @@
       "slug": "palindrome-products",
       "difficulty": 1,
       "topics": [
+        "Sets",
+        "Strings",
+        "Tuples",
+        "Algorithms"
       ]
 		},
     {
