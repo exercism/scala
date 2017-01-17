@@ -239,7 +239,9 @@
       "slug": "robot-simulator",
       "difficulty": 1,
       "topics": [
-      ]
+         "Enumerations",
+         "Tuples"
+       ]
 		},
     {
       "slug": "bracket-push",
