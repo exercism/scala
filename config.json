@@ -282,6 +282,8 @@
       "slug": "clock",
       "difficulty": 1,
       "topics": [
+        "Time",
+        "Structural equality"
       ]
 		},
     {
