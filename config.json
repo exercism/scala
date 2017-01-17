@@ -179,7 +179,7 @@
          "Lists",
          "Integers",
          "Algorithms",
-         "Mathematics"  
+         "Mathematics"
       ]
 		},
     {
@@ -219,6 +219,7 @@
       "slug": "bank-account",
       "difficulty": 1,
       "topics": [
+         "Parallellism" 
       ]
 		},
     {
@@ -235,13 +236,18 @@
       "slug": "kindergarten-garden",
       "difficulty": 1,
       "topics": [
+         "Enumerations",
+         "Transforming",
+         "Lists"
       ]
 		},
     {
       "slug": "robot-simulator",
       "difficulty": 1,
       "topics": [
-      ]
+         "Enumerations",
+         "Tuples"
+       ]
 		},
     {
       "slug": "bracket-push",
@@ -263,12 +269,21 @@
       "slug": "binary-search-tree",
       "difficulty": 1,
       "topics": [
+         "Searching",
+         "Lists",
+         "Trees",
+         "Generics"
       ]
 		},
     {
       "slug": "largest-series-product",
       "difficulty": 1,
       "topics": [
+         "Strings",
+         "Integers",
+         "Optional values",
+         "Transforming",
+         "Mathematics"
       ]
 		},
     {
@@ -284,18 +299,27 @@
       "slug": "clock",
       "difficulty": 1,
       "topics": [
+        "Time",
+        "Structural equality"
       ]
 		},
     {
       "slug": "matrix",
       "difficulty": 1,
       "topics": [
+        "Strings",
+        "Matrices",
+        "Parsing",
+        "Vectors"   
       ]
 		},
     {
       "slug": "house",
       "difficulty": 1,
       "topics": [
+         "Strings",
+         "Text formatting",
+         "Algorithms"
       ]
 		},
     {
@@ -308,36 +332,58 @@
       "slug": "minesweeper",
       "difficulty": 1,
       "topics": [
+         "Lists",
+         "Strings",
+         "Parsing",
+         "Transforming"
       ]
 		},
     {
       "slug": "ocr-numbers",
       "difficulty": 1,
       "topics": [
+        "Lists",
+        "Strings",
+        "Parsing",
+        "Pattern recognition",
+        "Transforming"
       ]
 		},
     {
       "slug": "wordy",
       "difficulty": 1,
       "topics": [
+        "Mathematics",
+        "Optional values",
+        "Parsing",
+        "Strings",
+        "Transforming"
       ]
 		},
     {
       "slug": "food-chain",
       "difficulty": 1,
       "topics": [
+         "Text formatting",
+         "Algorithms"
       ]
 		},
     {
       "slug": "linked-list",
       "difficulty": 1,
       "topics": [
+         "Lists",
+         "Generics",
+         "Optional values"
       ]
 		},
     {
       "slug": "custom-set",
       "difficulty": 1,
       "topics": [
+         "Sets",
+         "Lists",
+         "Generics"
       ]
 		},
     {
@@ -350,6 +396,10 @@
       "slug": "palindrome-products",
       "difficulty": 1,
       "topics": [
+        "Sets",
+        "Strings",
+        "Tuples",
+        "Algorithms"
       ]
 		},
     {
