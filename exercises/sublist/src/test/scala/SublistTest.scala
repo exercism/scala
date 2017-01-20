@@ -1,6 +1,6 @@
 import org.scalatest.{FunSuite, Matchers}
 
-class SublistSpecs extends FunSuite with Matchers {
+class SublistTest extends FunSuite with Matchers {
   test("empty lists") {
     Sublist.sublist(List(), List()) should be (Sublist.Equal)
   }
