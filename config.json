@@ -149,6 +149,9 @@
       "slug": "sublist",
       "difficulty": 1,
       "topics": [
+         "Generics",
+         "Enumerations",
+         "Lists"
       ]
 		},
     {
