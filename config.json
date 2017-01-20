@@ -155,6 +155,9 @@
       "slug": "rna-transcription",
       "difficulty": 1,
       "topics": [
+         "Optional values",
+         "Strings",
+         "Transforming"
       ]
 		},
     {
