@@ -1,6 +1,6 @@
 import org.scalatest._
 
-class SpaceAgeSpecs extends FunSuite with Matchers {
+class SpaceAgeTest extends FunSuite with Matchers {
   test ("age in seconds") {
     val age = SpaceAge(1000000)
     age.seconds should be (1000000)
