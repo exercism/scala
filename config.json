@@ -146,6 +146,9 @@
       "slug": "accumulate",
       "difficulty": 1,
       "topics": [
+         "Generics",
+         "Lists",
+         "Transforming"
       ]
 		},
     {
