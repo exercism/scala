@@ -134,6 +134,8 @@
       "slug": "scrabble-score",
       "difficulty": 1,
       "topics": [
+         "Strings",
+         "Transforming"
       ]
 		},
     {

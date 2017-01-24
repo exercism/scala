@@ -1,4 +1,4 @@
-class Scrabble {
+object Scrabble {
 
   def scoreWord(word: String): Int = word.foldLeft(0)((score, c) => score + scoreLetter(c))
 
