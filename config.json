@@ -98,6 +98,11 @@
       "slug": "etl",
       "difficulty": 1,
       "topics": [
+         "Lists",
+         "Maps",
+         "Sequences",
+         "Strings",
+         "Transforming"
       ]
 		},
     {
