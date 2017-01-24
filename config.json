@@ -86,6 +86,8 @@
       "slug": "robot-name",
       "difficulty": 1,
       "topics": [
+         "Strings",
+         "Randomness" 
       ]
 		},
     {
