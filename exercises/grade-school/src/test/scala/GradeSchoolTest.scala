@@ -1,6 +1,6 @@
 import org.scalatest._
 
-class GradeSchoolSpecs extends FunSuite with Matchers with OneInstancePerTest {
+class GradeSchoolTest extends FunSuite with Matchers with OneInstancePerTest {
   val school = new School
 
   test ("empty school") {
