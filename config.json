@@ -62,6 +62,9 @@
       "slug": "anagram",
       "difficulty": 1,
       "topics": [
+        "Sequences",
+        "Strings",
+        "Filtering"
       ]
 		},
     {
