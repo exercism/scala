@@ -1,6 +1,6 @@
 import org.scalatest._
 
-class BobSpecs extends FlatSpec with Matchers {
+class BobTest extends FlatSpec with Matchers {
   def teenager = new Bob
 
   it should "respond to a statement" in {
