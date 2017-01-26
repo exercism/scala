@@ -74,6 +74,10 @@
       "slug": "phone-number",
       "difficulty": 1,
       "topics": [
+        "Optional values",
+        "Strings",
+        "Parsing",
+        "Transforming"     
       ]
 		},
     {
