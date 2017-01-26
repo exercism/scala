@@ -1,6 +1,6 @@
 import org.scalatest._
 
-class WordCountSpecs extends FlatSpec with Matchers {
+class WordCountTest extends FlatSpec with Matchers {
   it should "count one word" in {
     val phrase = new Phrase("word")
     phrase.wordCount should be (Map("word" -> 1))
