@@ -1,6 +1,6 @@
 import org.scalatest._
 
-class HammingSpecs extends FlatSpec with Matchers {
+class HammingTest extends FlatSpec with Matchers {
   it should "detect no difference between empty strands" in {
     Hamming.compute("", "") should be (Some(0))
   }
