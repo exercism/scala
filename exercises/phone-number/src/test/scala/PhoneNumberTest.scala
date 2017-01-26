@@ -1,6 +1,6 @@
 import org.scalatest._
 
-class PhoneNumberSpecs extends FlatSpec with Matchers {
+class PhoneNumberTest extends FlatSpec with Matchers {
   behavior of "number"
 
   it should "clean the number" in {
