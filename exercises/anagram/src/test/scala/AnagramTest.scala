@@ -1,6 +1,6 @@
 import org.scalatest._
 
-class AnagramSpecs extends FlatSpec with Matchers {
+class AnagramTest extends FlatSpec with Matchers {
   it should "detect no matches" in {
     val detector = new Anagram("diaper")
     val anagrams = detector.matches(Seq("hello", "world", "zombies", "pants"))
