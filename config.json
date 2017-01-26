@@ -80,6 +80,9 @@
       "slug": "grade-school",
       "difficulty": 1,
       "topics": [
+         "Maps", 
+         "Sequences",
+         "Sorting"
       ]
 		},
     {
