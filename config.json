@@ -496,6 +496,10 @@
       "slug": "alphametics",
       "difficulty": 1,
       "topics": [
+         "Maps",
+         "Optional values",
+         "Strings",
+         "Parsing"
       ]
 		},
     {
