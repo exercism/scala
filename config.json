@@ -543,6 +543,10 @@
       "slug": "change",
       "difficulty": 1,
       "topics": [
+         "Integers",
+         "Lists",
+         "Optional values",
+         "Mathematics"
       ]
 		},
     {
