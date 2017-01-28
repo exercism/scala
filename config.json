@@ -296,6 +296,8 @@
       "slug": "bracket-push",
       "difficulty": 1,
       "topics": [
+         "Strings",
+         "Parsing"
       ]
 		},
     {
