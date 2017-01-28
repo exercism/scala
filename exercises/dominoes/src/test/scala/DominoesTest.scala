@@ -1,6 +1,6 @@
 import org.scalatest.{FunSuite, Matchers}
 
-class DominoesSuite extends FunSuite with Matchers {
+class DominoesTest extends FunSuite with Matchers {
 
   test("empty input = empty output") {
     check(List(), true)
