@@ -75,6 +75,8 @@
       "slug": "nucleotide-count",
       "difficulty": 1,
       "topics": [
+         "Maps",
+         "Strings"
       ]
 		},
     {
@@ -127,6 +129,7 @@
       "slug": "meetup",
       "difficulty": 1,
       "topics": [
+         "Dates" 
       ]
 		},
     {
@@ -433,6 +436,9 @@
       "slug": "nth-prime",
       "difficulty": 1,
       "topics": [
+         "Optional values",
+         "Algorithms",
+         "Mathematics"
       ]
 		},
     {
@@ -604,7 +610,10 @@
       "slug": "forth",
       "difficulty": 1,
       "topics": [
-      ]
+         "Strings",
+         "Mathematics",
+         "Parsing"
+       ]
 		},
     {
       "slug": "lens-person",
