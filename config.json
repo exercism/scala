@@ -629,6 +629,7 @@
     "trinary"
   ],
   "ignored": [
+    "deprecated",
     "docs",
     "img",
     "project",
