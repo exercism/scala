@@ -562,6 +562,10 @@
       "slug": "dominoes",
       "difficulty": 1,
       "topics": [
+         "Lists",
+         "Optional values",
+         "Tuples",
+         "Games"
       ]
 		},
     {
