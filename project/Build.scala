@@ -8,7 +8,7 @@ import scala.util.parsing.json.{JSONArray, JSONObject, JSON}
 
 object XScalaBuild extends Build {
 
-  scalaVersion := "2.11.7"
+  scalaVersion := "2.12.1"
   name := "xscala"
 
   val commonSettings = Seq(
