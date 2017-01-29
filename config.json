@@ -256,6 +256,11 @@
       "slug": "all-your-base",
       "difficulty": 1,
       "topics": [
+         "Integers",
+         "Lists",
+         "Optional values",
+         "Mathematics",
+         "Transforming"
       ]
 		},
     {
