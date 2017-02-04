@@ -223,7 +223,8 @@
       "difficulty": 1,
       "topics": [
          "Searching",
-         "Arrays"
+         "Arrays",
+         "Optional values"
       ]
 		},
     {
