@@ -90,6 +90,15 @@
       ]
 		},
     {
+      "slug": "strain",
+      "difficulty": 1,
+      "topics": [
+        "Generics",
+        "Sequences",
+        "Filtering"
+      ]
+		},
+    {
       "slug": "grade-school",
       "difficulty": 1,
       "topics": [
