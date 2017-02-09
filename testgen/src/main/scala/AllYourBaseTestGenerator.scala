@@ -2,35 +2,28 @@ import play.api.libs.json.Json
 
 import scala.io.Source
 
+
 class AllYourBaseTestGenerator {
-  implicit val testCaseReader = Json.reads[TestCase]
+  implicit val testCaseReader = Json.reads[AllYourBaseTestCase]
 
   private val filename = "all-your-base.json"
   private val fileContents = Source.fromFile(filename).getLines.mkString
   private val json = Json.parse(fileContents)
 
   def write {
-    print("import org.scalatest.{FunSuite, Matchers}" + System.lineSeparator())
-    print(System.lineSeparator())
-    print("class AllYourBaseTest extends FunSuite with Matchers {" + System.lineSeparator())
+    val testCases: List[AllYourBaseTestCase] = (json \ "cases").get.as[List[AllYourBaseTestCase]]
 
-    writeTestCases()
+    implicit def testCaseToGen(tc: AllYourBaseTestCase): TestCaseGen = {
+      val callSUT =
+        s"AllYourBase.rebase(${tc.input_base}, ${toListString(tc.input_digits)}, ${tc.output_base})"
+      val expected = toListString(tc.output_digits)
 
-    print("}" + System.lineSeparator())
-  }
+      TestCaseGen(tc.description, callSUT, expected)
+    }
 
-  private def writeTestCases(): Unit = {
-    val testCases = (json \ "cases").get.as[List[TestCase]]
-
-    testCases.foreach(tc => {
-      print("\ttest(\"" + tc.description + "\") {" + System.lineSeparator())
-      println("pending")
-      println("AllYourBase.rebase(" + tc.input_base  + ", " + toListString(tc.input_digits) +
-        "," + System.lineSeparator() + tc.output_base + ") should be (" + toListString(tc.output_digits) + ")")
-
-      print("\t}" + System.lineSeparator())
-      print(System.lineSeparator())
-    })
+    val testBuilder = new TestBuilder("AllYourBaseTest")
+    testBuilder.addTestCases(testCases)
+    testBuilder.toFile
   }
 
   private def toListString(a: Array[Int]): String =
@@ -44,7 +37,7 @@ class AllYourBaseTestGenerator {
   }
 }
 
-case class TestCase(description: String,
+case class AllYourBaseTestCase(description: String,
                     input_base: Int, input_digits: Array[Int],
                     output_base: Int, output_digits: Option[Array[Int]])
 
