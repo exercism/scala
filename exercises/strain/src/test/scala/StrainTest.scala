@@ -39,32 +39,32 @@ class StrainTest extends FlatSpec with Matchers {
       Seq(1, 5, 2), Seq(2, 2, 1), Seq(1, 2, 5))
     val expected = Seq(Seq(5, 5, 5), Seq(5, 1, 2), Seq(1, 5, 2), Seq(1, 2, 5))
     val result = Strain.keep[Seq[Int]](sequences, seq => seq.contains(5))
-    result should be(expected)
+    result should be (expected)
   }
 
   it should "handle empty discard" in {
     pending
     val result = Strain.discard[Int](List(), x => x < 10)
-    result should be(List.empty)
+    result should be (List.empty)
   }
 
   it should "discard first and last" in {
     pending
     val result = Strain.discard[Int](List(1, 2, 3), x => x % 2 != 0)
-    result should be(List(2))
+    result should be (List(2))
   }
 
   it should "discard neither first or last" in {
     pending
     val result = Strain.discard[Int](List(1, 2, 3, 4, 5), x => x % 2 == 0)
-    result should be(List(1, 3, 5))
+    result should be (List(1, 3, 5))
   }
 
   it should "discard strings" in {
     pending
     val words = List("apple",  "zebra", "banana", "zombies", "cherimoya",  "zelot")
     val result = Strain.discard[String](words, s => s.startsWith("z"))
-    result should be(List("apple", "banana", "cherimoya"))
+    result should be (List("apple", "banana", "cherimoya"))
   }
 
   it should "discard sequences" in {
@@ -73,6 +73,6 @@ class StrainTest extends FlatSpec with Matchers {
       Seq(1, 5, 2), Seq(2, 2, 1), Seq(1, 2, 5))
     val expected = Seq(Seq(1, 2, 3), Seq(2, 1, 2), Seq(2, 2, 1))
     val result = Strain.discard[Seq[Int]](sequences, seq => seq.contains(5))
-    result should be(expected)
+    result should be (expected)
   }
 }
