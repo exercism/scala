@@ -10,36 +10,30 @@ class BinarySearchTestGenerator {
   private val json = Json.parse(fileContents)
 
   def write {
-    print("import org.scalatest.{FunSuite, Matchers}" + System.lineSeparator())
-    print(System.lineSeparator())
-    print("class BinarySearchTest extends FunSuite with Matchers {" + System.lineSeparator())
-
-    writeTestCases()
-
-    println("}")
-  }
-
-  private def writeTestCases(): Unit = {
     val testCases = (json \ "cases").get.as[List[BinarySearchTestCase]]
 
-    testCases.foreach(tc => {
-      print("\ttest(\"" + tc.description + "\") {" + System.lineSeparator())
-      println("pending")
-      print("val elements = Array[Int](")
-      print(tc.array.map(elem => elem.toString).mkString(", "))
-      println(")")
-      println("val result = BinarySearch.search(elements, " + tc.value + ")")
+    implicit def testCaseToGen(tc: BinarySearchTestCase): TestCaseGen = {
+      val elements = tc.array.map(elem => elem.toString).mkString(", ")
+      val elementStr =
+        if (elements.isEmpty)
+          "Array[Int]()"
+        else
+          s"Array(${elements})"
 
-      if (tc.expected == -1) {
-        println("assert(result.isEmpty)")
-      } else {
-        println("assert(result.contains(" + tc.expected + "))")
-      }
+      val callSUT =
+        s"BinarySearch.search(${elementStr}, ${tc.value})"
+      val expected =
+        if (tc.expected == -1)
+          "None"
+        else
+          s"Some(${tc.expected})"
 
+      TestCaseGen(tc.description, callSUT, expected)
+    }
 
-      println("}")
-      println()
-    })
+    val testBuilder = new TestBuilder("BinarySearchTest")
+    testBuilder.addTestCases(testCases)
+    testBuilder.toFile
   }
 }
 
