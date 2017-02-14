@@ -228,6 +228,15 @@
          ]
       },
       {
+         "slug":"binary-search",
+         "difficulty":1,
+         "topics":[
+            "Searching",
+            "Arrays",
+            "Optional values"
+         ]
+      },
+      {
          "slug":"prime-factors",
          "difficulty":1,
          "topics":[
