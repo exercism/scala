@@ -10,39 +10,31 @@ class BowlingTestGenerator {
   private val json = Json.parse(fileContents)
 
   def write {
-    print("import org.scalatest.{FunSuite, Matchers}" + System.lineSeparator())
-    print(System.lineSeparator())
-    print("class BowlingSuite extends FunSuite with Matchers {" + System.lineSeparator())
-
-    writeTestCases()
-
-    print("}" + System.lineSeparator())
-  }
-
-  private def writeTestCases(): Unit = {
-    println("// " +  (json \ "score" \ "description").get.as[List[String]].mkString(" "))
-
     val testCases = (json \ "score" \ "cases").get.as[List[BowlingTestCase]]
+    val description = (json \ "score" \ "description").get.as[List[String]].mkString(" ")
 
-    testCases.foreach(tc => {
-      print("\ttest(\"" + tc.description + "\") {" + System.lineSeparator())
-      println("pending")
-      print("val score = List(")
-      print(tc.rolls.map(roll => roll.toString).mkString(", "))
-      println(").foldLeft(Bowling())((acc, roll) => acc.roll(roll)).score()")
+    implicit def testCaseToGen(tc: BowlingTestCase): TestCaseGen = {
+      val callSUT =
+        s"${tc.rolls}.foldLeft(Bowling())((acc, roll) => acc.roll(roll)).score()"
+      val expected = ""
+      val result = s"val score = $callSUT"
+      val (matchRight, matchLeft) =
+        if (tc.expected == -1)
+          ("""fail("Unexpected score returned. Failure expected")""", "")
+        else
+          (s"assert(n == ${tc.expected})", s"""fail("${tc.description}")""")
+      val checkResult =
+s"""score match {
+      case Right(n) => $matchRight
+      case Left(_) => $matchLeft
+    }"""
 
-      println("score match {")
-      if (tc.expected == -1) {
-        println("case Right(_) => fail(\"Unexpected score returned. Failure expected\")")
-        println("case Left(_) => ")
-      } else {
-        println("case Right(n) => assert(n == " + tc.expected.toString + ")")
-        println("case Left(_) => fail(\"" + tc.description + "\")")
-      }
-      println("}")
-      print("\t}" + System.lineSeparator())
-      print(System.lineSeparator())
-    })
+      TestCaseGen(tc.description, callSUT, expected, result, checkResult)
+    }
+
+    val testBuilder = new TestBuilder("BowlingTest")
+    testBuilder.addTestCases(testCases, Some(description))
+    testBuilder.toFile
   }
 }
 
