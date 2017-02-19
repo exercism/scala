@@ -594,6 +594,15 @@
          ]
       },
       {
+         "slug":"rail-fence-cipher",
+         "difficulty":1,
+         "topics":[
+            "Strings",
+            "Algorithms",
+            "Transforming"
+         ]
+      },
+      {
          "slug":"dominoes",
          "difficulty":1,
          "topics":[
