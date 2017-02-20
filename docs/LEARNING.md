@@ -1,8 +1,9 @@
 ## Books
 
-* [Programming Scala - Dean Wampler, Ph.D.](https://www.amazon.com/Programming-Scala-Scalability-Functional-Objects/dp/1491949856/ref=sr_1_1?ie=UTF8&qid=1487440874&sr=8-1&keywords=programming+scala)
-* [Programming in Scala - Oderksy, Spoon, Venners](https://www.amazon.com/Programming-Scala-Updated-2-12/dp/0981531687/ref=sr_1_2?ie=UTF8&qid=1487440874&sr=8-2&keywords=programming+scala)
-* [Functional Programming in Scala - Chiusano, Bjarnason](https://www.amazon.com/Functional-Programming-Scala-Paul-Chiusano/dp/1617290653/ref=pd_sim_14_1?_encoding=UTF8&psc=1&refRID=Z55F42CAVQWGPD0Q4281)
+* [Programming Scala - Dean Wampler, Ph.D.](http://shop.oreilly.com/product/0636920033073.do)
+* [Programming in Scala - Oderksy, Spoon, Venners](http://www.artima.com/shop/programming_in_scala_3ed)
+* [Functional Programming in Scala - Chiusano, Bjarnason](https://www.manning.com/books/functional-programming-in-scala)
+* [Scala for the Impatient - Cay S. Horstmann](http://horstmann.com/scala/)
 
 ## Online Courses
 
