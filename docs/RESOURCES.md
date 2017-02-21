@@ -3,7 +3,6 @@
 Exercism provides exercises and feedback but can be difficult to jump into for those learning Scala for the first time. These resources can help you get started:
 
 * [Scala - Getting Started](http://www.scala-lang.org/documentation/getting-started.html)
-* [Programming Scala](http://www.oreilly.com/ofps/)
 * [StackOverflow](http://stackoverflow.com/)
 * [Scala Exercises](https://www.scala-exercises.org/std_lib)
 * [The Neophyte's Guide to Scala](http://danielwestheide.com/scala/neophytes.html)
