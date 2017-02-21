@@ -9,22 +9,26 @@ class SimpleLinkedListTest extends FlatSpec with Matchers {
   }
 
   it should "handle single item has no next item" in {
+    pending
     val list = SimpleLinkedList().add(1)
     list.next.isEmpty should be (true)
   }
 
   it should "handle two item list" in {
+    pending
     val list = SimpleLinkedList().add(1).add(2)
     list.value should be (1)
     list.next.value should be(2)
   }
 
   it should "handle two item list has no next value" in {
+    pending
     val list = SimpleLinkedList().add(1).add(2)
     list.next.next.isEmpty should be(true)
   }
 
   it should "allow creation from an Array" in {
+    pending
     val list = SimpleLinkedList(Array(3, 2, 1))
     list.value should be (3)
     list.next.value should be (2)
@@ -32,12 +36,14 @@ class SimpleLinkedListTest extends FlatSpec with Matchers {
   }
 
   it should "allow conversion to an Array" in {
+    pending
     val list = SimpleLinkedList(Array(3, 2, 1))
     val arr = list.toArray
     arr should be (Array(3, 2, 1))
   }
 
   it should "handle reverse" in {
+    pending
     val list = SimpleLinkedList(Array(1, 2, 3, 4, 5, 6))
     val reversed = list.reverse
     reversed.value should be (6)
