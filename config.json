@@ -265,6 +265,15 @@
          ]
       },
       {
+         "slug":"simple-linked-list",
+         "difficulty":1,
+         "topics":[
+            "Classes",
+            "Lists",
+            "Transforming"
+         ]
+      },
+      {
          "slug":"atbash-cipher",
          "difficulty":1,
          "topics":[
