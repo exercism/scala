@@ -22,7 +22,7 @@ class SimpleLinkedListImpl[T](first: Node[T], last: Node[T]) extends SimpleLinke
     case node: NonEmpty[T] => node.value
   }
 
-  def add(item: T): SimpleLinkedList[T] = synchronized {
+  def add(item: T): SimpleLinkedList[T] = {
     val newLast = NonEmpty[T](item, Empty)
 
     last match {
@@ -39,7 +39,7 @@ class SimpleLinkedListImpl[T](first: Node[T], last: Node[T]) extends SimpleLinke
     case node: NonEmpty[T] => new SimpleLinkedListImpl[T](first.asInstanceOf[NonEmpty[T]].next, last)
   }
 
-  def reverse: SimpleLinkedList[T] = synchronized {
+  def reverse: SimpleLinkedList[T] = {
     var newLast: Node[T] = Empty
     var prev: Node[T] = Empty
     var current = first
