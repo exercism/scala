@@ -1,47 +1,29 @@
-import org.scalatest.{FlatSpec, Matchers}
+import org.scalacheck.Gen
+import org.scalatest.prop.PropertyChecks
+import org.scalatest.{Matchers, PropSpec}
 
-class PerfectNumbersTest extends FlatSpec with Matchers {
-  it should "handle deficient - 3" in {
-    PerfectNumbers.classify(3) should be (NumberType.Deficent)
+class PerfectNumbersTest extends PropSpec with Matchers with PropertyChecks {
+
+  property("deficient numbers") {
+    val deficientVals = Gen.oneOf(3, 7, 15, 33550337)
+    forAll (deficientVals) {
+      n: Int => PerfectNumbers.classify(n) should be (NumberType.Deficient)
+    }
   }
 
-  it should "handle deficient - 7" in {
+  property("perfect numbers") {
     pending
-    PerfectNumbers.classify(7) should be (NumberType.Deficent)
+    val perfectVals = Gen.oneOf(6, 28, 496, 33550336)
+    forAll (perfectVals) {
+      n: Int => PerfectNumbers.classify(n) should be (NumberType.Perfect)
+    }
   }
 
-  it should "handle deficient - 13" in {
+  property("abundant numbers") {
     pending
-    PerfectNumbers.classify(13) should be (NumberType.Deficent)
-  }
-
-  it should "handle perfect - 6" in {
-    pending
-    PerfectNumbers.classify(6) should be (NumberType.Perfect)
-  }
-
-  it should "handle perfect - 28" in {
-    pending
-    PerfectNumbers.classify(28) should be (NumberType.Perfect)
-  }
-
-  it should "handle perfect - 496" in {
-    pending
-    PerfectNumbers.classify(496) should be (NumberType.Perfect)
-  }
-
-  it should "handle abundant - 12" in {
-    pending
-    PerfectNumbers.classify(12) should be (NumberType.Abundant)
-  }
-
-  it should "handle abundant - 18" in {
-    pending
-    PerfectNumbers.classify(18) should be (NumberType.Abundant)
-  }
-
-  it should "handle abundant - 20" in {
-    pending
-    PerfectNumbers.classify(20) should be (NumberType.Abundant)
+    val abundantVals = Gen.oneOf(12, 18, 20, 33550335)
+    forAll (abundantVals) {
+      n: Int => PerfectNumbers.classify(n) should be (NumberType.Abundant)
+    }
   }
 }

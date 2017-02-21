@@ -2,14 +2,12 @@ import NumberType.NumberType
 
 object PerfectNumbers {
   def classify(n: Int): NumberType = {
-    var sumOfFactors = 0
-
-    for (i <- Range(1, n) if n % i == 0) {
-      sumOfFactors = sumOfFactors + i
-    }
+    val sumOfFactors
+    = Range(1, n)
+      .foldLeft(0)((acc, i) => if (n % i == 0) acc + i else acc)
 
     if (sumOfFactors < n)
-      NumberType.Deficent
+      NumberType.Deficient
     else if (sumOfFactors > n)
       NumberType.Abundant
     else
@@ -22,5 +20,5 @@ object NumberType extends Enumeration {
 
   val Perfect = Value("Perfect")
   val Abundant = Value("Abundant")
-  val Deficent = Value("Deficient")
+  val Deficient = Value("Deficient")
 }
