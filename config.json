@@ -370,6 +370,7 @@
          "slug":"perfect-numbers",
          "difficulty":1,
          "topics":[
+            "Enumerations",
             "Integers",
             "Mathematics"
          ]
