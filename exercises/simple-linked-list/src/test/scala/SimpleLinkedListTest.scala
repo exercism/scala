@@ -18,13 +18,13 @@ class SimpleLinkedListTest extends FlatSpec with Matchers {
     pending
     val list = SimpleLinkedList().add(1).add(2)
     list.value should be (1)
-    list.next.value should be(2)
+    list.next.value should be (2)
   }
 
   it should "handle two item list has no next value" in {
     pending
     val list = SimpleLinkedList().add(1).add(2)
-    list.next.next.isEmpty should be(true)
+    list.next.next.isEmpty should be (true)
   }
 
   it should "allow creation from an Array" in {

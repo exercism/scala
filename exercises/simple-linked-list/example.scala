@@ -2,7 +2,7 @@ import scala.reflect.ClassTag
 
 class Node[+T]
 case object Empty extends Node[Nothing]
-case class NonEmpty[T](value: T, var next: Node[T]) extends Node[T]
+case class NonEmpty[T](value: T, next: Node[T]) extends Node[T]
 
 trait SimpleLinkedList[T] {
   def isEmpty: Boolean
@@ -10,10 +10,10 @@ trait SimpleLinkedList[T] {
   def add(item: T): SimpleLinkedList[T]
   def next: SimpleLinkedList[T]
   def reverse: SimpleLinkedList[T]
-  def toArray[U >: T](implicit m: ClassTag[U]): Array[U]
+  def toArray(implicit m: ClassTag[T]): Array[T]
 }
 
-class SimpleLinkedListImpl[T](first: Node[T], last: Node[T]) extends SimpleLinkedList[T] {
+class SimpleLinkedListImpl[T](first: Node[T]) extends SimpleLinkedList[T] {
 
   def isEmpty: Boolean = first == Empty
 
@@ -23,20 +23,23 @@ class SimpleLinkedListImpl[T](first: Node[T], last: Node[T]) extends SimpleLinke
   }
 
   def add(item: T): SimpleLinkedList[T] = {
-    val newLast = NonEmpty[T](item, Empty)
+    var reversed = reverse
+    var current = NonEmpty[T](item, Empty)
 
-    last match {
-      case Empty =>
-        new SimpleLinkedListImpl[T](newLast, newLast)
-      case node: NonEmpty[T] =>
-        node.next = newLast
-        new SimpleLinkedListImpl[T](first, newLast)
+    while (!reversed.isEmpty) {
+      val value = reversed.value
+      val newNode = NonEmpty[T](value, current)
+
+      current = newNode
+      reversed = reversed.next
     }
+
+    new SimpleLinkedListImpl[T](current)
   }
 
   def next: SimpleLinkedList[T] = first match {
     case Empty => this
-    case node: NonEmpty[T] => new SimpleLinkedListImpl[T](first.asInstanceOf[NonEmpty[T]].next, last)
+    case node: NonEmpty[T] => new SimpleLinkedListImpl[T](first.asInstanceOf[NonEmpty[T]].next)
   }
 
   def reverse: SimpleLinkedList[T] = {
@@ -56,7 +59,7 @@ class SimpleLinkedListImpl[T](first: Node[T], last: Node[T]) extends SimpleLinke
       current = next
     }
 
-    new SimpleLinkedListImpl[T](prev, newLast)
+    new SimpleLinkedListImpl[T](prev)
   }
 
   def length: Int = {
@@ -71,8 +74,8 @@ class SimpleLinkedListImpl[T](first: Node[T], last: Node[T]) extends SimpleLinke
     len
   }
 
-  def toArray[U >: T](implicit m: ClassTag[U]): Array[U] = {
-    val arr = new Array[U](length)
+  def toArray(implicit m: ClassTag[T]): Array[T] = {
+    val arr = new Array[T](length)
 
     var current = first
     var i = 0
@@ -87,7 +90,7 @@ class SimpleLinkedListImpl[T](first: Node[T], last: Node[T]) extends SimpleLinke
 }
 
 object SimpleLinkedList {
-  def apply[T](): SimpleLinkedList[T] = new SimpleLinkedListImpl[T](Empty, Empty)
+  def apply[T](): SimpleLinkedList[T] = new SimpleLinkedListImpl[T](Empty)
 
   def apply[T](arr: Array[T]): SimpleLinkedList[T] =
     arr.foldLeft(SimpleLinkedList[T]())((acc, t) => acc.add(t))
