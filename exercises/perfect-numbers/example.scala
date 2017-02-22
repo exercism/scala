@@ -3,7 +3,7 @@ import NumberType.NumberType
 object PerfectNumbers {
   def classify(n: Int): NumberType = {
     val sumOfFactors
-    = Range(1, n)
+    = (1 until n)
       .foldLeft(0)((acc, i) => if (n % i == 0) acc + i else acc)
 
     if (sumOfFactors < n)
