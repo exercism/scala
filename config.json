@@ -367,6 +367,15 @@
          ]
       },
       {
+         "slug":"perfect-numbers",
+         "difficulty":1,
+         "topics":[
+            "Enumerations",
+            "Integers",
+            "Mathematics"
+         ]
+      },
+      {
          "slug":"clock",
          "difficulty":1,
          "topics":[
