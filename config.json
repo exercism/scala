@@ -319,6 +319,14 @@
          ]
       },
       {
+         "slug":"isogram",
+         "difficulty":1,
+         "topics":[
+            "Strings",
+            "Filtering"
+         ]
+      },
+      {
          "slug":"bracket-push",
          "difficulty":1,
          "topics":[
