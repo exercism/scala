@@ -1,5 +1,3 @@
-import scala.reflect.ClassTag
-
 class Node[+T]
 case object Empty extends Node[Nothing]
 case class NonEmpty[T](value: T, next: Node[T]) extends Node[T]
@@ -10,7 +8,7 @@ trait SimpleLinkedList[T] {
   def add(item: T): SimpleLinkedList[T]
   def next: SimpleLinkedList[T]
   def reverse: SimpleLinkedList[T]
-  def toArray(implicit m: ClassTag[T]): Array[T]
+  def toSeq: Seq[T]
 }
 
 class SimpleLinkedListImpl[T](first: Node[T]) extends SimpleLinkedList[T] {
@@ -74,24 +72,24 @@ class SimpleLinkedListImpl[T](first: Node[T]) extends SimpleLinkedList[T] {
     len
   }
 
-  def toArray(implicit m: ClassTag[T]): Array[T] = {
-    val arr = new Array[T](length)
+  def toSeq: Seq[T] = {
+    var xs = List[T]()
 
     var current = first
-    var i = 0
     while (current != Empty) {
-      arr(i) = current.asInstanceOf[NonEmpty[T]].value
+      xs = current.asInstanceOf[NonEmpty[T]].value :: xs
       current = current.asInstanceOf[NonEmpty[T]].next
-      i = i + 1
     }
 
-    arr
+    xs.reverse
   }
 }
 
 object SimpleLinkedList {
   def apply[T](): SimpleLinkedList[T] = new SimpleLinkedListImpl[T](Empty)
 
-  def apply[T](arr: Array[T]): SimpleLinkedList[T] =
-    arr.foldLeft(SimpleLinkedList[T]())((acc, t) => acc.add(t))
+  def apply[T](ts: T*): SimpleLinkedList[T] = fromSeq(ts)
+
+  def fromSeq[T](seq: Seq[T]): SimpleLinkedList[T] =
+    seq.foldLeft(SimpleLinkedList[T]())((acc, t) => acc.add(t))
 }
