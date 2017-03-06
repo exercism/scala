@@ -30,7 +30,7 @@ class VariableLengthQuantityTestGenerator {
       val result = s"val encoded = $callSUT"
       val checkResult = s"""encoded should be ($expected)"""
 
-      TestCaseGen(tc.description, callSUT, expected, result, checkResult)
+      TestCaseGen("encode: " + tc.description, callSUT, expected, result, checkResult)
     }
 
     testBuilder.addTestCases(encodeTestCases, Some(description))
@@ -52,7 +52,7 @@ class VariableLengthQuantityTestGenerator {
       }
       val result = s"val decoded = $callSUT"
 
-      TestCaseGen(tc.description, callSUT, "", result, checkResult)
+      TestCaseGen("decode: " + tc.description, callSUT, "", result, checkResult)
     }
 
     testBuilder.addTestCases(decodeTestCases, Some(description))
