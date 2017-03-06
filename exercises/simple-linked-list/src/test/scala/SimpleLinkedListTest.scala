@@ -61,7 +61,7 @@ class SimpleLinkedListTest extends FlatSpec with Matchers with GeneratorDrivenPr
     reversed.next.next.next.next.value should be (2)
     reversed.next.next.next.next.next.value should be (1)
   }
-  
+
   it should "handle arbitrary list fromSeq toSeq" in {
     pending
     forAll { seq: Seq[Int] =>
@@ -96,6 +96,14 @@ class SimpleLinkedListTest extends FlatSpec with Matchers with GeneratorDrivenPr
           i => assert(nthDatum(list, i) == xs(i))
         }
       }
+    }
+  }
+
+  it should "return original arbitrary list from added list elements" in {
+    pending
+    forAll { xs: Seq[Int] =>
+      val list = xs.foldLeft(SimpleLinkedList[Int]())(_.add(_))
+      assert(list.toSeq == xs)
     }
   }
 
