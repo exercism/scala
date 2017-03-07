@@ -700,6 +700,16 @@
             "Control-flow (if-else statements)",
             "Lists"
          ]
+      },
+      {
+         "slug":"variable-length-quantity",
+         "difficulty":1,
+         "topics":[
+            "Discriminated unions",
+            "Lists",
+            "Algorithms",
+            "Bitwise operations"
+         ]
       }
    ],
    "deprecated":[
