@@ -45,4 +45,9 @@ class PangramsTest extends FunSuite with Matchers {
     Pangrams.isPangram("Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.") should be (true)
   }
 
+  test("pangram with non ascii characters missing character 'x'") {
+    pending
+    Pangrams.isPangram("Victor jagt zwölf Botkämpfer quer über den großen Sylter Deich.") should be (false)
+  }
+
 }
