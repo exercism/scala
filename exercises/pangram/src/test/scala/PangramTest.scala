@@ -1,6 +1,8 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.{Matchers, FunSuite}
 
-class PangramsTest extends FunSuite with Matchers {
+/** @version 1.0.0 */
+class PangramTest extends FunSuite with Matchers {
+
   test("sentence empty") {
     Pangrams.isPangram("") should be (false)
   }
@@ -40,9 +42,8 @@ class PangramsTest extends FunSuite with Matchers {
     Pangrams.isPangram("\"Five quacking Zephyrs jolt my wax bed.\"") should be (true)
   }
 
-  test("pangram with non ascii characters") {
+  test("upper and lower case versions of the same character should not be counted separately") {
     pending
-    Pangrams.isPangram("Victor jagt zwölf Boxkämpfer quer über den großen Sylter Deich.") should be (true)
+    Pangrams.isPangram("the quick brown fox jumped over the lazy FOX") should be (false)
   }
-
 }
