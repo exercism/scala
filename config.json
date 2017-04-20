@@ -30,7 +30,7 @@
       },
       {
          "slug":"run-length-encoding",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Algorithms",
             "Transforming",
@@ -39,7 +39,7 @@
       },
       {
          "slug":"hamming",
-         "difficulty":2,
+         "difficulty":3,
          "topics":[
             "Strings",
             "Filtering",
@@ -48,7 +48,7 @@
       },
       {
          "slug":"word-count",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Maps",
             "Strings",
@@ -57,14 +57,14 @@
       },
       {
          "slug":"pangram",
-         "difficulty":1,
+         "difficulty":2,
          "topics":[
             "Strings"
          ]
       },
       {
          "slug":"anagram",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Sequences",
             "Strings",
@@ -73,7 +73,7 @@
       },
       {
          "slug":"nucleotide-count",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Maps",
             "Strings"
@@ -81,7 +81,7 @@
       },
       {
          "slug":"phone-number",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Optional values",
             "Strings",
@@ -91,7 +91,7 @@
       },
       {
          "slug":"strain",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Generics",
             "Sequences",
@@ -100,7 +100,7 @@
       },
       {
          "slug":"grade-school",
-         "difficulty":1,
+         "difficulty":2,
          "topics":[
             "Maps",
             "Sequences",
@@ -109,7 +109,7 @@
       },
       {
          "slug":"robot-name",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Strings",
             "Randomness"
@@ -125,7 +125,7 @@
       },
       {
          "slug":"etl",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Lists",
             "Maps",
@@ -136,7 +136,7 @@
       },
       {
          "slug":"meetup",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Dates"
          ]
@@ -152,7 +152,7 @@
       },
       {
          "slug":"grains",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Optional values",
             "Mathematics"
@@ -169,7 +169,7 @@
       },
       {
          "slug":"scrabble-score",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Strings",
             "Transforming"
@@ -185,7 +185,7 @@
       },
       {
          "slug":"accumulate",
-         "difficulty":1,
+         "difficulty":2,
          "topics":[
             "Generics",
             "Lists",
@@ -194,7 +194,7 @@
       },
       {
          "slug":"sublist",
-         "difficulty":1,
+         "difficulty":7,
          "topics":[
             "Generics",
             "Enumerations",
@@ -203,7 +203,7 @@
       },
       {
          "slug":"rna-transcription",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Optional values",
             "Strings",
@@ -212,7 +212,7 @@
       },
       {
          "slug":"triangle",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Enumerations",
             "Mathematics"
@@ -220,7 +220,7 @@
       },
       {
          "slug":"roman-numerals",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Sequences",
             "Algorithms",
@@ -229,7 +229,7 @@
       },
       {
          "slug":"binary-search",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Searching",
             "Arrays",
@@ -238,7 +238,7 @@
       },
       {
          "slug":"prime-factors",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Lists",
             "Integers",
@@ -248,7 +248,7 @@
       },
       {
          "slug":"raindrops",
-         "difficulty":1,
+         "difficulty":2,
          "topics":[
             "Strings",
             "Logic",
@@ -257,7 +257,7 @@
       },
       {
          "slug":"allergies",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Lists",
             "Enumerations",
@@ -266,7 +266,7 @@
       },
       {
          "slug":"simple-linked-list",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Classes",
             "Lists",
@@ -276,7 +276,7 @@
       },
       {
          "slug":"atbash-cipher",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Strings",
             "Transforming",
@@ -285,7 +285,7 @@
       },
       {
          "slug":"all-your-base",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Integers",
             "Lists",
@@ -296,14 +296,14 @@
       },
       {
          "slug":"bank-account",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Parallellism"
          ]
       },
       {
          "slug":"crypto-square",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Strings",
             "Lists",
@@ -313,7 +313,7 @@
       },
       {
          "slug":"kindergarten-garden",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Enumerations",
             "Transforming",
@@ -322,7 +322,7 @@
       },
       {
          "slug":"robot-simulator",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Enumerations",
             "Tuples"
@@ -330,7 +330,7 @@
       },
       {
          "slug":"isogram",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Strings",
             "Filtering"
@@ -338,7 +338,7 @@
       },
       {
          "slug":"bracket-push",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Strings",
             "Parsing"
@@ -346,7 +346,7 @@
       },
       {
          "slug":"queen-attack",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Strings",
             "Optional values",
@@ -356,7 +356,7 @@
       },
       {
          "slug":"binary-search-tree",
-         "difficulty":1,
+         "difficulty":6,
          "topics":[
             "Searching",
             "Lists",
@@ -366,7 +366,7 @@
       },
       {
          "slug":"largest-series-product",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Strings",
             "Integers",
@@ -377,7 +377,7 @@
       },
       {
          "slug":"luhn",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Strings",
             "Algorithms",
@@ -386,7 +386,7 @@
       },
       {
          "slug":"perfect-numbers",
-         "difficulty":1,
+         "difficulty":2,
          "topics":[
             "Enumerations",
             "Integers",
@@ -395,7 +395,7 @@
       },
       {
          "slug":"clock",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Time",
             "Structural equality"
@@ -403,7 +403,7 @@
       },
       {
          "slug":"matrix",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Strings",
             "Matrices",
@@ -413,7 +413,7 @@
       },
       {
          "slug":"house",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Strings",
             "Text formatting",
@@ -422,14 +422,14 @@
       },
       {
          "slug":"zebra-puzzle",
-         "difficulty":1,
+         "difficulty":8,
          "topics":[
             "Logic"
          ]
       },
       {
          "slug":"minesweeper",
-         "difficulty":1,
+         "difficulty":7,
          "topics":[
             "Lists",
             "Strings",
@@ -439,7 +439,7 @@
       },
       {
          "slug":"ocr-numbers",
-         "difficulty":1,
+         "difficulty":6,
          "topics":[
             "Lists",
             "Strings",
@@ -450,7 +450,7 @@
       },
       {
          "slug":"wordy",
-         "difficulty":1,
+         "difficulty":7,
          "topics":[
             "Mathematics",
             "Optional values",
@@ -461,7 +461,7 @@
       },
       {
          "slug":"food-chain",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Text formatting",
             "Algorithms"
@@ -469,7 +469,7 @@
       },
       {
          "slug":"linked-list",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Lists",
             "Generics",
@@ -478,7 +478,7 @@
       },
       {
          "slug":"custom-set",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Sets",
             "Lists",
@@ -487,7 +487,7 @@
       },
       {
          "slug":"nth-prime",
-         "difficulty":1,
+         "difficulty":6,
          "topics":[
             "Optional values",
             "Algorithms",
@@ -496,7 +496,7 @@
       },
       {
          "slug":"palindrome-products",
-         "difficulty":1,
+         "difficulty":6,
          "topics":[
             "Sets",
             "Strings",
@@ -506,7 +506,7 @@
       },
       {
          "slug":"pascals-triangle",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Control-flow (loops)",
             "Lists",
@@ -515,7 +515,7 @@
       },
       {
          "slug":"pig-latin",
-         "difficulty":1,
+         "difficulty":6,
          "topics":[
             "Strings",
             "Transforming"
@@ -523,7 +523,7 @@
       },
       {
          "slug":"pythagorean-triplet",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Integers",
             "Mathematics",
@@ -533,7 +533,7 @@
       },
       {
          "slug":"saddle-points",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Matrices",
             "Lists",
@@ -543,7 +543,7 @@
       },
       {
          "slug":"say",
-         "difficulty":1,
+         "difficulty":8,
          "topics":[
             "Strings",
             "Transforming",
@@ -553,7 +553,7 @@
       },
       {
          "slug":"alphametics",
-         "difficulty":1,
+         "difficulty":9,
          "topics":[
             "Maps",
             "Optional values",
@@ -563,7 +563,7 @@
       },
       {
          "slug":"secret-handshake",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Lists",
             "Strings",
@@ -572,7 +572,7 @@
       },
       {
          "slug":"series",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Strings",
             "Sequences",
@@ -581,7 +581,7 @@
       },
       {
          "slug":"sieve",
-         "difficulty":1,
+         "difficulty":3,
          "topics":[
             "Filtering",
             "Mathematics",
@@ -590,7 +590,7 @@
       },
       {
          "slug":"simple-cipher",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Optional values",
             "Strings",
@@ -600,7 +600,7 @@
       },
       {
          "slug":"change",
-         "difficulty":1,
+         "difficulty":7,
          "topics":[
             "Integers",
             "Lists",
@@ -610,7 +610,7 @@
       },
       {
          "slug":"connect",
-         "difficulty":1,
+         "difficulty":8,
          "topics":[
             "Recursion",
             "Graphs",
@@ -622,7 +622,7 @@
       },
       {
          "slug":"rail-fence-cipher",
-         "difficulty":1,
+         "difficulty":6,
          "topics":[
             "Strings",
             "Algorithms",
@@ -631,7 +631,7 @@
       },
       {
          "slug":"dominoes",
-         "difficulty":1,
+         "difficulty":7,
          "topics":[
             "Lists",
             "Optional values",
@@ -641,7 +641,7 @@
       },
       {
          "slug":"parallel-letter-frequency",
-         "difficulty":1,
+         "difficulty":5,
          "topics":[
             "Maps",
             "Sequences",
@@ -653,7 +653,7 @@
       },
       {
          "slug":"sgf-parsing",
-         "difficulty":1,
+         "difficulty":9,
          "topics":[
             "Parsing",
             "Transforming"
@@ -661,7 +661,7 @@
       },
       {
          "slug":"acronym",
-         "difficulty":1,
+         "difficulty":4,
          "topics":[
             "Strings",
             "Transforming"
@@ -669,7 +669,7 @@
       },
       {
          "slug":"zipper",
-         "difficulty":1,
+         "difficulty":10,
          "topics":[
             "Generics",
             "Optional values",
@@ -678,7 +678,7 @@
       },
       {
          "slug":"forth",
-         "difficulty":1,
+         "difficulty":10,
          "topics":[
             "Strings",
             "Mathematics",
@@ -687,7 +687,7 @@
       },
       {
          "slug":"lens-person",
-         "difficulty":1,
+         "difficulty":9,
          "topics":[
 
          ]
@@ -703,7 +703,7 @@
       },
       {
          "slug":"variable-length-quantity",
-         "difficulty":1,
+         "difficulty":9,
          "topics":[
             "Discriminated unions",
             "Lists",
