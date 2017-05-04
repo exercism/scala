@@ -1,5 +1,5 @@
-case class Year(year: Int) {
-  lazy val isLeap: Boolean = divisibleBy(4) && (divisibleBy(400) || !divisibleBy(100))
-
-  private def divisibleBy(i: Int) = year % i == 0
+object Year {
+  def isLeap(year: Int): Boolean = {
+    def divisibleBy(i: Int) = year % i == 0
+    divisibleBy(4) && (divisibleBy(400) || !divisibleBy(100))}
 }
