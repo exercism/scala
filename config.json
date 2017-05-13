@@ -336,6 +336,16 @@
             "Lists"
          ]
       },
+       {
+         "slug":"protein-translation",
+         "difficulty":4,
+         "topics":[
+            "Strings",
+            "Optional values",
+            "Transforming",
+            "Sequences"
+         ]
+      },
       {
          "slug":"largest-series-product",
          "difficulty":4,
