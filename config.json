@@ -237,6 +237,15 @@
          ]
       },
       {
+         "slug":"protein-translation",
+         "difficulty":3,
+         "topics":[
+            "Strings",
+            "Transforming",
+            "Sequences"
+         ]
+      },
+      {
          "slug":"matrix",
          "difficulty":4,
          "topics":[
@@ -334,16 +343,6 @@
             "Enumerations",
             "Transforming",
             "Lists"
-         ]
-      },
-       {
-         "slug":"protein-translation",
-         "difficulty":4,
-         "topics":[
-            "Strings",
-            "Optional values",
-            "Transforming",
-            "Sequences"
          ]
       },
       {
