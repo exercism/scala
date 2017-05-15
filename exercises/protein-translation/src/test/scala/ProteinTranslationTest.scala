@@ -34,12 +34,11 @@ class ProteinTranslationTest extends FunSuite with Matchers {
   test("Identifies cysteine codons") {
     pending
     ProteinTranslation.translate("UGU") should be(Seq("Cysteine"))
-    ProteinTranslation.translate("UGU") should be(Seq("Cysteine"))
+    ProteinTranslation.translate("UGC") should be(Seq("Cysteine"))
   }
 
   test("Identifies tryptophan codons") {
     pending
-    ProteinTranslation.translate("UGG") should be(Seq("Tryptophan"))
     ProteinTranslation.translate("UGG") should be(Seq("Tryptophan"))
   }
 
