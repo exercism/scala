@@ -237,6 +237,15 @@
          ]
       },
       {
+         "slug":"protein-translation",
+         "difficulty":3,
+         "topics":[
+            "Strings",
+            "Transforming",
+            "Sequences"
+         ]
+      },
+      {
          "slug":"matrix",
          "difficulty":4,
          "topics":[
