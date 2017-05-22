@@ -1,4 +1,4 @@
-class Example {
+object Example {
   def verses(upper: Int, lower: Int): String =
     upper to lower by -1 map verse mkString "\n"
 
