@@ -246,6 +246,16 @@
          ]
       },
       {
+        "slug": "beer-song",
+        "difficulty": 3,
+        "topics": [
+          "Text formatting",
+          "Algorithms",
+          "Control-flow",
+          "Strings"
+        ]
+      },      
+      {
          "slug":"matrix",
          "difficulty":4,
          "topics":[
