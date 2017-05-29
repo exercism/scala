@@ -44,11 +44,6 @@ Please submit changes to a single problem per pull request unless you're
 submitting a general change across many of the problems (e.g. formatting).
 
 
-## License
-
-The MIT License (MIT)
-
-Copyright (c) 2014 Katrina Owen, _@kytrinyx.com
 
 ## Scala icon
 The Scala icon used on Exercism is inspired by the official Scala logo, which is copyright École Polytechnique Fédérale de Lausanne.
