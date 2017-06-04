@@ -1,32 +1,24 @@
-import org.scalatest._
+import org.scalatest.{Matchers, FunSuite}
 
-class LeapTest extends FunSuite {
-  test ("vanilla leap year") {
-    assert(Year.isLeap(1996))
+/** @version 1.0.0 */
+class LeapTest extends FunSuite with Matchers {
+
+  test("year not divisible by 4: common year") {
+    Leap.leapYear(2015) should be (false)
   }
 
-  test ("any old year") {
+  test("year divisible by 4, not divisible by 100: leap year") {
     pending
-    assert(!Year.isLeap(1997))
+    Leap.leapYear(2016) should be (true)
   }
 
-  test("an even year") {
+  test("year divisible by 100, not divisible by 400: common year") {
     pending
-    assert(!Year.isLeap(1986))
+    Leap.leapYear(2100) should be (false)
   }
 
-  test ("century") {
+  test("year divisible by 400: leap year") {
     pending
-    assert(!Year.isLeap(1900))
-  }
-
-  test ("exceptional century") {
-    pending
-    assert(Year.isLeap(2000))
-  }
-
-  test("exceptional century that is no millenium") {
-    pending
-    assert(Year.isLeap(1600))
+    Leap.leapYear(2000) should be (true)
   }
 }
