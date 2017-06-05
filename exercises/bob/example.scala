@@ -1,5 +1,5 @@
-class Bob {
-  def hey(statement: String): String = statement match {
+object Bob {
+  def response(statement: String): String = statement match {
     case Shouting() => "Whoa, chill out!"
     case Question() => "Sure."
     case Silence() => "Fine. Be that way!"
@@ -16,7 +16,7 @@ class Bob {
   }
 
   case object Question {
-    def unapply(statement: String) = statement.endsWith("?")
+    def unapply(statement: String) = statement.trim.endsWith("?")
   }
 
   case object Silence {

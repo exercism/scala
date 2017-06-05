@@ -1,3 +1,3 @@
-class Bob {
-  def hey(statement: String): String = ???
+object Bob {
+  def response(statement: String): String = ???
 }
