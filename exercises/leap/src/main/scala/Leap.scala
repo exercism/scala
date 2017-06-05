@@ -1,3 +1,3 @@
-object Year {
-  def isLeap(year: Int): Boolean = ???
+object Leap {
+  def leapYear(year: Int): Boolean = ???
 }
