@@ -66,7 +66,7 @@ object Exercise {
   private def flattenCases(cases: Cases): Cases =
     cases match {
       case Seq() => Seq()
-      case (ltg: LabeledTestGroup) +: xs => ltg.cases ++ flattenCases(xs)
+      case (ltg: LabeledTestGroup) +: xs => flattenCases(ltg.cases) ++ flattenCases(xs)
       case (lt: LabeledTest) +: xs => lt +: flattenCases(xs)
     }
 }
