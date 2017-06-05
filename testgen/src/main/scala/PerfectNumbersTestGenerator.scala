@@ -27,7 +27,7 @@ object PerfectNumbersTestGenerator {
       withLabeledTest { sut =>
         labeledTest =>
           val args = sutArgs(labeledTest.result, argNames: _*)
-          val property = labeledTest.property.mkString
+          val property = labeledTest.property
           val sutCall =
             s"""PerfectNumbers.$property($args)"""
           val expected = toString(labeledTest.expected)
