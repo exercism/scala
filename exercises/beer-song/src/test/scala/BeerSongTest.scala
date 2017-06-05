@@ -1,5 +1,6 @@
 import org.scalatest._
 
+/** @version 1.0.0 */
 class BeerSongTest extends FunSuite {
 
   test("first generic verse") {

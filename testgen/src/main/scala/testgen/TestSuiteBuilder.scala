@@ -98,7 +98,7 @@ object TestSuiteBuilder {
     }
   }
 
-  def toFile(text: String, dest: File): Unit = {
+  def writeToFile(text: String, dest: File): Unit = {
     val fileWriter = new FileWriter(dest)
     try { fileWriter.write(text) } finally fileWriter.close
   }

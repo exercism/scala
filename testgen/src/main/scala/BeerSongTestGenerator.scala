@@ -11,5 +11,7 @@ object BeerSongTestGenerator {
     println(s"-------------")
     println(code)
     println(s"-------------")
+
+    TestSuiteBuilder.writeToFile(code, new File("BeerSongTest.scala"))
   }
 }
