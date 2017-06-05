@@ -1,17 +1,21 @@
 import NumberType.NumberType
 
 object PerfectNumbers {
-  def classify(n: Int): NumberType = {
-    val sumOfFactors
-    = (1 until n)
-      .foldLeft(0)((acc, i) => if (n % i == 0) acc + i else acc)
+  def classify(n: Int): Either[String, NumberType] = {
+    if (n <= 0)
+      Left("Classification is only possible for natural numbers.")
+    else {
+      val sumOfFactors
+      = (1 until n)
+        .foldLeft(0)((acc, i) => if (n % i == 0) acc + i else acc)
 
-    if (sumOfFactors < n)
-      NumberType.Deficient
-    else if (sumOfFactors > n)
-      NumberType.Abundant
-    else
-      NumberType.Perfect
+      if (sumOfFactors < n)
+        Right(NumberType.Deficient)
+      else if (sumOfFactors > n)
+        Right(NumberType.Abundant)
+      else
+        Right(NumberType.Perfect)
+    }
   }
 }
 

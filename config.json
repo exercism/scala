@@ -95,16 +95,7 @@
             "Logic",
             "Transforming"
          ]
-      },
-      {
-         "slug":"perfect-numbers",
-         "difficulty":2,
-         "topics":[
-            "Enumerations",
-            "Integers",
-            "Mathematics"
-         ]
-      },                          
+      },                        
       {
          "slug":"hamming",
          "difficulty":3,
@@ -185,6 +176,16 @@
             "Mathematics"
          ]
       },
+      {
+         "slug":"perfect-numbers",
+         "difficulty":3,
+         "topics":[
+            "Discriminated unions",
+            "Enumerations",
+            "Integers",
+            "Mathematics"
+         ]
+      },  
       {
          "slug":"binary-search",
          "difficulty":3,

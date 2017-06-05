@@ -86,7 +86,7 @@ object TestSuiteBuilder {
   private def toString(expected: CanonicalDataParser.Expected): String =
       expected.fold(error => s"Left(${toString(error)})", toString)
 
-  private def toString(any: Any): String = {
+  def toString(any: Any): String = {
     def quote(str: String): String =
       if ("\"\n" exists (str.contains(_:Char))) "\"\"\"" else "\""
 
