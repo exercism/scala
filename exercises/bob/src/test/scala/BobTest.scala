@@ -1,102 +1,132 @@
-import org.scalatest._
+import org.scalatest.{Matchers, FunSuite}
 
-class BobTest extends FlatSpec with Matchers {
-  def teenager = new Bob
+/** @version 1.0.0 */
+class BobTest extends FunSuite with Matchers {
 
-  it should "respond to a statement" in {
-    val response = teenager.hey("Tom-ay-to, tom-aaaah-to.")
-    response should be ("Whatever.")
+  test("stating something") {
+    Bob.response("Tom-ay-to, tom-aaaah-to.") should be ("Whatever.")
   }
 
-  it should "respond to shouting" in {
+  test("shouting") {
     pending
-    val response = teenager.hey("WATCH OUT!")
-    response should be ("Whoa, chill out!")
+    Bob.response("WATCH OUT!") should be ("Whoa, chill out!")
   }
 
-  it should "respond to questions" in {
+  test("shouting gibberish") {
     pending
-    val response = teenager.hey("Does this cryogenic chamber make me look fat?")
-    response should be ("Sure.")
+    Bob.response("FCECDFCAAB") should be ("Whoa, chill out!")
   }
 
-  it should "allow questions to end with numbers" in {
+  test("asking a question") {
     pending
-    val response = teenager.hey("You are what, like 15?")
-    response should be ("Sure.")
+    Bob.response("Does this cryogenic chamber make me look fat?") should be ("Sure.")
   }
 
-  it should "respond to talking forcefully" in {
+  test("asking a numeric question") {
     pending
-    val response = teenager.hey("Let's go work out at the gym!")
-    response should be ("Whatever.")
+    Bob.response("You are, what, like 15?") should be ("Sure.")
   }
 
-  it should "allow acroynms in regular speech" in {
+  test("asking gibberish") {
     pending
-    val response = teenager.hey("It's OK if you don't want to go to the DMV.")
-    response should be ("Whatever.")
+    Bob.response("fffbbcbeab?") should be ("Sure.")
   }
 
-  it should "see forceful questions as shouting" in {
+  test("talking forcefully") {
     pending
-    val response = teenager.hey("WHAT THE HELL WERE YOU THINKING?")
-    response should be ("Whoa, chill out!")
+    Bob.response("Let's go make out behind the gym!") should be ("Whatever.")
   }
 
-  it should "allow numbers when shouting" in {
+  test("using acronyms in regular speech") {
     pending
-    val response = teenager.hey("1, 2, 3, GO!")
-    response should be ("Whoa, chill out!")
+    Bob.response("It's OK if you don't want to go to the DMV.") should be ("Whatever.")
   }
 
-  it should "see only numbers as speech" in {
+  test("forceful question") {
     pending
-    val response = teenager.hey("1, 2, 3")
-    response should be ("Whatever.")
+    Bob.response("WHAT THE HELL WERE YOU THINKING?") should be ("Whoa, chill out!")
   }
 
-  it should "respond to questions with only numbers" in {
+  test("shouting numbers") {
     pending
-    val response = teenager.hey("4?")
-    response should be ("Sure.")
+    Bob.response("1, 2, 3 GO!") should be ("Whoa, chill out!")
   }
 
-  it should "respond to shouting with no exclamation mark" in {
+  test("only numbers") {
     pending
-    val response = teenager.hey("I HATE YOU")
-    response should be ("Whoa, chill out!")
+    Bob.response("1, 2, 3") should be ("Whatever.")
   }
 
-  it should "respond to statements with ? in the middle" in {
+  test("question with only numbers") {
     pending
-    val response = teenager.hey("Ending with ? means a question.")
-    response should be ("Whatever.")
+    Bob.response("4?") should be ("Sure.")
   }
 
-  it should "respond to prattling on" in {
+  test("shouting with special characters") {
     pending
-    val response = teenager.hey("Wait! Hang on. Are you going to be OK?")
-    response should be ("Sure.")
+    Bob.response("ZOMG THE %^*@#$(*^ ZOMBIES ARE COMING!!11!!1!") should be ("Whoa, chill out!")
   }
 
-  it should "respond to silence" in {
+  test("shouting with no exclamation mark") {
     pending
-    val response = teenager.hey("")
-    response should be ("Fine. Be that way!")
+    Bob.response("I HATE YOU") should be ("Whoa, chill out!")
   }
 
-  it should "respond to prolonged silence" in {
+  test("statement containing question mark") {
     pending
-    val response = teenager.hey("       ")
-    response should be ("Fine. Be that way!")
+    Bob.response("Ending with ? means a question.") should be ("Whatever.")
   }
 
-  it should "respond to multiple line questions" in {
+  test("non-letters with question") {
     pending
-    val response = teenager.hey("""
+    Bob.response(":) ?") should be ("Sure.")
+  }
+
+  test("prattling on") {
+    pending
+    Bob.response("Wait! Hang on. Are you going to be OK?") should be ("Sure.")
+  }
+
+  test("silence") {
+    pending
+    Bob.response("") should be ("Fine. Be that way!")
+  }
+
+  test("prolonged silence") {
+    pending
+    Bob.response("          ") should be ("Fine. Be that way!")
+  }
+
+  test("alternate silence") {
+    pending
+    Bob.response("										") should be ("Fine. Be that way!")
+  }
+
+  test("multiple line question") {
+    pending
+    Bob.response("""
 Does this cryogenic chamber make me look fat?
-no""")
-    response should be ("Whatever.")
+no""") should be ("Whatever.")
+  }
+
+  test("starting with whitespace") {
+    pending
+    Bob.response("         hmmmmmmm...") should be ("Whatever.")
+  }
+
+  test("ending with whitespace") {
+    pending
+    Bob.response("Okay if like my  spacebar  quite a bit?   ") should be ("Sure.")
+  }
+
+  test("other whitespace") {
+    pending
+    Bob.response("""
+                 	""") should be ("Fine. Be that way!")
+  }
+
+  test("non-question ending with whitespace") {
+    pending
+    Bob.response("This is a statement ending with whitespace      ") should be ("Whatever.")
   }
 }
