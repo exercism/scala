@@ -745,13 +745,6 @@
     "octal",
     "trinary"
   ],
-  "ignored": [
-    "docs",
-    "img",
-    "project",
-    "target",
-    "testgen"
-  ],
   "foregone": [
 
   ]
