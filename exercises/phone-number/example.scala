@@ -1,18 +1,3 @@
-import PhoneNumber._
-
-class PhoneNumber(phoneNumber: String) {
-
-  lazy val parts: Option[Parts] = parse(phoneNumber)
-
-  lazy val number: Option[String] =
-    parts map { case (areaCode, prefix, lineNumber) => s"$areaCode$prefix$lineNumber" }
-
-  lazy val areaCode: Option[String] = parts map (_._1)
-
-  lazy val prettyPrint: Option[String]  = 
-    parts map { case (areaCode, prefix, lineNumber) => s"($areaCode) $prefix-$lineNumber" }
-}
-
 object PhoneNumber {
   type Parts = (String, String, String)
 
@@ -25,11 +10,16 @@ object PhoneNumber {
     s"""1?${part(AreaCodeLength)}${part(PrefixLength)}${part(LineNumberLength)}""".r
   }
 
-  def parse(phoneNumber: String): Option[Parts] = {
-    val digits = phoneNumber filter (_.isDigit)
-    digits match {
-      case PhoneNumberPattern(areaCode, prefix, lineNumber) =>
-        Some((areaCode, prefix, lineNumber))
+  def clean(phoneNumber: String): Option[String] = {
+    phoneNumber filter (_.isDigit) match {
+      case PhoneNumberPattern(areaCode, prefix, lineNumber) => {
+        val areaCodeFirst = areaCode.head.asDigit
+        val prefixFirst = prefix.head.asDigit
+        if (areaCodeFirst >= 2 && prefixFirst >= 2)
+          Option(areaCode + prefix + lineNumber)
+        else
+          None
+      }
       case _ => None
     }
   }
