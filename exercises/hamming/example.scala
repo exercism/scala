@@ -10,6 +10,6 @@ class Hamming(strand1: String, strand2: String) {
 }
 
 object Hamming {
-  def compute(strand1: String, strand2: String) =
+  def distance(strand1: String, strand2: String) =
     new Hamming(strand1, strand2).distance
 }

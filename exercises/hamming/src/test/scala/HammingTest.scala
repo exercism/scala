@@ -1,43 +1,79 @@
-import org.scalatest._
+import org.scalatest.{Matchers, FunSuite}
 
-class HammingTest extends FlatSpec with Matchers {
-  it should "detect no difference between empty strands" in {
-    Hamming.compute("", "") should be (Some(0))
+/** @version 1.0.0 */
+class HammingTest extends FunSuite with Matchers {
+
+  test("identical strands") {
+    Hamming.distance("A", "A") should be (Some(0))
   }
 
-  it should "detect no difference between identical strands" in {
+  test("long identical strands") {
     pending
-    Hamming.compute("GGACTGA", "GGACTGA") should be (Some(0))
+    Hamming.distance("GGACTGA", "GGACTGA") should be (Some(0))
   }
 
-  it should "detect complete hamming distance in small strand" in {
+  test("complete distance in single nucleotide strands") {
     pending
-    Hamming.compute("ACT", "GGA") should be (Some(3))
+    Hamming.distance("A", "G") should be (Some(1))
   }
 
-  it should "give hamming distance in off by one strand" in {
+  test("complete distance in small strands") {
     pending
-    Hamming.compute("GGACGGATTCTG", "AGGACGGATTCT") should be (Some(9))
+    Hamming.distance("AG", "CT") should be (Some(2))
   }
 
-  it should "give small hamming distance in middle somewhere" in {
+  test("small distance in small strands") {
     pending
-    Hamming.compute("GGACG", "GGTCG") should be (Some(1))
+    Hamming.distance("AT", "CT") should be (Some(1))
   }
 
-  it should "give a larger distance" in {
+  test("small distance") {
     pending
-    Hamming.compute("ACCAGGG", "ACTATGG") should be (Some(2))
+    Hamming.distance("GGACG", "GGTCG") should be (Some(1))
   }
 
-  it should "be undefined for first String longer" in {
+  test("small distance in long strands") {
     pending
-    Hamming.compute("AGGCTAGCGGTAGGAC", "AAACTAGGGG") should be (None)
+    Hamming.distance("ACCAGGG", "ACTATGG") should be (Some(2))
   }
 
-  it should "be undefined for second String longer" in {
+  test("non-unique character in first strand") {
     pending
-    Hamming.compute("AAACTAGGGG", "AGGCTAGCGGTAGGAC") should be (None)
+    Hamming.distance("AGA", "AGG") should be (Some(1))
+  }
+
+  test("non-unique character in second strand") {
+    pending
+    Hamming.distance("AGG", "AGA") should be (Some(1))
+  }
+
+  test("same nucleotides in different positions") {
+    pending
+    Hamming.distance("TAG", "GAT") should be (Some(2))
+  }
+
+  test("large distance") {
+    pending
+    Hamming.distance("GATACA", "GCATAA") should be (Some(4))
+  }
+
+  test("large distance in off-by-one strand") {
+    pending
+    Hamming.distance("GGACGGATTCTG", "AGGACGGATTCT") should be (Some(9))
+  }
+
+  test("empty strands") {
+    pending
+    Hamming.distance("", "") should be (Some(0))
+  }
+
+  test("disallow first strand longer") {
+    pending
+    Hamming.distance("AATG", "AAA") should be (None)
+  }
+
+  test("disallow second strand longer") {
+    pending
+    Hamming.distance("ATA", "AGTG") should be (None)
   }
 }
-
