@@ -1,117 +1,64 @@
-import org.scalatest._
+import org.scalatest.{Matchers, FunSuite}
 
-class PhoneNumberTest extends FlatSpec with Matchers {
-  behavior of "number"
+/** @version 1.2.0 */
+class PhoneNumberTest extends FunSuite with Matchers {
 
-  it should "clean the number" in {
-    val number = new PhoneNumber("(123) 456-7890").number
-    number should be (Some("1234567890"))
+  test("cleans the number") {
+    PhoneNumber.clean("(223) 456-7890") should be (Some("2234567890"))
   }
 
-  it should "clean numbers with dots" in {
+  test("cleans numbers with dots") {
     pending
-    val number = new PhoneNumber("123.456.7890").number
-    number should be (Some("1234567890"))
+    PhoneNumber.clean("223.456.7890") should be (Some("2234567890"))
   }
 
-  it should "be valid when 11 digits and first is 1" in {
+  test("cleans numbers with multiple spaces") {
     pending
-    val number = new PhoneNumber("11234567890").number
-    number should be (Some("1234567890"))
+    PhoneNumber.clean("223 456   7890   ") should be (Some("2234567890"))
   }
 
-  it should "be invalid when 11 digits" in {
+  test("invalid when 9 digits") {
     pending
-    val number = new PhoneNumber("21234567890").number
-    number should be (None)
+    PhoneNumber.clean("123456789") should be (None)
   }
 
-  it should "be invalid when 9 digits" in {
+  test("invalid when 11 digits does not start with a 1") {
     pending
-    val number = new PhoneNumber("123456789").number
-    number should be (None)
+    PhoneNumber.clean("22234567890") should be (None)
   }
 
-  it should "be invalid when 12 digits" in {
+  test("valid when 11 digits and starting with 1") {
     pending
-    val number = new PhoneNumber("123456789012").number
-    number should be (None)
+    PhoneNumber.clean("12234567890") should be (Some("2234567890"))
   }
 
-  it should "be invalid when no digits present" in {
+  test("valid when 11 digits and starting with 1 even with punctuation") {
     pending
-    val number = new PhoneNumber(" (-) ").number
-    number should be (None)
+    PhoneNumber.clean("+1 (223) 456-7890") should be (Some("2234567890"))
   }
 
-  it should "be valid with leading characters" in {
+  test("invalid when more than 11 digits") {
     pending
-    val number = new PhoneNumber("my number is 235 813 2134").number
-    number should be (Some("2358132134"))
+    PhoneNumber.clean("321234567890") should be (None)
   }
 
-  it should "be valid with trailing characters" in {
+  test("invalid with letters") {
     pending
-    val number = new PhoneNumber("987 654 3210 - bob").number
-    number should be (Some("9876543210"))
+    PhoneNumber.clean("123-abc-7890") should be (None)
   }
 
-  it should "be valid amidst text and punctuation" in {
+  test("invalid with punctuations") {
     pending
-    val number = new PhoneNumber("Here it is: 415-888-0000. Thanks!").number
-    number should be (Some("4158880000"))
+    PhoneNumber.clean("123-@:!-7890") should be (None)
   }
 
-  behavior of "areaCode"
-
-  it should "give the area code" in {
+  test("invalid if area code does not start with 2-9") {
     pending
-    val number = new PhoneNumber("1234567890")
-    number.areaCode should be(Some("123"))
+    PhoneNumber.clean("(123) 456-7890") should be (None)
   }
 
-  it should "give the area code with parentheses" in {
+  test("invalid if exchange code does not start with 2-9") {
     pending
-    val number = new PhoneNumber("(612) 555-1212")
-    number.areaCode should be(Some("612"))
-  }
-
-  it should "give the area code with leading characters" in {
-    pending
-    val number = new PhoneNumber("my number is 235 813 2134")
-    number.areaCode should be(Some("235"))
-  }
-
-  it should "be invalid when no digits present" in {
-    pending
-    val number = new PhoneNumber(" (-) ")
-    number.areaCode should be (None)
-  }
-
-  behavior of "prettyPrint"
-
-  it should "format the number" in {
-    pending
-    val number = new PhoneNumber("1234567890")
-    number.prettyPrint should be (Some("(123) 456-7890"))
-  }
-
-  it should "format full US phone numbers" in {
-    pending
-    val number = new PhoneNumber("11234567890")
-    number.prettyPrint should be (Some("(123) 456-7890"))
-  }
-
-  it should "format the number amidst text and punctuation" in {
-    pending
-    val number = new PhoneNumber("Here it is: 415-888-0000. Thanks!")
-    number.prettyPrint should be (Some("(415) 888-0000"))
-  }
-
-  it should "be invalid for invalid numbers" in {
-    pending
-    val number = new PhoneNumber("I am invalid!")
-    number.prettyPrint should be (None)
+    PhoneNumber.clean("(223) 056-7890") should be (None)
   }
 }
-
