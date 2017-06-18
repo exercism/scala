@@ -1,6 +1,4 @@
-import Dna._
-
-object Dna {
+object RnaTranscription {
   private type Strand = String
   private type Nucleotide = Char
 

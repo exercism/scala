@@ -1,48 +1,44 @@
 import org.scalatest.{Matchers, FunSuite}
 
-class DnaTest extends FunSuite with Matchers {
-  test("transcribes blank string") {
-    Dna.toRna("") should be (Some(""))
+/** @version 1.0.0 */
+class RnaTranscriptionTest extends FunSuite with Matchers {
+
+  test("rna complement of cytosine is guanine") {
+    RnaTranscription.toRna("C") should be (Some("G"))
   }
 
-  test("transcribes cytidine to guanine") {
+  test("rna complement of guanine is cytosine") {
     pending
-    Dna.toRna("C") should be (Some("G"))
+    RnaTranscription.toRna("G") should be (Some("C"))
   }
 
-  test("transcribes guanosine to cytosine") {
+  test("rna complement of thymine is adenine") {
     pending
-    Dna.toRna("G") should be (Some("C"))
+    RnaTranscription.toRna("T") should be (Some("A"))
   }
 
-  test("transcribes adenosine to uracil") {
+  test("rna complement of adenine is uracil") {
     pending
-    Dna.toRna("A") should be (Some("U"))
+    RnaTranscription.toRna("A") should be (Some("U"))
   }
 
-  test("transcribes thymidine to adenine") {
+  test("rna complement") {
     pending
-    Dna.toRna("T") should be (Some("A"))
+    RnaTranscription.toRna("ACGTGGTCTTAA") should be (Some("UGCACCAGAAUU"))
   }
 
-  test("transcribes all ACGT to UGCA") {
+  test("dna correctly handles invalid input") {
     pending
-    Dna.toRna("ACGTGGTCTTAA") should be (Some("UGCACCAGAAUU"))
+    RnaTranscription.toRna("U") should be (None)
   }
 
-  test("transcribes RNA only nucleotide uracil to None") {
+  test("dna correctly handles completely invalid input") {
     pending
-    Dna.toRna("U") should be (None)
+    RnaTranscription.toRna("XXX") should be (None)
   }
 
-  test("transcribes completely invalid DNA to None") {
+  test("dna correctly handles partially invalid input") {
     pending
-    Dna.toRna("XXX") should be (None)
-  }
-
-  test("transcribes partially invalid DNA to None") {
-    pending
-    Dna.toRna("ACGTXXXCTTAA") should be (None)
+    RnaTranscription.toRna("ACGTXXXCTTAA") should be (None)
   }
 }
-
