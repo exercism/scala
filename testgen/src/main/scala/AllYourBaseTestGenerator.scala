@@ -1,48 +1,38 @@
-import play.api.libs.json.Json
+import java.io.File
 
-import scala.io.Source
-
-
-class AllYourBaseTestGenerator {
-  implicit val testCaseReader = Json.reads[AllYourBaseTestCase]
-
-  private val filename = "all-your-base.json"
-  private val fileContents = Source.fromFile(filename).getLines.mkString
-  private val json = Json.parse(fileContents)
-
-  def write {
-    val testCases: List[AllYourBaseTestCase] = (json \ "cases").get.as[List[AllYourBaseTestCase]]
-
-    implicit def testCaseToGen(tc: AllYourBaseTestCase): TestCaseGen = {
-      val callSUT =
-        s"AllYourBase.rebase(${tc.input_base}, ${toListString(tc.input_digits)}, ${tc.output_base})"
-      val expected = toListString(tc.output_digits)
-
-      TestCaseGen(tc.description, callSUT, expected)
-    }
-
-    val testBuilder = new TestBuilder("AllYourBaseTest")
-    testBuilder.addTestCases(testCases)
-    testBuilder.toFile
-  }
-
-  private def toListString(a: Array[Int]): String =
-      "List(" + a.mkString(", ") + ")"
-
-  private def toListString(o: Option[Array[Int]]): String = {
-    o match {
-      case Some(a) => "Some(List(" + a.mkString(" ,") + "))"
-      case None => "None"
-    }
-  }
-}
-
-case class AllYourBaseTestCase(description: String,
-                    input_base: Int, input_digits: Array[Int],
-                    output_base: Int, output_digits: Option[Array[Int]])
+import testgen.TestSuiteBuilder.{toString, _}
+import testgen._
 
 object AllYourBaseTestGenerator {
   def main(args: Array[String]): Unit = {
-    new AllYourBaseTestGenerator().write
+    val file = new File("src/main/resources/all-your-base.json")
+
+    def toString(expected: CanonicalDataParser.Expected): String = {
+      expected match {
+        case Left(_) => "None"
+        case Right(null) => "None"
+        case Right(n) => s"Some($n)"
+      }
+    }
+
+    def fromLabeledTest(argNames: String*): ToTestCaseData =
+      withLabeledTest { sut =>
+        labeledTest =>
+          val args = sutArgs(labeledTest.result, argNames: _*)
+          val property = labeledTest.property
+          val sutCall =
+            s"""AllYourBase.$property($args)"""
+          val expected = toString(labeledTest.expected)
+          TestCaseData(labeledTest.description, sutCall, expected)
+      }
+
+    val code =
+      TestSuiteBuilder.build(file,
+        fromLabeledTest("input_base", "input_digits", "output_base"))
+    println(s"-------------")
+    println(code)
+    println(s"-------------")
+
+    TestSuiteBuilder.writeToFile(code, new File("AllYourBaseTest.scala"))
   }
 }
