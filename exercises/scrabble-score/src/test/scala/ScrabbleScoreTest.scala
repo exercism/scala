@@ -1,38 +1,59 @@
 import org.scalatest.{Matchers, FunSuite}
 
-class scrabble_score_test extends FunSuite with Matchers {
-  test("score letter lowercase") {
-    Scrabble.scoreLetter('a') should be (1)
+/** @version 1.0.0 */
+class ScrabbleScoreTest extends FunSuite with Matchers {
+
+  test("lowercase letter") {
+    ScrabbleScore.score("a") should be (1)
   }
 
-  test("score letter uppercase") {
+  test("uppercase letter") {
     pending
-    Scrabble.scoreLetter('A') should be (1)
+    ScrabbleScore.score("A") should be (1)
   }
 
-  test("score word") {
+  test("valuable letter") {
     pending
-    Scrabble.scoreWord("at") should be (2)
+    ScrabbleScore.score("f") should be (4)
   }
 
-  test("score word with dupe letters") {
+  test("short word") {
     pending
-    Scrabble.scoreWord("street") should be (6)
+    ScrabbleScore.score("at") should be (2)
   }
 
-  test("score quirky word") {
+  test("short, valuable word") {
     pending
-    Scrabble.scoreWord("quirky") should be (22)
+    ScrabbleScore.score("zoo") should be (12)
   }
 
-  test("score capitalized word") {
+  test("medium word") {
     pending
-    Scrabble.scoreWord("OXYPHENBUTAZONE") should be (41)
+    ScrabbleScore.score("street") should be (6)
   }
 
-  test("score mixed case word") {
+  test("medium, valuable word") {
     pending
-    Scrabble.scoreWord("Oxyphenbutazone") should be (41)
+    ScrabbleScore.score("quirky") should be (22)
+  }
+
+  test("long, mixed-case word") {
+    pending
+    ScrabbleScore.score("OxyphenButazone") should be (41)
+  }
+
+  test("english-like word") {
+    pending
+    ScrabbleScore.score("pinata") should be (8)
+  }
+
+  test("empty input") {
+    pending
+    ScrabbleScore.score("") should be (0)
+  }
+
+  test("entire alphabet available") {
+    pending
+    ScrabbleScore.score("abcdefghijklmnopqrstuvwxyz") should be (87)
   }
 }
-
