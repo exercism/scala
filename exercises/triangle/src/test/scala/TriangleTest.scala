@@ -1,42 +1,89 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{Matchers, FunSuite}
 
-class TriangleTest extends FlatSpec with Matchers {
-  it should "calc Equilateral" in {
-    Triangle(2, 2, 2).triangleType should equal(TriangleType.Equilateral)
+/** @version 1.0.0 */
+class TriangleTest extends FunSuite with Matchers {
+
+  test("equilateral - true if all sides are equal") {
+    Triangle(2, 2, 2).equilateral should be (true)
   }
 
-  it should "calc Equilateral2" in {
+  test("equilateral - false if any side is unequal") {
     pending
-    Triangle(10, 10, 10).triangleType should equal(TriangleType.Equilateral)
+    Triangle(2, 3, 2).equilateral should be (false)
   }
 
-  it should "calc Isosceles" in {
+  test("equilateral - false if no sides are equal") {
     pending
-    Triangle(3, 4, 4).triangleType should equal(TriangleType.Isosceles)
+    Triangle(5, 4, 6).equilateral should be (false)
   }
 
-  it should "calc Isosceles2" in {
+  test("equilateral - All zero sides are illegal, so the triangle is not equilateral") {
     pending
-    Triangle(4, 3, 4).triangleType should equal(TriangleType.Isosceles)
+    Triangle(0, 0, 0).equilateral should be (false)
   }
 
-  it should "calc Scalene" in {
+  test("equilateral - sides may be floats") {
     pending
-    Triangle(3, 4, 5).triangleType should equal(TriangleType.Scalene)
+    Triangle(0.5, 0.5, 0.5).equilateral should be (true)
   }
 
-  it should "calc Illogical" in {
+  test("isosceles - true if last two sides are equal") {
     pending
-    Triangle(1, 1, 50).triangleType should equal(TriangleType.Illogical)
+    Triangle(3, 4, 4).isosceles should be (true)
   }
 
-  it should "calc Illogical with zero length side" in {
+  test("isosceles - true if first two sides are equal") {
     pending
-    Triangle(0, 2, 1).triangleType should equal(TriangleType.Illogical)
+    Triangle(4, 4, 3).isosceles should be (true)
   }
 
-  it should "calc Illogical with negative length side" in {
+  test("isosceles - true if first and last sides are equal") {
     pending
-    Triangle(1, 1, -1).triangleType should equal(TriangleType.Illogical)
+    Triangle(4, 3, 4).isosceles should be (true)
+  }
+
+  test("isosceles - equilateral triangles are also isosceles") {
+    pending
+    Triangle(4, 4, 4).isosceles should be (true)
+  }
+
+  test("isosceles - false if no sides are equal") {
+    pending
+    Triangle(2, 3, 4).isosceles should be (false)
+  }
+
+  test("isosceles - Sides that violate triangle inequality are not isosceles, even if two are equal") {
+    pending
+    Triangle(1, 1, 3).isosceles should be (false)
+  }
+
+  test("isosceles - sides may be floats") {
+    pending
+    Triangle(0.5, 0.4, 0.5).isosceles should be (true)
+  }
+
+  test("scalene - true if no sides are equal") {
+    pending
+    Triangle(5, 4, 6).scalene should be (true)
+  }
+
+  test("scalene - false if all sides are equal") {
+    pending
+    Triangle(4, 4, 4).scalene should be (false)
+  }
+
+  test("scalene - false if two sides are equal") {
+    pending
+    Triangle(4, 4, 3).scalene should be (false)
+  }
+
+  test("scalene - Sides that violate triangle inequality are not scalene, even if they are all different") {
+    pending
+    Triangle(7, 3, 2).scalene should be (false)
+  }
+
+  test("scalene - sides may be floats") {
+    pending
+    Triangle(0.5, 0.4, 0.6).scalene should be (true)
   }
 }
