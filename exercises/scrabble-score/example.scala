@@ -1,6 +1,6 @@
-object Scrabble {
+object ScrabbleScore {
 
-  def scoreWord(word: String): Int = word.foldLeft(0)((score, c) => score + scoreLetter(c))
+  def score(word: String): Int = word.foldLeft(0)((score, c) => score + scoreLetter(c))
 
   def scoreLetter(c: Char): Int = letterScores.getOrElse(c.toUpper, 0)
 
