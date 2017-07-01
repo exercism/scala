@@ -1,10 +1,10 @@
-class Anagram(word: String) {
-  def matches(anagrams: Seq[String]) =
-    anagrams.filter(doesMatch).filterNot(isIdentical)
+object Anagram {
+  def anagrams(word: String, anagrams: Seq[String]) =
+    anagrams.filter(w => doesMatch(word, w)).filterNot(w => isIdentical(word, w))
 
-  private def doesMatch(anagram: String) =
-    anagram.toLowerCase.sorted == word.toLowerCase.sorted
+  private def doesMatch(word1: String, word2: String) =
+    word2.toLowerCase.sorted == word1.toLowerCase.sorted
 
-  private def isIdentical(anagram: String) =
-    anagram.toLowerCase == word.toLowerCase
+  private def isIdentical(word1: String, word2: String) =
+    word2.toLowerCase == word1.toLowerCase
 }

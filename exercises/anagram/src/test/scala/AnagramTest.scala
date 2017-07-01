@@ -1,76 +1,103 @@
-import org.scalatest._
+import org.scalatest.{Matchers, FunSuite}
 
-class AnagramTest extends FlatSpec with Matchers {
-  it should "detect no matches" in {
-    val detector = new Anagram("diaper")
-    val anagrams = detector.matches(Seq("hello", "world", "zombies", "pants"))
-    anagrams should equal (Seq())
+/** @version 1.0.1 */
+class AnagramTest extends FunSuite with Matchers {
+
+  test("no matches") {
+    Anagram.anagrams("diaper", List("hello", "world", "zombies", "pants")) should be(
+      List())
   }
 
-  it should "detect simple anagrams" in {
+  test("detects simple anagram") {
     pending
-    val detector = new Anagram("ant")
-    val anagrams = detector.matches(Seq("tan", "stand", "at"))
-    anagrams should equal (Seq("tan"))
+    Anagram.anagrams("ant", List("tan", "stand", "at")) should be(List("tan"))
   }
 
-  it should "detect multiple anagrams" in {
+  test("does not detect false positives") {
     pending
-    val detector = new Anagram("master")
-    val anagrams = detector.matches(Seq("stream", "pigeon", "maters"))
-    anagrams.sorted should equal (Seq("maters", "stream"))
+    Anagram.anagrams("galea", List("eagle")) should be(List())
   }
 
-  it should "not confuse different duplicates" in {
+  test("detects two anagrams") {
     pending
-    val detector = new Anagram("galea")
-    val anagrams = detector.matches(Seq("eagle"))
-    anagrams should equal (Seq())
+    Anagram.anagrams("master", List("stream", "pigeon", "maters")) should be(
+      List("stream", "maters"))
   }
 
-  it should "not include identical words" in {
+  test("does not detect anagram subsets") {
     pending
-    val detector = new Anagram("corn")
-    val anagrams = detector.matches(Seq(
-      "corn", "dark", "Corn", "rank", "CORN", "cron", "park"
-    ))
-    anagrams should equal (Seq("cron"))
+    Anagram.anagrams("good", List("dog", "goody")) should be(List())
   }
 
-  it should "elimitate anagrams with same checksum" in {
+  test("detects anagram") {
     pending
-    val detector = new Anagram("mass")
-    detector.matches(Seq("last")) should equal (Seq())
+    Anagram.anagrams("listen", List("enlists", "google", "inlets", "banana")) should be(
+      List("inlets"))
   }
 
-  it should "eliminate anagrams subsets" in {
+  test("detects three anagrams") {
     pending
-    val detector = new Anagram("good")
-    detector.matches(Seq("dog", "goody")) should equal (Seq())
+    Anagram.anagrams("allergy",
+                     List("gallery",
+                          "ballerina",
+                          "regally",
+                          "clergy",
+                          "largely",
+                          "leading")) should be(
+      List("gallery", "regally", "largely"))
   }
 
-  it should "detect anagrams" in {
+  test("does not detect identical words") {
     pending
-    val detector = new Anagram("listen")
-    val anagrams = detector.matches(Seq("enlists", "google", "inlets", "banana"))
-    anagrams should equal (Seq("inlets"))
+    Anagram.anagrams(
+      "corn",
+      List("corn", "dark", "Corn", "rank", "CORN", "cron", "park")) should be(
+      List("cron"))
   }
 
-  it should "detect more anagrams" in {
+  test("does not detect non-anagrams with identical checksum") {
     pending
-    val detector = new Anagram("allergy")
-    val anagrams = detector.matches(Seq(
-      "gallery", "ballerina", "regally", "clergy", "largely", "leading"
-    ))
-    anagrams.sorted should equal (Seq("gallery", "largely", "regally"))
+    Anagram.anagrams("mass", List("last")) should be(List())
   }
 
-  it should "treat anagrams as case insensitive" in {
+  test("detects anagrams case-insensitively") {
     pending
-    val detector = new Anagram("Orchestra")
-    val anagrams = detector.matches(Seq(
-      "cashregister", "Carthorse", "radishes"
-    ))
-    anagrams should equal(Seq("Carthorse"))
+    Anagram.anagrams("Orchestra",
+                     List("cashregister", "Carthorse", "radishes")) should be(
+      List("Carthorse"))
+  }
+
+  test("detects anagrams using case-insensitive subject") {
+    pending
+    Anagram.anagrams("Orchestra",
+                     List("cashregister", "carthorse", "radishes")) should be(
+      List("carthorse"))
+  }
+
+  test("detects anagrams using case-insensitive possible matches") {
+    pending
+    Anagram.anagrams("orchestra",
+                     List("cashregister", "Carthorse", "radishes")) should be(
+      List("Carthorse"))
+  }
+
+  test("does not detect a word as its own anagram") {
+    pending
+    Anagram.anagrams("banana", List("Banana")) should be(List())
+  }
+
+  test("does not detect a anagram if the original word is repeated") {
+    pending
+    Anagram.anagrams("go", List("go Go GO")) should be(List())
+  }
+
+  test("anagrams must use all letters exactly once") {
+    pending
+    Anagram.anagrams("tapper", List("patter")) should be(List())
+  }
+
+  test("capital word is not own anagram") {
+    pending
+    Anagram.anagrams("BANANA", List("Banana")) should be(List())
   }
 }
