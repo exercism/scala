@@ -91,6 +91,9 @@ object TestSuiteBuilder {
       if ("\"\n" exists (str.contains(_:Char))) "\"\"\"" else "\""
 
     any match {
+      case list: List[_] =>
+        val vals = list.map(s => toString(s)).mkString(", ")
+        s"List($vals)"
       case str: String =>
         val quot = quote(str)
         s"$quot$str$quot"
