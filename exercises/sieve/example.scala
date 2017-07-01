@@ -1,7 +1,7 @@
 import scala.collection.mutable
 
 object Sieve {
-  def primesUpTo(upperBound: Int): List[Int] = {
+  def primes(upperBound: Int): List[Int] = {
     // Start with set of all "possible" values that could be prime
     val primes = mutable.HashSet.empty ++ (2 to upperBound)
 
