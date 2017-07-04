@@ -512,6 +512,13 @@
       ]
     },
     {
+      "slug": "spiral-matrix",
+      "difficulty": 5,
+      "topics": [
+        "Matrices"
+      ]
+    },
+    {
       "slug": "custom-set",
       "difficulty": 5,
       "topics": [
