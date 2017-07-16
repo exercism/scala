@@ -1,12 +1,12 @@
-# Lens Person
+# Acronym
 
-Use lenses to update nested records (specific to languages with immutable data).
+Convert a phrase to its acronym.
 
-Updating fields of nested records is kind of annoying in Haskell. One solution
-is to use [lenses](https://wiki.haskell.org/Lens).  Implement several record
-accessing functions using lenses, you may use any library you want. The test
-suite also allows you to avoid lenses alltogether so you can experiment with
-different approaches.
+Techies love their TLA (Three Letter Acronyms)!
+
+Help generate some jargon by writing a program that converts a long name
+like Portable Network Graphics to its acronym (PNG).
+
 
 The Scala exercises assume an SBT project scheme. The exercise solution source
 should be placed within the exercise directory/src/main/scala. The exercise
@@ -18,6 +18,9 @@ For more detailed info about the Scala track see the [help
 page](http://exercism.io/languages/scala).
 
 
+## Source
+
+Julien Vanier [https://github.com/monkbroc](https://github.com/monkbroc)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

@@ -1,12 +1,18 @@
-# Lens Person
+# Pascals Triangle
 
-Use lenses to update nested records (specific to languages with immutable data).
+Compute Pascal's triangle up to a given number of rows.
 
-Updating fields of nested records is kind of annoying in Haskell. One solution
-is to use [lenses](https://wiki.haskell.org/Lens).  Implement several record
-accessing functions using lenses, you may use any library you want. The test
-suite also allows you to avoid lenses alltogether so you can experiment with
-different approaches.
+In Pascal's Triangle each number is computed by adding the numbers to
+the right and left of the current position in the previous row.
+
+```plain
+    1
+   1 1
+  1 2 1
+ 1 3 3 1
+1 4 6 4 1
+# ... etc
+```
 
 The Scala exercises assume an SBT project scheme. The exercise solution source
 should be placed within the exercise directory/src/main/scala. The exercise
@@ -18,6 +24,9 @@ For more detailed info about the Scala track see the [help
 page](http://exercism.io/languages/scala).
 
 
+## Source
+
+Pascal's Triangle at Wolfram Math World [http://mathworld.wolfram.com/PascalsTriangle.html](http://mathworld.wolfram.com/PascalsTriangle.html)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

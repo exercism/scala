@@ -1,12 +1,11 @@
-# Lens Person
+# Custom Set
 
-Use lenses to update nested records (specific to languages with immutable data).
+Create a custom set type.
 
-Updating fields of nested records is kind of annoying in Haskell. One solution
-is to use [lenses](https://wiki.haskell.org/Lens).  Implement several record
-accessing functions using lenses, you may use any library you want. The test
-suite also allows you to avoid lenses alltogether so you can experiment with
-different approaches.
+Sometimes it is necessary to define a custom data structure of some
+type, like a set. In this exercise you will define your own set. How it
+works internally doesn't matter, as long as it behaves like a set of
+unique elements.
 
 The Scala exercises assume an SBT project scheme. The exercise solution source
 should be placed within the exercise directory/src/main/scala. The exercise

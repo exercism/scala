@@ -1,12 +1,16 @@
-# Lens Person
+# Isogram
 
-Use lenses to update nested records (specific to languages with immutable data).
+Determine if a word or phrase is an isogram.
 
-Updating fields of nested records is kind of annoying in Haskell. One solution
-is to use [lenses](https://wiki.haskell.org/Lens).  Implement several record
-accessing functions using lenses, you may use any library you want. The test
-suite also allows you to avoid lenses alltogether so you can experiment with
-different approaches.
+An isogram (also known as a "nonpattern word") is a word or phrase without a repeating letter.
+
+Examples of isograms:
+
+- lumberjacks
+- background
+- downstream
+
+The word *isograms*, however, is not an isogram, because the s repeats.
 
 The Scala exercises assume an SBT project scheme. The exercise solution source
 should be placed within the exercise directory/src/main/scala. The exercise
@@ -18,6 +22,9 @@ For more detailed info about the Scala track see the [help
 page](http://exercism.io/languages/scala).
 
 
+## Source
+
+Wikipedia [https://en.wikipedia.org/wiki/Isogram](https://en.wikipedia.org/wiki/Isogram)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.

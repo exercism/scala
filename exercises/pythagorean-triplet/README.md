@@ -1,12 +1,21 @@
-# Lens Person
+# Pythagorean Triplet
 
-Use lenses to update nested records (specific to languages with immutable data).
+A Pythagorean triplet is a set of three natural numbers, {a, b, c}, for
+which,
 
-Updating fields of nested records is kind of annoying in Haskell. One solution
-is to use [lenses](https://wiki.haskell.org/Lens).  Implement several record
-accessing functions using lenses, you may use any library you want. The test
-suite also allows you to avoid lenses alltogether so you can experiment with
-different approaches.
+```
+a**2 + b**2 = c**2
+```
+
+For example, 
+
+```
+3**2 + 4**2 = 9 + 16 = 25 = 5**2.
+```
+
+There exists exactly one Pythagorean triplet for which a + b + c = 1000.
+
+Find the product a * b * c.
 
 The Scala exercises assume an SBT project scheme. The exercise solution source
 should be placed within the exercise directory/src/main/scala. The exercise
@@ -18,6 +27,9 @@ For more detailed info about the Scala track see the [help
 page](http://exercism.io/languages/scala).
 
 
+## Source
+
+Problem 9 at Project Euler [http://projecteuler.net/problem=9](http://projecteuler.net/problem=9)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
