@@ -1,12 +1,12 @@
-# Lens Person
+# Gigasecond
 
-Use lenses to update nested records (specific to languages with immutable data).
+Calculate the moment when someone has lived for 10^9 seconds.
 
-Updating fields of nested records is kind of annoying in Haskell. One solution
-is to use [lenses](https://wiki.haskell.org/Lens).  Implement several record
-accessing functions using lenses, you may use any library you want. The test
-suite also allows you to avoid lenses alltogether so you can experiment with
-different approaches.
+A gigasecond is 10^9 (1,000,000,000) seconds.
+
+## Hints
+Note that `addGigaseconds` accepts two different types of input.
+
 
 The Scala exercises assume an SBT project scheme. The exercise solution source
 should be placed within the exercise directory/src/main/scala. The exercise
@@ -18,6 +18,9 @@ For more detailed info about the Scala track see the [help
 page](http://exercism.io/languages/scala).
 
 
+## Source
+
+Chapter 9 in Chris Pine's online Learn to Program tutorial. [http://pine.fm/LearnToProgram/?Chapter=09](http://pine.fm/LearnToProgram/?Chapter=09)
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
