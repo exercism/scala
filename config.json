@@ -1,7 +1,5 @@
 {
-  "slug": "scala",
   "language": "Scala",
-  "repository": "https://github.com/exercism/scala",
   "active": true,
   "exercises": [
     {
