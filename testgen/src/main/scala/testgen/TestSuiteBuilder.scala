@@ -86,10 +86,10 @@ object TestSuiteBuilder {
   private def toString(expected: CanonicalDataParser.Expected): String =
       expected.fold(error => s"Left(${toString(error)})", toString)
 
-  def toString(any: Any): String = {
-    def quote(str: String): String =
-      if ("\"\n" exists (str.contains(_:Char))) "\"\"\"" else "\""
+  def quote(str: String): String =
+    if ("\"\n" exists (str.contains(_:Char))) "\"\"\"" else "\""
 
+  def toString(any: Any): String = {
     any match {
       case list: List[_] =>
         val vals = list.map(s => toString(s)).mkString(", ")
