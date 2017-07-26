@@ -1,58 +1,39 @@
-import org.scalatest.{FlatSpec, Matchers}
+import org.scalatest.{Matchers, FunSuite}
 
-class PrimeFactorsTest extends FlatSpec with Matchers {
-  it should "calc empty list" in {
-    PrimeFactors.forNumber(1) should be (List())
+/** @version 1.0.0 */
+class PrimeFactorsTest extends FunSuite with Matchers {
+
+  test("no factors") {
+    PrimeFactors.factors(1) should be (List())
   }
 
-  it should "calc prime factors of 2" in {
+  test("prime number") {
     pending
-    PrimeFactors.forNumber(2) should be (List(2))
+    PrimeFactors.factors(2) should be (List(2))
   }
 
-  it should "calc prime factors of 3" in {
+  test("square of a prime") {
     pending
-    PrimeFactors.forNumber(3) should be (List(3))
+    PrimeFactors.factors(9) should be (List(3, 3))
   }
 
-  it should "calc prime factors of 4" in {
+  test("cube of a prime") {
     pending
-    PrimeFactors.forNumber(4) should be (List(2, 2))
+    PrimeFactors.factors(8) should be (List(2, 2, 2))
   }
 
-  it should "calc prime factors of 6" in {
+  test("product of primes and non-primes") {
     pending
-    PrimeFactors.forNumber(6) should be (List(2, 3))
+    PrimeFactors.factors(12) should be (List(2, 2, 3))
   }
 
-  it should "calc prime factors of 8" in {
+  test("product of primes") {
     pending
-    PrimeFactors.forNumber(8) should be (List(2, 2, 2))
+    PrimeFactors.factors(901255) should be (List(5, 17, 23, 461))
   }
 
-  it should "calc prime factors of 9" in {
+  test("factors include a large prime") {
     pending
-    PrimeFactors.forNumber(9) should be (List(3, 3))
-  }
-
-  it should "calc prime factors of 27" in {
-    pending
-    PrimeFactors.forNumber(27) should be (List(3, 3, 3))
-  }
-
-  it should "calc prime factors of 625" in {
-    pending
-    PrimeFactors.forNumber(625) should be (List(5, 5, 5, 5))
-  }
-
-  it should "calc prime factors of 901255" in {
-    pending
-    PrimeFactors.forNumber(901255) should be (List(5, 17, 23, 461))
-  }
-
-  it should "calc prime factors of 93819012551" in {
-    pending
-    PrimeFactors.forNumber(Long.MaxValue) should be (List(7, 7, 73, 127, 337, 92737, 649657))
+    PrimeFactors.factors(93819012551l) should be (List(11, 9539, 894119))
   }
 }
-

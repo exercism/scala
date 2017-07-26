@@ -70,7 +70,7 @@ object TestSuiteBuilder {
   }
 
   def sutName(exerciseName: String) =
-    (exerciseName split ("-") map (_.capitalize) mkString)
+    exerciseName split "-" map (_.capitalize) mkString
   def testSuiteName(exerciseName: String): String =
     sutName(exerciseName) + "Test"
 
@@ -97,6 +97,8 @@ object TestSuiteBuilder {
       case str: String =>
         val quot = quote(str)
         s"$quot$str$quot"
+      case lstr: Long =>
+        lstr.toString + "l"
       case _ => any.toString
     }
   }
