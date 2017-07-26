@@ -37,10 +37,21 @@ class RunLengthEncodingTests extends FunSuite with Matchers {
     RunLengthEncoding.encode("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB") should
       be ("12WB12W3B24WB")
   }
-
+  
   test("decode with single values") {
     pending
     RunLengthEncoding.decode("12WB12W3B24WB") should be ("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB")
+  }
+   
+  test("encode with whitespace") {
+    pending
+    RunLengthEncoding.encode("  hsqq qww  ") should
+      be ("  hs2q q2w  ")
+  }
+
+  test("decode with whitespace") {
+    pending
+    RunLengthEncoding.decode("  hs2q q2w  ") should be ("  hsqq qww  ")
   }
 
   test("decode(encode(...)) combination") {
