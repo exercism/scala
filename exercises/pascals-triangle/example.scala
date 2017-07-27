@@ -1,5 +1,5 @@
 object PascalsTriangle {
-  def triangle(n: Int): List[List[Int]] =
+  def rows(n: Int): List[List[Int]] =
     (for (row <- 1 to n) yield triRow(row)).toList
 
   private def triRow(row: Int): List[Int] = {
