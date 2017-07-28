@@ -1,11 +1,11 @@
 object CryptoSquare {
-  def normalizePlaintext(text: String): String =
+  def normalizedPlaintext(text: String): String =
     text.filter(c => c.isLetterOrDigit).toLowerCase
 
   def squareSize(text: String): Int = Math.ceil(Math.sqrt(text.length)).asInstanceOf[Int]
 
   def plaintextSegments(text: String): List[String] = {
-    val normalized = normalizePlaintext(text)
+    val normalized = normalizedPlaintext(text)
     val size = squareSize(normalized)
     size match {
       case 0 => List.empty
@@ -13,13 +13,13 @@ object CryptoSquare {
     }
   }
 
-  def ciphertext(text: String): String = {
+  def encoded(text: String): String = {
     val plainSegs = plaintextSegments(text)
 
-    transpose(plainSegs).mkString
+    transpose(plainSegs).mkString.filter(c => !c.isWhitespace)
   }
 
-  def normalizedCiphertext(text: String): String = {
+  def ciphertext(text: String): String = {
     val plainSegs = plaintextSegments(text)
 
     transpose(plainSegs).mkString(" ")
@@ -30,10 +30,10 @@ object CryptoSquare {
       List.empty
     } else {
       val size = texts.head.length
-      // Scala's transpose must work on square Lists. So pad the List. Then
-      // strip off the padding before return.
-      val padded = texts.map(s => s.padTo(size, " "))
-      padded.transpose.map(item => item.mkString.replaceAll(" ", ""))
+      // Scala's transpose must work on Lists where all elements are same size.
+      // So pad the List. Then strip off the padding before return.
+      val padded = texts.map(s => s.padTo(size, "\u0000"))
+      padded.transpose.map(item => item.mkString.replaceAll("\u0000", " "))
     }
   }
 }

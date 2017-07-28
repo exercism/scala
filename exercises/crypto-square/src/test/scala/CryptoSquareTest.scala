@@ -1,72 +1,64 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{Matchers, FunSuite}
 
-class CrytpoSquareTest extends FlatSpec with Matchers {
-  it should "normalize away special characters" in {
-    CryptoSquare.normalizePlaintext("s#!@$%pl\t\r\nunk") should equal("splunk")
+/** @version 2.0.0 */
+class CryptoSquareTest extends FunSuite with Matchers {
+
+  test("Lowercase") {
+    CryptoSquare.normalizedPlaintext("Hello") should be ("hello")
   }
 
-  it should "normalize uppercase to lowercase" in {
+  test("Remove spaces") {
     pending
-    CryptoSquare.normalizePlaintext("1, 2, 3 GO!") should equal("123go")
+    CryptoSquare.normalizedPlaintext("Hi there") should be ("hithere")
   }
 
-
-  it should "calc a square size for a perfect square" in {
+  test("Remove punctuation") {
     pending
-    CryptoSquare.squareSize("1234") should equal(2)
-    CryptoSquare.squareSize("123456789") should equal(3)
+    CryptoSquare.normalizedPlaintext("@1, 2%, 3 Go!") should be ("123go")
   }
 
-  it should "calc a square size when not a perfect square" in {
+  test("empty plaintext results in an empty rectangle") {
     pending
-    CryptoSquare.squareSize("123456789abc") should equal(4)
-    CryptoSquare.squareSize("123456789abcd") should equal(4)
+    CryptoSquare.plaintextSegments("") should be (List())
   }
 
-  it should "not generate calc error when empty string" in {
+  test("4 character plaintext results in an 2x2 rectangle") {
     pending
-    CryptoSquare.squareSize("") should equal(0)
+    CryptoSquare.plaintextSegments("Ab Cd") should be (List("ab", "cd"))
   }
 
-
-  it should "build plaintext segments - all equal segment lengths" in {
+  test("9 character plaintext results in an 3x3 rectangle") {
     pending
-    CryptoSquare.plaintextSegments("Never vex thine heart with idle woes.") should
-      equal(List("neverv", "exthin", "eheart", "withid", "lewoes"))
+    CryptoSquare.plaintextSegments("This is fun!") should be (List("thi", "sis", "fun"))
   }
 
-  it should "build plaintext segments - last segment short" in {
+  test("54 character plaintext results in an 8x7 rectangle") {
     pending
-    CryptoSquare.plaintextSegments("ZOMG! ZOMBIES!!!") should
-      equal(List("zomg", "zomb", "ies"))
+    CryptoSquare.plaintextSegments("If man was meant to stay on the ground, god would have given us roots.") should be (List("ifmanwas", "meanttos", "tayonthe", "groundgo", "dwouldha", "vegivenu", "sroots"))
   }
 
-  it should "build cipher text" in {
+  test("empty plaintext results in an empty encode") {
     pending
-    CryptoSquare.ciphertext("Time is an illusion. Lunchtime doubly so.") should
-      equal("tasneyinicdsmiohooelntuillibsuuml")
-    CryptoSquare.ciphertext("We all know interspecies romance is weird.") should
-      equal("wneiaweoreneawssciliprerlneoidktcms")
+    CryptoSquare.encoded("") should be ("")
   }
 
-  it should "build normalized cipher text" in {
+  test("Non-empty plaintext results in the combined plaintext segments") {
     pending
-    CryptoSquare.normalizedCiphertext("Madness, and then illumination.") should
-      equal("msemo aanin dnin ndla etlt shui")
-    CryptoSquare.normalizedCiphertext("If man was meant to stay on the ground " +
-      "god would have given us roots") should
-      equal("imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn sseoau")
+    CryptoSquare.encoded("If man was meant to stay on the ground, god would have given us roots.") should be ("imtgdvsfearwermayoogoanouuiontnnlvtwttddesaohghnsseoau")
   }
 
-  it should "not error on blank strings" in {
+  test("empty plaintext results in an empty ciphertext") {
     pending
-    CryptoSquare.ciphertext("") should
-      equal("")
-    CryptoSquare.ciphertext("    ") should
-      equal("")
-    CryptoSquare.normalizedCiphertext("") should
-      equal("")
-    CryptoSquare.normalizedCiphertext("   ") should
-      equal("")
+    CryptoSquare.ciphertext("") should be ("")
+  }
+
+  test("9 character plaintext results in 3 chunks of 3 characters") {
+    pending
+    CryptoSquare.ciphertext("This is fun!") should be ("tsf hiu isn")
+  }
+
+  test("54 character plaintext results in 7 chunks, the last two padded with spaces") {
+    pending
+    CryptoSquare.ciphertext("If man was meant to stay on the ground, god would have given us roots.") should be ("imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn  sseoau ")
   }
 }
