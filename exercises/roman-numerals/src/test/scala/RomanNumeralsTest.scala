@@ -1,93 +1,94 @@
-import org.scalatest._
+import org.scalatest.{Matchers, FunSuite}
 
-class RomanNumeralsSpecs extends FunSpec with Matchers {
+/** @version 1.0.0 */
+class RomanNumeralsTest extends FunSuite with Matchers {
 
-  it ("0 equals empty string") {
-    RomanNumeral.toNumerals(0) should be ("")
+  test("1 is a single I") {
+    RomanNumerals.roman(1) should be ("I")
   }
 
-  it ("1 equals I") {
+  test("2 is two I's") {
     pending
-    RomanNumeral.toNumerals(1) should be ("I")
+    RomanNumerals.roman(2) should be ("II")
   }
 
-  it ("2 equals II") {
+  test("3 is three I's") {
     pending
-    RomanNumeral.toNumerals(2) should be ("II")
+    RomanNumerals.roman(3) should be ("III")
   }
 
-  it ("3 equals III") {
+  test("4, being 5 - 1, is IV") {
     pending
-    RomanNumeral.toNumerals(3) should be ("III")
+    RomanNumerals.roman(4) should be ("IV")
   }
 
-  it ("4 equals IV") {
+  test("5 is a single V") {
     pending
-    RomanNumeral.toNumerals(4) should be ("IV")
+    RomanNumerals.roman(5) should be ("V")
   }
 
-  it ("5 equals V") {
+  test("6, being 5 + 1, is VI") {
     pending
-    RomanNumeral.toNumerals(5) should be ("V")
+    RomanNumerals.roman(6) should be ("VI")
   }
 
-  it ("6 equals VI") {
+  test("9, being 10 - 1, is IX") {
     pending
-    RomanNumeral.toNumerals(6) should be ("VI")
+    RomanNumerals.roman(9) should be ("IX")
   }
 
-  it ("9 equals IX") {
+  test("20 is two X's") {
     pending
-    RomanNumeral.toNumerals(9) should be ("IX")
+    RomanNumerals.roman(27) should be ("XXVII")
   }
 
-  it ("27 equals XXVII") {
+  test("48 is not 50 - 2 but rather 40 + 8") {
     pending
-    RomanNumeral.toNumerals(27) should be ("XXVII")
+    RomanNumerals.roman(48) should be ("XLVIII")
   }
 
-  it ("48 equals XLVIII") {
+  test("50 is a single L") {
     pending
-    RomanNumeral.toNumerals(48) should be ("XLVIII")
+    RomanNumerals.roman(59) should be ("LIX")
   }
 
-  it ("59 equals LIX") {
+  test("90, being 100 - 10, is XC") {
     pending
-    RomanNumeral.toNumerals(59) should be ("LIX")
+    RomanNumerals.roman(93) should be ("XCIII")
   }
 
-  it ("93 equals XCIII") {
+  test("100 is a single C") {
     pending
-    RomanNumeral.toNumerals(93) should be ("XCIII")
+    RomanNumerals.roman(141) should be ("CXLI")
   }
 
-  it ("141 equals CXLI") {
+  test("60, being 50 + 10, is LX") {
     pending
-    RomanNumeral.toNumerals(141) should be ("CXLI")
+    RomanNumerals.roman(163) should be ("CLXIII")
   }
 
-  it ("402 equals CDII") {
+  test("400, being 500 - 100, is CD") {
     pending
-    RomanNumeral.toNumerals(402) should be ("CDII")
+    RomanNumerals.roman(402) should be ("CDII")
   }
 
-  it ("575 equals DLXXV") {
+  test("500 is a single D") {
     pending
-    RomanNumeral.toNumerals(575) should be ("DLXXV")
+    RomanNumerals.roman(575) should be ("DLXXV")
   }
 
-  it ("911 equals CMXI") {
+  test("900, being 1000 - 100, is CM") {
     pending
-    RomanNumeral.toNumerals(911) should be ("CMXI")
+    RomanNumerals.roman(911) should be ("CMXI")
   }
 
-  it ("1024 equals MXXIV") {
+  test("1000 is a single M") {
     pending
-    RomanNumeral.toNumerals(1024) should be ("MXXIV")
+    RomanNumerals.roman(1024) should be ("MXXIV")
   }
 
-  it ("3000 equals MMM") {
+  test("3000 is three M's") {
     pending
-    RomanNumeral.toNumerals(3000) should be ("MMM")
+    RomanNumerals.roman(3000) should be ("MMM")
   }
 }

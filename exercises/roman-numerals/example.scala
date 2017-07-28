@@ -1,7 +1,7 @@
 import scala.annotation.tailrec
 import scala.collection.immutable.ListMap
 
-object RomanNumeral {
+object RomanNumerals {
   private def numeralValues = ListMap(
     1000 -> "M",
     900  -> "CM",
@@ -18,7 +18,7 @@ object RomanNumeral {
     1    -> "I"
   )
 
-  def toNumerals(n: Int) = fromNumber(n, "")
+  def roman(n: Int) = fromNumber(n, "")
 
   @tailrec
   private def fromNumber(n: Int, numerals: String): String = {
