@@ -1,6 +1,6 @@
 import scala.util.parsing.combinator.RegexParsers
 
-object Brackets extends RegexParsers {
+object BracketPush extends RegexParsers {
   lazy val t = "[^\\[\\]\\(\\)\\{\\}]+".r
 
   private def paren: Parser[String] =
@@ -16,7 +16,7 @@ object Brackets extends RegexParsers {
 
   private def all = rep(paren)
 
-  def areBalanced(s: String) = this.parseAll(all, s) match {
+  def isPaired(s: String) = this.parseAll(all, s) match {
     case NoSuccess(_, _) => false
     case Success(_, _) => true
   }
