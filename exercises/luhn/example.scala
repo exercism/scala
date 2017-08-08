@@ -1,40 +1,28 @@
 object Luhn {
 
-  def validate(numberStr: String): Boolean = {
-    def isCandidate(numberStr: String): Boolean =
-      numberStr.length > 1 &&
-      numberStr.forall(c => c.isDigit || c.isSpaceChar)
+  def valid(numberStr: String): Boolean = {
+    val s = numberStr.replace(" ", "")
 
-    def toLong(numberStr: String): Long =
-      numberStr.filter(_.isDigit).toLong
-
-    val number =
-      Option(numberStr) filter isCandidate map toLong
-
-    number map (checksum(_) == 0) getOrElse false
+    s.length > 1 &&
+      s.forall(c => c.isDigit) &&
+      checksum(s.map(_.asDigit).toList) == 0
   }
 
   private def checkDigit(number: Long): Int = (number % 10).toInt
 
-  private def addends(number: Long): List[Int] = {
-    val zippedDigits = digits(number).zipWithIndex.reverse
+  private def addends(digits: List[Int]): List[Int] = {
+    val zippedDigits = digits.reverse.zipWithIndex
 
     zippedDigits.map{case (m, i) => if (isOdd(i)) dbl(m) else m}
   }
 
-  private def checksum(number: Long): Int = addends(number).sum % 10
-
-  private def digits(n: Long): List[Int] = n match {
-    case 0 => Nil
-    case _ => List((n % 10).toInt) ++ digits(n / 10)
-  }
+  private def checksum(digits: List[Int]): Int = addends(digits).sum % 10
 
   private def dbl(n: Int) = {
     val dbled = n * 2
 
-    if (dbled > 10) dbled - 9 else dbled
+    if (dbled < 10) dbled else dbled - 9
   }
 
   private def isOdd(i: Int) = i % 2 == 1
 }
-
