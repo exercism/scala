@@ -14,12 +14,13 @@ class CustomSetTestGenerator {
   implicit val differenceTestCasesReader = Json.reads[DifferenceTestCase]
   implicit val unionTestCasesReader = Json.reads[UnionTestCase]
 
-  private val filename = "custom-set.json"
+  private val filename = "src/main/resources/custom-set.json"
   private val fileContents = Source.fromFile(filename).getLines.mkString
   private val json = Json.parse(fileContents)
 
   def write {
     val testBuilder = new TestBuilder("CustomSetTest")
+    setVersion(testBuilder)
     addEmptyTests(testBuilder)
     addContainsTests(testBuilder)
     addSubsetTests(testBuilder)
@@ -32,17 +33,21 @@ class CustomSetTestGenerator {
     testBuilder.toFile
   }
 
+  private def setVersion(testBuilder: TestBuilder): Unit = {
+    testBuilder.setVersion((json \ "version").get.as[String])
+  }
+
   private def addEmptyTests(testBuilder: TestBuilder): Unit = {
     val description =
-      "Empty test cases - " +  (json \ "empty" \ "description").get.as[String]
+      "Empty test cases - " +  (json \ "cases" \ 0 \ "description").get.as[String]
 
-    val emptyTestCases = (json \ "empty" \ "cases").get.as[List[EmptyTestCase]]
+    val emptyTestCases = (json \ "cases" \ 0 \ "cases").get.as[List[EmptyTestCase]]
 
     implicit def testCaseToGen(tc: EmptyTestCase): TestCaseGen = {
       val set = s"CustomSet.fromList(${tc.set})"
       val callSUT = s"CustomSet.empty(set)"
       val expected = tc.expected.toString
-      val result = s"val set = $callSUT"
+      val result = s"val set = $set"
       val checkResult = s"$callSUT should be ($expected)"
 
       TestCaseGen(tc.description, callSUT, expected, result, checkResult)
@@ -53,9 +58,9 @@ class CustomSetTestGenerator {
 
   private def addContainsTests(testBuilder: TestBuilder): Unit = {
     val description =
-      "Contains test cases - " + (json \ "contains" \ "description").get.as[String]
+      "Contains test cases - " + (json \ "cases" \ 1 \ "description").get.as[String]
 
-    val containsTestCases = (json \ "contains" \ "cases").get.as[List[ContainsTestCase]]
+    val containsTestCases = (json \ "cases" \ 1 \ "cases").get.as[List[ContainsTestCase]]
 
     implicit def testCaseToGen(tc: ContainsTestCase): TestCaseGen = {
       val set = s"CustomSet.fromList(${tc.set})"
@@ -72,9 +77,9 @@ class CustomSetTestGenerator {
 
   private def addSubsetTests(testBuilder: TestBuilder): Unit = {
     val description =
-      "Subset test cases - " + (json \ "subset" \ "description").get.as[String]
+      "Subset test cases - " + (json \"cases" \ 2 \ "description").get.as[String]
 
-    val subsetTestCases = (json \ "subset" \ "cases").get.as[List[SubsetTestCase]]
+    val subsetTestCases = (json \ "cases" \ 2 \ "cases").get.as[List[SubsetTestCase]]
 
     implicit def testCaseToGen(tc: SubsetTestCase): TestCaseGen = {
       val set1 = s"CustomSet.fromList(${tc.set1})"
@@ -94,9 +99,9 @@ s"""val set1 = $set1
 
   private def addDisjointTests(testBuilder: TestBuilder): Unit = {
     val description =
-      "Disjoint test cases - " + (json \ "disjoint" \ "description").get.as[String]
+      "Disjoint test cases - " + (json \ "cases" \ 3 \ "description").get.as[String]
 
-    val disjointTestCases = (json \ "disjoint" \ "cases").get.as[List[DisjointTestCase]]
+    val disjointTestCases = (json \ "cases" \ 3 \ "cases").get.as[List[DisjointTestCase]]
 
     implicit def testCaseToGen(tc: DisjointTestCase): TestCaseGen = {
       val set1 = s"CustomSet.fromList(${tc.set1})"
@@ -116,9 +121,9 @@ s"""val set1 = $set1
 
   private def addEqualTests(testBuilder: TestBuilder): Unit = {
     val description =
-      "Equal test cases - " + (json \ "equal" \ "description").get.as[String]
+      "Equal test cases - " + (json \ "cases" \ 4 \ "description").get.as[String]
 
-    val equalTestCases = (json \ "equal" \ "cases").get.as[List[EqualTestCase]]
+    val equalTestCases = (json \ "cases" \ 4 \ "cases").get.as[List[EqualTestCase]]
 
     implicit def testCaseToGen(tc: EqualTestCase): TestCaseGen = {
       val set1 = s"CustomSet.fromList(${tc.set1})"
@@ -138,9 +143,9 @@ s"""val set1 = $set1
 
   private def addAddTests(testBuilder: TestBuilder): Unit = {
     val description =
-      "Add test cases - " + (json \ "add" \ "description").get.as[String]
+      "Add test cases - " + (json \ "cases" \ 5 \ "description").get.as[String]
 
-    val addTestCases = (json \ "add" \ "cases").get.as[List[AddTestCase]]
+    val addTestCases = (json \ "cases" \ 5 \ "cases").get.as[List[AddTestCase]]
 
     implicit def testCaseToGen(tc: AddTestCase): TestCaseGen = {
       val set = s"CustomSet.fromList(${tc.set})"
@@ -159,9 +164,9 @@ s"""val set = $set
 
   private def addIntersectionTests(testBuilder: TestBuilder): Unit = {
     val description =
-      "Intersection test cases - " + (json \ "intersection" \ "description").get.as[String]
+      "Intersection test cases - " + (json \ "cases" \ 6 \ "description").get.as[String]
 
-    val intersectionTestCases = (json \ "intersection" \ "cases").get.as[List[IntersectionTestCase]]
+    val intersectionTestCases = (json \ "cases" \ 6 \ "cases").get.as[List[IntersectionTestCase]]
 
     implicit def testCaseToGen(tc: IntersectionTestCase): TestCaseGen = {
       val set1 = s"CustomSet.fromList(${tc.set1})"
@@ -182,9 +187,9 @@ s"""val set1 = $set1
 
   private def addDifferenceTests(testBuilder: TestBuilder): Unit = {
     val description =
-      "Difference test cases - " + (json \ "difference" \ "description").get.as[String]
+      "Difference test cases - " + (json \ "cases" \ 7 \ "description").get.as[String]
 
-    val differenceTestCases = (json \ "difference" \ "cases").get.as[List[DifferenceTestCase]]
+    val differenceTestCases = (json \ "cases" \ 7 \ "cases").get.as[List[DifferenceTestCase]]
 
     implicit def testCaseToGen(tc: DifferenceTestCase): TestCaseGen = {
       val set1 = s"CustomSet.fromList(${tc.set1})"
@@ -205,9 +210,9 @@ s"""val set1 = $set1
 
   private def addUnionTests(testBuilder: TestBuilder): Unit = {
     val description =
-      "Union test cases - " + (json \ "union" \ "description").get.as[String]
+      "Union test cases - " + (json \ "cases" \ 8 \ "description").get.as[String]
 
-    val unionTestCases = (json \ "union" \ "cases").get.as[List[UnionTestCase]]
+    val unionTestCases = (json \ "cases" \ 8 \ "cases").get.as[List[UnionTestCase]]
 
     implicit def testCaseToGen(tc: UnionTestCase): TestCaseGen = {
       val set1 = s"CustomSet.fromList(${tc.set1})"

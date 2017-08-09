@@ -19,6 +19,9 @@ class TestBuilder(testName: String) {
   private var imports: Seq[String] = Seq()
   def addImport(imprt: String): Unit = imports = imports :+ imprt
 
+  private var version: Option[String] = None
+  def setVersion(v: String): Unit = this.version = Some(v)
+
   private var testCases: Seq[(Seq[TestCaseGen], Option[String])] = Seq()
   def addTestCases(testCases: Seq[TestCaseGen], description: Option[String] = None): Unit =
     this.testCases = this.testCases :+ (testCases, description)
@@ -33,10 +36,17 @@ class TestBuilder(testName: String) {
 
   def build: String =
 s"""$printImports
+$printVersion
 class $testName extends FunSuite with Matchers {
 $printTestCases
 }
 """
+
+  private lazy val printVersion: String =
+    version match {
+      case Some(v) => s"""/** @version $v */"""
+      case None => ""
+    }
 
   private lazy val printImports: String =
     "import org.scalatest.{FunSuite, Matchers}\n" +
