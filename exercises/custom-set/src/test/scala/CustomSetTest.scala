@@ -1,6 +1,8 @@
 import org.scalatest.{FunSuite, Matchers}
 
+/** @version 1.0.1 */
 class CustomSetTest extends FunSuite with Matchers {
+
   // Empty test cases - Returns true if the set contains no elements
   test("sets with no elements are empty") {
     val set = CustomSet.fromList(List())
@@ -152,24 +154,24 @@ class CustomSetTest extends FunSuite with Matchers {
     pending
     val set = CustomSet.fromList(List())
     val expected = CustomSet.fromList(List(3))
-    CustomSet.isEqual(CustomSet.insert(set, 3 ), expected) should be (true)
+    CustomSet.isEqual(CustomSet.insert(set, 3), expected) should be (true)
   }
 
   test("add to non-empty set") {
     pending
     val set = CustomSet.fromList(List(1, 2, 4))
     val expected = CustomSet.fromList(List(1, 2, 3, 4))
-    CustomSet.isEqual(CustomSet.insert(set, 3 ), expected) should be (true)
+    CustomSet.isEqual(CustomSet.insert(set, 3), expected) should be (true)
   }
 
   test("adding an existing element does not change the set") {
     pending
     val set = CustomSet.fromList(List(1, 2, 3))
     val expected = CustomSet.fromList(List(1, 2, 3))
-    CustomSet.isEqual(CustomSet.insert(set, 3 ), expected) should be (true)
+    CustomSet.isEqual(CustomSet.insert(set, 3), expected) should be (true)
   }
 
-  // Intersection test cases - Intersect returns a set of all shared elements
+  // Intersection test cases - Intersection returns a set of all shared elements
   test("intersection of two empty sets is an empty set") {
     pending
     val set1 = CustomSet.fromList(List())
