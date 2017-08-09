@@ -12,7 +12,7 @@ object FoodChain {
   private def result(i: Int) = parts(i)._2
   private def finalVerse(i: Int) = i == parts.length - 1
 
-  private def verse(n: Int) = {
+  private def verseInternal(n: Int) = {
     "I know an old lady who swallowed a %s.\n".format(animal(n)) +
       (if (finalVerse(n)) result(n)
        else {
@@ -29,5 +29,7 @@ object FoodChain {
       })
   }
 
-  lazy val song: String = (for {i <- List.range(0, parts.length)} yield {verse(i)}).mkString
+  def verse(n: Int): String = verseInternal(n - 1)
+
+  def verse(n: Int, m: Int): String = (for {i <- List.range(n - 1, m)} yield {verseInternal(i)}).mkString
 }

@@ -1,8 +1,19 @@
 import testgen._
-import TestSuiteBuilder._
+import TestSuiteBuilder.{toString, _}
 import java.io.File
 
 object FoodChainTestGenerator {
+  def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String = {
+    val firstParam = parseResult.get("start verse") match {
+      case Some(s) => s.toString
+      case _ => throw new IllegalArgumentException("Missing start verse")
+    }
+    val secondParam = parseResult.get("end verse")
+
+    firstParam + secondParam.map(s => ", " + s.toString).getOrElse("")
+  }
+
+
   def main(args: Array[String]): Unit = {
     val file = new File("src/main/resources/food-chain.json")
 
@@ -23,7 +34,7 @@ object FoodChainTestGenerator {
       }
 
     val code = TestSuiteBuilder.build(file,
-      fromLabeledTest("start verse"))
+      fromLabeledTest("start verse", "end verse"))
     println(s"-------------")
     println(code)
     println(s"-------------")
