@@ -1,48 +1,38 @@
-import play.api.libs.json.Json
+import java.io.File
 
-import scala.io.Source
-
-class BinarySearchTestGenerator {
-  implicit val testCaseReader = Json.reads[BinarySearchTestCase]
-
-  private val filename = "binarysearch.json"
-  private val fileContents = Source.fromFile(filename).getLines.mkString
-  private val json = Json.parse(fileContents)
-
-  def write {
-    val testCases = (json \ "cases").get.as[List[BinarySearchTestCase]]
-
-    implicit def testCaseToGen(tc: BinarySearchTestCase): TestCaseGen = {
-      val elements = tc.array.map(elem => elem.toString).mkString(", ")
-      val elementStr =
-        if (elements.isEmpty)
-          "Array[Int]()"
-        else
-          s"Array(${elements})"
-
-      val callSUT =
-        s"BinarySearch.search(${elementStr}, ${tc.value})"
-      val expected =
-        if (tc.expected == -1)
-          "None"
-        else
-          s"Some(${tc.expected})"
-
-      TestCaseGen(tc.description, callSUT, expected)
-    }
-
-    val testBuilder = new TestBuilder("BinarySearchTest")
-    testBuilder.addTestCases(testCases)
-    testBuilder.toFile
-  }
-}
-
-case class BinarySearchTestCase(description: String,
-                                array: Array[Int],
-                                value: Int, expected: Int)
+import testgen.TestSuiteBuilder.{toString, _}
+import testgen._
 
 object BinarySearchTestGenerator {
   def main(args: Array[String]): Unit = {
-    new BinarySearchTestGenerator().write
+    val file = new File("src/main/resources/binarysearch.json")
+
+    def toString(expected: CanonicalDataParser.Expected): String = {
+      expected match {
+        case Left(_) => "None"
+        case Right(-1) => "None"
+        case Right(n) => s"Some($n)"
+      }
+    }
+
+    def fromLabeledTest(argNames: String*): ToTestCaseData =
+      withLabeledTest { sut =>
+        labeledTest =>
+          val args = sutArgs(labeledTest.result, argNames: _*)
+          val property = labeledTest.property
+          val sutCall =
+            s"""$sut.$property($args)"""
+          val expected = toString(labeledTest.expected)
+          TestCaseData(labeledTest.description, sutCall, expected)
+      }
+
+    val code =
+      TestSuiteBuilder.build(file,
+        fromLabeledTest("array", "value"))
+    println(s"-------------")
+    println(code)
+    println(s"-------------")
+
+    TestSuiteBuilder.writeToFile(code, new File("AllYourBaseTest.scala"))
   }
 }
