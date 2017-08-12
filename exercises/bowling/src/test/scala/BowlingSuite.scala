@@ -1,7 +1,8 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.{Matchers, FunSuite}
 
-class BowlingSuite extends FunSuite with Matchers {
-  // returns the final score of a bowling game
+/** @version 1.0.1 */
+class BowlingTest extends FunSuite with Matchers {
+
   test("should be able to score a game with all zeros") {
     val score = List(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).score()
     score should be (Right(0))
@@ -85,27 +86,33 @@ class BowlingSuite extends FunSuite with Matchers {
     score should be (Right(300))
   }
 
-  test("rolls can not score negative points") {
+  test("rolls cannot score negative points") {
     pending
-    val score = List(-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).score()
+    val score = List().foldLeft(Bowling())((acc, roll) => acc.roll(roll)).roll(-1).score()
     score.isLeft should be (true)
   }
 
-  test("a roll can not score more than 10 points") {
+  test("a roll cannot score more than 10 points") {
     pending
-    val score = List(11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).score()
+    val score = List().foldLeft(Bowling())((acc, roll) => acc.roll(roll)).roll(11).score()
     score.isLeft should be (true)
   }
 
-  test("two rolls in a frame can not score more than 10 points") {
+  test("two rolls in a frame cannot score more than 10 points") {
     pending
-    val score = List(5, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).score()
+    val score = List(5).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).roll(6).score()
     score.isLeft should be (true)
   }
 
-  test("two bonus rolls after a strike in the last frame can not score more than 10 points") {
+  test("bonus roll after a strike in the last frame cannot score more than 10 points") {
     pending
-    val score = List(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 5, 6).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).score()
+    val score = List(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).roll(11).score()
+    score.isLeft should be (true)
+  }
+
+  test("two bonus rolls after a strike in the last frame cannot score more than 10 points") {
+    pending
+    val score = List(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 5).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).roll(6).score()
     score.isLeft should be (true)
   }
 
@@ -115,27 +122,33 @@ class BowlingSuite extends FunSuite with Matchers {
     score should be (Right(26))
   }
 
-  test("the second bonus rolls after a strike in the last frame can not be a strike if the first one is not a strike") {
+  test("the second bonus rolls after a strike in the last frame cannot be a strike if the first one is not a strike") {
     pending
-    val score = List(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 6, 10).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).score()
+    val score = List(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 6).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).roll(10).score()
     score.isLeft should be (true)
   }
 
-  test("an unstarted game can not be scored") {
+  test("second bonus roll after a strike in the last frame cannot score more than 10 points") {
+    pending
+    val score = List(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).roll(11).score()
+    score.isLeft should be (true)
+  }
+
+  test("an unstarted game cannot be scored") {
     pending
     val score = List().foldLeft(Bowling())((acc, roll) => acc.roll(roll)).score()
     score.isLeft should be (true)
   }
 
-  test("an incomplete game can not be scored") {
+  test("an incomplete game cannot be scored") {
     pending
     val score = List(0, 0).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).score()
     score.isLeft should be (true)
   }
 
-  test("a game with more than ten frames can not be scored") {
+  test("cannot roll if game already has ten frames") {
     pending
-    val score = List(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).score()
+    val score = List(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0).foldLeft(Bowling())((acc, roll) => acc.roll(roll)).roll(0).score()
     score.isLeft should be (true)
   }
 
