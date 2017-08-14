@@ -1,6 +1,8 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.{Matchers, FunSuite}
 
+/** @version 1.0.0 */
 class ChangeTest extends FunSuite with Matchers {
+
   test("single coin change") {
     Change.findFewestCoins(25, List(1, 5, 10, 25, 100)) should be (Some(List(25)))
   }
@@ -22,8 +24,12 @@ class ChangeTest extends FunSuite with Matchers {
 
   test("large target values") {
     pending
-    Change.findFewestCoins(999, List(1, 2, 5, 10, 20, 50, 100)) should
-      be (Some(List(2, 2, 5, 20, 20, 50, 100, 100, 100, 100, 100, 100, 100, 100, 100)))
+    Change.findFewestCoins(999, List(1, 2, 5, 10, 20, 50, 100)) should be (Some(List(2, 2, 5, 20, 20, 50, 100, 100, 100, 100, 100, 100, 100, 100, 100)))
+  }
+
+  test("possible change without unit coins available") {
+    pending
+    Change.findFewestCoins(21, List(2, 5, 10, 20, 50)) should be (Some(List(2, 2, 2, 5, 10)))
   }
 
   test("no coins make 0 change") {
@@ -36,9 +42,13 @@ class ChangeTest extends FunSuite with Matchers {
     Change.findFewestCoins(3, List(5, 10)) should be (None)
   }
 
+  test("error if no combination can add up to target") {
+    pending
+    Change.findFewestCoins(94, List(5, 10)) should be (None)
+  }
+
   test("cannot find negative change values") {
     pending
     Change.findFewestCoins(-5, List(1, 2, 5)) should be (None)
   }
 }
-
