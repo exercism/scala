@@ -1,73 +1,122 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{Matchers, FunSuite}
 
-class MinesweeperTest extends FlatSpec with Matchers {
+/** @version 1.0.0 */
+class MinesweeperTest extends FunSuite with Matchers {
 
-  it should "handle zero size board" in {
-    Minesweeper.annotate(List.empty) should equal(List.empty)
+  test("no rows") {
+    Minesweeper.annotate(List()) should be(List())
   }
 
-  it should "handle empty board" in {
+  test("no columns") {
+    pending
+    Minesweeper.annotate(List("")) should be(List(""))
+  }
+
+  test("no mines") {
     pending
     Minesweeper.annotate(List("   ",
                               "   ",
-                              "   ")) should
-      equal(List("   ",
-                 "   ",
-                 "   "))
+                              "   ")) should be(
+      List("   ",
+           "   ",
+           "   "))
   }
 
-  it should "handle board full of mines" in {
+  test("board with only mines") {
     pending
     Minesweeper.annotate(List("***",
                               "***",
-                              "***")) should
-      equal(List("***",
-                 "***",
-                 "***"))
+                              "***")) should be(
+      List("***",
+           "***",
+           "***"))
   }
 
-  it should "handle surrounded" in {
+  test("mine surrounded by spaces") {
+    pending
+    Minesweeper.annotate(List("   ",
+                              " * ",
+                              "   ")) should be(
+      List("111",
+           "1*1",
+           "111"))
+  }
+
+  test("space surrounded by mines") {
     pending
     Minesweeper.annotate(List("***",
                               "* *",
-                              "***")) should
-      equal(List("***",
-                 "*8*",
-                 "***"))
+                              "***")) should be(
+      List("***",
+           "*8*",
+           "***"))
   }
 
-  it should "handle horizontal line" in {
+  test("horizontal line") {
     pending
-    Minesweeper.annotate(List(" * * ")) should
-      equal(List("1*2*1"))
+    Minesweeper.annotate(List(" * * ")) should be(List("1*2*1"))
   }
 
+  test("horizontal line, mines at edges") {
+    pending
+    Minesweeper.annotate(List("*   *")) should be(List("*1 1*"))
+  }
 
-  it should "handle vertical line" in {
+  test("vertical line") {
     pending
     Minesweeper.annotate(List(" ",
                               "*",
                               " ",
                               "*",
-                              " ")) should
-      equal(List("1",
-                 "*",
-                 "2",
-                 "*",
-                 "1"))
+                              " ")) should be(
+      List("1",
+           "*",
+           "2",
+           "*",
+           "1"))
   }
 
-  it should "handle cross" in {
+  test("vertical line, mines at edges") {
+    pending
+    Minesweeper.annotate(List("*",
+                              " ",
+                              " ",
+                              " ",
+                              "*")) should be(
+      List("*",
+           "1",
+           " ",
+           "1",
+           "*"))
+  }
+
+  test("cross") {
     pending
     Minesweeper.annotate(List("  *  ",
                               "  *  ",
                               "*****",
                               "  *  ",
-                              "  *  ")) should
-      equal(List(" 2*2 ",
-                 "25*52",
-                 "*****",
-                 "25*52",
-                 " 2*2 "))
+                              "  *  ")) should be(
+      List(" 2*2 ",
+           "25*52",
+           "*****",
+           "25*52",
+           " 2*2 "))
+  }
+
+  test("large board") {
+    pending
+    Minesweeper.annotate(List(" *  * ",
+                              "  *   ",
+                              "    * ",
+                              "   * *",
+                              " *  * ",
+                              "      ")) should be(
+      List("1*22*1", 
+           "12*322", 
+           " 123*2", 
+           "112*4*", 
+           "1*22*2", 
+          "111111"))
   }
 }
