@@ -1,9 +1,13 @@
-@(data: testgen.TestSuiteData)@for(imp <- data.imports) {import @imp}
+@(data: testgen.TestSuiteData)@for(imp <- data.imports) {
+import @imp}
+
 import org.scalatest.{Matchers, FunSuite}
 @import testgen.TestSuiteBuilder._
 
 /** @@version @data.version */
 class @data.name extends FunSuite with Matchers {
+@for(statement <- data.statements) {
+  @statement}
 @for(testCase <- data.testCases) {
   test("@testCase.description") { @if(testCase.pending) {
     pending}

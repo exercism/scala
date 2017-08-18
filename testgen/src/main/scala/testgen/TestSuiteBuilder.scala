@@ -15,7 +15,7 @@ object TestSuiteBuilder {
   private val DefaultTemplate: TestSuiteTemplate =
     txt.funSuiteTemplate.asInstanceOf[Template1[TestSuiteData, Txt]]
 
-  def build(file: File, toTestCaseData: ToTestCaseData, imports: Seq[String] = Seq())(
+  def build(file: File, toTestCaseData: ToTestCaseData, imports: Seq[String] = Seq(), statements: Seq[String] = Seq())(
     implicit template: TestSuiteTemplate = DefaultTemplate): String =
   {
     val exercise @ Exercise(name, version, cases, comments) =
@@ -25,7 +25,7 @@ object TestSuiteBuilder {
     val testCases =
       testCasesAllPending updated(0, testCasesAllPending.head.copy(pending = false))
     val testSuiteData =
-      TestSuiteData(tsName, version, imports, testCases)
+      TestSuiteData(tsName, version, imports, testCases, statements)
 
     template.render(testSuiteData).toString
   }
@@ -132,4 +132,4 @@ case class TestCaseData(description: String, sutCall: String, expected: String,
     pending: Boolean = true)
 
 case class TestSuiteData(name: String, version: String, imports: Seq[String],
-  testCases: Seq[TestCaseData])
+  testCases: Seq[TestCaseData], statements: Seq[String] = Seq())

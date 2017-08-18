@@ -5,12 +5,12 @@ import java.time.LocalTime
 object Gigasecond {
   private type Seconds = Long
 
-  def addGigaseconds(startDate: LocalDate): LocalDateTime = {
+  def add(startDate: LocalDate): LocalDateTime = {
     val startDateTime = LocalDateTime.of(startDate, LocalTime.of(0, 0))
-    addGigaseconds(startDateTime)
+    add(startDateTime)
   }
 
-  def addGigaseconds(startDateTime: LocalDateTime): LocalDateTime =
+  def add(startDateTime: LocalDateTime): LocalDateTime =
     startDateTime.plusSeconds(OneGigasecond)
 
   private val OneGigasecond: Seconds = math.pow(10, 9) toLong
