@@ -1,19 +1,25 @@
 import scala.annotation.tailrec
 
-case class Ocr(grid: String) {
+object OcrNumbers {
 
-  lazy val convert: String =
-    ocrReadoutLines.map(ocrLine => {
-      val iterator = ocrLine.iterator
-      val line0 = iterator.next()
-      val line1 = iterator.next()
-      val line2 = iterator.next()
-      val line3 = iterator.next()
+  def convert(grid: List[String]): String = {
+    val validGridSize = grid.length % 4 != 0 || !grid.forall(_.length % 3 == 0)
+    if (validGridSize)
+      "?"
+    else {
+      ocrReadoutLines(grid).map(ocrLine => {
+        val iterator = ocrLine.iterator
+        val line0 = iterator.next()
+        val line1 = iterator.next()
+        val line2 = iterator.next()
+        val line3 = iterator.next()
 
-      toDigits(line0, line1, line2, line3, "")
-    }).mkString(",")
+        toDigits(line0, line1, line2, line3, "")
+      }).mkString(",")
+    }
+  }
 
-  private lazy val ocrReadoutLines = grid.lines.grouped(4)
+  private def ocrReadoutLines(grid: List[String]) = grid.grouped(4)
 
   @tailrec
   private def toDigits(line0: String, line1: String,
