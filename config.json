@@ -59,6 +59,105 @@
       ]
     },
     {
+      "uuid": "b469a197-adf4-4d02-b129-07f993104054",
+      "slug": "grade-school",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 2,
+      "topics": [
+        "Maps",
+        "Sequences",
+        "Sorting"
+      ]
+    },
+    {
+      "uuid": "6d136d51-390a-46a7-b42b-fdecff7b622a",
+      "slug": "accumulate",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 2,
+      "topics": [
+        "Generics",
+        "Lists",
+        "Transforming"
+      ]
+    },
+    {
+      "uuid": "5a31217f-02fd-4be4-b64f-7a93f36f5140",
+      "slug": "hamming",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "Strings",
+        "Filtering",
+        "Optional values"
+      ]
+    },
+    {
+      "uuid": "d21f16ce-8e6e-436e-918b-e973cfc7c2a0",
+      "slug": "etl",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "Lists",
+        "Maps",
+        "Sequences",
+        "Strings",
+        "Transforming"
+      ]
+    },
+    {
+      "uuid": "612b8880-1dd1-410d-b530-c66ec9edc1b3",
+      "slug": "perfect-numbers",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "Discriminated unions",
+        "Enumerations",
+        "Integers",
+        "Mathematics"
+      ]
+    },
+    {
+      "uuid": "e810d2eb-5c90-4135-8db8-0bda54a33d2e",
+      "slug": "secret-handshake",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "Lists",
+        "Strings",
+        "Bitwise operations"
+      ]
+    },
+    {
+      "uuid": "261f75c1-df67-4c62-a2e9-ce13550f5de3",
+      "slug": "robot-simulator",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "Enumerations",
+        "Tuples"
+      ]
+    },
+    {
+      "uuid": "c6c37479-a030-44ba-9da5-97eb77233ac6",
+      "slug": "matrix",
+      "core": false,
+      "unlocked_by": null,
+      "difficulty": 4,
+      "topics": [
+        "Strings",
+        "Matrices",
+        "Parsing",
+        "Vectors"
+      ]
+    },
+    {
       "uuid": "4c3710dc-fac2-4056-b4ac-945b67c08068",
       "slug": "gigasecond",
       "core": false,
@@ -92,30 +191,6 @@
       ]
     },
     {
-      "uuid": "b469a197-adf4-4d02-b129-07f993104054",
-      "slug": "grade-school",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 2,
-      "topics": [
-        "Maps",
-        "Sequences",
-        "Sorting"
-      ]
-    },
-    {
-      "uuid": "6d136d51-390a-46a7-b42b-fdecff7b622a",
-      "slug": "accumulate",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 2,
-      "topics": [
-        "Generics",
-        "Lists",
-        "Transforming"
-      ]
-    },
-    {
       "uuid": "54ff0017-7c53-4e83-a3bd-aff2953185b7",
       "slug": "raindrops",
       "core": false,
@@ -125,18 +200,6 @@
         "Strings",
         "Logic",
         "Transforming"
-      ]
-    },
-    {
-      "uuid": "5a31217f-02fd-4be4-b64f-7a93f36f5140",
-      "slug": "hamming",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 3,
-      "topics": [
-        "Strings",
-        "Filtering",
-        "Optional values"
       ]
     },
     {
@@ -173,20 +236,6 @@
       "topics": [
         "Strings",
         "Randomness"
-      ]
-    },
-    {
-      "uuid": "d21f16ce-8e6e-436e-918b-e973cfc7c2a0",
-      "slug": "etl",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 3,
-      "topics": [
-        "Lists",
-        "Maps",
-        "Sequences",
-        "Strings",
-        "Transforming"
       ]
     },
     {
@@ -234,19 +283,6 @@
       ]
     },
     {
-      "uuid": "612b8880-1dd1-410d-b530-c66ec9edc1b3",
-      "slug": "perfect-numbers",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 3,
-      "topics": [
-        "Discriminated unions",
-        "Enumerations",
-        "Integers",
-        "Mathematics"
-      ]
-    },
-    {
       "uuid": "f653decb-f7fa-47ff-81a6-2b3981261ea7",
       "slug": "binary-search",
       "core": false,
@@ -259,18 +295,6 @@
       ]
     },
     {
-      "uuid": "e810d2eb-5c90-4135-8db8-0bda54a33d2e",
-      "slug": "secret-handshake",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 3,
-      "topics": [
-        "Lists",
-        "Strings",
-        "Bitwise operations"
-      ]
-    },
-    {
       "uuid": "9f5ee7aa-943b-4151-8530-def1428fc00f",
       "slug": "sieve",
       "core": false,
@@ -280,17 +304,6 @@
         "Filtering",
         "Mathematics",
         "Lists"
-      ]
-    },
-    {
-      "uuid": "261f75c1-df67-4c62-a2e9-ce13550f5de3",
-      "slug": "robot-simulator",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 3,
-      "topics": [
-        "Enumerations",
-        "Tuples"
       ]
     },
     {
@@ -338,19 +351,6 @@
         "Algorithms",
         "Control-flow",
         "Strings"
-      ]
-    },
-    {
-      "uuid": "c6c37479-a030-44ba-9da5-97eb77233ac6",
-      "slug": "matrix",
-      "core": false,
-      "unlocked_by": null,
-      "difficulty": 4,
-      "topics": [
-        "Strings",
-        "Matrices",
-        "Parsing",
-        "Vectors"
       ]
     },
     {
