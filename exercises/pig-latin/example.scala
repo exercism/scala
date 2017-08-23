@@ -5,13 +5,18 @@ object PigLatin {
 
   def translateWord(str: String): String = {
     val lowercase = str.toLowerCase
-    val before = lowercase.takeWhile(!_.isLetter)
-    val w1 = lowercase.drop(before.length)
-    val w2 = w1.takeWhile(_.isLetter)
-    val after = w1.drop(w2.length)
-    val (cs, w) = consonantCluster(w2)
 
-    before ++ w ++ cs ++ "ay" ++ after
+    if (Seq("yt", "xr").exists(pre => lowercase.startsWith(pre))) {
+      lowercase + "ay"
+    } else {
+      val before = lowercase.takeWhile(!_.isLetter)
+      val w1 = lowercase.drop(before.length)
+      val w2 = w1.takeWhile(_.isLetter)
+      val after = w1.drop(w2.length)
+      val (cs, w) = consonantCluster(w2)
+
+      before ++ w ++ cs ++ "ay" ++ after
+    }
   }
 
   private def consonantCluster(str: String): (String, String) = {
