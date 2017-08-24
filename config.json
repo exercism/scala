@@ -13,18 +13,6 @@
       ]
     },
     {
-      "uuid": "57b76aba-a485-464d-84ba-e9a445b25be6",
-      "slug": "bob",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "topics": [
-        "Strings",
-        "Control-flow (if-else statements)",
-        "Pattern matching"
-      ]
-    },
-    {
       "uuid": "7221946d-6321-4cec-8e64-050abae3ccd7",
       "slug": "sum-of-multiples",
       "core": true,
@@ -44,6 +32,18 @@
       "topics": [
         "Integers",
         "Mathematics"
+      ]
+    },
+    {
+      "uuid": "57b76aba-a485-464d-84ba-e9a445b25be6",
+      "slug": "bob",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "Strings",
+        "Control-flow (if-else statements)",
+        "Pattern matching"
       ]
     },
     {
@@ -171,7 +171,7 @@
       "uuid": "4c3710dc-fac2-4056-b4ac-945b67c08068",
       "slug": "gigasecond",
       "core": false,
-      "unlocked_by": "space-age",
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
         "Dates",
@@ -183,7 +183,7 @@
       "uuid": "1fe9f43a-7774-4fbd-864b-eff7749ebbc6",
       "slug": "difference-of-squares",
       "core": false,
-      "unlocked_by": "leap",
+      "unlocked_by": null,
       "difficulty": 1,
       "topics": [
         "Integers",
@@ -194,7 +194,7 @@
       "uuid": "e6f96ae1-6736-42f4-b74d-14a4aa8aa5fc",
       "slug": "pangram",
       "core": false,
-      "unlocked_by": "hello-world",
+      "unlocked_by": null,
       "difficulty": 2,
       "topics": [
         "Strings"
