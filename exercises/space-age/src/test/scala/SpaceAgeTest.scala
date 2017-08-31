@@ -1,63 +1,44 @@
-import org.scalatest._
+import org.scalatest.{Matchers, FunSuite}
 
+/** @version 1.0.0 */
 class SpaceAgeTest extends FunSuite with Matchers {
-  test ("age in seconds") {
-    val age = SpaceAge(1000000)
-    age.seconds should be (1000000)
+
+  test("age on Earth") {
+    SpaceAge.onEarth(1000000000) should be (31.69)
   }
 
-  test ("age in earth years") {
+  test("age on Mercury") {
     pending
-    val age = SpaceAge(1000000000)
-    age.onEarth should be (31.69)
+    SpaceAge.onMercury(2134835688) should be (280.88)
   }
 
-  test ("age in mercury years") {
+  test("age on Venus") {
     pending
-    val age = SpaceAge(2134835688)
-    age.onEarth should be (67.65)
-    age.onMercury should be (280.88)
+    SpaceAge.onVenus(189839836) should be (9.78)
   }
 
-  test ("age in venus years") {
+  test("age on Mars") {
     pending
-    val age = SpaceAge(189839836)
-    age.onEarth should be (6.02)
-    age.onVenus should be (9.78)
+    SpaceAge.onMars(2.329871239E9) should be (39.25)
   }
 
-  test ("age on mars") {
+  test("age on Jupiter") {
     pending
-    val age = SpaceAge(2329871239L)
-    age.onEarth should be (73.83)
-    age.onMars should be (39.25)
+    SpaceAge.onJupiter(901876382) should be (2.41)
   }
 
-  test ("age on jupiter") {
+  test("age on Saturn") {
     pending
-    val age = SpaceAge(901876382)
-    age.onEarth should be (28.58)
-    age.onJupiter should be (2.41)
+    SpaceAge.onSaturn(3.0E9) should be (3.23)
   }
 
-  test ("age on saturn") {
+  test("age on Uranus") {
     pending
-    val age = SpaceAge(3000000000L)
-    age.onEarth should be (95.06)
-    age.onSaturn should be (3.23)
+    SpaceAge.onUranus(3.210123456E9) should be (1.21)
   }
 
-  test ("age on uranus") {
+  test("age on Neptune") {
     pending
-    val age = SpaceAge(3210123456L)
-    age.onEarth should be (101.72)
-    age.onUranus should be (1.21)
-  }
-
-  test ("age on neptune") {
-    pending
-    val age = SpaceAge(8210123456L)
-    age.onEarth should be (260.16)
-    age.onNeptune should be (1.58)
+    SpaceAge.onNeptune(8.210123456E9) should be (1.58)
   }
 }
