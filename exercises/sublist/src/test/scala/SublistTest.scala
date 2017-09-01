@@ -1,97 +1,89 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.{Matchers, FunSuite}
 
+/** @version 1.0.0 */
 class SublistTest extends FunSuite with Matchers {
+
   test("empty lists") {
     Sublist.sublist(List(), List()) should be (Sublist.Equal)
   }
 
-  test("empty is a sublist of anything") {
+  test("empty list within non empty list") {
     pending
-    Sublist.sublist(List(), List('a', 's', 'd', 'f')) should be (Sublist.Sublist)
+    Sublist.sublist(List(), List(1, 2, 3)) should be (Sublist.Sublist)
   }
 
-  test("anything is a superlist of empty") {
+  test("non empty list contains empty list") {
     pending
-    Sublist.sublist(List('a', 's', 'd', 'f'), List()) should be (Sublist.Superlist)
+    Sublist.sublist(List(1, 2, 3), List()) should be (Sublist.Superlist)
   }
 
-  test("List(1) is not List(2)") {
+  test("list equals itself") {
     pending
-    Sublist.sublist(List(1), List(2)) should be (Sublist.Unequal)
+    Sublist.sublist(List(1, 2, 3), List(1, 2, 3)) should be (Sublist.Equal)
   }
 
-  test("compare larger equal lists") {
+  test("different lists") {
     pending
-    val xs = List.fill(1000)("x")
-    Sublist.sublist(xs, xs) should be (Sublist.Equal)
+    Sublist.sublist(List(1, 2, 3), List(2, 3, 4)) should be (Sublist.Unequal)
+  }
+
+  test("false start") {
+    pending
+    Sublist.sublist(List(1, 2, 5), List(0, 1, 2, 3, 1, 2, 5, 6)) should be (Sublist.Sublist)
+  }
+
+  test("consecutive") {
+    pending
+    Sublist.sublist(List(1, 1, 2), List(0, 1, 1, 1, 2, 1, 2)) should be (Sublist.Sublist)
   }
 
   test("sublist at start") {
     pending
-    Sublist.sublist(List(1, 2, 3), List(1, 2, 3, 4, 5)) should be (Sublist.Sublist)
+    Sublist.sublist(List(0, 1, 2), List(0, 1, 2, 3, 4, 5)) should be (Sublist.Sublist)
   }
 
   test("sublist in middle") {
     pending
-    Sublist.sublist(List(4, 3, 2), List(5, 4, 3, 2, 1)) should be (Sublist.Sublist)
+    Sublist.sublist(List(2, 3, 4), List(0, 1, 2, 3, 4, 5)) should be (Sublist.Sublist)
   }
 
   test("sublist at end") {
     pending
-    Sublist.sublist(List(3, 4, 5), List(1, 2, 3, 4, 5)) should be (Sublist.Sublist)
+    Sublist.sublist(List(3, 4, 5), List(0, 1, 2, 3, 4, 5)) should be (Sublist.Sublist)
   }
 
-  test("partially matching sublist at start") {
+  test("at start of superlist") {
     pending
-    Sublist.sublist(List(1, 1, 2), List(1, 1, 1, 2)) should be (Sublist.Sublist)
+    Sublist.sublist(List(0, 1, 2, 3, 4, 5), List(0, 1, 2)) should be (Sublist.Superlist)
   }
 
-  test("sublist early in huge list") {
+  test("in middle of superlist") {
     pending
-    val xs = List.range(1, 1000000)
-    Sublist.sublist(List(3, 4, 5), xs) should be (Sublist.Sublist)
+    Sublist.sublist(List(0, 1, 2, 3, 4, 5), List(2, 3)) should be (Sublist.Superlist)
   }
 
-  test("huge sublist not in huge list") {
+  test("at end of superlist") {
     pending
-    val l1 = List.range(10, 1000001)
-    val l2 = List.range(1, 1000000)
-    Sublist.sublist(l1, l2) should be (Sublist.Unequal)
+    Sublist.sublist(List(0, 1, 2, 3, 4, 5), List(3, 4, 5)) should be (Sublist.Superlist)
   }
 
-  test("superlist at start") {
+  test("first list missing element from second list") {
     pending
-    Sublist.sublist(List(1, 2, 3, 4, 5), List(1, 2, 3)) should be (Sublist.Superlist)
+    Sublist.sublist(List(1, 3), List(1, 2, 3)) should be (Sublist.Unequal)
   }
 
-  test("superlist in middle") {
+  test("second list missing element from first list") {
     pending
-    Sublist.sublist(List(5, 4, 3, 2, 1), List(4, 3, 2)) should be (Sublist.Superlist)
+    Sublist.sublist(List(1, 2, 3), List(1, 3)) should be (Sublist.Unequal)
   }
 
-  test("superlist at end") {
+  test("order matters to a list") {
     pending
-    Sublist.sublist(List(1, 2, 3, 4, 5), List(3, 4, 5)) should be (Sublist.Superlist)
+    Sublist.sublist(List(1, 2, 3), List(3, 2, 1)) should be (Sublist.Unequal)
   }
 
-  test("partially matching superlist at start") {
+  test("same digits but different numbers") {
     pending
-    Sublist.sublist(List(1, 1, 1, 2), List(1, 1, 2)) should be (Sublist.Superlist)
-  }
-
-  test("superlist early in huge list") {
-    pending
-    val l1 = List.range(1, 1000000)
-    Sublist.sublist(l1, List(3, 4, 5)) should be (Sublist.Superlist)
-  }
-
-  test("recurring values sublist") {
-    pending
-    Sublist.sublist(List(1, 2, 1, 2, 3), List(1, 2, 3, 1, 2, 1, 2, 3, 2, 1)) should be (Sublist.Sublist)
-  }
-
-  test("recurring values unequal") {
-    pending
-    Sublist.sublist(List(1, 2, 1, 2, 3), List(1, 2, 3, 1, 2, 3, 2, 3, 2, 1)) should be (Sublist.Unequal)
+    Sublist.sublist(List(1, 0, 1), List(10, 1)) should be (Sublist.Unequal)
   }
 }
