@@ -1,62 +1,64 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.{Matchers, FunSuite}
 
+/** @version 1.0.0 */
 class SumOfMultiplesTest extends FunSuite with Matchers {
-  test("[3, 5] 1") {
-    SumOfMultiples.sumOfMultiples(Set(3, 5), 1) should be (0)
+
+  test("multiples of 3 or 5 up to 1") {
+    SumOfMultiples.sum(Set(3, 5), 1) should be (0)
   }
 
-  test("[3, 5] 4") {
+  test("multiples of 3 or 5 up to 4") {
     pending
-    SumOfMultiples.sumOfMultiples(Set(3, 5), 4) should be (3)
+    SumOfMultiples.sum(Set(3, 5), 4) should be (3)
   }
 
-  test("[3, 5] 10") {
+  test("multiples of 3 or 5 up to 10") {
     pending
-    SumOfMultiples.sumOfMultiples(Set(3, 5), 10) should be (23)
+    SumOfMultiples.sum(Set(3, 5), 10) should be (23)
   }
 
-  test("[3, 5] 100") {
+  test("multiples of 3 or 5 up to 100") {
     pending
-    SumOfMultiples.sumOfMultiples(Set(3, 5), 100) should be (2318)
+    SumOfMultiples.sum(Set(3, 5), 100) should be (2318)
   }
 
-  test("[3, 5] 1000") {
+  test("multiples of 3 or 5 up to 1000") {
     pending
-    SumOfMultiples.sumOfMultiples(Set(3, 5), 1000) should be (233168)
+    SumOfMultiples.sum(Set(3, 5), 1000) should be (233168)
   }
 
-  test("[7, 13, 17] 20") {
+  test("multiples of 7, 13 or 17 up to 20") {
     pending
-    SumOfMultiples.sumOfMultiples(Set(7, 13, 17), 20) should be (51)
+    SumOfMultiples.sum(Set(7, 13, 17), 20) should be (51)
   }
 
-  test("[4, 6] 15") {
+  test("multiples of 4 or 6 up to 15") {
     pending
-    SumOfMultiples.sumOfMultiples(Set(4, 6), 15) should be (30)
+    SumOfMultiples.sum(Set(4, 6), 15) should be (30)
   }
 
-  test("[5, 6, 8] 150") {
+  test("multiples of 5, 6 or 8 up to 150") {
     pending
-    SumOfMultiples.sumOfMultiples(Set(5, 6, 8), 150) should be (4419)
+    SumOfMultiples.sum(Set(5, 6, 8), 150) should be (4419)
   }
 
-  test("[5, 25] 51") {
+  test("multiples of 5 or 25 up to 51") {
     pending
-    SumOfMultiples.sumOfMultiples(Set(5, 25), 51) should be (275)
+    SumOfMultiples.sum(Set(5, 25), 51) should be (275)
   }
 
-  test("[43, 47] 10000") {
+  test("multiples of 43 or 47 up to 10000") {
     pending
-    SumOfMultiples.sumOfMultiples(Set(43, 47), 10000) should be (2203160)
+    SumOfMultiples.sum(Set(43, 47), 10000) should be (2203160)
   }
 
-  test("[1] 100") {
+  test("multiples of 1 up to 100") {
     pending
-    SumOfMultiples.sumOfMultiples(Set(1), 100) should be (4950)
+    SumOfMultiples.sum(Set(1), 100) should be (4950)
   }
 
-  test("[] 10000") {
+  test("multiples of an empty list up to 10000") {
     pending
-    SumOfMultiples.sumOfMultiples(Set(), 10000) should be (0)
+    SumOfMultiples.sum(Set(), 10000) should be (0)
   }
 }

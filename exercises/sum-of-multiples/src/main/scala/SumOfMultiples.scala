@@ -1,4 +1,4 @@
 object SumOfMultiples {
-  def sumOfMultiples(factors: Set[Int], limit: Int): Int = ???
+  def sum(factors: Set[Int], limit: Int): Int = ???
 }
 
