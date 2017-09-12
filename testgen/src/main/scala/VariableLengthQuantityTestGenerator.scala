@@ -1,80 +1,79 @@
-import play.api.libs.json.Json
+import java.io.File
 
-import scala.io.Source
-
-// Generates test suite from json test definition for the VariableLengthQuantity exercise.
-class VariableLengthQuantityTestGenerator {
-  implicit val vlqTestCaseReader = Json.reads[VlqTestCase]
-
-  private val filename = "variable-length-quantity.json"
-  private val fileContents = Source.fromFile(filename).getLines.mkString
-  private val json = Json.parse(fileContents)
-
-  def write {
-    val testBuilder = new TestBuilder("VariableLengthQuantityTest")
-    addEncodeTests(testBuilder)
-    addDecodeTests(testBuilder)
-    testBuilder.toFile
-  }
-
-  private def addEncodeTests(testBuilder: TestBuilder): Unit = {
-    val description = (json \ "encode" \ "description").get.as[List[String]].mkString(" ")
-    val encodeTestCases = (json \ "encode" \ "cases").validate[List[VlqTestCase]].asEither match {
-      case Left(l) => List()
-      case Right(r) => r
-    }
-
-    implicit def testCaseToGen(tc: VlqTestCase): TestCaseGen = {
-      val callSUT = s"""VariableLengthQuantity.encode(${listToStr(tc.input)})"""
-      val expected = listToStr(tc.expected)
-      val result = s"val encoded = $callSUT"
-      val checkResult = s"""encoded should be ($expected)"""
-
-      TestCaseGen("encode: " + tc.description, callSUT, expected, result, checkResult)
-    }
-
-    testBuilder.addTestCases(encodeTestCases, Some(description))
-  }
-
-  private def addDecodeTests(testBuilder: TestBuilder): Unit = {
-    val description = (json \ "decode" \ "description").get.as[List[String]].mkString(" ")
-    val decodeTestCases = (json \ "decode" \ "cases").validate[List[VlqTestCase]].asEither match {
-      case Left(l) => List()
-      case Right(r) => r
-    }
-
-    implicit def testCaseToGen(tc: VlqTestCase): TestCaseGen = {
-      val input = listToStr(tc.input)
-      val callSUT = s"""VariableLengthQuantity.decode($input)"""
-      val checkResult = tc.expected match {
-        case None => "decoded.isLeft should be (true)"
-        case Some(arr) => s"decoded should be (Right(${listToStr(arr)}))"
-      }
-      val result = s"val decoded = $callSUT"
-
-      TestCaseGen("decode: " + tc.description, callSUT, "", result, checkResult)
-    }
-
-    testBuilder.addTestCases(decodeTestCases, Some(description))
-  }
-
-  private def listToStr(arr: Option[List[Long]]): String = {
-    arr match {
-      case None => "List[Int]()"
-      case Some(x) => listToStr(x)
-    }
-  }
-
-  private def listToStr(arr: List[Long]): String = {
-    val elements = arr.map(n => s"0x${n.toHexString}").mkString(", ")
-    s"List($elements)"
-  }
-}
-
-case class VlqTestCase(description: String, input: List[Long], expected: Option[List[Long]])
+import testgen.{CanonicalDataParser, TestCaseData, TestSuiteBuilder}
+import TestSuiteBuilder._
 
 object VariableLengthQuantityTestGenerator {
+
+  private def mapListToString(arg: List[_]): String = {
+    s"List(${arg
+      .map {
+        case d: Double => "0x" + d.toLong.toHexString.toUpperCase
+        case i: Int => "0x" + i.toLong.toHexString.toUpperCase
+        case _ => throw new IllegalArgumentException()
+      }
+      .mkString(", ")})"
+  }
+
+  private def toEncodeString(expected: CanonicalDataParser.Expected): String = {
+    expected match {
+      case Left(_) => "None"
+      case Right(null) => "None"
+      case Right(n) => s"${mapListToString(n.asInstanceOf[List[_]])}"
+    }
+  }
+
+  private def toDecodeString(expected: CanonicalDataParser.Expected): String = {
+    expected match {
+      case Left(_) => "true"
+      case Right(null) => "true"
+      case Right(n) => s"Right(${mapListToString(n.asInstanceOf[List[Any]])})"
+    }
+  }
+
+  private def toSutCall(sut: String, property: String, args: String, expected: CanonicalDataParser.Expected): String = {
+    if (property.toString.equals("encode"))
+      s"""$sut.$property($args)"""
+    else {
+      expected match {
+        case Left(_) =>  s"""$sut.$property($args).isLeft"""
+        case Right(null) => s"""$sut.$property($args).isLeft"""
+        case Right(n) => s"""$sut.$property($args)"""
+      }
+    }
+  }
+
+  private def toArgString(any: Any): String = {
+    any match {
+      case list: List[_] => s"${mapListToString(list)}"
+      case _ => any.toString
+    }
+  }
+
+  private def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
+    argNames map (name => toArgString(parseResult(name))) mkString ", "
+
+
+  def fromLabeledTest(argNames: String*): ToTestCaseData =
+    withLabeledTest { sut =>
+      labeledTest =>
+        val args = sutArgs(labeledTest.result, argNames: _*)
+        val property = labeledTest.property
+        val sutCall = toSutCall(sut, property, args, labeledTest.expected)
+        val expected =
+          if (labeledTest.property.toString.equals("encode"))
+            toEncodeString(labeledTest.expected)
+          else
+            toDecodeString(labeledTest.expected)
+        TestCaseData(labeledTest.description, sutCall, expected)
+    }
+
   def main(args: Array[String]): Unit = {
-    new VariableLengthQuantityTestGenerator().write
+    val file = new File("src/main/resources/variable-length-quantity.json")
+
+    val code = TestSuiteBuilder.build(file, fromLabeledTest("input"))
+    println(s"-------------")
+    println(code)
+    println(s"-------------")
   }
 }

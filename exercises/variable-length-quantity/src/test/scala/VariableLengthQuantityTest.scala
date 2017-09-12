@@ -1,162 +1,153 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.{Matchers, FunSuite}
 
+/** @version 1.0.0 */
 class VariableLengthQuantityTest extends FunSuite with Matchers {
 
-  // Encode a series of integers, producing a series of bytes.
-  test("encode: zero") {
-    val encoded = VariableLengthQuantity.encode(List(0x0))
-    encoded should be (List(0x0))
+  test("zero") {
+    VariableLengthQuantity.encode(List(0x0)) should be(List(0x0))
   }
 
-  test("encode: arbitrary single byte") {
+  test("arbitrary single byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x40))
-    encoded should be (List(0x40))
+    VariableLengthQuantity.encode(List(0x40)) should be(List(0x40))
   }
 
-  test("encode: largest single byte") {
+  test("largest single byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x7f))
-    encoded should be (List(0x7f))
+    VariableLengthQuantity.encode(List(0x7F)) should be(List(0x7F))
   }
 
-  test("encode: smallest double byte") {
+  test("smallest double byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x80))
-    encoded should be (List(0x81, 0x0))
+    VariableLengthQuantity.encode(List(0x80)) should be(List(0x81, 0x0))
   }
 
-  test("encode: arbitrary double byte") {
+  test("arbitrary double byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x2000))
-    encoded should be (List(0xc0, 0x0))
+    VariableLengthQuantity.encode(List(0x2000)) should be(List(0xC0, 0x0))
   }
 
-  test("encode: largest double byte") {
+  test("largest double byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x3fff))
-    encoded should be (List(0xff, 0x7f))
+    VariableLengthQuantity.encode(List(0x3FFF)) should be(List(0xFF, 0x7F))
   }
 
-  test("encode: smallest triple byte") {
+  test("smallest triple byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x4000))
-    encoded should be (List(0x81, 0x80, 0x0))
+    VariableLengthQuantity.encode(List(0x4000)) should be(List(0x81, 0x80, 0x0))
   }
 
-  test("encode: arbitrary triple byte") {
+  test("arbitrary triple byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x100000))
-    encoded should be (List(0xc0, 0x80, 0x0))
+    VariableLengthQuantity.encode(List(0x100000)) should be(
+      List(0xC0, 0x80, 0x0))
   }
 
-  test("encode: largest triple byte") {
+  test("largest triple byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x1fffff))
-    encoded should be (List(0xff, 0xff, 0x7f))
+    VariableLengthQuantity.encode(List(0x1FFFFF)) should be(
+      List(0xFF, 0xFF, 0x7F))
   }
 
-  test("encode: smallest quadruple byte") {
+  test("smallest quadruple byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x200000))
-    encoded should be (List(0x81, 0x80, 0x80, 0x0))
+    VariableLengthQuantity.encode(List(0x200000)) should be(
+      List(0x81, 0x80, 0x80, 0x0))
   }
 
-  test("encode: arbitrary quadruple byte") {
+  test("arbitrary quadruple byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x8000000))
-    encoded should be (List(0xc0, 0x80, 0x80, 0x0))
+    VariableLengthQuantity.encode(List(0x8000000)) should be(
+      List(0xC0, 0x80, 0x80, 0x0))
   }
 
-  test("encode: largest quadruple byte") {
+  test("largest quadruple byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0xfffffff))
-    encoded should be (List(0xff, 0xff, 0xff, 0x7f))
+    VariableLengthQuantity.encode(List(0xFFFFFFF)) should be(
+      List(0xFF, 0xFF, 0xFF, 0x7F))
   }
 
-  test("encode: smallest quintuple byte") {
+  test("smallest quintuple byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x10000000))
-    encoded should be (List(0x81, 0x80, 0x80, 0x80, 0x0))
+    VariableLengthQuantity.encode(List(0x10000000)) should be(
+      List(0x81, 0x80, 0x80, 0x80, 0x0))
   }
 
-  test("encode: arbitrary quintuple byte") {
+  test("arbitrary quintuple byte") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0xff000000))
-    encoded should be (List(0x8f, 0xf8, 0x80, 0x80, 0x0))
+    VariableLengthQuantity.encode(List(0xFF000000)) should be(
+      List(0x8F, 0xF8, 0x80, 0x80, 0x0))
   }
 
-  test("encode: maximum 32-bit integer input") {
+  test("maximum 32-bit integer input") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0xffffffff))
-    encoded should be (List(0x8f, 0xff, 0xff, 0xff, 0x7f))
+    VariableLengthQuantity.encode(List(0xFFFFFFFF)) should be(
+      List(0x8F, 0xFF, 0xFF, 0xFF, 0x7F))
   }
 
-  test("encode: two single-byte values") {
+  test("two single-byte values") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x40, 0x7f))
-    encoded should be (List(0x40, 0x7f))
+    VariableLengthQuantity.encode(List(0x40, 0x7F)) should be(List(0x40, 0x7F))
   }
 
-  test("encode: two multi-byte values") {
+  test("two multi-byte values") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x4000, 0x123456))
-    encoded should be (List(0x81, 0x80, 0x0, 0xc8, 0xe8, 0x56))
+    VariableLengthQuantity.encode(List(0x4000, 0x123456)) should be(
+      List(0x81, 0x80, 0x0, 0xC8, 0xE8, 0x56))
   }
 
-  test("encode: many multi-byte values") {
+  test("many multi-byte values") {
     pending
-    val encoded = VariableLengthQuantity.encode(List(0x2000, 0x123456, 0xfffffff, 0x0, 0x3fff, 0x4000))
-    encoded should be (List(0xc0, 0x0, 0xc8, 0xe8, 0x56, 0xff, 0xff, 0xff, 0x7f, 0x0, 0xff, 0x7f, 0x81, 0x80, 0x0))
+    VariableLengthQuantity.encode(
+      List(0x2000, 0x123456, 0xFFFFFFF, 0x0, 0x3FFF, 0x4000)) should be(
+      List(0xC0, 0x0, 0xC8, 0xE8, 0x56, 0xFF, 0xFF, 0xFF, 0x7F, 0x0, 0xFF, 0x7F,
+        0x81, 0x80, 0x0))
   }
 
-  // Decode a series of bytes, producing a series of integers.
-  test("decode: one byte") {
+  test("one byte") {
     pending
-    val decoded = VariableLengthQuantity.decode(List(0x7f))
-    decoded should be (Right(List(0x7f)))
+    VariableLengthQuantity.decode(List(0x7F)) should be(Right(List(0x7F)))
   }
 
-  test("decode: two bytes") {
+  test("two bytes") {
     pending
-    val decoded = VariableLengthQuantity.decode(List(0xc0, 0x0))
-    decoded should be (Right(List(0x2000)))
+    VariableLengthQuantity.decode(List(0xC0, 0x0)) should be(
+      Right(List(0x2000)))
   }
 
-  test("decode: three bytes") {
+  test("three bytes") {
     pending
-    val decoded = VariableLengthQuantity.decode(List(0xff, 0xff, 0x7f))
-    decoded should be (Right(List(0x1fffff)))
+    VariableLengthQuantity.decode(List(0xFF, 0xFF, 0x7F)) should be(
+      Right(List(0x1FFFFF)))
   }
 
-  test("decode: four bytes") {
+  test("four bytes") {
     pending
-    val decoded = VariableLengthQuantity.decode(List(0x81, 0x80, 0x80, 0x0))
-    decoded should be (Right(List(0x200000)))
+    VariableLengthQuantity.decode(List(0x81, 0x80, 0x80, 0x0)) should be(
+      Right(List(0x200000)))
   }
 
-  test("decode: maximum 32-bit integer") {
+  test("maximum 32-bit integer") {
     pending
-    val decoded = VariableLengthQuantity.decode(List(0x8f, 0xff, 0xff, 0xff, 0x7f))
-    decoded should be (Right(List(0xffffffff)))
+    VariableLengthQuantity.decode(List(0x8F, 0xFF, 0xFF, 0xFF, 0x7F)) should be(
+      Right(List(0xFFFFFFFF)))
   }
 
-  test("decode: incomplete sequence causes error") {
+  test("incomplete sequence causes error") {
     pending
-    val decoded = VariableLengthQuantity.decode(List(0xff))
-    decoded.isLeft should be (true)
+    VariableLengthQuantity.decode(List(0xFF)).isLeft should be(true)
   }
 
-  test("decode: incomplete sequence causes error, even if value is zero") {
+  test("incomplete sequence causes error, even if value is zero") {
     pending
-    val decoded = VariableLengthQuantity.decode(List(0x80))
-    decoded.isLeft should be (true)
+    VariableLengthQuantity.decode(List(0x80)).isLeft should be(true)
   }
 
-  test("decode: multiple values") {
+  test("multiple values") {
     pending
-    val decoded = VariableLengthQuantity.decode(List(0xc0, 0x0, 0xc8, 0xe8, 0x56, 0xff, 0xff, 0xff, 0x7f, 0x0, 0xff, 0x7f, 0x81, 0x80, 0x0))
-    decoded should be (Right(List(0x2000, 0x123456, 0xfffffff, 0x0, 0x3fff, 0x4000)))
+    VariableLengthQuantity.decode(
+      List(0xC0, 0x0, 0xC8, 0xE8, 0x56, 0xFF, 0xFF, 0xFF, 0x7F, 0x0, 0xFF, 0x7F,
+        0x81, 0x80, 0x0)) should be(
+      Right(List(0x2000, 0x123456, 0xFFFFFFF, 0x0, 0x3FFF, 0x4000)))
   }
-
 }
