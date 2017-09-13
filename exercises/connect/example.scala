@@ -55,7 +55,7 @@ case class Connect(lines: List[String]) {
     }
   }
 
-  def result: Option[Color] = {
+  def winner: Option[Color] = {
     if (blackStartCoords.exists(tryConnect(Color.Black, seenCoords, _))) Some(Color.Black)
     else if (whiteStartCoords.exists(tryConnect(Color.White, seenCoords, _))) Some(Color.White)
     else None
