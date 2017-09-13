@@ -1,5 +1,6 @@
 import org.scalatest.{FunSuite, Matchers}
 
+/** @version created manually **/
 class PythagoreanTripletTest extends FunSuite with Matchers {
   test("isPythagorean") {
     PythagoreanTriplet.isPythagorean((3, 4, 5)) should be (true)
