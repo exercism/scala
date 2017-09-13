@@ -2,6 +2,7 @@ import org.scalatest.{FunSuite, Matchers}
 import java.time.LocalDate
 import LensPerson._
 
+/** @version created manually **/
 class LensPersonTest extends FunSuite with Matchers {
   val testPerson =
     Person(
