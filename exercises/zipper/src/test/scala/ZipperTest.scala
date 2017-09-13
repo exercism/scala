@@ -1,5 +1,6 @@
 import org.scalatest.{FunSuite, Matchers}
 
+/** @version created manually **/
 class ZipperTest extends FunSuite with Matchers {
   def empty[A]: Option[BinTree[A]] = None
 
