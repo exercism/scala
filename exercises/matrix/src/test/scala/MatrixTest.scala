@@ -1,5 +1,6 @@
 import org.scalatest.{Matchers, FlatSpec}
 
+/** @version created manually **/
 class MatrixTest extends FlatSpec with Matchers {
   it should "extract a row" in {
     Matrix("1 2\n10 20").rows(0) should be (Vector(1, 2))
