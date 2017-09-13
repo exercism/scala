@@ -1,5 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
+/** @version created manually **/
 class FrequencyTest extends FunSuite with Matchers {
 
   // Poem by Friedrich Schiller. The corresponding music is the European
