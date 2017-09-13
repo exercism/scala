@@ -1,5 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
+/** @version created manually **/
 class SeriesTest extends FunSuite with Matchers {
 
   test("slices of one") {
