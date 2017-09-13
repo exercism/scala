@@ -2,6 +2,7 @@ import org.scalatest._
 
 import collection.mutable
 
+/** @version created manually **/
 class RobotNameSpecs extends FunSpec with Matchers {
   val nameRegex = """[A-Z]{2}\d{3}"""
 
