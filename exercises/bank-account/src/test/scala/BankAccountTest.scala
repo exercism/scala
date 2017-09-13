@@ -1,6 +1,7 @@
 import org.scalatest.concurrent.{IntegrationPatience, Conductors}
 import org.scalatest.{Matchers, FunSuite}
 
+/** @version created manually **/
 class BankAccountTest extends FunSuite with Matchers with Conductors with IntegrationPatience {
   test("open account") {
     Bank.openAccount().getBalance should be (Some(0))
