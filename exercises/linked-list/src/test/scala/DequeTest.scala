@@ -1,5 +1,6 @@
 import org.scalatest.{Matchers, FlatSpec}
 
+/** @version created manually **/
 class DequeTest extends FlatSpec with Matchers {
 
   it should "handle push then pop" in {
