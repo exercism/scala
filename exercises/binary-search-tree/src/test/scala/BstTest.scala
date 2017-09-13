@@ -1,5 +1,6 @@
 import org.scalatest.{Matchers, FlatSpec}
 
+/** @version created manually **/
 class BstTest extends FlatSpec with Matchers {
   val bst4 = Bst(4)
 
