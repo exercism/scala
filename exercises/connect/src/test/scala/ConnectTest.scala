@@ -1,86 +1,102 @@
 import org.scalatest.{Matchers, FunSuite}
 
+/** @version 1.0.0 */
 class ConnectTest extends FunSuite with Matchers {
+
   // Filter readable board into valid input
   private def mkBoard(lines: List[String]): List[String] =
     lines.map(l => l.filter(!_.isSpaceChar))
 
-  test("empty board") {
-    val lines = List(". . . . ."
-                    ," . . . . ."
-                    ,"  . . . . ."
-                    ,"   . . . . ."
-                    ,"    . . . . .")
-    Connect(mkBoard(lines)).result should be (None)
+  test("an empty board has no winner") {
+    Connect(
+      mkBoard(
+        List(". . . . .",
+             " . . . . .",
+             "  . . . . .",
+             "   . . . . .",
+             "    . . . . ."))).winner should be(None)
   }
 
-  test("black single item board") {
+  test("X can win on a 1x1 board") {
     pending
-    val lines = List("X")
-    Connect(mkBoard(lines)).result should be (Some(Color.Black))
+    Connect(mkBoard(List("X"))).winner should be(Some(Color.Black))
   }
 
-  test("white single item board") {
+  test("O can win on a 1x1 board") {
     pending
-    val lines = List("O")
-    Connect(mkBoard(lines)).result should be (Some(Color.White))
+    Connect(mkBoard(List("O"))).winner should be(Some(Color.White))
   }
 
-  test("convoluted path") {
+  test("only edges does not make a winner") {
     pending
-    val lines = List(". X X . ."
-                    ," X . X . X"
-                    ,"  . X . X ."
-                    ,"   . X X . ."
-                    ,"    O O O O O")
-    Connect(mkBoard(lines)).result should be (Some(Color.Black))
+    Connect(mkBoard(List("O O O X", " X . . X", "  X . . X", "   X O O O"))).winner should be(
+      None)
   }
 
-  test("rectangle - black wins") {
+  test("illegal diagonal does not make a winner") {
     pending
-    val lines = List(". O . ."
-                    ," O X X X"
-                    ,"  O X O ."
-                    ,"   X X O X"
-                    ,"    . O X .")
-    Connect(mkBoard(lines)).result should be (Some(Color.Black))
+    Connect(
+      mkBoard(List("X O . .",
+                   " O X X X",
+                   "  O X O .",
+                   "   . O X .",
+                   "    X X O O"))).winner should be(None)
   }
 
-  test("rectangle - white wins") {
+  test("nobody wins crossing adjacent angles") {
     pending
-    val lines = List(". O . ."
-                    ," O X X X"
-                    ,"  O O O ."
-                    ,"   X X O X"
-                    ,"    . O X .")
-    Connect(mkBoard(lines)).result should be (Some(Color.White))
+    Connect(
+      mkBoard(List("X . . .",
+                   " . X O .",
+                   "  O . X O",
+                   "   . O . X",
+                   "    . . O ."))).winner should be(None)
   }
 
-  test("spiral - black wins") {
+  test("X wins crossing from left to right") {
     pending
-    val lines = List("OXXXXXXXX"
-                    ,"OXOOOOOOO"
-                    ,"OXOXXXXXO"
-                    ,"OXOXOOOXO"
-                    ,"OXOXXXOXO"
-                    ,"OXOOOXOXO"
-                    ,"OXXXXXOXO"
-                    ,"OOOOOOOXO"
-                    ,"XXXXXXXXO")
-    Connect(mkBoard(lines)).result should be (Some(Color.Black))
+    Connect(
+      mkBoard(List(". O . .",
+                   " O X X X",
+                   "  O X O .",
+                   "   X X O X",
+                   "    . O X ."))).winner should be(Some(Color.Black))
   }
 
-  test("spiral - none") {
+  test("O wins crossing from top to bottom") {
     pending
-    val lines = List("OXXXXXXXX"
-                    ,"OXOOOOOOO"
-                    ,"OXOXXXXXO"
-                    ,"OXOXOOOXO"
-                    ,"OXOX.XOXO"
-                    ,"OXOOOXOXO"
-                    ,"OXXXXXOXO"
-                    ,"OOOOOOOXO"
-                    ,"XXXXXXXXO")
-    Connect(mkBoard(lines)).result should be (None)
+    Connect(
+      mkBoard(List(". O . .",
+                   " O X X X",
+                   "  O O O .",
+                   "   X X O X",
+                   "    . O X ."))).winner should be(Some(Color.White))
+  }
+
+  test("X wins using a convoluted path") {
+    pending
+    Connect(
+      mkBoard(
+        List(". X X . .",
+             " X . X . X",
+             "  . X . X .",
+             "   . X X . .",
+             "    O O O O O"))).winner should be(Some(Color.Black))
+  }
+
+  test("X wins using a spiral path") {
+    pending
+    Connect(
+      mkBoard(List(
+        "O X X X X X X X X",
+        " O X O O O O O O O",
+        "  O X O X X X X X O",
+        "   O X O X O O O X O",
+        "    O X O X X X O X O",
+        "     O X O O O X O X O",
+        "      O X X X X X O X O",
+        "       O O O O O O O X O",
+        "        X X X X X X X X O"
+      ))).winner should be(Some(Color.Black))
   }
 }
