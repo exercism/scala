@@ -1,5 +1,6 @@
 import org.scalatest.{FunSuite, Matchers}
 
+/** @version created manually **/
 class ProteinTranslationTest extends FunSuite with Matchers {
   test("Identifies methionine codon") {
     ProteinTranslation.translate("AUG") should be(Seq("Methionine"))
