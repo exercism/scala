@@ -1,5 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
+/** @version created manually **/
 class CipherTest extends FunSuite with Matchers {
 
   test("Random key cipher - can encode/decode") {
