@@ -1,5 +1,6 @@
 import org.scalatest.{Matchers, FlatSpec}
 
+/** @version created manually **/
 class AccumulateTest extends FlatSpec with Matchers {
 
   it should "allow empty accumulation" in {
