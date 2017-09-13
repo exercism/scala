@@ -1,5 +1,5 @@
-import scala.util.parsing.combinator.RegexParsers
 import scala.math.pow
+import scala.util.parsing.combinator.RegexParsers
 
 sealed abstract class Expression {
   def evaluate(): Integer
@@ -29,7 +29,7 @@ case class Pow(e1: Expression, e2: Expression) extends Expression {
   def evaluate(): Integer = pow(e1.evaluate().toDouble, e2.evaluate().toDouble).toInt
 }
 
-object WordProblem extends RegexParsers {
+object Wordy extends RegexParsers {
   private lazy val prefix = "What is "
   private lazy val questionMark = "?"
   private lazy val operators = "plus" | "minus" | "multiplied by" |
@@ -53,7 +53,7 @@ object WordProblem extends RegexParsers {
 
   def parse(str: String): ParseResult[Expression] = parseAll(questionParser, str)
 
-  def apply(question: String): Option[Int] = parse(question) match {
+  def answer(question: String): Option[Int] = parse(question) match {
     case Success(result: Expression, _) => Some(result.evaluate())
     case _ => None
   }
