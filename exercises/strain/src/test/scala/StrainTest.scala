@@ -1,5 +1,6 @@
 import org.scalatest.{Matchers, FlatSpec}
 
+/** @version created manually **/
 class StrainTest extends FlatSpec with Matchers {
 
   it should "handle empty keep" in {
