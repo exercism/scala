@@ -1,69 +1,104 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{Matchers, FunSuite}
 
-class AllergiesTest extends FlatSpec with Matchers {
-  it should "handle no allergies means not allergic" in {
-    Allergies.isAllergicTo(Allergen.Peanuts, 0) should equal (false)
-    Allergies.isAllergicTo(Allergen.Cats, 0) should equal (false)
-    Allergies.isAllergicTo(Allergen.Strawberries, 0) should equal (false)
+/** @version 1.0.0 */
+class AllergiesTest extends FunSuite with Matchers {
+
+  test("Allergen.Peanuts - no allergies means not allergic") {
+    Allergies.allergicTo(Allergen.Peanuts, 0) should be(false)
   }
 
-  it should "handle is allergic to eggs" in {
+  test("Allergen.Cats - no allergies means not allergic") {
     pending
-    Allergies.isAllergicTo(Allergen.Eggs, 1) should equal (true)
+    Allergies.allergicTo(Allergen.Cats, 0) should be(false)
   }
 
-  it should "handle is allergic to eggs in addition to other stuff" in {
+  test("Allergen.Strawberries - no allergies means not allergic") {
     pending
-    Allergies.isAllergicTo(Allergen.Eggs, 5) should equal (true)
+    Allergies.allergicTo(Allergen.Strawberries, 0) should be(false)
   }
 
-  it should "handle no allergies" in {
+  test("Allergen.Eggs - is allergic to eggs") {
     pending
-    Allergies.allergies(0) should equal (List())
+    Allergies.allergicTo(Allergen.Eggs, 1) should be(true)
   }
 
-  it should "handle allergic to just eggs" in {
+  test("Allergen.Eggs - allergic to eggs in addition to other stuff") {
     pending
-    Allergies.allergies(1) should equal (List(Allergen.Eggs))
+    Allergies.allergicTo(Allergen.Eggs, 5) should be(true)
   }
 
-  it should "handle allergic to just peanuts" in {
+  test("Allergen.Shellfish - allergic to eggs in addition to other stuff") {
     pending
-    Allergies.allergies(2) should equal (List(Allergen.Peanuts))
+    Allergies.allergicTo(Allergen.Shellfish, 5) should be(true)
   }
 
-  it should "handle allergic to just strawberries" in {
+  test("Allergen.Strawberries - allergic to eggs in addition to other stuff") {
     pending
-    Allergies.allergies(8) should equal (List(Allergen.Strawberries))
+    Allergies.allergicTo(Allergen.Strawberries, 5) should be(false)
   }
 
-  it should "handle allergic to eggs and peanuts" in {
+  test("no allergies at all") {
     pending
-    Allergies.allergies(3) should equal (List(Allergen.Eggs, Allergen.Peanuts))
+    Allergies.list(0) should be(List())
   }
 
-  it should "handle allergic to more than eggs but not peanuts" in {
+  test("allergic to just eggs") {
     pending
-    Allergies.allergies(5) should equal (List(Allergen.Eggs, Allergen.Shellfish))
+    Allergies.list(1) should be(List(Allergen.Eggs))
   }
 
-  it should "handle allergic to lots of stuff" in {
+  test("allergic to just peanuts") {
     pending
-    Allergies.allergies(248) should equal (List(Allergen.Strawberries, Allergen.Tomatoes,
-      Allergen.Chocolate, Allergen.Pollen, Allergen.Cats))
+    Allergies.list(2) should be(List(Allergen.Peanuts))
   }
 
-  it should "handle allergic to everything" in {
+  test("allergic to just strawberries") {
     pending
-    Allergies.allergies(255) should equal (List(Allergen.Eggs, Allergen.Peanuts,
-      Allergen.Shellfish, Allergen.Strawberries, Allergen.Tomatoes,
-      Allergen.Chocolate, Allergen.Pollen, Allergen.Cats))
+    Allergies.list(8) should be(List(Allergen.Strawberries))
   }
 
-  it should "ignore non allergen score parts" in {
+  test("allergic to eggs and peanuts") {
     pending
-    Allergies.allergies(509) should equal (List(Allergen.Eggs,
-      Allergen.Shellfish, Allergen.Strawberries, Allergen.Tomatoes,
-      Allergen.Chocolate, Allergen.Pollen, Allergen.Cats))
+    Allergies.list(3) should be(List(Allergen.Eggs, Allergen.Peanuts))
+  }
+
+  test("allergic to more than eggs but not peanuts") {
+    pending
+    Allergies.list(5) should be(List(Allergen.Eggs, Allergen.Shellfish))
+  }
+
+  test("allergic to lots of stuff") {
+    pending
+    Allergies.list(248) should be(
+      List(Allergen.Strawberries,
+           Allergen.Tomatoes,
+           Allergen.Chocolate,
+           Allergen.Pollen,
+           Allergen.Cats))
+  }
+
+  test("allergic to everything") {
+    pending
+    Allergies.list(255) should be(
+      List(Allergen.Eggs,
+           Allergen.Peanuts,
+           Allergen.Shellfish,
+           Allergen.Strawberries,
+           Allergen.Tomatoes,
+           Allergen.Chocolate,
+           Allergen.Pollen,
+           Allergen.Cats))
+  }
+
+  test("ignore non allergen score parts") {
+    pending
+    Allergies.list(509) should be(
+      List(Allergen.Eggs,
+           Allergen.Shellfish,
+           Allergen.Strawberries,
+           Allergen.Tomatoes,
+           Allergen.Chocolate,
+           Allergen.Pollen,
+           Allergen.Cats))
   }
 }

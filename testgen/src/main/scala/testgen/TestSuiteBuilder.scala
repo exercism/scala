@@ -10,6 +10,7 @@ object TestSuiteBuilder {
 
   type TestSuiteTemplate = Template1[TestSuiteData, Txt]
   type ToTestCaseData = String => LabeledTestItem => TestCaseData
+  type ToTestCaseDataList = String => LabeledTestItem => List[TestCaseData]
   type ToOptionTestCaseData = String => LabeledTestItem => Option[TestCaseData]
 
   private val DefaultTemplate: TestSuiteTemplate =
@@ -22,6 +23,22 @@ object TestSuiteBuilder {
       CanonicalDataParser.parse(file)
     val tsName = testSuiteName(name)
     val testCasesAllPending = cases map toTestCaseData(sutName(name))
+    val testCases =
+      testCasesAllPending updated(0, testCasesAllPending.head.copy(pending = false))
+    val testSuiteData =
+      TestSuiteData(tsName, version, imports, testCases, statements)
+
+    template.render(testSuiteData).toString
+  }
+
+
+  def buildFromList(file: File, toTestCaseData: ToTestCaseDataList, imports: Seq[String] = Seq(), statements: Seq[String] = Seq())(
+    implicit template: TestSuiteTemplate = DefaultTemplate): String =
+  {
+    val exercise @ Exercise(name, version, cases, comments) =
+      CanonicalDataParser.parse(file)
+    val tsName = testSuiteName(name)
+    val testCasesAllPending = cases.flatMap(toTestCaseData(sutName(name)))
     val testCases =
       testCasesAllPending updated(0, testCasesAllPending.head.copy(pending = false))
     val testSuiteData =
@@ -46,6 +63,9 @@ object TestSuiteBuilder {
   }
 
   def withLabeledTest(f: String => LabeledTest => TestCaseData): ToTestCaseData =
+    sut => item => f(sut)(item.asInstanceOf[LabeledTest])
+
+  def withLabeledList(f: String => LabeledTest => List[TestCaseData]): ToTestCaseDataList =
     sut => item => f(sut)(item.asInstanceOf[LabeledTest])
 
   def withLabeledTestOpt(f: String => LabeledTest => Option[TestCaseData]): ToOptionTestCaseData =
