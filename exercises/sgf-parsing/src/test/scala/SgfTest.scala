@@ -1,6 +1,7 @@
 import org.scalatest.{FunSuite, Matchers}
 import Sgf._
 
+/** @version created manually **/
 class SgfTest extends FunSuite with Matchers {
   test("parse \"\"") {
     Sgf.parseSgf("") should be (None)
