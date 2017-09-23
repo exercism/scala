@@ -1,206 +1,201 @@
-import org.scalatest.{EitherValues, Matchers, FlatSpec}
+import org.scalatest.{Matchers, FunSuite}
 
-class ForthTest extends FlatSpec with Matchers with EitherValues {
+/** @version 1.2.0 */
+class ForthTest extends FunSuite with Matchers {
+
   private val forth = new Forth
 
-  "no input" should "result in no stack" in {
-    forth.eval("") match {
-      case Right(state) => state.toString should equal("")
-      case _ => fail("error handling no input")
-    }
+  test("parsing and numbers - empty input results in empty stack") {
+    forth.eval("").fold(_ => "", _.toString) should be ("")
   }
 
-  "numbers" should "just get pushed onto the stack" in {
+  test("parsing and numbers - numbers just get pushed onto the stack") {
     pending
-    forth.eval("1 2 3 4 5") match {
-      case Right(state) => state.toString should equal("1 2 3 4 5")
-      case Left(error) => fail("error pushing numbers on stack - " + error)
-    }
+    forth.eval("1 2 3 4 5").fold(_ => "", _.toString) should be ("1 2 3 4 5")
   }
 
-  "non-word characters" should "be handled as separators" in {
+  test("addition - can add two numbers") {
     pending
-    // Note the Ogham Space Mark ( ), this is a spacing character.
-    // Also note that if Regex is used for your solution then handling
-    // Unicode requires and additional flag in the Regex string "(?U)".
-    forth.eval("1\u00002\u00013\n4\r5 6\t7") match {
-      case Right(state) => state.toString should equal("1 2 3 4 5 6 7")
-      case Left(error) => fail("error handling non-word chars - " + error)
-    }
+    forth.eval("1 2 +").fold(_ => "", _.toString) should be ("3")
   }
 
-  "basic arithmetic" should "evaluate" in {
+  test("addition - errors if there is nothing on the stack") {
     pending
-    forth.eval("1 2 + 4 -") match {
-      case Right(state) => state.toString should equal("-1")
-      case Left(error) => fail("error handling basic arithmetic - " + error)
-    }
+    forth.eval("+").isLeft should be (true)
   }
 
-  "basic mul/div" should "evaluate" in {
+  test("addition - errors if there is only one value on the stack") {
     pending
-    forth.eval("2 4 * 3 /") match {
-      case Right(state) => state.toString should equal("2")
-      case Left(error) => fail("error handling basic mul/div - " + error)
-    }
+    forth.eval("1 +").isLeft should be (true)
   }
 
-  "division by zero" should "return error" in {
+  test("subtraction - can subtract two numbers") {
     pending
-    forth.eval("4 2 2 - /") match {
-      case Right(state) => fail("division by zero should return error")
-      case Left(error) => error should equal(ForthError.DivisionByZero)
-    }
+    forth.eval("3 4 -").fold(_ => "", _.toString) should be ("-1")
   }
 
-  "dup" should "dupe the top of the stack" in {
+  test("subtraction - errors if there is nothing on the stack") {
     pending
-    forth.eval("1 DUP") match {
-      case Right(state) => state.toString should equal("1 1")
-      case Left(error) => fail("error handling dup - " + error)
-    }
-
-    forth.eval("1 2 DUP") match {
-      case Right(state) => state.toString should equal("1 2 2")
-      case Left(error) => fail("error handling dup of multi element stack - " + error)
-    }
+    forth.eval("-").isLeft should be (true)
   }
 
-  "dup on empty stack" should "result in error" in {
+  test("subtraction - errors if there is only one value on the stack") {
     pending
-    forth.eval("dup") match {
-      case Right(state) => fail("dup on empty stack should return error")
-      case Left(error) => error should equal(ForthError.StackUnderflow)
-    }
+    forth.eval("1 -").isLeft should be (true)
   }
 
-  "drop" should "remove an item from the stack" in {
+  test("multiplication - can multiply two numbers") {
     pending
-    forth.eval("1 2 drop") match {
-      case Right(state) => state.toString should equal("1")
-      case Left(error) => fail("error handling drop - " + error)
-    }
+    forth.eval("2 4 *").fold(_ => "", _.toString) should be ("8")
   }
 
-  "drop on 1 item stack" should "result in empty" in {
+  test("multiplication - errors if there is nothing on the stack") {
     pending
-    forth.eval("1 drop") match {
-      case Right(state) => state.toString should equal("")
-      case Left(error) => fail("error handling drop on 1 item stack - " + error)
-    }
+    forth.eval("*").isLeft should be (true)
   }
 
-  "drop on empty stack" should "result in error" in {
+  test("multiplication - errors if there is only one value on the stack") {
     pending
-    forth.eval("drop") match {
-      case Right(state) => fail("drop on empty stack should return error")
-      case Left(error) => error should equal(ForthError.StackUnderflow)
-    }
+    forth.eval("1 *").isLeft should be (true)
   }
 
-  "swap" should "swap the top of the stack" in {
+  test("division - can divide two numbers") {
     pending
-    forth.eval("1 2 swap") match {
-      case Right(state) => state.toString should equal("2 1")
-      case Left(error) => fail("error handling swap - " + error)
-    }
-
-    forth.eval("1 2 3 swap") match {
-      case Right(state) => state.toString should equal("1 3 2")
-      case Left(error) => fail("error handling swap - " + error)
-    }
+    forth.eval("12 3 /").fold(_ => "", _.toString) should be ("4")
   }
 
-  "swap on empty" should "result in error" in {
+  test("division - performs integer division") {
     pending
-    forth.eval("swap") match {
-      case Right(state) => fail("swap on empty stack should return error")
-      case Left(error) => error should equal(ForthError.StackUnderflow)
-    }
+    forth.eval("8 3 /").fold(_ => "", _.toString) should be ("2")
   }
 
-  "swap on single item stack" should "result in error" in {
+  test("division - errors if dividing by zero") {
     pending
-    forth.eval("1 swap") match {
-      case Right(state) => fail("swap on single item stack should return error")
-      case Left(error) => error should equal(ForthError.StackUnderflow)
-    }
+    forth.eval("4 0 /").isLeft should be (true)
   }
 
-  "over" should "dupe second item in stack" in {
+  test("division - errors if there is nothing on the stack") {
     pending
-    forth.eval("1 2 over") match {
-      case Right(state) => state.toString should equal("1 2 1")
-      case Left(error) => fail("error handling over - " + error)
-    }
-
-    forth.eval("1 2 3 over") match {
-      case Right(state) => state.toString should equal("1 2 3 2")
-      case Left(error) => fail("error handling over - " + error)
-    }
+    forth.eval("/").isLeft should be (true)
   }
 
-  "over on empty" should "result in error" in {
+  test("division - errors if there is only one value on the stack") {
     pending
-    forth.eval("over") match {
-      case Right(state) => fail("over on empty stack should return error")
-      case Left(error) => error should equal(ForthError.StackUnderflow)
-    }
+    forth.eval("1 /").isLeft should be (true)
   }
 
-  "over on single item stack" should "result in error" in {
+  test("combined arithmetic - addition and subtraction") {
     pending
-    forth.eval("1 over") match {
-      case Right(state) => fail("over on single item  stack should return error")
-      case Left(error) => error should equal(ForthError.StackUnderflow)
-    }
+    forth.eval("1 2 + 4 -").fold(_ => "", _.toString) should be ("-1")
   }
 
-  "define a new word and usage" should "result in stack update" in {
+  test("combined arithmetic - multiplication and division") {
     pending
-    forth.eval(": dupe-twice dup dup ;\r 1 dupe-twice") match {
-      case Right(state) => state.toString should equal("1 1 1")
-      case Left(error) => fail("error handling define new word and use - " + error)
-    }
+    forth.eval("2 4 * 3 /").fold(_ => "", _.toString) should be ("2")
   }
 
-  "redefine an existing word and usage" should "result in stack update" in {
+  test("dup - copies the top value on the stack") {
     pending
-    forth.eval(": foo dup ;\r: foo dup dup ;\n1 foo") match {
-      case Right(state) => state.toString should equal("1 1 1")
-      case Left(error) => fail("error handling redefine word and use - " + error)
-    }
+    forth.eval("1 DUP").fold(_ => "", _.toString) should be ("1 1")
   }
 
-  "define a built in word" should "result in stack update using redefinition" in {
+  test("dup - is case-insensitive") {
     pending
-    forth.eval(": swap dup ;\r 1 swap") match {
-      case Right(state) => state.toString should equal("1 1")
-      case Left(error) => fail("error handling redefining built in word and use - " + error)
-    }
+    forth.eval("1 2 Dup").fold(_ => "", _.toString) should be ("1 2 2")
   }
 
-  "defining a word with odd chars" should "update the stack" in {
+  test("dup - errors if there is nothing on the stack") {
     pending
-    forth.eval(": €A 220371 ; €A") match {
-      case Right(state) => state.toString should equal("220371")
-      case Left(error) => fail("error handling word definition with odd chars - " + error)
-    }
+    forth.eval("dup").isLeft should be (true)
   }
 
-  "defining a number" should "result in an error" in {
+  test("drop - removes the top value on the stack if it is the only one") {
     pending
-    forth.eval(": 1 2 ;") match {
-      case Right(state) => fail("defining a new word using a number should result in an error")
-      case Left(error) => error should equal(ForthError.InvalidWord)
-    }
+    forth.eval("1 drop").fold(_ => "", _.toString) should be ("")
   }
 
-  "calling a non-existent word" should "result in an error" in {
+  test("drop - removes the top value on the stack if it is not the only one") {
     pending
-    forth.eval("1 foo") match {
-      case Right(state) => fail("calling a non-existent word should result in an error")
-      case Left(error) => error should equal(ForthError.InvalidWord)
-    }
+    forth.eval("1 2 drop").fold(_ => "", _.toString) should be ("1")
+  }
+
+  test("drop - errors if there is nothing on the stack") {
+    pending
+    forth.eval("drop").isLeft should be (true)
+  }
+
+  test("swap - swaps the top two values on the stack if they are the only ones") {
+    pending
+    forth.eval("1 2 swap").fold(_ => "", _.toString) should be ("2 1")
+  }
+
+  test("swap - swaps the top two values on the stack if they are not the only ones") {
+    pending
+    forth.eval("1 2 3 swap").fold(_ => "", _.toString) should be ("1 3 2")
+  }
+
+  test("swap - errors if there is nothing on the stack") {
+    pending
+    forth.eval("swap").isLeft should be (true)
+  }
+
+  test("swap - errors if there is only one value on the stack") {
+    pending
+    forth.eval("1 swap").isLeft should be (true)
+  }
+
+  test("over - copies the second element if there are only two") {
+    pending
+    forth.eval("1 2 over").fold(_ => "", _.toString) should be ("1 2 1")
+  }
+
+  test("over - copies the second element if there are more than two") {
+    pending
+    forth.eval("1 2 3 over").fold(_ => "", _.toString) should be ("1 2 3 2")
+  }
+
+  test("over - errors if there is nothing on the stack") {
+    pending
+    forth.eval("over").isLeft should be (true)
+  }
+
+  test("over - errors if there is only one value on the stack") {
+    pending
+    forth.eval("1 over").isLeft should be (true)
+  }
+
+  test("user-defined words - can consist of built-in words") {
+    pending
+    forth.eval(": dup-twice dup dup ; 1 dup-twice").fold(_ => "", _.toString) should be ("1 1 1")
+  }
+
+  test("user-defined words - execute in the right order") {
+    pending
+    forth.eval(": countup 1 2 3 ; countup").fold(_ => "", _.toString) should be ("1 2 3")
+  }
+
+  test("user-defined words - can override other user-defined words") {
+    pending
+    forth.eval(": foo dup ; : foo dup dup ; 1 foo").fold(_ => "", _.toString) should be ("1 1 1")
+  }
+
+  test("user-defined words - can override built-in words") {
+    pending
+    forth.eval(": swap dup ; 1 swap").fold(_ => "", _.toString) should be ("1 1")
+  }
+
+  test("user-defined words - can override built-in operators") {
+    pending
+    forth.eval(": + * ; 3 4 +").fold(_ => "", _.toString) should be ("12")
+  }
+
+  test("user-defined words - cannot redefine numbers") {
+    pending
+    forth.eval(": 1 2 ;").isLeft should be (true)
+  }
+
+  test("user-defined words - errors if executing a non-existent word") {
+    pending
+    forth.eval("foo").isLeft should be (true)
   }
 }
