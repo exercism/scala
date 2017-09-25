@@ -59,15 +59,17 @@ object Exercise {
     val cases: Cases =
       getRequired[Seq[ParseResult]](result, "cases") map LabeledTestItem.fromParseResult
     Exercise(getRequired(result, "exercise"), getRequired(result, "version"),
-        flattenCases(cases), getOptional(result, "comments"))
+        flattenCases(cases, List()), getOptional(result, "comments"))
   }
 
   // so far there are to few LabeledTestGroups to handle them separately
-  private def flattenCases(cases: Cases): Cases =
+  private def flattenCases(cases: Cases, parentDescriptions: List[String]): Cases =
     cases match {
       case Seq() => Seq()
-      case (ltg: LabeledTestGroup) +: xs => flattenCases(ltg.cases) ++ flattenCases(xs)
-      case (lt: LabeledTest) +: xs => lt +: flattenCases(xs)
+      case (ltg: LabeledTestGroup) +: xs => flattenCases(ltg.cases, ltg.description :: parentDescriptions) ++
+        flattenCases(xs, parentDescriptions)
+      case (lt: LabeledTest) +: xs => LabeledTest(lt.description, lt.property, lt.expected, lt.result, parentDescriptions) +:
+        flattenCases(xs, parentDescriptions)
     }
 }
 
@@ -79,7 +81,7 @@ object LabeledTestItem {
 }
 
 case class LabeledTest(description: Description, property: Property,
-    expected: Expected, result: ParseResult) extends LabeledTestItem
+    expected: Expected, result: ParseResult, parentDescriptions: List[String] = List()) extends LabeledTestItem
 object LabeledTest {
   implicit def fromParseResult(result: ParseResult): LabeledTest = {
     val expected: Expected = {
