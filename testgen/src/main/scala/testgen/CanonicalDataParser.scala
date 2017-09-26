@@ -30,7 +30,6 @@ object CanonicalDataParser {
     val rawParseResult =
       JSON.parseFull(fileContents).get.asInstanceOf[ParseResult]
     val parseResult = rawParseResult mapValues restoreInts
-    println(parseResult)
     parseResult
   }
 
