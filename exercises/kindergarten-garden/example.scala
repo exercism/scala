@@ -7,7 +7,7 @@ class Garden(children: List[String], plantsStr: String) {
   private val sortedChildren = children.sorted
   private val gardenMap = sortedChildren.zip(childPlants).toMap
 
-  def getPlants(child: String): List[Plant] = {
+  def plants(child: String): List[Plant] = {
     val plantChars = gardenMap.getOrElse(child, "")
     plantChars.map(c => Plant.withName(c.toString)).toList
   }
