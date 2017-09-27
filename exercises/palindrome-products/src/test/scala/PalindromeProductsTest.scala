@@ -1,59 +1,79 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{Matchers, FunSuite}
 
-class PalindromeProductsTest extends FlatSpec with Matchers {
+/** @version 1.0.0 */
+class PalindromeProductsTest extends FunSuite with Matchers {
 
-  it should "find smallest palindrome from a single digit factors" in {
-    val (value, factors) = PalindromeProducts(1, 9).smallest
-    value should be (1)
-    factors should be (Set((1, 1)))
+  // PalindromeProducts largest call is expecting a return type of
+  // Option[(Int, Set[(Int, Int)])] - None is expected for error cases.
+  // Some is expected for valid cases. The first element of the tuple
+  // is the largest palindrome product value. The second element of the
+  // tuple is the list of factors.
+  // PalindromeProducts smallest call is expecting a return type of
+  // Option[(Int, Set[(Int, Int)])] - None is expected for error cases.
+  // Some is expected for valid cases. The first element of the tuple
+  // is the smallest palindrome product value. The second element of the
+  // tuple is the list of factors.
+
+  test("finds the smallest palindrome from single digit factors") {
+    PalindromeProducts(1, 9).smallest should be(Some((1, Set((1, 1)))))
   }
 
-  it should "find largest palindrome from a single digit factors" in {
+  test("finds the largest palindrome from single digit factors") {
     pending
-    val (value, factors) = PalindromeProducts(0, 9).largest
-    value should be (9)
-    factors should be (Set((1, 9), (3, 3)))
+    PalindromeProducts(1, 9).largest should be(Some((9, Set((1, 9), (3, 3)))))
   }
 
-  it should "find smallest palindrome from a double digit factors" in {
+  test("find the smallest palindrome from double digit factors") {
     pending
-    val (value, factors) = PalindromeProducts(10, 99).smallest
-    value should be (121)
-    factors should be (Set((11, 11)))
+    PalindromeProducts(10, 99).smallest should be(Some((121, Set((11, 11)))))
   }
 
-  it should "find largest palindrome from a double digit factors" in {
+  test("find the largest palindrome from double digit factors") {
     pending
-    val (value, factors) = PalindromeProducts(10, 99).largest
-    value should be (9009)
-    factors should be (Set((91, 99)))
+    PalindromeProducts(10, 99).largest should be(Some((9009, Set((91, 99)))))
   }
 
-  it should "find smallest palindrome from a triple digit factors" in {
+  test("find smallest palindrome from triple digit factors") {
     pending
-    val (value, factors) = PalindromeProducts(100, 999).smallest
-    value should be (10201)
-    factors should be (Set((101, 101)))
+    PalindromeProducts(100, 999).smallest should be(
+      Some((10201, Set((101, 101)))))
   }
 
-  it should "find largest palindrome from a triple digit factors" in {
+  test("find the largest palindrome from triple digit factors") {
     pending
-    val (value, factors) = PalindromeProducts(100, 999).largest
-    value should be (906609)
-    factors should be (Set((913, 993)))
+    PalindromeProducts(100, 999).largest should be(
+      Some((906609, Set((913, 993)))))
   }
 
-  it should "find smallest palindrome from a four digit factors" in {
+  test("find smallest palindrome from four digit factors") {
     pending
-    val (value, factors) = PalindromeProducts(1000, 9999).smallest
-    value should be (1002001)
-    factors should be (Set((1001, 1001)))
+    PalindromeProducts(1000, 9999).smallest should be(
+      Some((1002001, Set((1001, 1001)))))
   }
 
-  it should "find largest palindrome from a four digit factors" in {
+  test("find the largest palindrome from four digit factors") {
     pending
-    val (value, factors) = PalindromeProducts(1000, 9999).largest
-    value should be (99000099)
-    factors should be (Set((9901, 9999)))
+    PalindromeProducts(1000, 9999).largest should be(
+      Some((99000099, Set((9901, 9999)))))
+  }
+
+  test("empty result for smallest if no palindrome in the range") {
+    pending
+    PalindromeProducts(1002, 1003).smallest should be(None)
+  }
+
+  test("empty result for largest if no palindrome in the range") {
+    pending
+    PalindromeProducts(15, 15).largest should be(None)
+  }
+
+  test("error result for smallest if min is more than max") {
+    pending
+    PalindromeProducts(10000, 1).smallest should be(None)
+  }
+
+  test("error result for largest if min is more than max") {
+    pending
+    PalindromeProducts(2, 1).largest should be(None)
   }
 }
