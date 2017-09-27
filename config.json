@@ -746,6 +746,7 @@
       "unlocked_by": "sum-of-multiples",
       "difficulty": 6,
       "topics": [
+        "Optional values",
         "Sets",
         "Strings",
         "Tuples",
