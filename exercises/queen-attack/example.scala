@@ -1,28 +1,5 @@
-object Queens {
-
-  def boardString(white: Option[Position], black: Option[Position]): String = {
-
-    def rowString(row: Int): String =
-      (0 until 8).flatMap(col => tileString(row, col)).mkString
-
-    def tileString(row: Int, col: Int): String =
-      tileChar(Position(row, col)).toString + tileSep(col)
-
-    def tileChar(pos: Position): Char =
-      Some(pos) match {
-        case `white` => 'W'
-        case `black` => 'B'
-        case _ => '_'
-      }
-
-    def tileSep(col: Int) =
-      if (col == 7) '\n'
-      else ' '
-
-    (0 until 8).flatMap(row => rowString(row)).mkString
-  }
-
-  def canAttack(white: Position, black: Position): Boolean = {
+object QueenAttack {
+  def canAttack(white: Queen, black: Queen): Boolean = {
     val canAttackHoriz = white.x == black.x
     val canAttackVert = white.y == black.y
     val deltaRow = Math.abs(white.x - black.x)
@@ -33,5 +10,16 @@ object Queens {
   }
 }
 
-case class Position(x: Int, y: Int)
+case class Queen(x: Int, y: Int)
+
+object Queen {
+  def create(x: Int, y: Int): Option[Queen] = {
+    val min = 0
+    val max = 7
+    if (x >= min && x <= max && y >= min && y <= max)
+      Some(Queen(x, y))
+    else
+      None
+  }
+}
 
