@@ -1,9 +1,14 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 2.0.0 */
 class HammingTest extends FunSuite with Matchers {
+  
+  test("empty strands") {
+    Hamming.distance("", "") should be (Some(0))
+  }
 
   test("identical strands") {
+    pending
     Hamming.distance("A", "A") should be (Some(0))
   }
 
@@ -60,11 +65,6 @@ class HammingTest extends FunSuite with Matchers {
   test("large distance in off-by-one strand") {
     pending
     Hamming.distance("GGACGGATTCTG", "AGGACGGATTCT") should be (Some(9))
-  }
-
-  test("empty strands") {
-    pending
-    Hamming.distance("", "") should be (Some(0))
   }
 
   test("disallow first strand longer") {
