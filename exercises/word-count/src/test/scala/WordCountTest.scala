@@ -1,69 +1,68 @@
-import org.scalatest._
+import org.scalatest.{Matchers, FunSuite}
 
-class WordCountTest extends FlatSpec with Matchers {
-  it should "count one word" in {
-    val phrase = new Phrase("word")
-    phrase.wordCount should be (Map("word" -> 1))
+/** @version 1.0.0 */
+class WordCountTest extends FunSuite with Matchers {
+
+  test("count one word") {
+    WordCount("word").countwords should be(Map(("word", 1)))
   }
 
-  it should "count one of each" in {
+  test("count one of each word") {
     pending
-    val phrase = new Phrase("one of each")
-    val counts = Map("one" -> 1, "of" -> 1, "each" -> 1)
-    phrase.wordCount should be (counts)
+    WordCount("one of each").countwords should be(
+      Map(("one", 1), ("of", 1), ("each", 1)))
   }
 
-  it should "count multiple occurrences" in {
+  test("multiple occurrences of a word") {
     pending
-    val phrase = new Phrase("one fish two fish red fish blue fish")
-    val counts = Map("one" -> 1, "fish" -> 4, "two" -> 1, "red" -> 1, "blue" -> 1)
-    phrase.wordCount should be (counts)
+    WordCount("one fish two fish red fish blue fish").countwords should be(
+      Map(("blue", 1), ("two", 1), ("fish", 4), ("one", 1), ("red", 1)))
   }
 
-  it should "count everything just once" in {
+  test("handles cramped lists") {
     pending
-    val phrase = new Phrase("all the kings horses and all the kings men")
-    phrase.wordCount
-    val counts = Map(
-      "all" -> 2, "the" -> 2, "kings" -> 2, "horses" -> 1, "and" -> 1, "men" -> 1
-    )
-    phrase.wordCount should be (counts)
+    WordCount("one,two,three").countwords should be(
+      Map(("one", 1), ("two", 1), ("three", 1)))
   }
 
-  it should "ignore punctuation" in {
+  test("handles expanded lists") {
     pending
-    val phrase = new Phrase("car : carpet as java : javascript!!&@$%^&")
-    val counts = Map(
-      "car" -> 1, "carpet" -> 1, "as" -> 1, "java" -> 1, "javascript" -> 1
-    )
-    phrase.wordCount should be (counts)
+    WordCount("one,\ntwo,\nthree").countwords should be(
+      Map(("one", 1), ("two", 1), ("three", 1)))
   }
 
-  it should "handle cramped lists" in {
+  test("ignore punctuation") {
     pending
-    val phrase = new Phrase("one,two,three")
-    phrase.wordCount should be (Map("one" -> 1, "two" -> 1, "three" -> 1))
+    WordCount("car: carpet as java: javascript!!&@$%^&").countwords should be(
+      Map(("as", 1), ("car", 1), ("java", 1), ("carpet", 1), ("javascript", 1)))
   }
 
-  it should "include numbers" in {
+  test("include numbers") {
     pending
-    val phrase = new Phrase("testing, 1, 2 testing")
-    val counts = Map("testing" -> 2, "1" -> 1, "2" -> 1)
-    phrase.wordCount should be (counts)
+    WordCount("testing, 1, 2 testing").countwords should be(
+      Map(("testing", 2), ("1", 1), ("2", 1)))
   }
 
-  it should "normalize case" in {
+  test("normalize case") {
     pending
-    val phrase = new Phrase("go Go GO")
-    val counts = Map("go" -> 3)
-    phrase.wordCount should be (counts)
+    WordCount("go Go GO Stop stop").countwords should be(
+      Map(("go", 3), ("stop", 2)))
   }
 
-  it should "allow apostrophes" in {
+  test("with apostrophes") {
     pending
-    val phrase = new Phrase("First: don't laugh. Then: don't cry.")
-    val counts =
-      Map("first" -> 1, "don't" -> 2, "laugh" -> 1, "then" -> 1, "cry" -> 1)
-    phrase.wordCount should be (counts)
+    WordCount("First: don\'t laugh. Then: don\'t cry.").countwords should be(
+      Map(("laugh", 1), ("don't", 2), ("then", 1), ("first", 1), ("cry", 1)))
+  }
+
+  test("with quotations") {
+    pending
+    WordCount("Joe can\'t tell between \'large\' and large.").countwords should be(
+      Map(("can't", 1),
+          ("large", 2),
+          ("joe", 1),
+          ("between", 1),
+          ("tell", 1),
+          ("and", 1)))
   }
 }
