@@ -26,3 +26,5 @@ class CollatzConjectureTest extends FunSuite with Matchers {
     pending
     CollatzConjecture.collatz(1000000) should be (152)
   }
+
+}
