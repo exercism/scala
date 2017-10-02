@@ -47,6 +47,16 @@
       ]
     },
     {
+      "uuid": "65a76aba-a485-222d-84ba-e9a445b25be6",
+      "slug": "collatz-conjecture",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "Recursion"
+      ]
+    },
+    {
       "uuid": "f147966d-97ec-4479-8679-8cad942b499a",
       "slug": "space-age",
       "core": true,
