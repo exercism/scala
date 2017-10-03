@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.1.0 */
 class PigLatinTest extends FunSuite with Matchers {
 
   test("word beginning with a") {
@@ -40,11 +40,6 @@ class PigLatinTest extends FunSuite with Matchers {
   test("word beginning with k") {
     pending
     PigLatin.translate("koala") should be ("oalakay")
-  }
-
-  test("word beginning with y") {
-    pending
-    PigLatin.translate("yellow") should be ("ellowyay")
   }
 
   test("word beginning with x") {
@@ -95,6 +90,21 @@ class PigLatinTest extends FunSuite with Matchers {
   test("word beginning with xr") {
     pending
     PigLatin.translate("xray") should be ("xrayay")
+  }
+
+  test("y is treated like a consonant at the beginning of a word") {
+    pending
+    PigLatin.translate("yellow") should be ("ellowyay")
+  }
+
+  test("y is treated like a vowel at the end of a consonant cluster") {
+    pending
+    PigLatin.translate("rhythm") should be ("ythmrhay")
+  }
+
+  test("y as second letter in two letter word") {
+    pending
+    PigLatin.translate("my") should be ("ymay")
   }
 
   test("a whole phrase") {

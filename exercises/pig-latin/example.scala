@@ -1,31 +1,12 @@
 object PigLatin {
-  def translate(phrase: String): String = {
-    phrase.split("\\s+").map(translateWord).mkString(" ")
-  }
+  private val vowelRegex = "(^|\\s+)(a|e|i|o|u|yt|xr)(\\w+)".r
+  private val consonantRegex = "(^|\\s+)(?<consonant>ch|qu|thr|th|sch|yt|rh|\\wqu|\\w)(?<rest>\\w+)".r
+  private val vowelReplacement = "$1$2$3ay"
+  private val consonantReplacement = "$1$3$2ay"
 
-  def translateWord(str: String): String = {
-    val lowercase = str.toLowerCase
-
-    if (Seq("yt", "xr").exists(pre => lowercase.startsWith(pre))) {
-      lowercase + "ay"
-    } else {
-      val before = lowercase.takeWhile(!_.isLetter)
-      val w1 = lowercase.drop(before.length)
-      val w2 = w1.takeWhile(_.isLetter)
-      val after = w1.drop(w2.length)
-      val (cs, w) = consonantCluster(w2)
-
-      before ++ w ++ cs ++ "ay" ++ after
+  def translate(phrase: String): String =
+    vowelRegex.findFirstIn(phrase) match {
+      case Some(x) => vowelRegex.replaceAllIn(phrase, vowelReplacement)
+      case None => consonantRegex.replaceAllIn(phrase, consonantReplacement)
     }
-  }
-
-  private def consonantCluster(str: String): (String, String) = {
-    val isVowel = Set('a', 'e', 'i', 'o', 'u')
-    val first = str.takeWhile(!isVowel(_))
-    val rest = str.drop(first.length)
-    if (rest.startsWith("u") && first.endsWith("q"))
-      (first ++ "u", rest.drop(1))
-    else
-      (first, rest)
-  }
 }
