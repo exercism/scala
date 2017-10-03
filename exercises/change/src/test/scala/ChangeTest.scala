@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.1.0 */
 class ChangeTest extends FunSuite with Matchers {
 
   test("single coin change") {
@@ -30,6 +30,11 @@ class ChangeTest extends FunSuite with Matchers {
   test("possible change without unit coins available") {
     pending
     Change.findFewestCoins(21, List(2, 5, 10, 20, 50)) should be (Some(List(2, 2, 2, 5, 10)))
+  }
+
+  test("another possible change without unit coins available") {
+    pending
+    Change.findFewestCoins(27, List(4, 5)) should be (Some(List(4, 4, 4, 5, 5, 5)))
   }
 
   test("no coins make 0 change") {
