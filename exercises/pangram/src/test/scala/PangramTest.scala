@@ -1,8 +1,8 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.1.0 */
 class PangramTest extends FunSuite with Matchers {
-
+  
   test("sentence empty") {
     Pangrams.isPangram("") should be (false)
   }
@@ -39,11 +39,11 @@ class PangramTest extends FunSuite with Matchers {
 
   test("pangram with mixed case and punctuation") {
     pending
-    Pangrams.isPangram("\"Five quacking Zephyrs jolt my wax bed.\"") should be (true)
+    Pangrams.isPangram(""""Five quacking Zephyrs jolt my wax bed."""") should be (true)
   }
 
   test("upper and lower case versions of the same character should not be counted separately") {
     pending
-    Pangrams.isPangram("the quick brown fox jumped over the lazy FOX") should be (false)
+    Pangrams.isPangram("the quick brown fox jumps over with lazy FX") should be (false)
   }
 }
