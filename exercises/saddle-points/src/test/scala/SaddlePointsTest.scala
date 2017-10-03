@@ -1,26 +1,33 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{Matchers, FunSuite}
 
-class SaddlePointsSpecs extends FlatSpec with Matchers {
-  it should "handle one saddle" in {
-    val points = Matrix(List(List(9, 8, 7), List(5, 3, 2), List(6, 6, 7))).saddlePoints
-    points should be (Set((1, 0)))
+/** @version 1.0.0 */
+class SaddlePointsTest extends FunSuite with Matchers {
+
+  test("Can identify single saddle point") {
+    Matrix(List(List(9, 8, 7), List(5, 3, 2), List(6, 6, 7))).saddlePoints should be(
+      Set((1, 0)))
   }
 
-  it should "handle multiple saddles" in {
+  test("Can identify that empty matrix has no saddle points") {
     pending
-    val points = Matrix(List(List(5, 3, 5, 4), List(6, 4, 7, 3), List(5, 1, 5, 3))).saddlePoints
-    points should be (Set((0, 0), (0, 2), (2, 0), (2, 2)))
+    Matrix(List(List())).saddlePoints should be(Set())
   }
 
-  it should "handle no saddles" in {
+  test("Can identify lack of saddle points when there are none") {
     pending
-    val points = Matrix(List(List(2, 1), List(1, 2))).saddlePoints
-    points should be (Set())
+    Matrix(List(List(1, 2, 3), List(3, 1, 2), List(2, 3, 1))).saddlePoints should be(
+      Set())
   }
 
-  it should "handle empty matrix" in {
+  test("Can identify multiple saddle points") {
     pending
-    val points = Matrix(List()).saddlePoints
-    points should be (Set())
+    Matrix(List(List(4, 5, 4), List(3, 5, 5), List(1, 5, 4))).saddlePoints should be(
+      Set((0, 1), (1, 1), (2, 1)))
+  }
+
+  test("Can identify saddle point in bottom right corner") {
+    pending
+    Matrix(List(List(8, 7, 9), List(6, 7, 6), List(3, 2, 5))).saddlePoints should be(
+      Set((2, 2)))
   }
 }
