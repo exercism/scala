@@ -1,17 +1,27 @@
-import java.time.DayOfWeek
-import java.time.LocalDate
+import java.time.{DayOfWeek, LocalDate}
+
+import Schedule.Schedule
 
 case class Meetup(month: Int, year: Int) {
   private val thirteenth = LocalDate.of(year, month, 13)
-  private val first = LocalDate.of(year, month, 1)
-  private val nextMonth = first.plusMonths(1)
+  private val firstDay = LocalDate.of(year, month, 1)
+  private val nextMonth = firstDay.plusMonths(1)
 
-  def teenth(day: Int): LocalDate = thirteenth.next(day)
-  def first(day: Int): LocalDate = first.next(day)
-  def second(day: Int): LocalDate = first(day).plusDays(7)
-  def third(day: Int): LocalDate = second(day).plusDays(7)
-  def fourth(day: Int): LocalDate = third(day).plusDays(7)
-  def last(day: Int): LocalDate = nextMonth.next(day).minusDays(7)
+  private val teenth: Scheduler = (dayOfWeek: Int) => thirteenth.next(dayOfWeek)
+  private val first: Scheduler = (dayOfWeek: Int) => firstDay.next(dayOfWeek)
+  private val second: Scheduler = (dayOfWeek: Int) => first.day(dayOfWeek).plusDays(7)
+  private val third: Scheduler = (dayOfWeek: Int) => second.day(dayOfWeek).plusDays(7)
+  private val fourth: Scheduler = (dayOfWeek: Int) => third.day(dayOfWeek).plusDays(7)
+  private val last: Scheduler = (dayOfWeek: Int) => nextMonth.next(dayOfWeek).minusDays(7)
+  private def schedulers: Map[Schedule, Scheduler] = Map(Schedule.Teenth -> teenth,
+    Schedule.First -> first,
+    Schedule.Second -> second,
+    Schedule.Third -> third,
+    Schedule.Fourth -> fourth,
+    Schedule.Last -> last)
+
+  def day(dayOfWeek: Int, schedule: Schedule): LocalDate =
+    schedulers(schedule).day(dayOfWeek)
 
   implicit class LocalDateOps(self: LocalDate) {
     def next(dayOfWeek: Int): LocalDate = self.plusDays(daysUntil(dayOfWeek))
@@ -20,6 +30,15 @@ case class Meetup(month: Int, year: Int) {
 
     def dayOfWeek: Int = self.getDayOfWeek.getValue
   }
+
+  trait Scheduler {
+    def day(dayOfWeek: Int): LocalDate
+  }
+}
+
+object Schedule extends Enumeration {
+  type Schedule = Value
+  val Teenth, First, Second, Third, Fourth, Last = Value
 }
 
 object Meetup {
