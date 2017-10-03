@@ -1,43 +1,43 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.0.1 */
 class RnaTranscriptionTest extends FunSuite with Matchers {
-
-  test("rna complement of cytosine is guanine") {
+  
+  test("RNA complement of cytosine is guanine") {
     RnaTranscription.toRna("C") should be (Some("G"))
   }
 
-  test("rna complement of guanine is cytosine") {
+  test("RNA complement of guanine is cytosine") {
     pending
     RnaTranscription.toRna("G") should be (Some("C"))
   }
 
-  test("rna complement of thymine is adenine") {
+  test("RNA complement of thymine is adenine") {
     pending
     RnaTranscription.toRna("T") should be (Some("A"))
   }
 
-  test("rna complement of adenine is uracil") {
+  test("RNA complement of adenine is uracil") {
     pending
     RnaTranscription.toRna("A") should be (Some("U"))
   }
 
-  test("rna complement") {
+  test("RNA complement") {
     pending
     RnaTranscription.toRna("ACGTGGTCTTAA") should be (Some("UGCACCAGAAUU"))
   }
 
-  test("dna correctly handles invalid input") {
+  test("correctly handles invalid input (RNA instead of DNA)") {
     pending
     RnaTranscription.toRna("U") should be (None)
   }
 
-  test("dna correctly handles completely invalid input") {
+  test("correctly handles completely invalid DNA input") {
     pending
     RnaTranscription.toRna("XXX") should be (None)
   }
 
-  test("dna correctly handles partially invalid input") {
+  test("correctly handles partially invalid DNA input") {
     pending
     RnaTranscription.toRna("ACGTXXXCTTAA") should be (None)
   }
