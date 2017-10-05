@@ -84,7 +84,7 @@ case class LabeledTest(description: Description, property: Property,
 object LabeledTest {
   implicit def fromParseResult(result: ParseResult): LabeledTest = {
     val expected: Expected = {
-      val any = getRequired[Any](result, "expected")
+      val any = getOptional[Any](result, "expected").getOrElse("unknown")
       val error = Try {
         Left(any.asInstanceOf[Map[String,String]]("error"))
       }
