@@ -2,4 +2,3 @@ binary
 hexadecimal
 octal
 trinary
-meetup
