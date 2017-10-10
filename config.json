@@ -83,6 +83,17 @@
       ]
     },
     {
+      "uuid": "65a76aba-a485-222d-84ba-e9a445b25be6",
+      "slug": "collatz-conjecture",
+      "core": true,
+      "unlocked_by": "leap",
+      "difficulty": 2,
+      "topics": [
+        "Recursion",
+        "Mathematics"
+      ]
+    },
+    {
       "uuid": "5a31217f-02fd-4be4-b64f-7a93f36f5140",
       "slug": "hamming",
       "core": true,
