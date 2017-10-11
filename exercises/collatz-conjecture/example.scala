@@ -13,5 +13,5 @@ object CollatzConjecture {
       collatz_h(n*3 + 1, acc+1)}
   }
 
-  def collatz(n: Int): Option[Int] = collatz_h(n, 0)
+  def steps(n: Int): Option[Int] = collatz_h(n, 0)
 }
