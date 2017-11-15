@@ -35,18 +35,6 @@
       ]
     },
     {
-      "uuid": "825e94e5-6fc8-4dce-befe-74e1516fae14",
-      "slug": "flatten-array",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 2,
-      "topics": [
-        "Recursion",
-        "Lists",
-        "Pattern matching"
-      ]
-    },
-    {
       "uuid": "57b76aba-a485-464d-84ba-e9a445b25be6",
       "slug": "bob",
       "core": true,
@@ -92,6 +80,18 @@
         "Generics",
         "Lists",
         "Transforming"
+      ]
+    },
+    {
+      "uuid": "825e94e5-6fc8-4dce-befe-74e1516fae14",
+      "slug": "flatten-array",
+      "core": true,
+      "unlocked_by": "accumulate",
+      "difficulty": 2,
+      "topics": [
+        "Recursion",
+        "Lists",
+        "Pattern matching"
       ]
     },
     {
