@@ -1,12 +1,7 @@
 object Anagram {
   def anagrams(word: String, anagrams: Seq[String]): List[String] = {
     val lookupWordMap = wordToMap(word)
-    anagrams
-      .map(testWord => (testWord, wordToMap(testWord)))
-      .filter {
-        case (_, testMap) => testMap == lookupWordMap
-      }
-      .map(_._1).toList
+    anagrams.filter(testWord => wordToMap(testWord) == lookupWordMap).toList
   }
   import scala.collection.mutable
   def wordToMap(word: String): Map[Char, Int] =
