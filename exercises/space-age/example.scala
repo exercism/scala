@@ -1,4 +1,4 @@
-object SpaceAge {
+object SpaceAge2 {
   private val daysToEarthAge = 365.25
   private val daysToMercuryAge = 87.969
   private val daysToVenusAge = 224.701
