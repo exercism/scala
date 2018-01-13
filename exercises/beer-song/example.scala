@@ -1,4 +1,4 @@
-object Example {
+/*object Example {
   def verses(upper: Int, lower: Int): String =
     upper to lower by -1 map verse mkString "\n"
 
@@ -8,4 +8,4 @@ object Example {
     case 2 => "2 bottles of beer on the wall, 2 bottles of beer.\nTake one down and pass it around, 1 bottle of beer on the wall.\n"
     case _ => s"$n bottles of beer on the wall, $n bottles of beer.\nTake one down and pass it around, ${n - 1} bottles of beer on the wall.\n"
   }
-}
+}*/
