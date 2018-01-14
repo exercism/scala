@@ -3,7 +3,10 @@ object Binary {
 }
 
 class Binary(s: String) {
-  def toDecimal: Int = s.foldLeft(Option(0))((accum, char) => {
-    accum.map(_ * 2 + (if(char == '1') 1 else 0))
-  }).getOrElse(0)
+  def toDecimal: Int =
+    s.foldLeft(Option(0))((accumOpt, char) => {
+        for{
+          accum <- accumOpt if char >= '0' && char <= '1'
+        } yield (accum * 2) + (char - '0')
+      }).getOrElse(0)
 }
