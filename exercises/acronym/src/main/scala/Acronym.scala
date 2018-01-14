@@ -6,14 +6,16 @@ object Acronym {
 
   case class State(tla: String, action: Action)
 
+  val separators = Set(' ', '-')
+
   def abbreviate(phrase: String): String =
     phrase.foldLeft(State("", Capture))((state, char) =>
       state match {
       case State(tla, Scan) =>
-        if(char == ' ') State(tla, Capture)
+        if(separators.contains(char)) State(tla, Capture)
         else State(tla, Scan)
       case State(tla, Capture) =>
-        if(char == ' ') State(tla, Capture)
-        else State(tla + char, Scan)
+        if(separators.contains(char)) State(tla, Capture)
+        else State(tla + char.toUpper, Scan)
     }).tla
 }
