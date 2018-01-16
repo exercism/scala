@@ -4,7 +4,7 @@ object Anagram {
     val lookupWordMap = wordToMap(wordLower)
     anagram.filter(testWord => {
       val testWordLower = testWord.toLowerCase()
-      testWordLower.toLowerCase != wordLower &&
+      testWordLower != wordLower &&
         wordToMap(testWordLower) == lookupWordMap
     }).toList
   }
