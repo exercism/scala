@@ -1,34 +1,28 @@
-
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.1.0 */
+/** @version 1.3.0 */
 class AcronymTest extends FunSuite with Matchers {
 
-  test("basic") { 
+  test("basic") {
     Acronym.abbreviate("Portable Network Graphics") should be ("PNG")
   }
 
-  test("lowercase words") { 
+  test("lowercase words") {
     pending
     Acronym.abbreviate("Ruby on Rails") should be ("ROR")
   }
 
-  test("punctuation") { 
+  test("punctuation") {
     pending
     Acronym.abbreviate("First In, First Out") should be ("FIFO")
   }
 
-  test("all caps words") { 
-    pending
-    Acronym.abbreviate("PHP: Hypertext Preprocessor") should be ("PHP")
-  }
-
-  test("non-acronym all caps word") { 
+  test("all caps word") {
     pending
     Acronym.abbreviate("GNU Image Manipulation Program") should be ("GIMP")
   }
 
-  test("hyphenated") { 
+  test("punctuation without whitespace") {
     pending
     Acronym.abbreviate("Complementary metal-oxide semiconductor") should be ("CMOS")
   }
