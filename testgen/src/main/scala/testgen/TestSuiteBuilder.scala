@@ -81,6 +81,17 @@ object TestSuiteBuilder {
       TestCaseData(labeledTest.description, sutCall, expected)
     }
 
+  // Use when arguments are layered under "input" json element
+  def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
+    withLabeledTest { sut => labeledTest =>
+      val sutFunction = labeledTest.property
+      val args = sutArgsFromInput(labeledTest.result, argNames: _*)
+      val sutCall = s"$sut.$sutFunction(${args})"
+      val expected = toString(labeledTest.expected)
+
+      TestCaseData(labeledTest.description, sutCall, expected)
+    }
+
   def fromLabeledTestAlt(propArgs: (String, Seq[String])*): ToTestCaseData =
     withLabeledTest { sut => labeledTest =>
       val sutFunction = labeledTest.property
@@ -110,11 +121,16 @@ object TestSuiteBuilder {
 
   def sutName(exerciseName: String) =
     exerciseName split "-" map (_.capitalize) mkString
+
   def testSuiteName(exerciseName: String): String =
     sutName(exerciseName) + "Test"
 
   def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
     argNames map (name => toString(parseResult(name))) mkString(", ")
+
+  // Use when arguments are layered under "input" json element
+  def sutArgsFromInput(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
+    argNames map (name => toString(parseResult("input").asInstanceOf[Map[String, Any]](name))) mkString(", ")
 
   def sutArgsAlt(parseResult: CanonicalDataParser.ParseResult, propArgs: (String, Seq[String])*): String =
     propArgs collect {
