@@ -1,7 +1,8 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.2.0 */
 class BobTest extends FunSuite with Matchers {
+
 
   test("stating something") {
     Bob.response("Tom-ay-to, tom-aaaah-to.") should be ("Whatever.")
@@ -44,7 +45,7 @@ class BobTest extends FunSuite with Matchers {
 
   test("forceful question") {
     pending
-    Bob.response("WHAT THE HELL WERE YOU THINKING?") should be ("Whoa, chill out!")
+    Bob.response("WHAT THE HELL WERE YOU THINKING?") should be ("Calm down, I know what I'm doing!")
   }
 
   test("shouting numbers") {
