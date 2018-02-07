@@ -49,6 +49,5 @@ For more detailed info about the Scala track see the [help
 page](http://exercism.io/languages/scala).
 
 
-
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
