@@ -18,7 +18,7 @@ computes the winner (or lack thereof). Note that all games need not be "fair".
 The boards look like this (with spaces added for readability, which won't be in
 the representation passed to your code):
 
-```        
+```text
 . O . X .
  . X X O .
   O O O X .
@@ -46,7 +46,6 @@ To run the tests simply run the command `sbt test` in the exercise directory.
 
 For more detailed info about the Scala track see the [help
 page](http://exercism.io/languages/scala).
-
 
 
 ## Submitting Incomplete Solutions

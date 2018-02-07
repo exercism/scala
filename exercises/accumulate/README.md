@@ -25,9 +25,6 @@ Keep your hands off that collect/map/fmap/whatchamacallit functionality
 provided by your standard library!
 Solve this one yourself using other basic tools instead.
 
-Lisp specific: it's perfectly fine to use `MAPCAR` or the equivalent,
-as this is idiomatic Lisp, not a library function.
-
 The Scala exercises assume an SBT project scheme. The exercise solution source
 should be placed within the exercise directory/src/main/scala. The exercise
 unit tests can be found within the exercise directory/src/test/scala.

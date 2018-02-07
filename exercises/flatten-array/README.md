@@ -10,16 +10,15 @@ input: [1,[2,3,null,4],[null],5]
 
 output: [1,2,3,4,5]
 
-Do not use scala built-in `flatten` function.
+The Scala exercises assume an SBT project scheme. The exercise solution source
+should be placed within the exercise directory/src/main/scala. The exercise
+unit tests can be found within the exercise directory/src/test/scala.
 
-## Submitting Exercises
+To run the tests simply run the command `sbt test` in the exercise directory.
 
-Note that, when trying to submit an exercise, make sure the solution is in the `exercism/scala/<exerciseName>` directory.
+For more detailed info about the Scala track see the [help
+page](http://exercism.io/languages/scala).
 
-For example, if you're submitting `FlattenArray.scala` for the Bob exercise, the submit command would be something like `exercism submit <path_to_exercism_dir>/src/main/scala/FlattenArray.scala`.
-
-For more detailed information about running tests, code style and linting,
-please see the [help page](http://exercism.io/languages/scala).
 
 ## Source
 

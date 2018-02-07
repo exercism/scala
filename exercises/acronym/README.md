@@ -7,7 +7,6 @@ Techies love their TLA (Three Letter Acronyms)!
 Help generate some jargon by writing a program that converts a long name
 like Portable Network Graphics to its acronym (PNG).
 
-
 The Scala exercises assume an SBT project scheme. The exercise solution source
 should be placed within the exercise directory/src/main/scala. The exercise
 unit tests can be found within the exercise directory/src/test/scala.

@@ -6,6 +6,7 @@ Implement general base conversion. Given a number in base **a**,
 represented as a sequence of digits, convert it to base **b**.
 
 ## Note
+
 - Try to implement the conversion yourself.
   Do not use something else to perform the conversion for you.
 
@@ -28,7 +29,6 @@ The number 1120, *in base 3*, means:
 
 I think you got the idea!
 
-
 *Yes. Those three numbers above are exactly the same. Congratulations!*
 
 The Scala exercises assume an SBT project scheme. The exercise solution source
@@ -39,7 +39,6 @@ To run the tests simply run the command `sbt test` in the exercise directory.
 
 For more detailed info about the Scala track see the [help
 page](http://exercism.io/languages/scala).
-
 
 
 ## Submitting Incomplete Solutions
