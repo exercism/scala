@@ -102,6 +102,17 @@ object TestSuiteBuilder {
       TestCaseData(labeledTest.description, sutCall, expected)
     }
 
+  // Use when arguments are layered under "input" json element
+  def fromLabeledTestAltFromInput(propArgs: (String, Seq[String])*): ToTestCaseData =
+    withLabeledTest { sut => labeledTest =>
+      val sutFunction = labeledTest.property
+      val args = sutArgsAltFromInput(labeledTest.result, propArgs:_*)
+      val sutCall = s"$sut.$sutFunction(${args})"
+      val expected = toString(labeledTest.expected)
+
+      TestCaseData(labeledTest.description, sutCall, expected)
+    }
+
   def main(args: Array[String]): Unit = {
     val path = "src/main/resources"
     val input: Map[String, ToTestCaseData] =
@@ -137,6 +148,14 @@ object TestSuiteBuilder {
       case ((property, argNames)) if parseResult("property") == property =>
         sutArgs(parseResult, argNames:_*)
     } head
+
+  // Use when arguments are layered under "input" json element
+  def sutArgsAltFromInput(parseResult: CanonicalDataParser.ParseResult, propArgs: (String, Seq[String])*): String =
+    propArgs collect {
+      case ((property, argNames)) if parseResult("property") == property =>
+        sutArgsFromInput(parseResult, argNames:_*)
+    } head
+
 
   private def toString(expected: CanonicalDataParser.Expected): String =
       expected.fold(error => s"Left(${toString(error)})", toString)
