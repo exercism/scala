@@ -37,37 +37,37 @@ object ExpressionParser extends RegexParsers {
     parseAll(booleanExpression, str)
 
   private def booleanExpression: Parser[Expression[Boolean]] =
-    intExpression ~ "==" ~ intExpression ^^ {
+    longExpression ~ "==" ~ longExpression ^^ {
       case left ~ _ ~ right => Equals(left, right)
     }
 
-  private def intExpression: Parser[Expression[Int]] =
-    intOperation | nonOperator
+  private def longExpression: Parser[Expression[Long]] =
+    longOperation | nonOperator
 
-  private def intOperation: Parser[Expression[Int]] =
-    nonOperator ~ operator ~ intExpression ^^ {
+  private def longOperation: Parser[Expression[Long]] =
+    nonOperator ~ operator ~ longExpression ^^ {
       case left ~ op ~ right => op(left, right)
     }
 
-  private def operator: Parser[(Expression[Int], Expression[Int]) => Expression[Int]] =
+  private def operator: Parser[(Expression[Long], Expression[Long]) => Expression[Long]] =
     plus | mult | power
 
-  private def nonOperator: Parser[Expression[Int]] =
+  private def nonOperator: Parser[Expression[Long]] =
     word | number
 
   private val word: Parser[Word] =
     "[A-Z]+".r ^^ (Word(_))
 
   private val number: Parser[Number] =
-    "[0-9]+".r ^^ (n =>(Number(n.toInt)))
+    "[0-9]+".r ^^ (n =>(Number(n.toLong)))
 
-  private val plus: Parser[(Expression[Int], Expression[Int]) => Expression[Int]] =
+  private val plus: Parser[(Expression[Long], Expression[Long]) => Expression[Long]] =
     "+"  ^^ const(Plus(_, _))
 
-  private val mult: Parser[(Expression[Int], Expression[Int]) => Expression[Int]] =
+  private val mult: Parser[(Expression[Long], Expression[Long]) => Expression[Long]] =
     "*" ^^ const(Mult(_, _))
 
-  private val power: Parser[(Expression[Int], Expression[Int]) => Expression[Int]] =
+  private val power: Parser[(Expression[Long], Expression[Long]) => Expression[Long]] =
     "^" ^^ const(Power(_, _))
 
   private def const[A](a: A)(ignore: Any) = a
@@ -78,13 +78,13 @@ sealed trait Expression[T] {
   def eval(solution: Solution): Option[T]
 }
 
-case class Word(word: String) extends Expression[Int] {
+case class Word(word: String) extends Expression[Long] {
   override def eval(solution: Solution) =
     if (solution(word(0)) == 0) None
-    else Some((word map solution mkString) toInt)
+    else Some((word map solution mkString) toLong)
 }
 
-case class Number(number: Int) extends Expression[Int] {
+case class Number(number: Long) extends Expression[Long] {
   override def eval(solution: Solution) = Some(number)
 }
 
@@ -100,26 +100,26 @@ trait Operation[A,B] extends Expression[B] {
 }
 
 case class Equals[A](override val left: Expression[A],
-    override val right: Expression[A]) extends Operation[A, Boolean]
+                     override val right: Expression[A]) extends Operation[A, Boolean]
 {
-  override val op: (A, A) => Boolean = (_ == _)
+  override val op: (A, A) => Boolean = _ == _
 }
 
-case class Plus(override val left: Expression[Int],
-    override val right: Expression[Int]) extends Operation[Int, Int]
+case class Plus(override val left: Expression[Long],
+                override val right: Expression[Long]) extends Operation[Long, Long]
 {
-  override val op: (Int, Int) => Int = (_ + _)
+  override val op: (Long, Long) => Long = _ + _
 }
 
-case class Mult(override val left: Expression[Int],
-    override val right: Expression[Int]) extends Operation[Int, Int]
+case class Mult(override val left: Expression[Long],
+                override val right: Expression[Long]) extends Operation[Long, Long]
 {
-  override val op: (Int, Int) => Int = (_ * _)
+  override val op: (Long, Long) => Long = _ * _
 }
 
-case class Power(override val left: Expression[Int],
-    override val right: Expression[Int]) extends Operation[Int, Int]
+case class Power(override val left: Expression[Long],
+                 override val right: Expression[Long]) extends Operation[Long, Long]
 {
-  override val op: (Int, Int) => Int = math.pow(_, _).toInt
+  override val op: (Long, Long) => Long = math.pow(_, _).toLong
 }
 
