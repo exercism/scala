@@ -5,10 +5,11 @@ object AllYourBase {
     if (inputBase < 2 || outputBase < 2)
       None
     else if (inputDigits.isEmpty)
-      Some(List())
+      Some(List(0))
     else {
       fromDigits(0, inputBase, inputDigits) match {
         case None => None
+        case x if x.sum == 0 => Some(List(0))
         case Some(x) => Some(toDigits(outputBase, x, List()))
       }
     }
@@ -18,9 +19,9 @@ object AllYourBase {
   private def fromDigits(acc: Int, base: Int, digits: List[Int]): Option[Int] = {
     digits match {
       case x::xs => if (x >= 0 && x < base)
-                      fromDigits(acc * base + x, base, xs)
-                    else
-                      None
+        fromDigits(acc * base + x, base, xs)
+      else
+        None
       case Nil => Option(acc)
     }
   }
