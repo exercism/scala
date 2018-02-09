@@ -1,6 +1,6 @@
 import java.io.File
 
-import testgen.TestSuiteBuilder._
+import testgen.TestSuiteBuilder.{fromLabeledTestFromInput, _}
 import testgen._
 
 object AllergiesTestGenerator {
@@ -30,10 +30,13 @@ object AllergiesTestGenerator {
     def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
       argNames map (name => TestSuiteBuilder.toString(parseResult(name))) mkString ", "
 
-    def fromLabeledTest(argNames: String*): ToTestCaseDataList =
+    def getScore(labeledTest: LabeledTest): Int =
+      labeledTest.result("input").asInstanceOf[Map[String, Any]]("score").asInstanceOf[Int]
+
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseDataList =
       withLabeledList { sut =>
         labeledTest =>
-          val score = labeledTest.result("score").asInstanceOf[Int]
+          val score = getScore(labeledTest)
           val property = labeledTest.property
           if ("allergicTo".equals(property)) {
             val expected: List[(String, Boolean)] = toAllergicToExpected(labeledTest.expected)
@@ -44,7 +47,7 @@ object AllergiesTestGenerator {
               TestCaseData(s"${e._1} - ${labeledTest.description}", sutCall, result)
             })
           } else {
-            val args = sutArgs(labeledTest.result, "score")
+            val args = sutArgsFromInput(labeledTest.result, "score")
             val expected = toListExpected(labeledTest.expected)
             val sutCall =
               s"""$sut.$property($args)"""
@@ -52,7 +55,7 @@ object AllergiesTestGenerator {
           }
       }
 
-    val code = TestSuiteBuilder.buildFromList(file, fromLabeledTest("score"))
+    val code = TestSuiteBuilder.buildFromList(file, fromLabeledTestFromInput("score"))
     println(s"-------------")
     println(code)
     println(s"-------------")

@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.1.0 */
 class AllergiesTest extends FunSuite with Matchers {
 
   test("Allergen.Peanuts - no allergies means not allergic") {
