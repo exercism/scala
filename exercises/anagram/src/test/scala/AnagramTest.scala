@@ -1,21 +1,11 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.1 */
+/** @version 1.2.0 */
 class AnagramTest extends FunSuite with Matchers {
 
   test("no matches") {
     Anagram.anagrams("diaper", List("hello", "world", "zombies", "pants")) should be(
       List())
-  }
-
-  test("detects simple anagram") {
-    pending
-    Anagram.anagrams("ant", List("tan", "stand", "at")) should be(List("tan"))
-  }
-
-  test("does not detect false positives") {
-    pending
-    Anagram.anagrams("galea", List("eagle")) should be(List())
   }
 
   test("detects two anagrams") {
@@ -47,14 +37,6 @@ class AnagramTest extends FunSuite with Matchers {
       List("gallery", "regally", "largely"))
   }
 
-  test("does not detect identical words") {
-    pending
-    Anagram.anagrams(
-      "corn",
-      List("corn", "dark", "Corn", "rank", "CORN", "cron", "park")) should be(
-      List("cron"))
-  }
-
   test("does not detect non-anagrams with identical checksum") {
     pending
     Anagram.anagrams("mass", List("last")) should be(List())
@@ -62,28 +44,20 @@ class AnagramTest extends FunSuite with Matchers {
 
   test("detects anagrams case-insensitively") {
     pending
-    Anagram.anagrams("Orchestra",
-                     List("cashregister", "Carthorse", "radishes")) should be(
+    Anagram.anagrams("Orchestra", List("cashregister", "Carthorse", "radishes")) should be(
       List("Carthorse"))
   }
 
   test("detects anagrams using case-insensitive subject") {
     pending
-    Anagram.anagrams("Orchestra",
-                     List("cashregister", "carthorse", "radishes")) should be(
+    Anagram.anagrams("Orchestra", List("cashregister", "carthorse", "radishes")) should be(
       List("carthorse"))
   }
 
   test("detects anagrams using case-insensitive possible matches") {
     pending
-    Anagram.anagrams("orchestra",
-                     List("cashregister", "Carthorse", "radishes")) should be(
+    Anagram.anagrams("orchestra", List("cashregister", "Carthorse", "radishes")) should be(
       List("Carthorse"))
-  }
-
-  test("does not detect a word as its own anagram") {
-    pending
-    Anagram.anagrams("banana", List("Banana")) should be(List())
   }
 
   test("does not detect a anagram if the original word is repeated") {
