@@ -15,10 +15,10 @@ object AllYourBaseTestGenerator {
       }
     }
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val property = labeledTest.property
           val sutCall =
             s"""AllYourBase.$property($args)"""
@@ -28,11 +28,9 @@ object AllYourBaseTestGenerator {
 
     val code =
       TestSuiteBuilder.build(file,
-        fromLabeledTest("input_base", "input_digits", "output_base"))
+        fromLabeledTestFromInput("inputBase", "digits", "outputBase"))
     println(s"-------------")
     println(code)
     println(s"-------------")
-
-    TestSuiteBuilder.writeToFile(code, new File("AllYourBaseTest.scala"))
   }
 }
