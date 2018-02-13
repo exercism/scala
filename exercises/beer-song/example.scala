@@ -1,6 +1,6 @@
-object Example {
-  def verses(upper: Int, lower: Int): String =
-    upper to lower by -1 map verse mkString "\n"
+object BeerSong {
+  def recite(start: Int, takeDown: Int): String =
+    start until (start - takeDown) by -1 map verse mkString "\n"
 
   def verse(n: Int): String = n match {
     case 0 => "No more bottles of beer on the wall, no more bottles of beer.\nGo to the store and buy some more, 99 bottles of beer on the wall.\n"
