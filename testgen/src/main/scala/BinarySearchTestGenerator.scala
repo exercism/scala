@@ -15,10 +15,10 @@ object BinarySearchTestGenerator {
       }
     }
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val property = labeledTest.property
           val sutCall =
             s"""$sut.$property($args)"""
@@ -28,11 +28,9 @@ object BinarySearchTestGenerator {
 
     val code =
       TestSuiteBuilder.build(file,
-        fromLabeledTest("array", "value"))
+        fromLabeledTestFromInput("array", "value"))
     println(s"-------------")
     println(code)
     println(s"-------------")
-
-    TestSuiteBuilder.writeToFile(code, new File("AllYourBaseTest.scala"))
   }
 }

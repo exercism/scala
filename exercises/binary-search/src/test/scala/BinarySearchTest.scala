@@ -1,8 +1,8 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.1.0 */
 class BinarySearchTest extends FunSuite with Matchers {
-
+  
   test("finds a value in an array with one element") {
     BinarySearch.find(List(6), 6) should be (Some(0))
   }
