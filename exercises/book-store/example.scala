@@ -1,5 +1,5 @@
 object BookStore {
-  private val bookPrice = 8
+  private val bookPrice = 800
   private val discounts =
     Map((1, 0.0),
       (2, 5.0),
