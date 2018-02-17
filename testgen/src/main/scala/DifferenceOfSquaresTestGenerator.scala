@@ -8,7 +8,7 @@ object DifferenceOfSquaresTestGenerator {
     val file = new File("src/main/resources/difference-of-squares.json")
 
     val code = TestSuiteBuilder.build(file,
-        fromLabeledTestAlt("squareOfSum" -> Seq("number"), "sumOfSquares" -> Seq("number"),
+        fromLabeledTestAltFromInput("squareOfSum" -> Seq("number"), "sumOfSquares" -> Seq("number"),
           "differenceOfSquares" -> Seq("number")))
     println(s"-------------")
     println(code)
