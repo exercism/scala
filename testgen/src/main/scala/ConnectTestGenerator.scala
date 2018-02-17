@@ -1,6 +1,6 @@
 import java.io.File
 
-import testgen.TestSuiteBuilder._
+import testgen.TestSuiteBuilder.{toString, _}
 import testgen._
 
 object ConnectTestGenerator {
@@ -16,8 +16,8 @@ object ConnectTestGenerator {
       }
     }
 
-    def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
-      argNames map (name => toArgString(parseResult(name))) mkString ", "
+    def sutArgsFromInput(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
+      argNames map (name => toArgString(parseResult("input").asInstanceOf[Map[String, Any]](name))) mkString(", ")
 
     def toArgString(any: Any): String = {
       any match {
@@ -28,10 +28,10 @@ object ConnectTestGenerator {
       }
     }
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val property = labeledTest.property
           val sutCall =
             s"""$sut($args).$property"""
@@ -39,7 +39,7 @@ object ConnectTestGenerator {
           TestCaseData(labeledTest.description, sutCall, expected)
       }
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("board"),
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput("board"),
       Seq(),
       Seq("// Filter readable board into valid input",
           "private def mkBoard(lines: List[String]): List[String] =",

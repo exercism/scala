@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.1.0 */
 class ConnectTest extends FunSuite with Matchers {
 
   // Filter readable board into valid input
