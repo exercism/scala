@@ -1,8 +1,8 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.1.1 */
+/** @version 1.2.0 */
 class CollatzConjectureTest extends FunSuite with Matchers {
-  
+
   test("zero steps for one") {
     CollatzConjecture.steps(1) should be (Some(0))
   }
