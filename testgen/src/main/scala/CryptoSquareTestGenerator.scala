@@ -8,7 +8,7 @@ object CryptoSquareTestGenerator {
     val file = new File("src/main/resources/crypto-square.json")
 
     val code = TestSuiteBuilder.build(file,
-        fromLabeledTestAlt("normalizedPlaintext" -> Seq("plaintext"), "plaintextSegments" -> Seq("plaintext"),
+        fromLabeledTestAltFromInput("normalizedPlaintext" -> Seq("plaintext"), "plaintextSegments" -> Seq("plaintext"),
           "encoded" -> Seq("plaintext"), "ciphertext" -> Seq("plaintext")))
     println(s"-------------")
     println(code)
