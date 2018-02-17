@@ -1,8 +1,8 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.1.0 */
+/** @version 1.2.0 */
 class ChangeTest extends FunSuite with Matchers {
-
+  
   test("single coin change") {
     Change.findFewestCoins(25, List(1, 5, 10, 25, 100)) should be (Some(List(25)))
   }
