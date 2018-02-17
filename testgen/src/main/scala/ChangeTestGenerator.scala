@@ -15,10 +15,10 @@ object ChangeTestGenerator {
       }
     }
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val property = labeledTest.property
           val sutCall =
             s"""$sut.$property($args)"""
@@ -28,7 +28,7 @@ object ChangeTestGenerator {
 
     val code =
       TestSuiteBuilder.build(file,
-        fromLabeledTest("target", "coins"))
+        fromLabeledTestFromInput("target", "coins"))
 
     println(s"-------------")
     println(code)
