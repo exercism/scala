@@ -7,7 +7,7 @@ object BracketPushTestGenerator {
   def main(args: Array[String]): Unit = {
     val file = new File("src/main/resources/bracket-push.json")
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("input"))
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput("value"))
     println(s"-------------")
     println(code)
     println(s"-------------")
