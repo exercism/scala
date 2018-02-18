@@ -4,6 +4,9 @@ import scala.io.Source
 
 // Generates test suite from json test definition for the CustomSet exercise.
 class CustomSetTestGenerator {
+  implicit val singleSetInputReader = Json.reads[SingleSetInput]
+  implicit val doubleSetInputReader = Json.reads[DoubleSetInput]
+  implicit val setWithElementInputReader = Json.reads[SetWithElementInput]
   implicit val emptyTestCaseReader = Json.reads[EmptyTestCase]
   implicit val containsTestCasesReader = Json.reads[ContainsTestCase]
   implicit val subsetTestCasesReader = Json.reads[SubsetTestCase]
@@ -44,7 +47,7 @@ class CustomSetTestGenerator {
     val emptyTestCases = (json \ "cases" \ 0 \ "cases").get.as[List[EmptyTestCase]]
 
     implicit def testCaseToGen(tc: EmptyTestCase): TestCaseGen = {
-      val set = s"CustomSet.fromList(${tc.set})"
+      val set = s"CustomSet.fromList(${tc.input.set})"
       val callSUT = s"CustomSet.empty(set)"
       val expected = tc.expected.toString
       val result = s"val set = $set"
@@ -63,8 +66,8 @@ class CustomSetTestGenerator {
     val containsTestCases = (json \ "cases" \ 1 \ "cases").get.as[List[ContainsTestCase]]
 
     implicit def testCaseToGen(tc: ContainsTestCase): TestCaseGen = {
-      val set = s"CustomSet.fromList(${tc.set})"
-      val callSUT = s"CustomSet.member(set, ${tc.element})"
+      val set = s"CustomSet.fromList(${tc.input.set})"
+      val callSUT = s"CustomSet.member(set, ${tc.input.element})"
       val expected = tc.expected.toString
       val result = s"val set = $set"
       val checkResult = s"$callSUT should be ($expected)"
@@ -82,8 +85,8 @@ class CustomSetTestGenerator {
     val subsetTestCases = (json \ "cases" \ 2 \ "cases").get.as[List[SubsetTestCase]]
 
     implicit def testCaseToGen(tc: SubsetTestCase): TestCaseGen = {
-      val set1 = s"CustomSet.fromList(${tc.set1})"
-      val set2 = s"CustomSet.fromList(${tc.set2})"
+      val set1 = s"CustomSet.fromList(${tc.input.set1})"
+      val set2 = s"CustomSet.fromList(${tc.input.set2})"
       val callSUT = s"CustomSet.isSubsetOf(set1, set2)"
       val expected = tc.expected.toString
       val result =
@@ -104,8 +107,8 @@ s"""val set1 = $set1
     val disjointTestCases = (json \ "cases" \ 3 \ "cases").get.as[List[DisjointTestCase]]
 
     implicit def testCaseToGen(tc: DisjointTestCase): TestCaseGen = {
-      val set1 = s"CustomSet.fromList(${tc.set1})"
-      val set2 = s"CustomSet.fromList(${tc.set2})"
+      val set1 = s"CustomSet.fromList(${tc.input.set1})"
+      val set2 = s"CustomSet.fromList(${tc.input.set2})"
       val callSUT = s"CustomSet.isDisjointFrom(set1, set2)"
       val expected = tc.expected.toString
       val result =
@@ -126,8 +129,8 @@ s"""val set1 = $set1
     val equalTestCases = (json \ "cases" \ 4 \ "cases").get.as[List[EqualTestCase]]
 
     implicit def testCaseToGen(tc: EqualTestCase): TestCaseGen = {
-      val set1 = s"CustomSet.fromList(${tc.set1})"
-      val set2 = s"CustomSet.fromList(${tc.set2})"
+      val set1 = s"CustomSet.fromList(${tc.input.set1})"
+      val set2 = s"CustomSet.fromList(${tc.input.set2})"
       val callSUT = s"CustomSet.isEqual(set1, set2)"
       val expected = tc.expected.toString
       val result =
@@ -148,8 +151,8 @@ s"""val set1 = $set1
     val addTestCases = (json \ "cases" \ 5 \ "cases").get.as[List[AddTestCase]]
 
     implicit def testCaseToGen(tc: AddTestCase): TestCaseGen = {
-      val set = s"CustomSet.fromList(${tc.set})"
-      val callSUT = s"CustomSet.insert(set, ${tc.element})"
+      val set = s"CustomSet.fromList(${tc.input.set})"
+      val callSUT = s"CustomSet.insert(set, ${tc.input.element})"
       val expected = s"CustomSet.fromList(${tc.expected})"
       val result =
 s"""val set = $set
@@ -169,8 +172,8 @@ s"""val set = $set
     val intersectionTestCases = (json \ "cases" \ 6 \ "cases").get.as[List[IntersectionTestCase]]
 
     implicit def testCaseToGen(tc: IntersectionTestCase): TestCaseGen = {
-      val set1 = s"CustomSet.fromList(${tc.set1})"
-      val set2 = s"CustomSet.fromList(${tc.set2})"
+      val set1 = s"CustomSet.fromList(${tc.input.set1})"
+      val set2 = s"CustomSet.fromList(${tc.input.set2})"
       val callSUT = s"CustomSet.intersection(set1, set2)"
       val expected = s"CustomSet.fromList(${tc.expected})"
       val result =
@@ -192,8 +195,8 @@ s"""val set1 = $set1
     val differenceTestCases = (json \ "cases" \ 7 \ "cases").get.as[List[DifferenceTestCase]]
 
     implicit def testCaseToGen(tc: DifferenceTestCase): TestCaseGen = {
-      val set1 = s"CustomSet.fromList(${tc.set1})"
-      val set2 = s"CustomSet.fromList(${tc.set2})"
+      val set1 = s"CustomSet.fromList(${tc.input.set1})"
+      val set2 = s"CustomSet.fromList(${tc.input.set2})"
       val callSUT = s"CustomSet.difference(set1, set2)"
       val expected = s"CustomSet.fromList(${tc.expected})"
       val result =
@@ -215,8 +218,8 @@ s"""val set1 = $set1
     val unionTestCases = (json \ "cases" \ 8 \ "cases").get.as[List[UnionTestCase]]
 
     implicit def testCaseToGen(tc: UnionTestCase): TestCaseGen = {
-      val set1 = s"CustomSet.fromList(${tc.set1})"
-      val set2 = s"CustomSet.fromList(${tc.set2})"
+      val set1 = s"CustomSet.fromList(${tc.input.set1})"
+      val set2 = s"CustomSet.fromList(${tc.input.set2})"
       val callSUT = s"CustomSet.union(set1, set2)"
       val expected = s"CustomSet.fromList(${tc.expected})"
       val result =
@@ -233,15 +236,18 @@ s"""val set1 = $set1
 
 }
 
-case class EmptyTestCase(description: String, set: List[Int], expected: Boolean)
-case class ContainsTestCase(description: String, set: List[Int], element: Int, expected: Boolean)
-case class SubsetTestCase(description: String, set1: List[Int], set2: List[Int], expected: Boolean)
-case class DisjointTestCase(description: String, set1: List[Int], set2: List[Int], expected: Boolean)
-case class EqualTestCase(description: String, set1: List[Int], set2: List[Int], expected: Boolean)
-case class AddTestCase(description: String, set: List[Int], element: Int, expected: List[Int])
-case class IntersectionTestCase(description: String, set1: List[Int], set2: List[Int], expected: List[Int])
-case class DifferenceTestCase(description: String, set1: List[Int], set2: List[Int], expected: List[Int])
-case class UnionTestCase(description: String, set1: List[Int], set2: List[Int], expected: List[Int])
+case class SingleSetInput(set: List[Int])
+case class DoubleSetInput(set1: List[Int], set2: List[Int])
+case class SetWithElementInput(set: List[Int], element: Int)
+case class EmptyTestCase(description: String, input: SingleSetInput, expected: Boolean)
+case class ContainsTestCase(description: String, input: SetWithElementInput, expected: Boolean)
+case class SubsetTestCase(description: String, input: DoubleSetInput, expected: Boolean)
+case class DisjointTestCase(description: String, input: DoubleSetInput, expected: Boolean)
+case class EqualTestCase(description: String, input: DoubleSetInput, expected: Boolean)
+case class AddTestCase(description: String, input: SetWithElementInput, expected: List[Int])
+case class IntersectionTestCase(description: String, input: DoubleSetInput, expected: List[Int])
+case class DifferenceTestCase(description: String, input: DoubleSetInput, expected: List[Int])
+case class UnionTestCase(description: String, input: DoubleSetInput, expected: List[Int])
 
 
 object CustomSetTestGenerator {
