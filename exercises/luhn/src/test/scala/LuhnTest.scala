@@ -1,13 +1,13 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.1.0 */
 class LuhnTest extends FunSuite with Matchers {
 
   test("single digit strings can not be valid") {
     Luhn.valid("1") should be (false)
   }
 
-  test("A single zero is invalid") {
+  test("a single zero is invalid") {
     pending
     Luhn.valid("0") should be (false)
   }
