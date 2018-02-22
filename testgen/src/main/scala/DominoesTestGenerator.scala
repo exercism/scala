@@ -17,8 +17,9 @@ object DominoesTestGenerator {
       }
     }
 
-    def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
-      argNames map (name => toArgString(parseResult(name))) mkString ", "
+    def sutArgsFromInput(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
+      argNames map (name => toArgString(parseResult("input").asInstanceOf[Map[String, Any]](name))) mkString(", ")
+
 
     def toArgString(any: Any): String = {
       any match {
@@ -27,11 +28,10 @@ object DominoesTestGenerator {
       }
     }
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
-          val property = labeledTest.property
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val expected = toString(labeledTest.expected)
           val sutCall =
             s"""check($args, $expected)"""
@@ -41,7 +41,7 @@ object DominoesTestGenerator {
     val template: TestSuiteTemplate =
       txt.funSuiteTemplateIgnoreExpected.asInstanceOf[Template1[TestSuiteData, Txt]]
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("input"), Seq(),
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput("dominoes"), Seq(),
       Seq("private def check(input: List[(Int, Int)], hasResult: Boolean): Unit = {",
         "    val result = Dominoes.chain(input)", "    if (hasResult) {",
         "      checkChain(result getOrElse fail(\"should have had a chain, but didn't\"), input)",

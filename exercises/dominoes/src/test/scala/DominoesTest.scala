@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 2.0.0 */
+/** @version 2.1.0 */
 class DominoesTest extends FunSuite with Matchers {
 
   private def check(input: List[(Int, Int)], hasResult: Boolean): Unit = {
