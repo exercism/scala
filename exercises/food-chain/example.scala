@@ -15,7 +15,7 @@ object FoodChain {
   private def verseInternal(n: Int) = {
     "I know an old lady who swallowed a %s.\n".format(animal(n)) +
       (if (finalVerse(n)) result(n)
-       else {
+      else {
         result(n) +
           (for {
             i <- List.range(0, n).reverse
@@ -29,7 +29,7 @@ object FoodChain {
       })
   }
 
-  def verse(n: Int): String = verseInternal(n - 1)
+  def recite(n: Int): String = verseInternal(n - 1)
 
-  def verse(n: Int, m: Int): String = (for {i <- List.range(n - 1, m)} yield {verseInternal(i)}).mkString
+  def recite(n: Int, m: Int): String = (for {i <- List.range(n - 1, m)} yield {verseInternal(i)}).mkString
 }
