@@ -15,14 +15,16 @@ object GigasecondTestGenerator {
       }
     }
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val property = labeledTest.property
           val expected = toString(labeledTest.expected)
 
-          val useDateTime = labeledTest.result("input").asInstanceOf[String].length > "xxxx-xx-xx".length
+          val useDateTime = labeledTest.result("input")
+            .asInstanceOf[Map[String, Any]]("birthdate")
+            .asInstanceOf[String].length > "xxxx-xx-xx".length
           val sutCall = if (useDateTime) {
             s"""val input = dateTime($args)
     val expected = dateTime($expected)
@@ -39,7 +41,7 @@ object GigasecondTestGenerator {
 
     val dateTimeFn = "private def dateTime(str: String): LocalDateTime =\n    LocalDateTime.from(DateTimeFormatter.ISO_DATE_TIME.parse(str))"
     val dateFn = "private def date(str: String): LocalDate =\n    LocalDate.from(DateTimeFormatter.ISO_DATE.parse(str))"
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("input"),
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput("birthdate"),
       Seq("java.time.LocalDate", "java.time.LocalDateTime", "java.time.format.DateTimeFormatter"),
       Seq(dateTimeFn, dateFn))
     println(s"-------------")
