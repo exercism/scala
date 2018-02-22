@@ -1,7 +1,8 @@
 import java.time.LocalDate
+
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.1.0 */
 class MeetupTest extends FunSuite with Matchers {
 
   test("monteenth of May 2013") {

@@ -12,34 +12,37 @@ object MeetupTestGenerator {
 
     def toString(expected: CanonicalDataParser.Expected): String = {
       expected match {
-        case Left(_) => "None"
-        case Right(-1) => "None"
-        case Right(n) => s"Some($n)"
+        case Right(s: String) => val tokens = s.split("-")
+          s"LocalDate.of(${tokens(0)}, ${trimLeadingZero(tokens(1))}," +
+            s" ${trimLeadingZero(tokens(2))})"
+        case _ => throw new IllegalArgumentException
       }
     }
+
+    def trimLeadingZero(s: String) = s.replaceFirst("^0+(?!$)", "")
 
     def getYear(labeledTest: LabeledTest): Map[String, String] = {
       labeledTest.result("queen").
         asInstanceOf[Map[String, String]]
     }
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val month = labeledTest.result("month")
-          val year = labeledTest.result("year")
-          val dayOfWeek = labeledTest.result("dayofweek").toString.take(3)
-          val week = labeledTest.result("week").toString.capitalize
-          val dayOfMonth = labeledTest.result("dayofmonth")
+          val args = labeledTest.result("input").asInstanceOf[Map[String, Any]]
+          val month = args("month")
+          val year = args("year")
+          val dayOfWeek = args("dayofweek").toString.take(3)
+          val week = args("week").toString.capitalize
           val sutCall =
             s"""$sut($month, $year).day(Meetup.$dayOfWeek, Schedule.$week)"""
-          val expected = s"LocalDate.of($year, $month, $dayOfMonth)"
+          val expected = toString(labeledTest.expected)
           TestCaseData(labeledTest.description, sutCall, expected)
       }
 
     val code =
       TestSuiteBuilder.build(file,
-        fromLabeledTest("year", "month", "week", "dayofweek", "dayofmonth"),
+        fromLabeledTestFromInput(),
         Seq("java.time.LocalDate"))
     println(s"-------------")
     println(code)
