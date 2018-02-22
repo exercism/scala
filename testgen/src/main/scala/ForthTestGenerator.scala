@@ -34,14 +34,13 @@ object ForthTestGenerator {
       }
     }
 
-    def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
-      argNames map (name => argsToString(parseResult(name))) mkString ", "
+    def sutArgsFromInput(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
+      argNames map (name => argsToString(parseResult("input").asInstanceOf[Map[String, Any]](name))) mkString ", "
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
-          val property = labeledTest.property
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val isErr = isError(labeledTest.expected)
           val sutCall = if (isErr)
               s"""forth.eval($args).isLeft"""
@@ -57,7 +56,8 @@ object ForthTestGenerator {
       }
 
     val code =
-      TestSuiteBuilder.build(file, fromLabeledTest("input"), Seq(), Seq("private val forth = new Forth"))
+      TestSuiteBuilder.build(file, fromLabeledTestFromInput("instructions"),
+        Seq(), Seq("private val forth = new Forth"))
 
     println(s"-------------")
     println(code)
