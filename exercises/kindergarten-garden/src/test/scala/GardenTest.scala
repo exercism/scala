@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.1.0 */
 class KindergartenGardenTest extends FunSuite with Matchers {
 
   test("partial garden - garden with single student") {
@@ -64,33 +64,5 @@ class KindergartenGardenTest extends FunSuite with Matchers {
       .defaultGarden("VRCGVVRVCGGCCGVRGCVCGCGV\nVRCCCGCRRGVCGCRVVCVGCGCV")
       .plants("Larry") should be(
       List(Plant.Grass, Plant.Violets, Plant.Clover, Plant.Violets))
-  }
-
-  test("non-alphabetical student list - first student's garden") {
-    pending
-    Garden(List("Samantha", "Patricia", "Xander", "Roger"),
-           "VCRRGVRG\nRVGCCGCV").plants("Patricia") should be(
-      List(Plant.Violets, Plant.Clover, Plant.Radishes, Plant.Violets))
-  }
-
-  test("non-alphabetical student list - second student's garden") {
-    pending
-    Garden(List("Samantha", "Patricia", "Xander", "Roger"),
-           "VCRRGVRG\nRVGCCGCV").plants("Roger") should be(
-      List(Plant.Radishes, Plant.Radishes, Plant.Grass, Plant.Clover))
-  }
-
-  test("non-alphabetical student list - third student's garden") {
-    pending
-    Garden(List("Samantha", "Patricia", "Xander", "Roger"),
-           "VCRRGVRG\nRVGCCGCV").plants("Samantha") should be(
-      List(Plant.Grass, Plant.Violets, Plant.Clover, Plant.Grass))
-  }
-
-  test("non-alphabetical student list - fourth (last) student's garden") {
-    pending
-    Garden(List("Samantha", "Patricia", "Xander", "Roger"),
-           "VCRRGVRG\nRVGCCGCV").plants("Xander") should be(
-      List(Plant.Radishes, Plant.Grass, Plant.Clover, Plant.Violets))
   }
 }
