@@ -1,6 +1,5 @@
-
 object House {
-  private val parts = Vector(("lay in", "the house that Jack built"),
+  private val parts = Vector(("lay in", "the house that Jack built."),
     ("ate", "the malt"),
     ("killed", "the rat"),
     ("worried", "the cat"),
@@ -13,7 +12,7 @@ object House {
     ("belonged to", "the farmer sowing his corn"),
     ("", "the horse and the hound and the horn"))
 
-  private def verseInternal(n: Int) = {
+  private def reciteInternal(n: Int) = {
     "This is " + parts(n)._2 +
       (for {
         i <- List.range(0, n).reverse
@@ -21,7 +20,7 @@ object House {
       "\n\n"
   }
 
-  def verse(n: Int): String = verseInternal(n - 1)
+  def recite(n: Int): String = reciteInternal(n - 1)
 
-  def verses(n: Int, m: Int): String = (for {i <- List.range(n - 1, m)} yield {verseInternal(i)}).mkString
+  def recite(n: Int, m: Int): String = (for {i <- List.range(n - 1, m)} yield {reciteInternal(i)}).mkString
 }
