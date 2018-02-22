@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.1.0 */
+/** @version 1.2.0 */
 class FlattenArrayTest extends FunSuite with Matchers {
 
   test("no nesting") {
