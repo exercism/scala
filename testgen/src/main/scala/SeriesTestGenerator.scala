@@ -25,10 +25,10 @@ object SeriesTestGenerator {
         }
     }
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val property = labeledTest.property
           val sutCall =
             s"""Series.$property($args)"""
@@ -36,7 +36,7 @@ object SeriesTestGenerator {
           TestCaseData(labeledTest.description, sutCall, expected)
       }
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("span", "digits"))
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput("span", "digits"))
     println(s"-------------")
     println(code)
     println(s"-------------")
