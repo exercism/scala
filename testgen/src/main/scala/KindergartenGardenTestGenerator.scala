@@ -14,12 +14,13 @@ object KindergartenGardenTestGenerator {
       }
     }
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val diagram = labeledTest.result("diagram")
-          val student = labeledTest.result("student")
-          val students: List[String] = (labeledTest.result getOrElse("students", List())).asInstanceOf[List[String]]
+          val args = labeledTest.result("input").asInstanceOf[Map[String, Any]]
+          val diagram = args("diagram")
+          val student = args("student")
+          val students: List[String] = (args getOrElse("students", List())).asInstanceOf[List[String]]
           val property = labeledTest.property
           val sutCall =
             if (students.isEmpty)
@@ -39,7 +40,7 @@ object KindergartenGardenTestGenerator {
     }
 
     val code =
-      TestSuiteBuilder.build(file, fromLabeledTest("diagram", "student"))
+      TestSuiteBuilder.build(file, fromLabeledTestFromInput())
 
     println(s"-------------")
     println(code)
