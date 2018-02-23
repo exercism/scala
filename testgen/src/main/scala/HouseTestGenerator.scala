@@ -4,20 +4,14 @@ import testgen.TestSuiteBuilder._
 import testgen._
 
 object HouseTestGenerator {
-  def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String = {
-    val startVerse = parseResult.get("start verse")
-    val endVerse = parseResult.get("end verse")
-    val verse = parseResult.get("verse")
+  def sutArgsFromInput(parseResult: CanonicalDataParser.ParseResult): String = {
+    val input = parseResult("input").asInstanceOf[Map[String, Int]]
 
-    startVerse match {
-      case Some(s) => s.toString + endVerse.map(s => ", " + s.toString).getOrElse("")
-      case _ => verse match {
-        case Some(s) => s.toString
-        case _ => throw new IllegalStateException("Missing params")
-      }
-    }
+    val firstParam = input("startVerse").toString
+    val secondParam = input("endVerse").toString
+
+    firstParam + ", " + secondParam
   }
-
 
   def main(args: Array[String]): Unit = {
     val file = new File("src/main/resources/house.json")
@@ -25,12 +19,12 @@ object HouseTestGenerator {
     val RawQuote = "\"\"\""
     def asRawString(str: String): String = s"$RawQuote$str$RawQuote"
 
-    def fromLabeledTest(argNames: String*)(
+    def fromLabeledTestFromInput(argNames: String*)(
       implicit sutFunction: LabeledTest => String = _.property): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
           val sutFunction = labeledTest.property
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result)
           val sutCall = s"$sut.$sutFunction($args)"
           val expectedLines = labeledTest.expected.right.get.asInstanceOf[List[String]]
           val expected = expectedLines mkString ("", "\n", "\n\n")
@@ -39,7 +33,7 @@ object HouseTestGenerator {
       }
 
     val code = TestSuiteBuilder.build(file,
-      fromLabeledTest("verse", "start verse", "end verse"))
+      fromLabeledTestFromInput())
     println(s"-------------")
     println(code)
     println(s"-------------")
