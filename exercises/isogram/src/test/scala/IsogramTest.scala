@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.1.0 */
+/** @version 1.3.0 */
 class IsogramTest extends FunSuite with Matchers {
   
   test("empty string") {
@@ -32,9 +32,9 @@ class IsogramTest extends FunSuite with Matchers {
     Isogram.isIsogram("thumbscrew-japingly") should be (true)
   }
 
-  test("isogram with duplicated non letter character") {
+  test("isogram with duplicated hyphen") {
     pending
-    Isogram.isIsogram("Hjelmqvist-Gryb-Zock-Pfund-Wax") should be (true)
+    Isogram.isIsogram("six-year-old") should be (true)
   }
 
   test("made-up name that is an isogram") {

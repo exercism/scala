@@ -8,7 +8,7 @@ object IsogramTestGenerator {
     val file = new File("src/main/resources/isogram.json")
 
     val code = TestSuiteBuilder.build(file,
-      fromLabeledTest("input"))
+      fromLabeledTestFromInput("phrase"))
     println(s"-------------")
     println(code)
     println(s"-------------")
