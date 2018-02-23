@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.1.0 */
 class MinesweeperTest extends FunSuite with Matchers {
 
   test("no rows") {
@@ -22,7 +22,7 @@ class MinesweeperTest extends FunSuite with Matchers {
            "   "))
   }
 
-  test("board with only mines") {
+  test("minefield with only mines") {
     pending
     Minesweeper.annotate(List("***",
                               "***",
@@ -104,7 +104,7 @@ class MinesweeperTest extends FunSuite with Matchers {
            " 2*2 "))
   }
 
-  test("large board") {
+  test("large minefield") {
     pending
     Minesweeper.annotate(List(" *  * ",
                               "  *   ",
@@ -112,11 +112,11 @@ class MinesweeperTest extends FunSuite with Matchers {
                               "   * *",
                               " *  * ",
                               "      ")) should be(
-      List("1*22*1", 
-           "12*322", 
-           " 123*2", 
-           "112*4*", 
-           "1*22*2", 
-          "111111"))
+      List("1*22*1",
+           "12*322",
+           " 123*2",
+           "112*4*",
+           "1*22*2",
+           "111111"))
   }
 }
