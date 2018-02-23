@@ -15,10 +15,10 @@ object HammingTestGenerator {
       }
     }
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val property = labeledTest.property
           val sutCall =
             s"""Hamming.$property($args)"""
@@ -26,7 +26,7 @@ object HammingTestGenerator {
           TestCaseData(labeledTest.description, sutCall, expected)
       }
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("strand1", "strand2"))
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput("strand1", "strand2"))
     println(s"-------------")
     println(code)
     println(s"-------------")

@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 2.0.0 */
+/** @version 2.1.0 */
 class HammingTest extends FunSuite with Matchers {
   
   test("empty strands") {
@@ -44,12 +44,12 @@ class HammingTest extends FunSuite with Matchers {
 
   test("non-unique character in first strand") {
     pending
-    Hamming.distance("AGA", "AGG") should be (Some(1))
+    Hamming.distance("AAG", "AAA") should be (Some(1))
   }
 
   test("non-unique character in second strand") {
     pending
-    Hamming.distance("AGG", "AGA") should be (Some(1))
+    Hamming.distance("AAA", "AAG") should be (Some(1))
   }
 
   test("same nucleotides in different positions") {
