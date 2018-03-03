@@ -1,8 +1,8 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 2.1.0 */
 class NthPrimeTest extends FunSuite with Matchers {
-
+  
   test("first prime") {
     NthPrime.prime(1) should be (Some(2))
   }
