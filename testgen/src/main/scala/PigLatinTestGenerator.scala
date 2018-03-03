@@ -8,7 +8,7 @@ object PigLatinTestGenerator {
     val file = new File("src/main/resources/pig-latin.json")
 
     val code =
-      TestSuiteBuilder.build(file, fromLabeledTest("input"))
+      TestSuiteBuilder.build(file, fromLabeledTestFromInput("phrase"))
     println(s"-------------")
     println(code)
     println(s"-------------")
