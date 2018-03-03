@@ -19,10 +19,10 @@ object PalindromeProductsTestGenerator {
       }
     }
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val property = labeledTest.property
           val sutCall = s"""$sut($args).$property"""
           val expected = toString(labeledTest.expected)
@@ -30,7 +30,7 @@ object PalindromeProductsTestGenerator {
       }
 
     val code =
-      TestSuiteBuilder.build(file, fromLabeledTest("input_min", "input_max"),
+      TestSuiteBuilder.build(file, fromLabeledTestFromInput("min", "max"),
         Seq(),
         Seq("// PalindromeProducts largest call is expecting a return type of",
             "// Option[(Int, Set[(Int, Int)])] - None is expected for error cases.",
