@@ -1,12 +1,12 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.1.0 */
 class OcrNumbersTest extends FunSuite with Matchers {
 
   test("Recognizes 0") {
     OcrNumbers.convert(List(" _ ",
-                            "| |", 
-                            "|_|", 
+                            "| |",
+                            "|_|",
                             "   ")) should be("0")
   }
 
@@ -65,7 +65,8 @@ class OcrNumbersTest extends FunSuite with Matchers {
     pending
     OcrNumbers.convert(List(" _ ",
                             " _|",
-                            "|_ ", "   ")) should be("2")
+                            "|_ ",
+                            "   ")) should be("2")
   }
 
   test("Recognizes 3") {
