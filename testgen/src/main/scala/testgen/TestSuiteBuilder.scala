@@ -163,6 +163,11 @@ object TestSuiteBuilder {
   def quote(str: String): String =
     if ("\"\n" exists (str.contains(_:Char))) "\"\"\"" else "\""
 
+  def escape(raw: String): String = {
+    import scala.reflect.runtime.universe._
+    Literal(Constant(raw)).toString
+  }
+
   def toString(any: Any): String = {
     any match {
       case list: List[_] =>
