@@ -7,7 +7,7 @@ object PhoneNumberTestGenerator {
   def fromLabeledTest(argNames: String*): ToTestCaseData =
     withLabeledTest { sut =>
       labeledTest =>
-        val args = sutArgs(labeledTest.result, argNames: _*)
+        val args = sutArgsFromInput(labeledTest.result, argNames: _*)
         val property = labeledTest.property
         val sutCall =
           s"""PhoneNumber.$property($args)"""
