@@ -1,10 +1,15 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.1.0 */
+/** @version 1.4.0 */
 class PangramTest extends FunSuite with Matchers {
-  
+
   test("sentence empty") {
     Pangrams.isPangram("") should be (false)
+  }
+
+  test("recognizes a perfect lower case pangram") {
+    pending
+    Pangrams.isPangram("abcdefghijklmnopqrstuvwxyz") should be (true)
   }
 
   test("pangram with only lower case") {
@@ -17,9 +22,9 @@ class PangramTest extends FunSuite with Matchers {
     Pangrams.isPangram("a quick movement of the enemy will jeopardize five gunboats") should be (false)
   }
 
-  test("another missing character 'x'") {
+  test("another missing character, e.g. 'h'") {
     pending
-    Pangrams.isPangram("the quick brown fish jumps over the lazy dog") should be (false)
+    Pangrams.isPangram("five boxing wizards jump quickly at it") should be (false)
   }
 
   test("pangram with underscores") {

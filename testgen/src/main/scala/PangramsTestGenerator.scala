@@ -5,10 +5,10 @@ import java.io.File
 object PangramsTestGenerator {
   def main(args: Array[String]): Unit = {
     val file = new File("src/main/resources/pangram.json")
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val isPangram = labeledTest.property.mkString
           val sutCall =
             s"""Pangrams.$isPangram($args)"""
@@ -17,7 +17,7 @@ object PangramsTestGenerator {
           TestCaseData(labeledTest.description, sutCall, expected)
       }
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("input"))
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput("sentence"))
     println(s"‐‐‐‐‐‐‐‐‐‐‐‐‐")
     println(code)
     println(s"‐‐‐‐‐‐‐‐‐‐‐‐‐")
