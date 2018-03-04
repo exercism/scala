@@ -34,7 +34,7 @@ object PascalsTriangleTestGenerator {
           if (labeledTest.result.valuesIterator.contains(null)) {
             None
           } else {
-            val args = sutArgs(labeledTest.result, argNames: _*)
+            val args = sutArgsFromInput(labeledTest.result, argNames: _*)
             val property = labeledTest.property
             val sutCall =
               s"""$sut.$property($args)"""
