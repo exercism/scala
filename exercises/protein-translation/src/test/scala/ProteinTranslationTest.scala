@@ -1,60 +1,122 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.{Matchers, FunSuite}
 
-/** @version created manually **/
+/** @version 1.1.0 */
 class ProteinTranslationTest extends FunSuite with Matchers {
-  test("Identifies methionine codon") {
-    ProteinTranslation.translate("AUG") should be(Seq("Methionine"))
+
+  test("Methionine RNA sequence") {
+    ProteinTranslation.proteins("AUG") should be(Seq("Methionine"))
   }
 
-  test("Identifies phenylalanine codons") {
+  test("Phenylalanine RNA sequence 1") {
     pending
-    ProteinTranslation.translate("UUU") should be(Seq("Phenylalanine"))
-    ProteinTranslation.translate("UUC") should be(Seq("Phenylalanine"))
+    ProteinTranslation.proteins("UUU") should be(Seq("Phenylalanine"))
   }
 
-  test("Identifies leucine codons") {
+  test("Phenylalanine RNA sequence 2") {
     pending
-    ProteinTranslation.translate("UUA") should be(Seq("Leucine"))
-    ProteinTranslation.translate("UUG") should be(Seq("Leucine"))
+    ProteinTranslation.proteins("UUC") should be(Seq("Phenylalanine"))
   }
 
-  test("Identifies serine codons") {
+  test("Leucine RNA sequence 1") {
     pending
-    ProteinTranslation.translate("UCU") should be(Seq("Serine"))
-    ProteinTranslation.translate("UCC") should be(Seq("Serine"))
-    ProteinTranslation.translate("UCA") should be(Seq("Serine"))
-    ProteinTranslation.translate("UCG") should be(Seq("Serine"))
+    ProteinTranslation.proteins("UUA") should be(Seq("Leucine"))
   }
 
-  test("Identifies tyrosine codons") {
+  test("Leucine RNA sequence 2") {
     pending
-    ProteinTranslation.translate("UAU") should be(Seq("Tyrosine"))
-    ProteinTranslation.translate("UAC") should be(Seq("Tyrosine"))
+    ProteinTranslation.proteins("UUG") should be(Seq("Leucine"))
   }
 
-  test("Identifies cysteine codons") {
+  test("Serine RNA sequence 1") {
     pending
-    ProteinTranslation.translate("UGU") should be(Seq("Cysteine"))
-    ProteinTranslation.translate("UGC") should be(Seq("Cysteine"))
+    ProteinTranslation.proteins("UCU") should be(Seq("Serine"))
   }
 
-  test("Identifies tryptophan codons") {
+  test("Serine RNA sequence 2") {
     pending
-    ProteinTranslation.translate("UGG") should be(Seq("Tryptophan"))
+    ProteinTranslation.proteins("UCC") should be(Seq("Serine"))
   }
 
-  test("Translate RNA strand into correct protein") {
+  test("Serine RNA sequence 3") {
     pending
-    ProteinTranslation.translate("AUGUUUUGG") should be(Seq("Methionine", "Phenylalanine", "Tryptophan"))
+    ProteinTranslation.proteins("UCA") should be(Seq("Serine"))
   }
 
-  test("Stops translation if stop codon is present") {
+  test("Serine RNA sequence 4") {
     pending
-    ProteinTranslation.translate("AUGUUUUAA") should be(Seq("Methionine", "Phenylalanine"))
+    ProteinTranslation.proteins("UCG") should be(Seq("Serine"))
   }
 
-  test("Stops translation of longest strand") {
+  test("Tyrosine RNA sequence 1") {
     pending
-    ProteinTranslation.translate("UGGUGUUAUUAAUGGUUU") should be(Seq("Tryptophan", "Cysteine", "Tyrosine"))
+    ProteinTranslation.proteins("UAU") should be(Seq("Tyrosine"))
+  }
+
+  test("Tyrosine RNA sequence 2") {
+    pending
+    ProteinTranslation.proteins("UAC") should be(Seq("Tyrosine"))
+  }
+
+  test("Cysteine RNA sequence 1") {
+    pending
+    ProteinTranslation.proteins("UGU") should be(Seq("Cysteine"))
+  }
+
+  test("Cysteine RNA sequence 2") {
+    pending
+    ProteinTranslation.proteins("UGC") should be(Seq("Cysteine"))
+  }
+
+  test("Tryptophan RNA sequence") {
+    pending
+    ProteinTranslation.proteins("UGG") should be(Seq("Tryptophan"))
+  }
+
+  test("STOP codon RNA sequence 1") {
+    pending
+    ProteinTranslation.proteins("UAA") should be(Seq())
+  }
+
+  test("STOP codon RNA sequence 2") {
+    pending
+    ProteinTranslation.proteins("UAG") should be(Seq())
+  }
+
+  test("STOP codon RNA sequence 3") {
+    pending
+    ProteinTranslation.proteins("UGA") should be(Seq())
+  }
+
+  test("Translate RNA strand into correct protein list") {
+    pending
+    ProteinTranslation.proteins("AUGUUUUGG") should be(
+      Seq("Methionine", "Phenylalanine", "Tryptophan"))
+  }
+
+  test("Translation stops if STOP codon at beginning of sequence") {
+    pending
+    ProteinTranslation.proteins("UAGUGG") should be(Seq())
+  }
+
+  test("Translation stops if STOP codon at end of two-codon sequence") {
+    pending
+    ProteinTranslation.proteins("UGGUAG") should be(Seq("Tryptophan"))
+  }
+
+  test("Translation stops if STOP codon at end of three-codon sequence") {
+    pending
+    ProteinTranslation.proteins("AUGUUUUAA") should be(
+      Seq("Methionine", "Phenylalanine"))
+  }
+
+  test("Translation stops if STOP codon in middle of three-codon sequence") {
+    pending
+    ProteinTranslation.proteins("UGGUAGUGG") should be(Seq("Tryptophan"))
+  }
+
+  test("Translation stops if STOP codon in middle of six-codon sequence") {
+    pending
+    ProteinTranslation.proteins("UGGUGUUAUUAAUGGUUU") should be(
+      Seq("Tryptophan", "Cysteine", "Tyrosine"))
   }
 }

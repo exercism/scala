@@ -33,12 +33,6 @@ object KindergartenGardenTestGenerator {
             sutCall, expected)
       }
 
-    // TODO: Move this escape up to TestSuiteBuilder
-    def escape(raw: String): String = {
-      import scala.reflect.runtime.universe._
-      Literal(Constant(raw)).toString
-    }
-
     val code =
       TestSuiteBuilder.build(file, fromLabeledTestFromInput())
 
