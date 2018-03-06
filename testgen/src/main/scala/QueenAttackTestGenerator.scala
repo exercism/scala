@@ -7,27 +7,30 @@ object QueenAttackTestGenerator {
   def main(args: Array[String]): Unit = {
     val file = new File("src/main/resources/queen-attack.json")
 
-    def getPositionArgs(queenMap: Map[String, String]): String =
-      queenMap("position").stripPrefix("(").stripSuffix(")")
+    def getPosition(labeledTest: LabeledTest,
+                    queenType: String): (Int, Int) = {
+      val inputMap = labeledTest.result("input").asInstanceOf[Map[String, Any]]
+      val queenMap = inputMap(queenType).asInstanceOf[Map[String, Any]]
+      val positionMap = queenMap("position").asInstanceOf[Map[String, Int]]
 
-    def getQueen(labeledTest: LabeledTest): Map[String, String] = {
-      labeledTest.result("queen").
-        asInstanceOf[Map[String, String]]
+      (positionMap("row"), positionMap("column"))
     }
 
-    def getWhiteQueen(labeledTest: LabeledTest): Map[String, String] = {
-      labeledTest.result("white_queen").
-        asInstanceOf[Map[String, String]]
-    }
+    def getQueenPosition(labeledTest: LabeledTest): (Int, Int) =
+      getPosition(labeledTest, "queen")
 
-    def getBlackQueen(labeledTest: LabeledTest): Map[String, String] = {
-      labeledTest.result("black_queen").
-        asInstanceOf[Map[String, String]]
-    }
+    def getWhiteQueenPosition(labeledTest: LabeledTest): (Int, Int) =
+      getPosition(labeledTest, "white_queen")
 
-    def getCanAttackArgs(labeledTest: LabeledTest): String = {
-      val whiteQueenArgs = getPositionArgs(getWhiteQueen(labeledTest))
-      val blackQueenArgs = getPositionArgs(getBlackQueen(labeledTest))
+    def getBlackQueenPosition(labeledTest: LabeledTest): (Int, Int) =
+      getPosition(labeledTest, "black_queen")
+
+    def toPositionArgs(position: (Int, Int)) =
+      s"${position._1}, ${position._2}"
+
+    def toCanAttackArgs(labeledTest: LabeledTest): String = {
+      val whiteQueenArgs = toPositionArgs(getWhiteQueenPosition(labeledTest))
+      val blackQueenArgs = toPositionArgs(getBlackQueenPosition(labeledTest))
       s"create($whiteQueenArgs), create($blackQueenArgs)"
     }
 
@@ -36,25 +39,24 @@ object QueenAttackTestGenerator {
       expected match {
         case Right(-1) => s"None"
         case Right(0) =>
-          val args = getPositionArgs(getQueen(labeledTest))
+          val args = toPositionArgs(getQueenPosition(labeledTest))
           s"Some(Queen($args))"
         case _ => throw new IllegalStateException
       }
     }
 
-
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput: ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
           val property = labeledTest.property
           val (clazz, args, expected) = property match {
             case "create" =>
               ("Queen",
-                getPositionArgs(getQueen(labeledTest)),
+                toPositionArgs(getQueenPosition(labeledTest)),
                 toCreateExpected(labeledTest))
             case "canAttack" =>
               ("QueenAttack",
-                getCanAttackArgs(labeledTest),
+                toCanAttackArgs(labeledTest),
                 labeledTest.expected.fold(_ => "false", _.toString))
             case _ => throw new IllegalStateException()
           }
@@ -63,7 +65,7 @@ object QueenAttackTestGenerator {
       }
 
     val code =
-      TestSuiteBuilder.build(file, fromLabeledTest(),
+      TestSuiteBuilder.build(file, fromLabeledTestFromInput,
         Seq(),
         Seq(" private def create(x: Int, y: Int): Queen = {",
           "    Queen.create(x, y) match {",
