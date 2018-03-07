@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.2.0 */
 class RomanNumeralsTest extends FunSuite with Matchers {
 
   test("1 is a single I") {
@@ -45,6 +45,11 @@ class RomanNumeralsTest extends FunSuite with Matchers {
   test("48 is not 50 - 2 but rather 40 + 8") {
     pending
     RomanNumerals.roman(48) should be ("XLVIII")
+  }
+
+  test("49 is not 40 + 5 + 4 but rather 50 - 10 + 10 - 1") {
+    pending
+    RomanNumerals.roman(49) should be ("XLIX")
   }
 
   test("50 is a single L") {
