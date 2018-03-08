@@ -1,7 +1,7 @@
 import java.io.File
 
 import PrimeFactorsTestGenerator.toString
-import testgen.TestSuiteBuilder.{sutArgs, _}
+import testgen.TestSuiteBuilder.{sutArgs, toString, _}
 import testgen._
 
 object SayTestGenerator {
@@ -16,8 +16,8 @@ object SayTestGenerator {
       }
     }
 
-    def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
-      argNames map (name => toArgString(parseResult(name))) mkString ", "
+    def sutArgsFromInput(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
+      argNames map (name => toArgString(parseResult("input").asInstanceOf[Map[String, Any]](name))) mkString ", "
 
     def toArgString(any: Any): String = {
       any match {
@@ -31,10 +31,10 @@ object SayTestGenerator {
       }
     }
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val property = labeledTest.property
           val sutCall =
             s"""$sut.inEnglish($args)"""
@@ -42,7 +42,7 @@ object SayTestGenerator {
           TestCaseData(labeledTest.description, sutCall, expected)
       }
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("input"))
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput("number"))
     println(s"-------------")
     println(code)
     println(s"-------------")
