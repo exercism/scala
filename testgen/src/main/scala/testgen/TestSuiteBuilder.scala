@@ -2,9 +2,11 @@ package testgen
 
 import java.io.FileWriter
 import java.io.File
+
 import play.twirl.api.Txt
 import play.twirl.api.Template1
 import TestSuiteBuilder._
+import testgen.CanonicalDataParser.ParseResult
 
 object TestSuiteBuilder {
 
@@ -181,6 +183,12 @@ object TestSuiteBuilder {
       case _ => any.toString
     }
   }
+
+  /**
+    * Get value from "input" map
+    */
+  def fromInputMap(parseResult: ParseResult, name: String) =
+    parseResult("input").asInstanceOf[Map[String, Any]](name)
 
   def writeToFile(text: String, dest: File): Unit = {
     val fileWriter = new FileWriter(dest)
