@@ -1,5 +1,5 @@
 import testgen._
-import TestSuiteBuilder._
+import TestSuiteBuilder.{toString, _}
 import java.io.File
 
 object SumOfMultiplesTestGenerator {
@@ -14,8 +14,8 @@ object SumOfMultiplesTestGenerator {
     }
   }
 
-  def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
-    argNames map (name => toArgString(parseResult(name))) mkString ", "
+  def sutArgsFromInput(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
+    argNames map (name => toArgString(parseResult("input").asInstanceOf[Map[String, Any]](name))) mkString ", "
 
   def toString(expected: CanonicalDataParser.Expected): String = {
     expected match {
@@ -24,10 +24,10 @@ object SumOfMultiplesTestGenerator {
     }
   }
 
-  def fromLabeledTest(argNames: String*): ToTestCaseData =
+  def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
     withLabeledTest { sut =>
       labeledTest =>
-        val args = sutArgs(labeledTest.result, argNames: _*)
+        val args = sutArgsFromInput(labeledTest.result, argNames: _*)
         val property = labeledTest.property
         val sutCall =
           s"$sut.$property($args)"
@@ -38,7 +38,7 @@ object SumOfMultiplesTestGenerator {
   def main(args: Array[String]): Unit = {
     val file = new File("src/main/resources/sum-of-multiples.json")
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("factors", "limit"))
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput("factors", "limit"))
     println(s"-------------")
     println(code)
     println(s"-------------")
