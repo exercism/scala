@@ -1,6 +1,6 @@
 import java.io.File
 
-import testgen.TestSuiteBuilder._
+import testgen.TestSuiteBuilder.{toString, _}
 import testgen._
 
 object TriangleTestGenerator {
@@ -14,13 +14,13 @@ object TriangleTestGenerator {
       }
     }
 
-    def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
-          argNames map (name => mapArgToString(parseResult(name))) mkString
+    def sutArgsFromInput(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
+        argNames map (name => mapArgToString(parseResult("input").asInstanceOf[Map[String, Any]](name))) mkString
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val func = labeledTest.property.mkString
           val sutCall = s"""Triangle(${args}).$func"""
           val expected =
@@ -29,7 +29,7 @@ object TriangleTestGenerator {
       }
 
     val code = TestSuiteBuilder.build(file,
-        fromLabeledTest("sides"))
+        fromLabeledTestFromInput("sides"))
     println(s"-------------")
     println(code)
     println(s"-------------")
