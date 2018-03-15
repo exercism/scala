@@ -7,7 +7,25 @@ trait BankAccount {
   def incrementBalance(increment: Int): Option[Int]
 }
 
-object Bank {
-  def openAccount(): BankAccount = ???
+protected class Account extends BankAccount {
+
+  private[this] var balance:Option[Int] = Some(0)
+  override def closeAccount(): Unit = synchronized {
+    balance = None
+  }
+
+  override def getBalance: Option[Int] = synchronized {
+    balance
+  }
+
+  override def incrementBalance(increment: Int): Option[Int] = synchronized {
+    val newBalance: Option[Int] = balance.map(_ + increment)
+    balance = nenewBalance
+    newBalance
+  }
 }
 
+object Bank {
+
+  def openAccount(): BankAccount = new Account()
+}

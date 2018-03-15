@@ -8,7 +8,7 @@ class BankAccountTest extends FunSuite with Matchers with Conductors with Integr
   }
 
   test("incrementing and checking balance") {
-    pending
+    
     val acct = Bank.openAccount()
     acct.getBalance should be (Some(0))
     acct.incrementBalance(10) should be (Some(10))
@@ -18,7 +18,7 @@ class BankAccountTest extends FunSuite with Matchers with Conductors with Integr
   }
 
   test("closed account should hold no balance") {
-    pending
+    
     val acct = Bank.openAccount()
     acct.closeAccount()
     acct.incrementBalance(10)
@@ -27,7 +27,7 @@ class BankAccountTest extends FunSuite with Matchers with Conductors with Integr
   }
 
   test("incrementing balance from multiple threads") {
-    pending
+    
     val conductor = new Conductor
     import conductor._
 
@@ -51,7 +51,7 @@ class BankAccountTest extends FunSuite with Matchers with Conductors with Integr
   }
 
   test("incrementing balance from multiple threads - concurrent updates") {
-    pending
+    
     val conductor = new Conductor
     import conductor._
 
