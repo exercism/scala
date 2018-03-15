@@ -1,7 +1,7 @@
 import java.io.File
 
 import testgen.{CanonicalDataParser, TestCaseData, TestSuiteBuilder}
-import TestSuiteBuilder._
+import TestSuiteBuilder.{toString, _}
 
 object VariableLengthQuantityTestGenerator {
 
@@ -50,14 +50,13 @@ object VariableLengthQuantityTestGenerator {
     }
   }
 
-  private def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
-    argNames map (name => toArgString(parseResult(name))) mkString ", "
+  private def sutArgsFromInput(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
+    argNames map (name => toArgString(parseResult("input").asInstanceOf[Map[String, Any]](name))) mkString ", "
 
-
-  def fromLabeledTest(argNames: String*): ToTestCaseData =
+  def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
     withLabeledTest { sut =>
       labeledTest =>
-        val args = sutArgs(labeledTest.result, argNames: _*)
+        val args = sutArgsFromInput(labeledTest.result, argNames: _*)
         val property = labeledTest.property
         val sutCall = toSutCall(sut, property, args, labeledTest.expected)
         val expected =
@@ -71,7 +70,7 @@ object VariableLengthQuantityTestGenerator {
   def main(args: Array[String]): Unit = {
     val file = new File("src/main/resources/variable-length-quantity.json")
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("input"))
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput("integers"))
     println(s"-------------")
     println(code)
     println(s"-------------")
