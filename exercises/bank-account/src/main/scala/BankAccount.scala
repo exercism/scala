@@ -20,7 +20,7 @@ protected class Account extends BankAccount {
 
   override def incrementBalance(increment: Int): Option[Int] = synchronized {
     val newBalance: Option[Int] = balance.map(_ + increment)
-    balance = nenewBalance
+    balance = newBalance
     newBalance
   }
 }
