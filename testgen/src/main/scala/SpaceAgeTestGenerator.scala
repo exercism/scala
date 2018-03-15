@@ -1,6 +1,7 @@
 import java.io.File
 
-import testgen.TestSuiteBuilder._
+import testgen.CanonicalDataParser.ParseResult
+import testgen.TestSuiteBuilder.{toString, _}
 import testgen._
 
 object SpaceAgeTestGenerator {
@@ -14,26 +15,26 @@ object SpaceAgeTestGenerator {
       }
     }
 
-    def sutArgs(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
-      argNames map (name => TestSuiteBuilder.toString(parseResult(name))) mkString ", "
+    def sutArgsFromInput(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
+      argNames map (name => TestSuiteBuilder.toString(fromInputMap(parseResult, name))) mkString ", "
 
     def functionName(parseResult: CanonicalDataParser.ParseResult): String =
-      "on" + parseResult("planet").toString
+      "on" + fromInputMap(parseResult, "planet").toString
 
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
-          val property = labeledTest.property
+          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val sutCall =
             s"""$sut.${functionName(labeledTest.result)}($args)"""
           val expected = toString(labeledTest.expected)
           TestCaseData(labeledTest.description, sutCall, expected)
       }
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("seconds"))
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput("seconds"))
     println(s"-------------")
     println(code)
     println(s"-------------")
   }
+
 }
