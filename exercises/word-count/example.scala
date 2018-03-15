@@ -1,5 +1,5 @@
 case class WordCount(phrase: String) {
-  def countwords = "\\w+('\\w+)*".r
+  def countWords = "\\w+('\\w+)*".r
     .findAllIn(phrase)
     .toSeq
     .map(_.toLowerCase)

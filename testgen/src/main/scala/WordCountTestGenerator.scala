@@ -12,26 +12,22 @@ object WordCountTestGenerator {
     }
   }
 
-  def fromLabeledTest(argNames: String*): ToTestCaseData =
+  def fromLabeledTestFromInput(): ToTestCaseData =
     withLabeledTest { sut =>
       labeledTest =>
-        val args = escape(labeledTest.result("input").toString)
+        val args = labeledTest.result("input").asInstanceOf[Map[String, Any]]
+        val sentence = escape(args("sentence").toString)
         val property = labeledTest.property
         val sutCall =
-          s"""$sut($args).$property"""
+          s"""$sut($sentence).$property"""
         val expected = toString(labeledTest.expected)
         TestCaseData(labeledTest.description, sutCall, expected)
     }
 
-  def escape(raw: String): String = {
-    import scala.reflect.runtime.universe._
-    Literal(Constant(raw)).toString
-  }
-
   def main(args: Array[String]): Unit = {
     val file = new File("src/main/resources/word-count.json")
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("input"))
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput())
     println(s"-------------")
     println(code)
     println(s"-------------")
