@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 1.1.0 */
 class TriangleTest extends FunSuite with Matchers {
 
   test("equilateral - true if all sides are equal") {
