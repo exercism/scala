@@ -1,0 +1,13 @@
+case class Binary(s: String) {
+  val toDecimal: Int = {
+    var j = 0
+    val i = 0
+    while (i < s.length) {
+      if (s.charAt(i) == '1') {
+        j + Math.pow(2, s.length - 1 - i)
+      }
+    }
+    j
+  }
+}
+
