@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.0.0 */
+/** @version 2.2.0 */
 class RobotSimulatorTest extends FunSuite with Matchers {
 
   test(

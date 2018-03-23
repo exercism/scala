@@ -7,18 +7,25 @@ object RobotSimulatorTestGenerator {
   def main(args: Array[String]): Unit = {
     val file = new File("src/main/resources/robot-simulator.json")
 
-    def getPositionArgs(robotMap: Map[String, String]): String =
-      robotMap("position").stripPrefix("(").stripSuffix(")")
-
-    def getRobotMap(labeledTest: LabeledTest): Map[String, String] = {
-      labeledTest.result("robot").
-        asInstanceOf[Map[String, String]]
+    def getPosition(labeledTest: LabeledTest): (Int, Int) = {
+      val inputMap = fromInputMap(labeledTest.result, "position")
+        .asInstanceOf[Map[String, Any]]
+      getPosition2(inputMap)
     }
 
-    def getExpectedMap(labeledTest: LabeledTest): Map[String, String] = {
-      labeledTest.result("expected").
-        asInstanceOf[Map[String, String]]
-    }
+    def getPosition2(positionMap: Map[String, Any]): (Int, Int) =
+      (positionMap("x").asInstanceOf[Int], positionMap("y").asInstanceOf[Int])
+
+
+    def getDirection(labeledTest: LabeledTest): String =
+      fromInputMap(labeledTest.result, "direction").toString
+
+    def toPositionArgs(position: (Int, Int)): String =
+      s"${position._1}, ${position._2}"
+
+
+    def getExpectedMap(labeledTest: LabeledTest): Map[String, Any] =
+      labeledTest.result("expected").asInstanceOf[Map[String, Any]]
 
     def directionToBearing(direction: String): String =
       direction.toLowerCase match {
@@ -29,18 +36,19 @@ object RobotSimulatorTestGenerator {
       }
 
     def toCreateSutCall(labeledTest: LabeledTest): String = {
-      val robotMap = getRobotMap(labeledTest)
-      val bearing = directionToBearing(robotMap("direction"))
-      s"Robot($bearing, (${getPositionArgs(robotMap)}))"
+      val bearing = directionToBearing(getDirection(labeledTest))
+      s"Robot($bearing, (${toPositionArgs(getPosition(labeledTest))}))"
     }
 
     def toCreateExpected(labeledTest: LabeledTest): String = {
       val robotMap = getExpectedMap(labeledTest)
-      val bearing = directionToBearing(robotMap("direction"))
-      s"Robot($bearing, (${getPositionArgs(robotMap)}))"
+      val bearing = directionToBearing(robotMap("direction").toString)
+      val positionArgs = toPositionArgs(getPosition2(robotMap("position")
+        .asInstanceOf[Map[String, Int]]))
+      s"Robot($bearing, ($positionArgs))"
     }
 
-    def toTurnFunction(map: Map[String, String]) =
+    def toTurnFunction(map: Map[String, Any]) =
       map.get("direction") match {
         case Some(_) => "bearing"
         case None => "coordinates"
@@ -54,15 +62,18 @@ object RobotSimulatorTestGenerator {
 
     def toTurnExpected(labeledTest: LabeledTest): String = {
       val expected = getExpectedMap(labeledTest)
+      expected.foreach{case (k, v) => System.out.println(s"$k")}
       expected.get("direction") match {
-        case Some(s) => directionToBearing(s)
-        case None => s"(${getPositionArgs(expected)})"
+        case Some(s: String) => directionToBearing(s)
+        case None => {
+          val positionMap = expected("position").asInstanceOf[Map[String, Int]]
+          s"(${toPositionArgs(getPosition2(positionMap))})"
+        }
       }
     }
 
     def toInstructSutCall(labeledTest: LabeledTest): String = {
-      val property = labeledTest.property
-      val instructions = labeledTest.result("instructions")
+      val instructions = fromInputMap(labeledTest.result, "instructions")
       s"""${toCreateSutCall(labeledTest)}.simulate("$instructions")"""
     }
 
