@@ -8,13 +8,13 @@ object ClockTestGenerator {
     expected.fold(_ => "", TestSuiteBuilder.toString)
 
   private def expectedToClockStr(expected: CanonicalDataParser.Expected): String =
-    expected.fold(_ => "", any => any match {
+    expected.fold(_ => "", {
       case str: String => str.split(':').map(_.toInt).mkString(", ")
       case _ => throw new IllegalArgumentException
     })
 
-  private def toOperation(addArg: String): String =
-    if (addArg.startsWith("-")) "-" else "+"
+  private def toOperation(function: String): String =
+    if (function.equalsIgnoreCase("subtract")) "-" else "+"
 
   def mapArgToStringForEqual(arg: Any): String = {
     arg match {
@@ -24,19 +24,21 @@ object ClockTestGenerator {
   }
 
   def sutArgsForEqual(parseResult: CanonicalDataParser.ParseResult, argNames: String*): String =
-    argNames map (name => mapArgToStringForEqual(parseResult(name))) mkString
+    argNames map (name => mapArgToStringForEqual(parseResult("input").asInstanceOf[Map[String, Any]](name))) mkString ", "
 
-  def fromLabeledTestAlt(propArgs: (String, Seq[String])*): ToTestCaseData =
+  def fromLabeledTestAltFromInput(propArgs: (String, Seq[String])*): ToTestCaseData =
     withLabeledTest { sut => labeledTest =>
       val sutFunction = labeledTest.property
-      val args = sutArgsAlt(labeledTest.result, propArgs:_*)
+      val args = sutArgsAltFromInput(labeledTest.result, propArgs:_*)
 
+      val sutFunc = sutFunction.toString
       val sutCall =
-        if (sutFunction.toString == "create")
+        if (sutFunc == "create")
           s"$sut($args)"
-        else if (sutFunction.toString == "add") {
-          val addArgs = sutArgs(labeledTest.result, "add")
-          s"$sut($args) ${toOperation(addArgs)} $sut(${addArgs.stripPrefix("-")})"
+        else if (sutFunc == "add" || sutFunc == "subtract") {
+          val constructorArgs = sutArgsFromInput(labeledTest.result, "hour", "minute")
+          val functionArgs = sutArgsFromInput(labeledTest.result, "value")
+          s"$sut($constructorArgs) ${toOperation(sutFunc)} $sut(${functionArgs.stripPrefix("-")})"
         } else {
           val argsForEqual1 = sutArgsForEqual(labeledTest.result, "clock1")
           val argsForEqual2 = sutArgsForEqual(labeledTest.result, "clock2")
@@ -44,7 +46,7 @@ object ClockTestGenerator {
         }
 
       val expected =
-        if (sutFunction.toString == "create" || sutFunction.toString == "add")
+        if (sutFunc == "create" || sutFunc == "add" || sutFunc == "subtract")
           s"$sut(${expectedToClockStr(labeledTest.expected)})"
         else
           toString(labeledTest.expected)
@@ -56,8 +58,9 @@ object ClockTestGenerator {
     val file = new File("src/main/resources/clock.json")
 
     val code = TestSuiteBuilder.build(file,
-      fromLabeledTestAlt("create" -> Seq("hour", "minute"),
-        "add" -> Seq("hour", "minute"),
+      fromLabeledTestAltFromInput("create" -> Seq("hour", "minute"),
+        "add" -> Seq("hour", "minute", "value"),
+        "subtract" -> Seq("hour", "minute", "value"),
         "equal" -> Seq("clock1")))
     println(s"-------------")
     println(code)
