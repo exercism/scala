@@ -16,11 +16,12 @@ object House {
     "This is " + parts(n)._2 +
       (for {
         i <- List.range(0, n).reverse
-      } yield {"\nthat %s %s".format(parts(i)._1, parts(i)._2)}).mkString +
-      "\n\n"
+      } yield {" that %s %s".format(parts(i)._1, parts(i)._2)}).mkString + "\n"
   }
 
-  def recite(n: Int): String = reciteInternal(n - 1)
+  def recite(n: Int): String = reciteInternal(n - 1) + "\n"
 
-  def recite(n: Int, m: Int): String = (for {i <- List.range(n - 1, m)} yield {reciteInternal(i)}).mkString
+  def recite(n: Int, m: Int): String = (for {i <- List.range(n - 1, m)} yield {
+    reciteInternal(i)
+  }).mkString + "\n"
 }
