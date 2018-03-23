@@ -11,25 +11,31 @@ object GrainsTestGenerator {
         case Left(_) => "None"
         case Right(-1) => "None"
         case Right(n: BigDecimal) => if (n > Int.MaxValue) s"""Some(BigInt(\"$n\"))""" else s"Some($n)"
-        case _ => "None"
+        case Right(n: Double) => s"""Some(BigInt("${n.toLong}"))"""
+        case Right(n) => s"Some($n)"
       }
     }
 
     def toStringForTotal(expected: CanonicalDataParser.Expected): String = {
       expected match {
         case Right(n: BigDecimal) => s"""BigInt(\"$n\")"""
+        case Right(l: Long) => s"""Long(\"${l.toString}\")"""
+        case Right(d: Double) => s"""Long(\"${d.toLong.toString}\")"""
+        case Right(v) => v.toString
         case _ => throw new IllegalStateException
       }
     }
 
     val file = new File("src/main/resources/grains.json")
-    def fromLabeledTest(argNames: String*): ToTestCaseData =
+    def fromLabeledTestFromInput(): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = if (!labeledTest.result.contains("input"))
-              ""
-            else
-              sutArgs(labeledTest.result, argNames: _*)
+          val square = labeledTest.result("input").asInstanceOf[Map[String, Any]].get("square")
+          val args = square match {
+            case None => ""
+            case Some(s) => s.toString
+          }
+
           val property = labeledTest.property.mkString
           val sutCall = if (args.length > 0)
               s"""Grains.$property($args)"""
@@ -42,7 +48,7 @@ object GrainsTestGenerator {
           TestCaseData(labeledTest.description, sutCall, expected)
       }
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTest("input"))
+    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput())
     println(s"‐‐‐‐‐‐‐‐‐‐‐‐‐")
     println(code)
     println(s"‐‐‐‐‐‐‐‐‐‐‐‐‐")
