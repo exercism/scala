@@ -106,6 +106,17 @@
       ]
     },
     {
+      "uuid": "2bd9ab9e-ecc4-4331-984d-8e5f15f775b4",
+      "slug": "armstrong-numbers",
+      "core": false,
+      "unlocked_by": "leap",
+      "difficulty": 2,
+      "topics": [
+        "Integers",
+        "Mathematics"
+      ]
+    },
+    {
       "uuid": "5a31217f-02fd-4be4-b64f-7a93f36f5140",
       "slug": "hamming",
       "core": true,
