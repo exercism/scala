@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.1.0 */
+/** @version 1.1.1 */
 class KindergartenGardenTest extends FunSuite with Matchers {
 
   test("partial garden - garden with single student") {
