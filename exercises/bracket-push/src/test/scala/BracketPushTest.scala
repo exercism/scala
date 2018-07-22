@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.2.0 */
+/** @version 1.3.0 */
 class BracketPushTest extends FunSuite with Matchers {
 
   test("paired square brackets") {
@@ -30,6 +30,11 @@ class BracketPushTest extends FunSuite with Matchers {
   test("paired with whitespace") {
     pending
     BracketPush.isPaired("{ }") should be(true)
+  }
+
+  test("partially paired brackets") {
+    pending
+    BracketPush.isPaired("{[])") should be(false)
   }
 
   test("simple nested brackets") {
@@ -70,7 +75,7 @@ class BracketPushTest extends FunSuite with Matchers {
   test("complex latex expression") {
     pending
     BracketPush.isPaired(
-      "\\left(\\begin{array}{cc} \\frac{1}{3} & x\\ \\mathrm{e}^{x} &... x^2 \\end{array}\\right)") should be(
+      """\left(\begin{array}{cc} \frac{1}{3} & x\ \mathrm{e}^{x} &... x^2 \end{array}\right)""") should be(
       true)
   }
 }
