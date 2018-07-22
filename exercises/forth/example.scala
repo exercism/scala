@@ -203,7 +203,11 @@ case class UserDef(userTerm: String, definitions: List[TermDefinition]) extends 
       case Left(_) => state
       case Right(fs) =>
         val fsMap = fs.asInstanceOf[ForthState].definitions
-        val updatedMap = fsMap + (userTerm -> definitions)
+        val substituredDefs: List[Definition] = definitions.flatMap {
+          case PossibleUser(s) => fsMap(s)
+          case d@(_: Definition) => List(d)
+        }
+        val updatedMap = fsMap + (userTerm -> substituredDefs)
         val stack = fs.asInstanceOf[ForthState].stack
         Right(ForthState(stack, updatedMap))
     }
@@ -230,19 +234,19 @@ class Forth extends ForthEvaluator with RegexParsers {
 
   override protected val whiteSpace: Regex = "(?U)(\\s|[\\u0000-\\u001f])+".r
 
-    private def word: Parser[TermDefinition] = "(?U)[\\S&&[^;]&&[^0-9]]+".r ^^ { s => {
-      s.toLowerCase match {
-        case Definitions.add => Add()
-        case Definitions.subtract => Subtract()
-        case Definitions.multiply => Multiply()
-        case Definitions.divide => Divide()
-        case Definitions.dup => Dup()
-        case Definitions.drop => Drop()
-        case Definitions.swap => Swap()
-        case Definitions.over => Over()
-        case possibleUserWord: String => PossibleUser(possibleUserWord)
-      }
+  private def word: Parser[TermDefinition] = "(?U)[\\S&&[^;]&&[^0-9]]+".r ^^ { s => {
+    s.toLowerCase match {
+      case Definitions.add => Add()
+      case Definitions.subtract => Subtract()
+      case Definitions.multiply => Multiply()
+      case Definitions.divide => Divide()
+      case Definitions.dup => Dup()
+      case Definitions.drop => Drop()
+      case Definitions.swap => Swap()
+      case Definitions.over => Over()
+      case possibleUserWord: String => PossibleUser(possibleUserWord)
     }
+  }
   }
 
   private def userDefinition: Parser[TermDefinition] = (":" ~> "(?U)[\\S&&[^0-9]]+".r ~ rep(word | number) <~ ";") ^^ {
