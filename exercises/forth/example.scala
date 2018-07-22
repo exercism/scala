@@ -203,11 +203,11 @@ case class UserDef(userTerm: String, definitions: List[TermDefinition]) extends 
       case Left(_) => state
       case Right(fs) =>
         val fsMap = fs.asInstanceOf[ForthState].definitions
-        val substituredDefs: List[Definition] = definitions.flatMap {
+        val substitutedDefs: List[Definition] = definitions.flatMap {
           case PossibleUser(s) => fsMap(s)
           case d@(_: Definition) => List(d)
         }
-        val updatedMap = fsMap + (userTerm -> substituredDefs)
+        val updatedMap = fsMap + (userTerm -> substitutedDefs)
         val stack = fs.asInstanceOf[ForthState].stack
         Right(ForthState(stack, updatedMap))
     }
