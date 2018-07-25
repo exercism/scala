@@ -1064,7 +1064,7 @@
       "uuid": "e45f95de-8688-46ba-80d1-470c4072c740",
       "core": false,
       "unlocked_by": "accumulate",
-      "difficulty": 2,
+      "difficulty": 4,
       "topics": [
         "lists",
         "strings",
