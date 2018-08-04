@@ -22,6 +22,7 @@
       "difficulty": 1,
       "topics": [
         "filtering",
+        "math",
         "sets"
       ]
     },
@@ -32,8 +33,7 @@
       "unlocked_by": null,
       "difficulty": 1,
       "topics": [
-        "integers",
-        "mathematics"
+        "integers"
       ]
     },
     {
@@ -103,7 +103,7 @@
       "unlocked_by": "leap",
       "difficulty": 2,
       "topics": [
-        "mathematics",
+        "math",
         "recursion"
       ]
     },
@@ -115,7 +115,7 @@
       "difficulty": 2,
       "topics": [
         "integers",
-        "mathematics"
+        "math"
       ]
     },
     {
@@ -154,7 +154,7 @@
         "discriminated_unions",
         "enumerations",
         "integers",
-        "mathematics"
+        "math"
       ]
     },
     {
@@ -223,7 +223,7 @@
       "difficulty": 1,
       "topics": [
         "integers",
-        "mathematics"
+        "math"
       ]
     },
     {
@@ -291,7 +291,6 @@
       "unlocked_by": "hamming",
       "difficulty": 3,
       "topics": [
-        "mathematics",
         "optional_values"
       ]
     },
@@ -324,9 +323,7 @@
       "core": false,
       "unlocked_by": "leap",
       "difficulty": 3,
-      "topics": [
-        "mathematics"
-      ]
+      "topics": []
     },
     {
       "slug": "binary-search",
@@ -349,7 +346,7 @@
       "topics": [
         "filtering",
         "lists",
-        "mathematics"
+        "math"
       ]
     },
     {
@@ -478,7 +475,7 @@
         "algorithms",
         "integers",
         "lists",
-        "mathematics"
+        "math"
       ]
     },
     {
@@ -502,7 +499,7 @@
       "topics": [
         "integers",
         "lists",
-        "mathematics",
+        "math",
         "optional_values",
         "transforming"
       ]
@@ -527,7 +524,7 @@
       "difficulty": 4,
       "topics": [
         "integers",
-        "mathematics",
+        "math",
         "optional_values",
         "strings",
         "transforming"
@@ -542,7 +539,7 @@
       "topics": [
         "control_flow_loops",
         "lists",
-        "mathematics"
+        "math"
       ]
     },
     {
@@ -553,7 +550,7 @@
       "difficulty": 4,
       "topics": [
         "integers",
-        "mathematics",
+        "math",
         "sequences",
         "tuples"
       ]
@@ -771,7 +768,7 @@
       "difficulty": 6,
       "topics": [
         "algorithms",
-        "mathematics",
+        "math",
         "optional_values"
       ]
     },
@@ -783,6 +780,7 @@
       "difficulty": 6,
       "topics": [
         "algorithms",
+        "math",
         "optional_values",
         "sets",
         "strings",
@@ -896,7 +894,6 @@
       "unlocked_by": "perfect-numbers",
       "difficulty": 7,
       "topics": [
-        "mathematics",
         "optional_values",
         "parsing",
         "strings",
@@ -912,7 +909,6 @@
       "topics": [
         "integers",
         "lists",
-        "mathematics",
         "optional_values"
       ]
     },
@@ -1018,7 +1014,6 @@
       "unlocked_by": "leap",
       "difficulty": 10,
       "topics": [
-        "mathematics",
         "parsing",
         "strings"
       ]
