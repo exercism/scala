@@ -1065,6 +1065,16 @@
         "strings",
         "text_formatting"
       ]
+    },
+    {
+      "slug": "complex-numbers",
+      "uuid": "48131b13-2548-4d31-9c5e-af1dac2fc94d",
+      "core": false,
+      "unlocked_by": "sum-of-multiples",
+      "difficulty": 6,
+      "topics": [
+        "math"
+      ]
     }
   ]
 }
