@@ -1075,6 +1075,19 @@
       "topics": [
         "math"
       ]
+    },
+    {
+      "slug": "rotational-cipher",
+      "uuid": "67b5c1cd-7c46-4939-851d-7c10d2e908b1",
+      "core": false,
+      "unlocked_by": "accumulate",
+      "difficulty": 5,
+      "topics": [
+        "math",
+        "security",
+        "strings",
+        "transforming",
+      ]
     }
   ]
 }
