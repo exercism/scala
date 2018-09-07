@@ -1,18 +1,10 @@
 object RotationalCipher {
   private def rotate(c: Char, key: Int): Char = {
-    def charPassedZ = (rotated: Char) => {
-      val zChar = if (c.isUpper) 'Z' else 'z'
-      rotated > zChar
-    }
-
     if (!c.isLetter)
       return c
 
-    val tmp = c + key
-    if (charPassedZ(tmp.toChar))
-      (tmp - 26).toChar
-    else
-      tmp.toChar
+    val base = if (c.isUpper) 'A'.toInt else 'a'.toInt
+    ((c.toInt - base + key) % 26 + base).toChar
   }
 
   def rotate(text: String, key: Int): String =
