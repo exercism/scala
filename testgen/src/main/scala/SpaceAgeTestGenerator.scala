@@ -27,7 +27,7 @@ object SpaceAgeTestGenerator {
           val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val sutCall =
             s"""$sut.${functionName(labeledTest.result)}($args)"""
-          val expected = toString(labeledTest.expected)
+          val expected = toString(labeledTest.expected) + " +- 0.01"
           TestCaseData(labeledTest.description, sutCall, expected)
       }
 
