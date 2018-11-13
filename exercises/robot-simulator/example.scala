@@ -1,5 +1,3 @@
-import Bearing.Bearing
-
 case class Robot(bearing: Bearing, coordinates: (Int, Int)) {
   val x = coordinates._1
   val y = coordinates._2
@@ -11,13 +9,19 @@ case class Robot(bearing: Bearing, coordinates: (Int, Int)) {
     case Bearing.West => Robot(bearing, (x - 1, y))
   }
 
-  def turnRight: Robot =
-    if (bearing.id == Bearing.maxId - 1) Robot(Bearing(0), (x, y))
-    else Robot(Bearing(bearing.id + 1), (x, y))
+  def turnRight: Robot = bearing match {
+    case Bearing.North => Robot(Bearing.East, coordinates)
+    case Bearing.South => Robot(Bearing.West, coordinates)
+    case Bearing.East => Robot(Bearing.South, coordinates)
+    case Bearing.West => Robot(Bearing.North, coordinates)
+  }
 
-  def turnLeft: Robot =
-    if (bearing.id == 0) Robot(Bearing(Bearing.maxId - 1), (x, y))
-    else Robot(Bearing(bearing.id - 1), (x, y))
+  def turnLeft: Robot = bearing match {
+    case Bearing.North => Robot(Bearing.West,  coordinates)
+    case Bearing.East  => Robot(Bearing.North, coordinates)
+    case Bearing.South => Robot(Bearing.East,  coordinates)
+    case Bearing.West  => Robot(Bearing.South, coordinates)
+  }
 
   def simulate(instructions: String): Robot =  instructions.foldLeft(this){
     case (acc, instruction) => instruction match {
@@ -28,11 +32,10 @@ case class Robot(bearing: Bearing, coordinates: (Int, Int)) {
     }}
 }
 
-object Bearing extends Enumeration {
-  type Bearing = Value
-
-  val North = Value(0, "North")
-  val East = Value(1, "East")
-  val South = Value(2, "South")
-  val West = Value(3, "West")
+sealed trait Bearing
+object Bearing {
+  case object North extends Bearing
+  case object East  extends Bearing
+  case object South extends Bearing
+  case object West  extends Bearing
 }
