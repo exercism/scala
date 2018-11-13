@@ -25,9 +25,9 @@ case class Robot(bearing: Bearing, coordinates: (Int, Int)) {
 
   def simulate(instructions: String): Robot =  instructions.foldLeft(this){
     case (acc, instruction) => instruction match {
-      case 'A' => acc.advance()
-      case 'L' => acc.turnLeft()
-      case 'R' => acc.turnRight()
+      case 'A' => acc.advance
+      case 'L' => acc.turnLeft
+      case 'R' => acc.turnRight
       case _ => throw new IllegalArgumentException("Invalid instruction - " + instruction)
     }}
 }
