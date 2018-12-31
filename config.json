@@ -1088,6 +1088,18 @@
         "strings",
         "transforming"
       ]
+    },
+    {
+      "slug": "darts",
+      "uuid": "939bfbf2-55c9-4c54-b2ef-3247bb6fc67c",
+      "core": false,
+      "unlocked_by": "sum-of-multiples",
+      "difficulty": 1,
+      "topics": [
+        "math",
+        "control_flow_if_else_statements",
+        "floating_point_numbers"
+      ]
     }
   ]
 }
