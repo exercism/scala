@@ -1,5 +1,5 @@
 object Anagram {
-  def anagrams(word: String, anagrams: Seq[String]) =
+  def findAnagrams(word: String, anagrams: Seq[String]) =
     anagrams.filter(w => doesMatch(word, w)).filterNot(w => isIdentical(word, w))
 
   private def doesMatch(word1: String, word2: String) =
