@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.2.0 */
+/** @version 1.3.0 */
 class AlphameticsTest extends FunSuite with Matchers {
 
   test("puzzle with three letters") {
@@ -16,6 +16,12 @@ class AlphameticsTest extends FunSuite with Matchers {
   test("leading zero solution is invalid") {
     pending
     Alphametics.solve("ACA + DD == BD") should be(None)
+  }
+
+  test("puzzle with two digits final carry") {
+    pending
+    Alphametics.solve("A + A + A + A + A + A + A + A + A + A + A + B == BCC") should be(
+      Some(Map('A' -> 9, 'B' -> 1, 'C' -> 0)))
   }
 
   test("puzzle with four letters") {
