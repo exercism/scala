@@ -1088,6 +1088,17 @@
         "strings",
         "transforming"
       ]
+    },
+    {
+      "slug": "high-scores",
+      "uuid": "3b161610-5b60-4661-aa24-dc026b741586",
+      "core": false,
+      "unlocked_by": "accumulate",
+      "difficulty": 2,
+      "topics": [
+        "lists",
+        "strings"
+      ]
     }
   ]
 }
