@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.3.0 */
+/** @version 1.6.0 */
 class AcronymTest extends FunSuite with Matchers {
 
   test("basic") {
@@ -8,22 +8,37 @@ class AcronymTest extends FunSuite with Matchers {
   }
 
   test("lowercase words") {
-    pending
+    //pending
     Acronym.abbreviate("Ruby on Rails") should be ("ROR")
   }
 
   test("punctuation") {
-    pending
+    //pending
     Acronym.abbreviate("First In, First Out") should be ("FIFO")
   }
 
   test("all caps word") {
-    pending
+    //pending
     Acronym.abbreviate("GNU Image Manipulation Program") should be ("GIMP")
   }
 
   test("punctuation without whitespace") {
-    pending
+    //pending
     Acronym.abbreviate("Complementary metal-oxide semiconductor") should be ("CMOS")
+  }
+
+  test("very long abbreviation") {
+    //pending
+    Acronym.abbreviate("Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me") should be ("ROTFLSHTMDCOALM")
+  }
+
+  test("consecutive delimiters") {
+    //pending
+    Acronym.abbreviate("Something - I made up from thin air") should be ("SIMUFTA")
+  }
+
+  test("apostrophes") {
+    //pending
+    Acronym.abbreviate("Halley's Comet") should be ("HC")
   }
 }
