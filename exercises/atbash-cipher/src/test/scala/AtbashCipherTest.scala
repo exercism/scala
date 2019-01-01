@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.1.0 */
+/** @version 1.2.0 */
 class AtbashCipherTest extends FunSuite with Matchers {
 
   test("encode yes") {
@@ -64,5 +64,16 @@ class AtbashCipherTest extends FunSuite with Matchers {
     pending
     AtbashCipher.decode("gsvjf rxpyi ldmul cqfnk hlevi gsvoz abwlt") should be(
       "thequickbrownfoxjumpsoverthelazydog")
+  }
+
+  test("decode with too many spaces") {
+    pending
+    AtbashCipher.decode("vc vix    r hn") should be("exercism")
+  }
+
+  test("decode with no spaces") {
+    pending
+    AtbashCipher.decode("zmlyhgzxovrhlugvmzhgvkkrmthglmv") should be(
+      "anobstacleisoftenasteppingstone")
   }
 }
