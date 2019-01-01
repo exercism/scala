@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.1.0 */
+/** @version 1.2.0 */
 class AllergiesTest extends FunSuite with Matchers {
 
   test("Allergen.Peanuts - no allergies means not allergic") {
@@ -35,6 +35,26 @@ class AllergiesTest extends FunSuite with Matchers {
   test("Allergen.Strawberries - allergic to eggs in addition to other stuff") {
     pending
     Allergies.allergicTo(Allergen.Strawberries, 5) should be(false)
+  }
+
+  test("Allergen.Eggs - allergic to strawberries but not peanuts") {
+    pending
+    Allergies.allergicTo(Allergen.Eggs, 9) should be(true)
+  }
+
+  test("Allergen.Peanuts - allergic to strawberries but not peanuts") {
+    pending
+    Allergies.allergicTo(Allergen.Peanuts, 9) should be(false)
+  }
+
+  test("Allergen.Shellfish - allergic to strawberries but not peanuts") {
+    pending
+    Allergies.allergicTo(Allergen.Shellfish, 9) should be(false)
+  }
+
+  test("Allergen.Strawberries - allergic to strawberries but not peanuts") {
+    pending
+    Allergies.allergicTo(Allergen.Strawberries, 9) should be(true)
   }
 
   test("no allergies at all") {
