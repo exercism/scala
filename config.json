@@ -1090,6 +1090,17 @@
       ]
     },
     {
+      "slug": "high-scores",
+      "uuid": "3b161610-5b60-4661-aa24-dc026b741586",
+      "core": false,
+      "unlocked_by": "accumulate",
+      "difficulty": 2,
+      "topics": [
+        "lists",
+        "strings"
+      ]
+    },
+    {
       "slug": "darts",
       "uuid": "939bfbf2-55c9-4c54-b2ef-3247bb6fc67c",
       "core": false,
