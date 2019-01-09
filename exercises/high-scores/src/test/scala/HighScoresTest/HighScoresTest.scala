@@ -4,7 +4,6 @@ import org.scalatest.{Matchers, FunSuite}
 class HighScoresTest extends FunSuite with Matchers {
 
   test("Latest score") {
-    pending
     HighScores.latest(List(100, 0, 90, 30)) should be(30)
   }
 
