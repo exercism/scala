@@ -21,8 +21,8 @@ Check out the test suite to see the expected function signature.
 
 ## Restrictions
 
-Keep your hands off that collect/map/fmap/whatchamacallit functionality
-provided by your standard library!
+Keep your hands off the map, flatMap and for comprehension functionality
+provided by the standard library!
 Solve this one yourself using other basic tools instead.
 
 The Scala exercises assume an SBT project scheme. The exercise solution source
