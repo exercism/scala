@@ -1,7 +1,8 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.3.0 */
+/** @version 1.4.0 */
 class BookStoreTest extends FunSuite with Matchers {
+
 
   test("Only a single book") {
     BookStore.total(List(1)) should be (800)
@@ -40,6 +41,11 @@ class BookStoreTest extends FunSuite with Matchers {
   test("Two groups of four is cheaper than group of five plus group of three") {
     pending
     BookStore.total(List(1, 1, 2, 2, 3, 3, 4, 5)) should be (5120)
+  }
+
+  test("Two groups of four is cheaper than groups of five and three") {
+    pending
+    BookStore.total(List(1, 1, 2, 3, 4, 4, 5, 5)) should be (5120)
   }
 
   test("Group of four plus group of two is cheaper than two groups of three") {
