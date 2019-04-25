@@ -665,7 +665,7 @@
       ]
     },
     {
-      "slug": "bracket-push",
+      "slug": "matching-brackets",
       "uuid": "9d25bf46-52d6-435e-a384-38c25517f8ee",
       "core": false,
       "unlocked_by": "hello-world",
