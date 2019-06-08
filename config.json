@@ -397,7 +397,7 @@
       "slug": "beer-song",
       "uuid": "15047d95-671b-4163-96b2-834ec54ea3d5",
       "core": false,
-      "unlocked_by": "hello-world",
+      "unlocked_by": "two-fer",
       "difficulty": 3,
       "topics": [
         "algorithms",
@@ -410,7 +410,7 @@
       "slug": "house",
       "uuid": "73770426-74a8-498f-a37c-1b12aaf71281",
       "core": false,
-      "unlocked_by": "hello-world",
+      "unlocked_by": "two-fer",
       "difficulty": 4,
       "topics": [
         "algorithms",
@@ -714,7 +714,7 @@
       "slug": "food-chain",
       "uuid": "60deb77c-45f2-48a1-bff8-b0cef3b07500",
       "core": false,
-      "unlocked_by": "hello-world",
+      "unlocked_by": "two-fer",
       "difficulty": 5,
       "topics": [
         "algorithms",
