@@ -15,6 +15,16 @@
       ]
     },
     {
+      "slug": "two-fer",
+      "uuid": "9d56454b-410a-435f-94e9-043db8c8b790",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "strings"
+      ]
+    },
+    {
       "slug": "sum-of-multiples",
       "uuid": "7221946d-6321-4cec-8e64-050abae3ccd7",
       "core": true,
