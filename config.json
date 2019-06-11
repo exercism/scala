@@ -926,7 +926,7 @@
       "slug": "connect",
       "uuid": "5ea6b0e1-513e-462f-9741-46f060638a92",
       "core": false,
-      "unlocked_by": "book-store",
+      "unlocked_by": "hamming",
       "difficulty": 8,
       "topics": [
         "algorithms",
@@ -941,7 +941,7 @@
       "slug": "zebra-puzzle",
       "uuid": "eb9387d6-3fac-460b-ad14-657c0f4d2d88",
       "core": false,
-      "unlocked_by": "book-store",
+      "unlocked_by": "robot-simulator",
       "difficulty": 8,
       "topics": [
         "logic"
