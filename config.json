@@ -25,18 +25,6 @@
       ]
     },
     {
-      "slug": "sum-of-multiples",
-      "uuid": "7221946d-6321-4cec-8e64-050abae3ccd7",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "topics": [
-        "filtering",
-        "math",
-        "sets"
-      ]
-    },
-    {
       "slug": "leap",
       "uuid": "b600cda0-f5b8-45b3-bfd0-7e0c19a0b073",
       "core": true,
@@ -68,6 +56,18 @@
         "dates",
         "domain_specific_languages",
         "enumerations"
+      ]
+    },
+    {
+      "slug": "sum-of-multiples",
+      "uuid": "7221946d-6321-4cec-8e64-050abae3ccd7",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "filtering",
+        "math",
+        "sets"
       ]
     },
     {
@@ -201,16 +201,6 @@
         "parsing",
         "strings",
         "vectors"
-      ]
-    },
-    {
-      "slug": "book-store",
-      "uuid": "5ce09233-9ec1-4422-aa97-2d90ea67146b",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 5,
-      "topics": [
-        "recursion"
       ]
     },
     {
@@ -768,6 +758,16 @@
         "sequences",
         "strings",
         "transforming"
+      ]
+    },
+    {
+      "slug": "book-store",
+      "uuid": "5ce09233-9ec1-4422-aa97-2d90ea67146b",
+      "core": false,
+      "unlocked_by": "accumulate",
+      "difficulty": 5,
+      "topics": [
+        "recursion"
       ]
     },
     {
