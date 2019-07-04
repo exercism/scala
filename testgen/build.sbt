@@ -1,6 +1,6 @@
 name := "ExcercismScalaTestGenerator"
 
-scalaVersion := "2.11.8"
+scalaVersion := "2.12.8"
 
 lazy val root = (project in file("."))
   .enablePlugins(SbtTwirl)
