@@ -21,7 +21,8 @@ Check out the test suite to see the expected function signature.
 
 ## Restrictions
 
-Keep your hands off the map, flatMap and for comprehension functionality
+Keep your hands off for comprehension functionality and any methods that accept
+a function as a parameter (`map`, `flatMap`, `fold`, etc.)
 provided by the standard library!
 Solve this one yourself using other basic tools instead.
 
