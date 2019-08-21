@@ -35,18 +35,6 @@
       ]
     },
     {
-      "slug": "bob",
-      "uuid": "57b76aba-a485-464d-84ba-e9a445b25be6",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 1,
-      "topics": [
-        "control_flow_if_else_statements",
-        "pattern_matching",
-        "strings"
-      ]
-    },
-    {
       "slug": "space-age",
       "uuid": "f147966d-97ec-4479-8679-8cad942b499a",
       "core": true,
@@ -68,6 +56,18 @@
         "maps",
         "sequences",
         "sorting"
+      ]
+    },
+    {
+      "slug": "bob",
+      "uuid": "57b76aba-a485-464d-84ba-e9a445b25be6",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 1,
+      "topics": [
+        "control_flow_if_else_statements",
+        "pattern_matching",
+        "strings"
       ]
     },
     {
@@ -97,6 +97,17 @@
       ]
     },
     {
+      "slug": "robot-simulator",
+      "uuid": "261f75c1-df67-4c62-a2e9-ce13550f5de3",
+      "core": true,
+      "unlocked_by": null,
+      "difficulty": 3,
+      "topics": [
+        "enumerations",
+        "tuples"
+      ]
+    },
+    {
       "slug": "secret-handshake",
       "uuid": "e810d2eb-5c90-4135-8db8-0bda54a33d2e",
       "core": true,
@@ -106,17 +117,6 @@
         "bitwise_operations",
         "lists",
         "strings"
-      ]
-    },
-    {
-      "slug": "robot-simulator",
-      "uuid": "261f75c1-df67-4c62-a2e9-ce13550f5de3",
-      "core": true,
-      "unlocked_by": null,
-      "difficulty": 3,
-      "topics": [
-        "enumerations",
-        "tuples"
       ]
     },
     {
