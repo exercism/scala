@@ -18,9 +18,10 @@ An SGF file may look like this:
 
 This is a tree with three nodes:
 
-- The top level node has two properties: FF\[4\] (key = "FF", value =
-  "4") and C\[root\](key = "C", value = "root"). (FF indicates the
-  version of SGF and C is a comment.)
+- The top level node has three properties: FF\[4\] (key = "FF", value
+  = "4"), C\[root\](key = "C", value = "root") and SZ\[19\] (key =
+  "SZ", value = "19"). (FF indicates the version of SGF, C is a
+  comment and SZ is the size of the board.)
   - The top level node has a single child which has a single property:
     B\[aa\].  (Black plays on the point encoded as "aa", which is the
     1-1 point (which is a stupid place to play)).
@@ -70,8 +71,8 @@ unit tests can be found within the exercise directory/src/test/scala.
 
 To run the tests simply run the command `sbt test` in the exercise directory.
 
-For more detailed info about the Scala track see the [help
-page](http://exercism.io/languages/scala).
+Please see the [learning](https://exercism.io/tracks/scala/learning) and 
+[installation](https://exercism.io/tracks/scala/installation) pages if you need any help.
 
 
 ## Submitting Incomplete Solutions

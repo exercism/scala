@@ -21,9 +21,8 @@ Check out the test suite to see the expected function signature.
 
 ## Restrictions
 
-Keep your hands off for comprehension functionality and any methods that accept
-a function as a parameter (`map`, `flatMap`, `fold`, etc.)
-provided by the standard library!
+Keep your hands off that collect/map/fmap/whatchamacallit functionality
+provided by your standard library!
 Solve this one yourself using other basic tools instead.
 
 The Scala exercises assume an SBT project scheme. The exercise solution source
@@ -32,8 +31,8 @@ unit tests can be found within the exercise directory/src/test/scala.
 
 To run the tests simply run the command `sbt test` in the exercise directory.
 
-For more detailed info about the Scala track see the [help
-page](http://exercism.io/languages/scala).
+Please see the [learning](https://exercism.io/tracks/scala/learning) and 
+[installation](https://exercism.io/tracks/scala/installation) pages if you need any help.
 
 
 ## Source

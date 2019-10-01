@@ -5,8 +5,8 @@ number.
 
 The Sieve of Eratosthenes is a simple, ancient algorithm for finding all
 prime numbers up to any given limit. It does so by iteratively marking as
-composite (i.e. not prime) the multiples of each prime,
-starting with the multiples of 2.
+composite (i.e. not prime) the multiples of each prime, starting with the
+multiples of 2. It does not use any division or remainder operation.
 
 Create your range, starting at two and continuing up to and including the given limit. (i.e. [2, limit])
 
@@ -25,7 +25,9 @@ https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
 
 Notice that this is a very specific algorithm, and the tests don't check
 that you've implemented the algorithm, only that you've come up with the
-correct list of primes.
+correct list of primes. A good first test is to check that you do not use
+division or remainder operations (div, /, mod or % depending on the
+language).
 
 The Scala exercises assume an SBT project scheme. The exercise solution source
 should be placed within the exercise directory/src/main/scala. The exercise
@@ -33,8 +35,8 @@ unit tests can be found within the exercise directory/src/test/scala.
 
 To run the tests simply run the command `sbt test` in the exercise directory.
 
-For more detailed info about the Scala track see the [help
-page](http://exercism.io/languages/scala).
+Please see the [learning](https://exercism.io/tracks/scala/learning) and 
+[installation](https://exercism.io/tracks/scala/installation) pages if you need any help.
 
 
 ## Source

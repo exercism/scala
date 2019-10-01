@@ -1,18 +1,18 @@
 # Series
 
 Given a string of digits, output all the contiguous substrings of length `n` in
-that string.
+that string in the order that they appear.
 
 For example, the string "49142" has the following 3-digit series:
 
-- 491
-- 914
-- 142
+- "491"
+- "914"
+- "142"
 
 And the following 4-digit series:
 
-- 4914
-- 9142
+- "4914"
+- "9142"
 
 And if you ask for a 6-digit series from a 5-digit string, you deserve
 whatever you get.
@@ -26,8 +26,8 @@ unit tests can be found within the exercise directory/src/test/scala.
 
 To run the tests simply run the command `sbt test` in the exercise directory.
 
-For more detailed info about the Scala track see the [help
-page](http://exercism.io/languages/scala).
+Please see the [learning](https://exercism.io/tracks/scala/learning) and 
+[installation](https://exercism.io/tracks/scala/installation) pages if you need any help.
 
 
 ## Source
