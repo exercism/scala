@@ -24,7 +24,7 @@ Some good test cases for this program are:
 ### Extension
 
 If you're on a Mac, shell out to Mac OS X's `say` program to talk out
-loud.
+loud. If you're on Linux or Windows, eSpeakNG may be available with the command `espeak`.
 
 ## Step 2
 
@@ -68,8 +68,8 @@ unit tests can be found within the exercise directory/src/test/scala.
 
 To run the tests simply run the command `sbt test` in the exercise directory.
 
-For more detailed info about the Scala track see the [help
-page](http://exercism.io/languages/scala).
+Please see the [learning](https://exercism.io/tracks/scala/learning) and 
+[installation](https://exercism.io/tracks/scala/installation) pages if you need any help.
 
 
 ## Source

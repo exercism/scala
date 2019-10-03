@@ -15,8 +15,7 @@ Your goal is to build a program that given a simple representation of a board
 computes the winner (or lack thereof). Note that all games need not be "fair".
 (For example, players may have mismatched piece counts.)
 
-The boards look like this (with spaces added for readability, which won't be in
-the representation passed to your code):
+The boards look like this:
 
 ```text
 . O . X .
@@ -44,8 +43,8 @@ unit tests can be found within the exercise directory/src/test/scala.
 
 To run the tests simply run the command `sbt test` in the exercise directory.
 
-For more detailed info about the Scala track see the [help
-page](http://exercism.io/languages/scala).
+Please see the [learning](https://exercism.io/tracks/scala/learning) and 
+[installation](https://exercism.io/tracks/scala/installation) pages if you need any help.
 
 
 ## Submitting Incomplete Solutions

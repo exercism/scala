@@ -4,8 +4,8 @@ Make a chain of dominoes.
 
 Compute a way to order a given set of dominoes in such a way that they form a
 correct domino chain (the dots on one half of a stone match the dots on the
-neighbouring half of an adjacent stone) and that dots on the halfs of the stones
-which don't have a neighbour (the first and last stone) match each other.
+neighbouring half of an adjacent stone) and that dots on the halves of the
+stones which don't have a neighbour (the first and last stone) match each other.
 
 For example given the stones `[2|1]`, `[2|3]` and `[1|3]` you should compute something
 like `[1|2] [2|3] [3|1]` or `[3|2] [2|1] [1|3]` or `[1|3] [3|2] [2|1]` etc, where the first and last numbers are the same.
@@ -20,8 +20,8 @@ unit tests can be found within the exercise directory/src/test/scala.
 
 To run the tests simply run the command `sbt test` in the exercise directory.
 
-For more detailed info about the Scala track see the [help
-page](http://exercism.io/languages/scala).
+Please see the [learning](https://exercism.io/tracks/scala/learning) and 
+[installation](https://exercism.io/tracks/scala/installation) pages if you need any help.
 
 
 ## Submitting Incomplete Solutions

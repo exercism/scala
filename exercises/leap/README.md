@@ -13,9 +13,6 @@ on every year that is evenly divisible by 4
 For example, 1997 is not a leap year, but 1996 is.  1900 is not a leap
 year, but 2000 is.
 
-If your language provides a method in the standard library that does
-this look-up, pretend it doesn't exist and implement it yourself.
-
 ## Notes
 
 Though our exercise adopts some very simple rules, there is more to
@@ -38,8 +35,8 @@ unit tests can be found within the exercise directory/src/test/scala.
 
 To run the tests simply run the command `sbt test` in the exercise directory.
 
-For more detailed info about the Scala track see the [help
-page](http://exercism.io/languages/scala).
+Please see the [learning](https://exercism.io/tracks/scala/learning) and 
+[installation](https://exercism.io/tracks/scala/installation) pages if you need any help.
 
 
 ## Source

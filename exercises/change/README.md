@@ -6,9 +6,9 @@ that the sum of the coins' value would equal the correct amount of change.
 ## For example
 
 - An input of 15 with [1, 5, 10, 25, 100] should return one nickel (5)
-  and one dime (10) or [0, 1, 1, 0, 0]
+  and one dime (10) or [5, 10]
 - An input of 40 with [1, 5, 10, 25, 100] should return one nickel (5)
-  and one dime (10) and one quarter (25) or [0, 1, 1, 1, 0]
+  and one dime (10) and one quarter (25) or [5, 10, 25]
 
 ## Edge cases
 
@@ -22,8 +22,8 @@ unit tests can be found within the exercise directory/src/test/scala.
 
 To run the tests simply run the command `sbt test` in the exercise directory.
 
-For more detailed info about the Scala track see the [help
-page](http://exercism.io/languages/scala).
+Please see the [learning](https://exercism.io/tracks/scala/learning) and 
+[installation](https://exercism.io/tracks/scala/installation) pages if you need any help.
 
 
 ## Source
