@@ -34,7 +34,7 @@ Please see the [learning](https://exercism.io/tracks/scala/learning) and
 
 ## Source
 
-A debugging session with Paul Blackwell at gSchool. [http://gschool.it](http://gschool.it)
+A debugging session with Paul Blackwell at gSchool.
 
 ## Submitting Incomplete Solutions
 It's possible to submit an incomplete solution so you can see how others have completed the exercise.
