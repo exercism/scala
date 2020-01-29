@@ -40,6 +40,16 @@
       "link_url": null,
       "avatar_url": null,
       "bio": null
+    },
+    {
+      "github_username": "leobenkel",
+      "alumnus": false,
+      "show_on_website": false,
+      "name": "Leo Benkel",
+      "link_text": "My blog",
+      "link_url": "https://www.leobenkel.com/",
+      "avatar_url": "https://en.gravatar.com/userimage/48531829/6fcc20129e7db2a08bd76e7b80083308.png?size=200",
+      "bio": null
     }
   ]
 }
