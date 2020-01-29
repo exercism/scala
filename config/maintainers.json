@@ -43,7 +43,7 @@
     },
     {
       "github_username": "leobenkel",
-      "alumnus": true,
+      "alumnus": false,
       "show_on_website": false,
       "name": "Leo Benkel",
       "link_text": "My blog",
