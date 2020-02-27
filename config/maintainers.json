@@ -55,7 +55,17 @@
       "github_username": "outkaj",
       "alumnus": true,
       "show_on_website": false,
-      "name": "Jacqueline Outka",
+      "name": "Jacqueline Outka",      
+      "link_text": null,
+      "link_url": null,
+      "avatar_url": null,
+      "bio": null
+    },
+    {
+      "github_username": "RafaelBa",
+      "alumnus": false,
+      "show_on_website": false,
+      "name": "Rafael Balski",
       "link_text": null,
       "link_url": null,
       "avatar_url": null,
