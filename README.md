@@ -1,4 +1,4 @@
-# xScala
+# Scala
 
 Exercism Exercises in Scala
 
