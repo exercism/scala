@@ -1,5 +1,6 @@
 {
   "language": "Scala",
+  "slug": "scala",
   "active": true,
   "status": {
     "concept_exercises": false,
