@@ -1,3 +1,5 @@
+# Introduction
+
 ## Defining Variables
 
 Defining a variable means assigning a value to a name. In Scala there are two kinds of variables, vals and vars.

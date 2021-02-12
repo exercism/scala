@@ -1,3 +1,5 @@
+# Resources
+
 ## Recommended Learning Resources
 
 Exercism provides exercises and feedback but can be difficult to jump into for those learning Scala for the first time. These resources can help you get started:

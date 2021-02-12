@@ -1,4 +1,4 @@
-## Hints
+# Hints
 A common use of `Either` is to indicate a computation that may possibly result in an error
 (if the actual error is of no interest then the simpler `Option` type might be a better choice).
 In the absence of an error the result is usually a `Right` (mnemonic: the "right" value)

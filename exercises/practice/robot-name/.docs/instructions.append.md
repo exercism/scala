@@ -1,4 +1,4 @@
-## Hints
+# Hints
 Make sure your solution is general enough to be easily scalable for longer names containing more letters and digits. This usually makes for better code quality, too.
 
 Suggestion (this is not explicitly tested):

@@ -1,4 +1,4 @@
-## Running Tests
+# Running Tests
 
 With `sbt` installed, the tests can be executed from the command line with:
 

@@ -1,4 +1,4 @@
-## Hints
+# Hints
 For something a little different you might also try a solution with an `unfold` function.
 You are probably already familiar with `foldLeft/Right`: "map" a whole collection into something else (usually a non-collection).
 `unfoldLeft/Right` are the "inverse" operations: "map" something (usually a non-collection) into a collection.

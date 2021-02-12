@@ -1,4 +1,4 @@
-## Installing [Scala](http://www.scala-lang.org)
+# Installing [Scala](http://www.scala-lang.org)
 
 
 In addition to the exercism CLI and your favorite text editor, practicing with Exercism exercises in Scala requires:
