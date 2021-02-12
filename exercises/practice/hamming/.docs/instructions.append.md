@@ -1,4 +1,4 @@
-## Hints
+# Hints
 `Option` is used to indicate a computation that may possibly have no useful result
 (for example due to an error or invalid input).
 If you are unfamiliar with `Option` you may read [this tutorial](http://danielwestheide.com/blog/2012/12/19/the-neophytes-guide-to-scala-part-5-the-option-type.html).

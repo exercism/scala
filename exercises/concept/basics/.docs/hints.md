@@ -1,3 +1,5 @@
+# Hints
+
 ## General
 
 - An integer value can be defined as one or more consecutive digits.

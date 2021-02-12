@@ -1,3 +1,5 @@
+# Learning
+
 ## Books
 
 * [Programming Scala - Dean Wampler, Ph.D.](http://shop.oreilly.com/product/0636920033073.do)

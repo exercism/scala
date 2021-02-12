@@ -1,4 +1,4 @@
-## Hints
+# Hints
 According to [this terminology](http://chimera.labs.oreilly.com/books/1230000000929/ch01.html#sec_terminology) you should write a *parallel* and *deterministic*
 program and (by all means!) let Scala deal with the *concurrency* aspect.
 Or else your code could quickly get messy and error-prone with all kinds of nasty
