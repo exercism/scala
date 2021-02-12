@@ -10,7 +10,7 @@ in this case error handling.
 Proper use of Monads can result in very concise yet elegant
 and readable code. Improper use can easily result in the contrary.
 Watch [this video](https://www.youtube.com/watch?v=Mw_Jnn_Y5iA) to learn more.
-#### Common pitfalls that you should avoid
+## Common pitfalls that you should avoid
 There are a few rules of thumbs for `Either`:
 1. If you don't need it don't use it. Instead of
 ```scala
