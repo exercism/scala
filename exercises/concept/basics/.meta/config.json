@@ -1,14 +1,19 @@
 {
+  "blurb": "TODO: add blurb for basics exercise",
   "authors": [
     {
       "github_username": "stillleben",
       "exercism_username": "stillleben"
     }
   ],
-  "forked_from": ["csharp/basics"],
+  "forked_from": [
+    "csharp/basics"
+  ],
   "files": {
     "solution": [],
     "test": [],
-    "exemplar": [".meta/Exemplar.scala"]
+    "exemplar": [
+      ".meta/Exemplar.scala"
+    ]
   }
 }
