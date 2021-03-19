@@ -1,0 +1,32 @@
+{
+  "docs": [
+    {
+      "uuid": "473e2acc-6fed-4833-ab58-598fff99686b",
+      "slug": "installation",
+      "path": "docs/INSTALLATION.md",
+      "title": "Installing Scala locally",
+      "blurb": "Learn how to install Scala locally to solve Exercism's exercises on your own machine"
+    },
+    {
+      "uuid": "9f273b41-3884-4c84-9125-16b66396408f",
+      "slug": "learning",
+      "path": "docs/LEARNING.md",
+      "title": "How to learn Scala",
+      "blurb": "An overview of how to get started from scratch with Scala"
+    },
+    {
+      "uuid": "e57a13b5-b7a7-4b5a-b66d-a73226c9a587",
+      "slug": "tests",
+      "path": "docs/TESTS.md",
+      "title": "Testing on the Scala track",
+      "blurb": "Learn how to test your Scala exercises on Exercism"
+    },
+    {
+      "uuid": "e99340a8-a7b7-4d8d-b516-2c1c885bfd87",
+      "slug": "resources",
+      "path": "docs/RESOURCES.md",
+      "title": "Useful Scala resources",
+      "blurb": "A collection of useful resources to help you master Scala"
+    }
+  ]
+}
