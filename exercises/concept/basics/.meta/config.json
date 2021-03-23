@@ -1,10 +1,7 @@
 {
   "blurb": "TODO: add blurb for basics exercise",
   "authors": [
-    {
-      "github_username": "stillleben",
-      "exercism_username": "stillleben"
-    }
+    "stillleben"
   ],
   "forked_from": [
     "csharp/basics"
