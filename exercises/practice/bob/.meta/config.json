@@ -1,6 +1,18 @@
 {
   "blurb": "Bob is a lackadaisical teenager. In conversation, his responses are very limited.",
-  "authors": [],
+  "authors": [
+    "sgrif"
+  ],
+  "contributors": [
+    "Algiras",
+    "austinlyons",
+    "ErikSchierboom",
+    "hrj",
+    "kytrinyx",
+    "ppartarr",
+    "rajeshpg",
+    "ricemery"
+  ],
   "files": {
     "solution": [],
     "test": [],

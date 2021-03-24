@@ -1,6 +1,14 @@
 {
   "blurb": "Manage a player's High Score list",
-  "authors": [],
+  "authors": [
+    "ricemery"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "ppartarr",
+    "rajeshpg",
+    "tqa236"
+  ],
   "files": {
     "solution": [],
     "test": [],
