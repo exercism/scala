@@ -2,8 +2,14 @@
   "blurb": "Create a custom set type.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/CustomSet.scala"
+    ],
+    "test": [
+      "src/test/scala/CustomSetTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   }
 }

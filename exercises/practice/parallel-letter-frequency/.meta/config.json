@@ -2,8 +2,14 @@
   "blurb": "Count the frequency of letters in texts using parallel computation.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/ParallelLetterFrequency.scala"
+    ],
+    "test": [
+      "src/test/scala/ParallelLetterFrequencyTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   }
 }

@@ -2,8 +2,14 @@
   "blurb": "Write a function to solve alphametics puzzles.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/Alphametics.scala"
+    ],
+    "test": [
+      "src/test/scala/AlphameticsTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   }
 }

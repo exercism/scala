@@ -2,9 +2,15 @@
   "blurb": "Translate RNA sequences into proteins.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/ProteinTranslation.scala"
+    ],
+    "test": [
+      "src/test/scala/ProteinTranslationTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   },
   "source": "Tyler Long"
 }

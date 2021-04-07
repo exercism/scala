@@ -2,9 +2,15 @@
   "blurb": "Implement variable length quantity encoding and decoding.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/VariableLengthQuantity.scala"
+    ],
+    "test": [
+      "src/test/scala/VariableLengthQuantityTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   },
   "source": "A poor Splice developer having to implement MIDI encoding/decoding.",
   "source_url": "https://splice.com"

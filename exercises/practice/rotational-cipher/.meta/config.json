@@ -2,9 +2,15 @@
   "blurb": "Create an implementation of the rotational cipher, also sometimes called the Caesar cipher.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/RotationalCipher.scala"
+    ],
+    "test": [
+      "src/test/scala/RotationalCipherTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   },
   "source": "Wikipedia",
   "source_url": "https://en.wikipedia.org/wiki/Caesar_cipher"

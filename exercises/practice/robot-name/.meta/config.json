@@ -2,9 +2,15 @@
   "blurb": "Manage robot factory settings.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/RobotName.scala"
+    ],
+    "test": [
+      "src/test/scala/RobotNameTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   },
   "source": "A debugging session with Paul Blackwell at gSchool."
 }

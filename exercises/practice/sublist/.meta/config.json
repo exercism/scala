@@ -2,8 +2,14 @@
   "blurb": "Write a function to determine if a list is a sublist of another list.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/Sublist.scala"
+    ],
+    "test": [
+      "src/test/scala/SublistTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   }
 }

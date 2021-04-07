@@ -2,9 +2,15 @@
   "blurb": "Implement a clock that handles times without dates.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/Clock.scala"
+    ],
+    "test": [
+      "src/test/scala/ClockTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   },
   "source": "Pairing session with Erin Drummond",
   "source_url": "https://twitter.com/ebdrummond"
