@@ -7,8 +7,12 @@
     "csharp/basics"
   ],
   "files": {
-    "solution": [],
-    "test": [],
+    "solution": [
+      "src/main/scala/Basics.scala"
+    ],
+    "test": [
+      "src/test/scala/BasicsTest.scala"
+    ],
     "exemplar": [
       ".meta/Exemplar.scala"
     ]

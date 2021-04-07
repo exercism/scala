@@ -2,9 +2,15 @@
   "blurb": "Convert a long phrase to its acronym",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/Acronym.scala"
+    ],
+    "test": [
+      "src/test/scala/AcronymTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   },
   "source": "Julien Vanier",
   "source_url": "https://github.com/monkbroc"

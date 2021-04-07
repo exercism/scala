@@ -2,9 +2,15 @@
   "blurb": "Implement run-length encoding and decoding.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/RunLengthEncoding.scala"
+    ],
+    "test": [
+      "src/test/scala/RunLengthEncodingTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   },
   "source": "Wikipedia",
   "source_url": "https://en.wikipedia.org/wiki/Run-length_encoding"

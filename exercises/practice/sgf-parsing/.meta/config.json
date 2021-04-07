@@ -2,8 +2,14 @@
   "blurb": "Parsing a Smart Game Format string.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/SgfParsing.scala"
+    ],
+    "test": [
+      "src/test/scala/SgfParsingTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   }
 }

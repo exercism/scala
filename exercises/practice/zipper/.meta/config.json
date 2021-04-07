@@ -2,8 +2,14 @@
   "blurb": "Creating a zipper for a binary tree.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/Zipper.scala"
+    ],
+    "test": [
+      "src/test/scala/ZipperTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   }
 }

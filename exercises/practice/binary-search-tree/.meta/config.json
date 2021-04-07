@@ -2,9 +2,15 @@
   "blurb": "Insert and search for numbers in a binary tree.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/BinarySearchTree.scala"
+    ],
+    "test": [
+      "src/test/scala/BinarySearchTreeTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   },
   "source": "Josh Cheek",
   "source_url": "https://twitter.com/josh_cheek"

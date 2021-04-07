@@ -2,9 +2,15 @@
   "blurb": "Write a robot simulator.",
   "authors": [],
   "files": {
-    "solution": [],
-    "test": [],
-    "example": []
+    "solution": [
+      "src/main/scala/RobotSimulator.scala"
+    ],
+    "test": [
+      "src/test/scala/RobotSimulatorTest.scala"
+    ],
+    "example": [
+      "example.scala"
+    ]
   },
   "source": "Inspired by an interview question at a famous company.",
   "source_url": ""
