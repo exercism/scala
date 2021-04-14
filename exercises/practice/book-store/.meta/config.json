@@ -9,7 +9,7 @@
       "src/test/scala/BookStoreTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Inspired by the harry potter kata from Cyber-Dojo.",

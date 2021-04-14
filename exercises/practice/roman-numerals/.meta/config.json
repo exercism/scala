@@ -9,7 +9,7 @@
       "src/test/scala/RomanNumeralsTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "The Roman Numeral Kata",

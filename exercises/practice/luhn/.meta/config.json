@@ -9,7 +9,7 @@
       "src/test/scala/LuhnTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "The Luhn Algorithm on Wikipedia",

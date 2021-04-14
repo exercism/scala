@@ -9,7 +9,7 @@
       "src/test/scala/SimpleCipherTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Substitution Cipher at Wikipedia",

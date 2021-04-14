@@ -9,7 +9,7 @@
       "src/test/scala/MinesweeperTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   }
 }

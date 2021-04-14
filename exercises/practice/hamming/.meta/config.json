@@ -9,7 +9,7 @@
       "src/test/scala/HammingTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "The Calculating Point Mutations problem at Rosalind",

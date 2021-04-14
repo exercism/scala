@@ -9,7 +9,7 @@
       "src/test/scala/DartsTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Inspired by an exercise created by a professor Della Paolera in Argentina"

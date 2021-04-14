@@ -9,7 +9,7 @@
       "src/test/scala/ZipperTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   }
 }

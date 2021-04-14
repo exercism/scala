@@ -9,7 +9,7 @@
       "src/test/scala/AlphameticsTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   }
 }

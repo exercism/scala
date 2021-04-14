@@ -9,7 +9,7 @@
       "src/test/scala/AllergiesTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Jumpstart Lab Warm-up",

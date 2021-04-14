@@ -9,7 +9,7 @@
       "src/test/scala/LinkedListTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Classic computer science topic"

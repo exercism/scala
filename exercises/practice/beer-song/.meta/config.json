@@ -9,7 +9,7 @@
       "src/test/scala/BeerSongTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Learn to Program by Chris Pine",

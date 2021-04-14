@@ -9,7 +9,7 @@
       "src/test/scala/DominoesTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   }
 }

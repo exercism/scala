@@ -9,7 +9,7 @@
       "src/test/scala/GigasecondTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Chapter 9 in Chris Pine's online Learn to Program tutorial.",

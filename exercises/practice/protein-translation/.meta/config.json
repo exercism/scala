@@ -9,7 +9,7 @@
       "src/test/scala/ProteinTranslationTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Tyler Long"

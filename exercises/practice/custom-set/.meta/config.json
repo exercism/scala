@@ -9,7 +9,7 @@
       "src/test/scala/CustomSetTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   }
 }

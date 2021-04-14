@@ -9,7 +9,7 @@
       "src/test/scala/VariableLengthQuantityTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "A poor Splice developer having to implement MIDI encoding/decoding.",

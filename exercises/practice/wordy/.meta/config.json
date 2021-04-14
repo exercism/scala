@@ -9,7 +9,7 @@
       "src/test/scala/WordyTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Inspired by one of the generated questions in the Extreme Startup game.",

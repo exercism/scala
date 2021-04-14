@@ -9,7 +9,7 @@
       "src/test/scala/SublistTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   }
 }

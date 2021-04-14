@@ -9,7 +9,7 @@
       "src/test/scala/ClockTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Pairing session with Erin Drummond",

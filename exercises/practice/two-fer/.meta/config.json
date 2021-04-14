@@ -9,7 +9,7 @@
       "src/test/scala/TwoFerTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source_url": "https://github.com/exercism/problem-specifications/issues/757"

@@ -9,7 +9,7 @@
       "src/test/scala/ForthTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   }
 }

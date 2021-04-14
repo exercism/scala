@@ -9,7 +9,7 @@
       "src/test/scala/LeapTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "JavaRanch Cattle Drive, exercise 3",

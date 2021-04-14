@@ -9,7 +9,7 @@
       "src/test/scala/DifferenceOfSquaresTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Problem 6 at Project Euler",

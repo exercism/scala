@@ -9,7 +9,7 @@
       "src/test/scala/RobotNameTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "A debugging session with Paul Blackwell at gSchool."

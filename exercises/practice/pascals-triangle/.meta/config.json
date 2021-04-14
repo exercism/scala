@@ -9,7 +9,7 @@
       "src/test/scala/PascalsTriangleTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Pascal's Triangle at Wolfram Math World",
