@@ -9,7 +9,7 @@
       "src/test/scala/HouseTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "British nursery rhyme",

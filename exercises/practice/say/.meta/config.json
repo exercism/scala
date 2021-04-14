@@ -9,7 +9,7 @@
       "src/test/scala/SayTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "A variation on JavaRanch CattleDrive, exercise 4a",

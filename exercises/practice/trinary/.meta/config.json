@@ -9,7 +9,7 @@
       "src/test/scala/TrinaryTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "All of Computer Science",

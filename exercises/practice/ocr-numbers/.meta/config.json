@@ -9,7 +9,7 @@
       "src/test/scala/OcrNumbersTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Inspired by the Bank OCR kata",

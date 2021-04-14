@@ -9,7 +9,7 @@
       "src/test/scala/PalindromeProductsTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Problem 4 at Project Euler",

@@ -9,7 +9,7 @@
       "src/test/scala/HelloWorldTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "This is an exercise to introduce users to using Exercism",

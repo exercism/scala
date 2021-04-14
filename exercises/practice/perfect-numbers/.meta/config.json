@@ -9,7 +9,7 @@
       "src/test/scala/PerfectNumbersTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Taken from Chapter 2 of Functional Thinking by Neal Ford.",

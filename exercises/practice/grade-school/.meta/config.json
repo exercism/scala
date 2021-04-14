@@ -9,7 +9,7 @@
       "src/test/scala/GradeSchoolTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "A pairing session with Phil Battos at gSchool",

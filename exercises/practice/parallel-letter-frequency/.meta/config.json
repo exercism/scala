@@ -9,7 +9,7 @@
       "src/test/scala/ParallelLetterFrequencyTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   }
 }

@@ -9,7 +9,7 @@
       "src/test/scala/BowlingTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "The Bowling Game Kata at but UncleBob",

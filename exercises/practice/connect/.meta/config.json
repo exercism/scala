@@ -9,7 +9,7 @@
       "src/test/scala/ConnectTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   }
 }

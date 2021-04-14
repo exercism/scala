@@ -9,7 +9,7 @@
       "src/test/scala/TriangleTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "The Ruby Koans triangle project, parts 1 & 2",

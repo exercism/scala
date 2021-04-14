@@ -9,7 +9,7 @@
       "src/test/scala/PrimeFactorsTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "The Prime Factors Kata by Uncle Bob",

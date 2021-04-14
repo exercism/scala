@@ -9,7 +9,7 @@
       "src/test/scala/AllYourBaseTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   }
 }

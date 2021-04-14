@@ -9,7 +9,7 @@
       "src/test/scala/ScrabbleScoreTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Inspired by the Extreme Startup game",

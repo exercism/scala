@@ -9,7 +9,7 @@
       "src/test/scala/SpiralMatrixTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Reddit r/dailyprogrammer challenge #320 [Easy] Spiral Ascension.",

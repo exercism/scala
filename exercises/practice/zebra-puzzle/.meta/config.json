@@ -9,7 +9,7 @@
       "src/test/scala/ZebraPuzzleTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Wikipedia",

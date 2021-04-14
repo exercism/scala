@@ -9,7 +9,7 @@
       "src/test/scala/PythagoreanTripletTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Problem 9 at Project Euler",

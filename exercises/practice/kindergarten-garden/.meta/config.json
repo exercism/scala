@@ -9,7 +9,7 @@
       "src/test/scala/KindergartenGardenTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Random musings during airplane trip.",

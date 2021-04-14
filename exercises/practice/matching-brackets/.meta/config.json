@@ -9,7 +9,7 @@
       "src/test/scala/MatchingBracketsTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "Ginna Baker"

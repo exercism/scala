@@ -22,7 +22,7 @@
       "src/test/scala/%{pascal_slug}Test.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ],
     "exemplar": [
       ".meta/Exemplar.scala"

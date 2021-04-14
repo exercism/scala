@@ -9,7 +9,7 @@
       "src/test/scala/SumOfMultiplesTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "A variation on Problem 1 at Project Euler",

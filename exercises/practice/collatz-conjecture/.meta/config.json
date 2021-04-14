@@ -9,7 +9,7 @@
       "src/test/scala/CollatzConjectureTest.scala"
     ],
     "example": [
-      "example.scala"
+      ".meta/Example.scala"
     ]
   },
   "source": "An unsolved problem in mathematics named after mathematician Lothar Collatz",
