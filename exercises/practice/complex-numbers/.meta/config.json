@@ -3,10 +3,10 @@
   "authors": [],
   "files": {
     "solution": [
-      "src/main/scala/ComplexNumbers.scala"
+      "src/main/scala/ComplexNumber.scala"
     ],
     "test": [
-      "src/test/scala/ComplexNumbersTest.scala"
+      "src/test/scala/ComplexNumberTest.scala"
     ],
     "example": [
       ".meta/Example.scala"

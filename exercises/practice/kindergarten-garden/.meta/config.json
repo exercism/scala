@@ -3,10 +3,10 @@
   "authors": [],
   "files": {
     "solution": [
-      "src/main/scala/KindergartenGarden.scala"
+      "src/main/scala/Garden.scala"
     ],
     "test": [
-      "src/test/scala/KindergartenGardenTest.scala"
+      "src/test/scala/GardenTest.scala"
     ],
     "example": [
       ".meta/Example.scala"

@@ -3,10 +3,10 @@
   "authors": [],
   "files": {
     "solution": [
-      "src/main/scala/SimpleCipher.scala"
+      "src/main/scala/Cipher.scala"
     ],
     "test": [
-      "src/test/scala/SimpleCipherTest.scala"
+      "src/test/scala/CipherTest.scala"
     ],
     "example": [
       ".meta/Example.scala"

@@ -3,10 +3,10 @@
   "authors": [],
   "files": {
     "solution": [
-      "src/main/scala/BinarySearchTree.scala"
+      "src/main/scala/Bst.scala"
     ],
     "test": [
-      "src/test/scala/BinarySearchTreeTest.scala"
+      "src/test/scala/BstTest.scala"
     ],
     "example": [
       ".meta/Example.scala"
