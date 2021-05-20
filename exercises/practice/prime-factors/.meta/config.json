@@ -3,10 +3,10 @@
   "authors": [],
   "files": {
     "solution": [
-      "src/main/scala/PrimeFactors.scala"
+      "src/main/scala/Primefactors.scala"
     ],
     "test": [
-      "src/test/scala/PrimeFactorsTest.scala"
+      "src/test/scala/PrimefactorsTest.scala"
     ],
     "example": [
       ".meta/Example.scala"

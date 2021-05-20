@@ -3,10 +3,10 @@
   "authors": [],
   "files": {
     "solution": [
-      "src/main/scala/LinkedList.scala"
+      "src/main/scala/Deque.scala"
     ],
     "test": [
-      "src/test/scala/LinkedListTest.scala"
+      "src/test/scala/DequeTest.scala"
     ],
     "example": [
       ".meta/Example.scala"

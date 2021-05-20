@@ -3,10 +3,10 @@
   "authors": [],
   "files": {
     "solution": [
-      "src/main/scala/SgfParsing.scala"
+      "src/main/scala/Sgf.scala"
     ],
     "test": [
-      "src/test/scala/SgfParsingTest.scala"
+      "src/test/scala/SgfTest.scala"
     ],
     "example": [
       ".meta/Example.scala"

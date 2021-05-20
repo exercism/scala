@@ -3,10 +3,10 @@
   "authors": [],
   "files": {
     "solution": [
-      "src/main/scala/TwoFer.scala"
+      "src/main/scala/Twofer.scala"
     ],
     "test": [
-      "src/test/scala/TwoFerTest.scala"
+      "src/test/scala/TwoferTest.scala"
     ],
     "example": [
       ".meta/Example.scala"

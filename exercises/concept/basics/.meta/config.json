@@ -8,10 +8,10 @@
   ],
   "files": {
     "solution": [
-      "src/main/scala/Basics.scala"
+      "src/main/scala/Lasagna.scala"
     ],
     "test": [
-      "src/test/scala/BasicsTest.scala"
+      "src/test/scala/LasagnaTest.scala"
     ],
     "exemplar": [
       ".meta/Exemplar.scala"

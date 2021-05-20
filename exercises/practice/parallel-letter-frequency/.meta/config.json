@@ -3,10 +3,10 @@
   "authors": [],
   "files": {
     "solution": [
-      "src/main/scala/ParallelLetterFrequency.scala"
+      "src/main/scala/Frequency.scala"
     ],
     "test": [
-      "src/test/scala/ParallelLetterFrequencyTest.scala"
+      "src/test/scala/FrequencyTest.scala"
     ],
     "example": [
       ".meta/Example.scala"

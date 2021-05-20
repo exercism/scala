@@ -3,10 +3,10 @@
   "authors": [],
   "files": {
     "solution": [
-      "src/main/scala/LargestSeriesProduct.scala"
+      "src/main/scala/Series.scala"
     ],
     "test": [
-      "src/test/scala/LargestSeriesProductTest.scala"
+      "src/test/scala/SeriesTest.scala"
     ],
     "example": [
       ".meta/Example.scala"
