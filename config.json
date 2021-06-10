@@ -1280,5 +1280,20 @@
       "icon": "features-generic"
     }
   ],
-  "tags": []
+  "tags": [
+    "runtime/jvm",
+    "platform/windows",
+    "platform/linux",
+    "platform/mac",
+    "platform/web",
+    "paradigm/imperative",
+    "paradigm/functional",
+    "paradigm/object_oriented",
+    "typing/static",
+    "typing/strong",
+    "execution_mode/compiled",
+    "used_for/backends",
+    "used_for/frontends",
+    "used_for/financial_systems"
+  ]
 }
