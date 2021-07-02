@@ -1,6 +1,12 @@
 {
   "blurb": "Score a bowling game",
-  "authors": [],
+  "authors": [
+    "ricemery"
+  ],
+  "contributors": [
+    "ppartarr",
+    "rajeshpg"
+  ],
   "files": {
     "solution": [
       "src/main/scala/Bowling.scala"

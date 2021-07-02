@@ -1,6 +1,14 @@
 {
   "blurb": "Given a number, find the sum of all the multiples of particular numbers up to but not including that number.",
-  "authors": [],
+  "authors": [
+    "abo64"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "ppartarr",
+    "rajeshpg",
+    "ricemery"
+  ],
   "files": {
     "solution": [
       "src/main/scala/SumOfMultiples.scala"

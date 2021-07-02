@@ -1,6 +1,14 @@
 {
   "blurb": "Determine if a sentence is a pangram.",
-  "authors": [],
+  "authors": [
+    "ricemery"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "ppartarr",
+    "rajeshpg",
+    "Trevoke"
+  ],
   "files": {
     "solution": [
       "src/main/scala/Pangram.scala"

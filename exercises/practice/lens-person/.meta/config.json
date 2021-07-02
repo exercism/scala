@@ -1,6 +1,14 @@
 {
   "blurb": "Use lenses to update nested records (specific to languages with immutable data).",
-  "authors": [],
+  "authors": [
+    "abo64"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "ppartarr",
+    "rajeshpg",
+    "ricemery"
+  ],
   "files": {
     "solution": [
       "src/main/scala/LensPerson.scala"

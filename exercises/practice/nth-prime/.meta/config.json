@@ -1,6 +1,13 @@
 {
   "blurb": "Given a number n, determine what the nth prime is.",
-  "authors": [],
+  "authors": [
+    "ricemery"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "ppartarr",
+    "rajeshpg"
+  ],
   "files": {
     "solution": [
       "src/main/scala/NthPrime.scala"

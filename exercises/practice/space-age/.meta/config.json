@@ -1,6 +1,15 @@
 {
   "blurb": "Given an age in seconds, calculate how old someone is in terms of a given planet's solar years.",
-  "authors": [],
+  "authors": [
+    "sgrif"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "kytrinyx",
+    "ppartarr",
+    "rajeshpg",
+    "ricemery"
+  ],
   "files": {
     "solution": [
       "src/main/scala/SpaceAge.scala"

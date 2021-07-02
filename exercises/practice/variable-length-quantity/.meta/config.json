@@ -1,6 +1,13 @@
 {
   "blurb": "Implement variable length quantity encoding and decoding.",
-  "authors": [],
+  "authors": [
+    "ricemery"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "ppartarr",
+    "rajeshpg"
+  ],
   "files": {
     "solution": [
       "src/main/scala/VariableLengthQuantity.scala"

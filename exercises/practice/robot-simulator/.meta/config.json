@@ -1,6 +1,14 @@
 {
   "blurb": "Write a robot simulator.",
-  "authors": [],
+  "authors": [
+    "ricemery"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "mlopes",
+    "ppartarr",
+    "rajeshpg"
+  ],
   "files": {
     "solution": [
       "src/main/scala/RobotSimulator.scala"

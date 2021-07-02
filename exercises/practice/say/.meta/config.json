@@ -1,6 +1,14 @@
 {
   "blurb": "Given a number from 0 to 999,999,999,999, spell out that number in English.",
-  "authors": [],
+  "authors": [
+    "ricemery"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "nlochschmidt",
+    "ppartarr",
+    "rajeshpg"
+  ],
   "files": {
     "solution": [
       "src/main/scala/Say.scala"

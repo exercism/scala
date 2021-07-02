@@ -1,6 +1,19 @@
 {
   "blurb": "Manage robot factory settings.",
-  "authors": [],
+  "authors": [
+    "sgrif"
+  ],
+  "contributors": [
+    "abo64",
+    "ErikSchierboom",
+    "JPBetley",
+    "kytrinyx",
+    "ppartarr",
+    "rajeshpg",
+    "ricemery",
+    "RodrigoCSoares",
+    "stevejb71"
+  ],
   "files": {
     "solution": [
       "src/main/scala/RobotName.scala"

@@ -1,6 +1,13 @@
 {
   "blurb": "Convert a number to a string, the content of which depends on the number's factors.",
-  "authors": [],
+  "authors": [
+    "ricemery"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "ppartarr",
+    "rajeshpg"
+  ],
   "files": {
     "solution": [
       "src/main/scala/Raindrops.scala"

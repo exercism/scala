@@ -1,6 +1,18 @@
 {
   "blurb": "Given a DNA string, compute how many times each nucleotide occurs in the string.",
-  "authors": [],
+  "authors": [
+    "sgrif"
+  ],
+  "contributors": [
+    "abo64",
+    "astradamus",
+    "ErikSchierboom",
+    "kytrinyx",
+    "ppartarr",
+    "rajeshpg",
+    "ricemery",
+    "sjakobi"
+  ],
   "files": {
     "solution": [
       "src/main/scala/NucleotideCount.scala"

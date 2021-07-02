@@ -1,6 +1,13 @@
 {
   "blurb": "Create a sentence of the form \"One for X, one for me.\"",
-  "authors": [],
+  "authors": [
+    "ricemery"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "ppartarr",
+    "rajeshpg"
+  ],
   "files": {
     "solution": [
       "src/main/scala/Twofer.scala"
