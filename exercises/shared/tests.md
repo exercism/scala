@@ -1,6 +1,6 @@
 # Tests
 
-To run the tests simply run the command `sbt test` in the exercise's directory.
+To run the tests, run the command `sbt test` in the exercise's directory.
 See the [tests page](https://exercism.io/tracks/scala/tests) for more information.
 
 ## Skipped tests
