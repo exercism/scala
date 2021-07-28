@@ -1252,32 +1252,32 @@
     {
       "title": "Modern",
       "content": "Scala is relatively young, and design decisions are aimed to address criticisms of Java.",
-      "icon": "features-functional"
+      "icon": "evolving"
     },
     {
       "title": "Multi-paradigm",
       "content": "Scala combines object-oriented and functional programming in one concise, high-level language.",
-      "icon": "features-oop"
+      "icon": "multi-paradigm"
     },
     {
       "title": "Statically typed",
       "content": "Scala is statically typed and supports type inference, catching errors early.",
-      "icon": "features-strongly-typed"
+      "icon": "statically-typed"
     },
     {
       "title": "Lazy computation",
       "content": "Scala evaluates expressions only when required, this increases performance.",
-      "icon": "features-lazy"
+      "icon": "fast"
     },
     {
       "title": "Immutability",
       "content": "Scala uses an immutability concept. Each declared variable is immutable by default.",
-      "icon": "features-declarative"
+      "icon": "immutable"
     },
     {
       "title": "Widely-used",
       "content": "Scala is being used by some of the world's tech giants.",
-      "icon": "features-generic"
+      "icon": "community"
     }
   ],
   "tags": [
