@@ -6,3 +6,9 @@ tmp
 target/
 bin/configlet
 bin/configlet.exe
+
+.bsp/
+project/
+project/target
+src/test/scala/project/
+target
