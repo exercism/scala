@@ -10,7 +10,7 @@ lazy val root = (project in file("."))
     Compile / TwirlKeys.compileTemplates / sourceDirectories
         += (baseDirectory.value.getParentFile / "src" / "main" / "twirl"))
 
-libraryDependencies += "com.typesafe.play" % "play-json_2.13" % "2.9.2"
+libraryDependencies += "com.typesafe.play" %% "play-json" % "2.9.2"
 
 libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.0"
 
