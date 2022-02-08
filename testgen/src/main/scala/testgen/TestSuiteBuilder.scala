@@ -7,6 +7,7 @@ import play.twirl.api.Txt
 import play.twirl.api.Template1
 import TestSuiteBuilder._
 import testgen.CanonicalDataParser.ParseResult
+import scala.language.postfixOps
 
 object TestSuiteBuilder {
 

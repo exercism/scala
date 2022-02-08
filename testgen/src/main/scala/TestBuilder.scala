@@ -1,3 +1,4 @@
+import scala.language.postfixOps
 import java.io.FileWriter
 import java.io.File
 
@@ -37,7 +38,7 @@ class TestBuilder(testName: String) {
   def build: String =
 s"""$printImports
 $printVersion
-class $testName extends FunSuite with Matchers {
+class $testName extends AnyFunSuite with Matchers {
 $printTestCases
 }
 """
@@ -49,7 +50,8 @@ $printTestCases
     }
 
   private lazy val printImports: String =
-    "import org.scalatest.{FunSuite, Matchers}\n" +
+    "import org.scalatest.funsuite.AnyFunSuite\n" +
+    "import org.scalatest.matchers.should.Matchers\n" +
     (imports map (imp => s"import $imp\n") mkString)
 
   private lazy val printTestCases: String = {
