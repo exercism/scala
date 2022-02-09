@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 2.2.0 */
-class HouseTest extends FunSuite with Matchers {
+class HouseTest extends AnyFunSuite with Matchers {
 
   test("verse one - the house that jack built") {
     House.recite(1, 1) should be("""This is the house that Jack built.

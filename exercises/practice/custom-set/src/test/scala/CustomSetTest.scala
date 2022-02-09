@@ -1,7 +1,8 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
 
 /** @version 1.3.0 */
-class CustomSetTest extends FunSuite with Matchers {
+class CustomSetTest extends AnyFunSuite with Matchers {
 
   // Empty test cases - Returns true if the set contains no elements
   test("sets with no elements are empty") {

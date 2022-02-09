@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class SpaceAgeTest extends FunSuite with Matchers {
+class SpaceAgeTest extends AnyFunSuite with Matchers {
 
   test("age on Earth") {
     SpaceAge.onEarth(1000000000) should be (31.69 +- 0.01)

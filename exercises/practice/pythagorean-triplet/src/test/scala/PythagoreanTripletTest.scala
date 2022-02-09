@@ -1,7 +1,8 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
 
 /** @version created manually **/
-class PythagoreanTripletTest extends FunSuite with Matchers {
+class PythagoreanTripletTest extends AnyFunSuite with Matchers {
   test("isPythagorean") {
     PythagoreanTriplet.isPythagorean((3, 4, 5)) should be (true)
     PythagoreanTriplet.isPythagorean((3, 5, 4)) should be (true)

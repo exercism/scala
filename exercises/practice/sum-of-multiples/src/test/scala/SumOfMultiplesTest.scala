@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.2.0 */
-class SumOfMultiplesTest extends FunSuite with Matchers {
+class SumOfMultiplesTest extends AnyFunSuite with Matchers {
 
   test("multiples of 3 or 5 up to 1") {
     SumOfMultiples.sum(Set(3, 5), 1) should be(0)

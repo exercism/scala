@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 2.1.0 */
-class BeerSongTest extends FunSuite with Matchers {
+class BeerSongTest extends AnyFunSuite with Matchers {
 
   test("first generic verse") {
     BeerSong.recite(99, 1) should be(

@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version created manually **/
-class FrequencyTest extends FunSuite with Matchers {
+class FrequencyTest extends AnyFunSuite with Matchers {
 
   // Poem by Friedrich Schiller. The corresponding music is the European
   // Anthem.

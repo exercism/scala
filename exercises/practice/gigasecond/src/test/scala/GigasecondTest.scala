@@ -2,10 +2,12 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class GigasecondTest extends FunSuite with Matchers {
+class GigasecondTest extends AnyFunSuite with Matchers {
 
   private def dateTime(str: String): LocalDateTime =
     LocalDateTime.from(DateTimeFormatter.ISO_DATE_TIME.parse(str))

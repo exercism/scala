@@ -1,7 +1,8 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
 
 /** @version created manually **/
-class ZipperTest extends FunSuite with Matchers {
+class ZipperTest extends AnyFunSuite with Matchers {
   def empty[A]: Option[BinTree[A]] = None
 
   def bt[A](v: A, l: Option[BinTree[A]], r: Option[BinTree[A]]): Option[BinTree[A]] =

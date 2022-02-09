@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.3.0 */
-class AlphameticsTest extends FunSuite with Matchers {
+class AlphameticsTest extends AnyFunSuite with Matchers {
 
   test("puzzle with three letters") {
     Alphametics.solve("I + BB == ILL") should be(

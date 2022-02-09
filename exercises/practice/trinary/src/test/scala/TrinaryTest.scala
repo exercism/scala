@@ -1,6 +1,8 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.flatspec.AnyFlatSpec
 
-class TrinaryTest extends FlatSpec with Matchers {
+
+class TrinaryTest extends AnyFlatSpec with Matchers {
   it should "empty string should error" in {
     intercept[IllegalArgumentException] {
       Trinary.trinaryToInt("")

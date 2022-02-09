@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class SayTest extends FunSuite with Matchers {
+class SayTest extends AnyFunSuite with Matchers {
 
   test("zero") {
     Say.inEnglish(0) should be(Some("zero"))

@@ -1,6 +1,8 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
-class OctalTest extends FlatSpec with Matchers {
+
+class OctalTest extends AnyFlatSpec with Matchers {
   it should "empty string should error" in {
     intercept[IllegalArgumentException] {
       Octal.octalToInt("")

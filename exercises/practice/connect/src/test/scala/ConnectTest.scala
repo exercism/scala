@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class ConnectTest extends FunSuite with Matchers {
+class ConnectTest extends AnyFunSuite with Matchers {
 
   // Filter readable board into valid input
   private def mkBoard(lines: List[String]): List[String] =

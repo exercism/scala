@@ -1,9 +1,10 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
 import java.time.LocalDate
 import LensPerson._
 
 /** @version created manually **/
-class LensPersonTest extends FunSuite with Matchers {
+class LensPersonTest extends AnyFunSuite with Matchers {
   val testPerson =
     Person(
         _name = Name(

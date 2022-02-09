@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class SpiralMatrixTest extends FunSuite with Matchers {
+class SpiralMatrixTest extends AnyFunSuite with Matchers {
 
   test("empty spiral") {
     SpiralMatrix.spiralMatrix(0) should be(List())

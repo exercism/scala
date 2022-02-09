@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.3.0 */
-class ComplexNumberTest extends FunSuite with Matchers {
+class ComplexNumberTest extends AnyFunSuite with Matchers {
 
   private val equalityEpsilon = 1e-15
 

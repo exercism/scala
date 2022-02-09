@@ -1,8 +1,9 @@
-import org.scalatest.{FunSuite, Matchers}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
 import Sgf._
 
 /** @version created manually **/
-class SgfTest extends FunSuite with Matchers {
+class SgfTest extends AnyFunSuite with Matchers {
   test("parse \"\"") {
     Sgf.parseSgf("") should be (None)
   }

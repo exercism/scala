@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class GrainsTest extends FunSuite with Matchers {
+class GrainsTest extends AnyFunSuite with Matchers {
 
   test("1") {
     Grains.square(1) should be(Some(1))

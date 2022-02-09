@@ -1,8 +1,10 @@
 import org.scalatest.concurrent.{IntegrationPatience, Conductors}
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version created manually **/
-class BankAccountTest extends FunSuite with Matchers with Conductors with IntegrationPatience {
+class BankAccountTest extends AnyFunSuite with Matchers with Conductors with IntegrationPatience {
   test("open account") {
     Bank.openAccount().getBalance should be (Some(0))
   }
@@ -33,7 +35,7 @@ class BankAccountTest extends FunSuite with Matchers with Conductors with Integr
 
     val acct = Bank.openAccount()
 
-    thread("t1") {
+    threadNamed("t1") {
       acct.incrementBalance(10)
       acct.getBalance should be (Some(10))
       beat should be (1)
@@ -41,7 +43,7 @@ class BankAccountTest extends FunSuite with Matchers with Conductors with Integr
       acct.getBalance should be (Some(15))
     }
 
-    thread("t2") {
+    threadNamed("t2") {
       waitForBeat(1)
       acct.getBalance should be (Some(10))
       acct.incrementBalance(5)
@@ -57,12 +59,12 @@ class BankAccountTest extends FunSuite with Matchers with Conductors with Integr
 
     val acct = Bank.openAccount()
 
-    thread("t1") {
+    threadNamed("t1") {
       for (a <- 1 to 10)
         acct.incrementBalance(10)
     }
 
-    thread("t2") {
+    threadNamed("t2") {
       for (a <- 1 to 10)
         acct.incrementBalance(5)
     }

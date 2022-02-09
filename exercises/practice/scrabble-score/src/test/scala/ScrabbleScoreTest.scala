@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class ScrabbleScoreTest extends FunSuite with Matchers {
+class ScrabbleScoreTest extends AnyFunSuite with Matchers {
 
   test("lowercase letter") {
     ScrabbleScore.score("a") should be(1)

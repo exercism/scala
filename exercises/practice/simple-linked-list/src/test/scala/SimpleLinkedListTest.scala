@@ -1,9 +1,10 @@
-import org.scalacheck.{Arbitrary}
-import org.scalatest.prop.GeneratorDrivenPropertyChecks
-import org.scalatest.{FlatSpec, Matchers}
+import org.scalacheck.Arbitrary
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 
 /** @version created manually **/
-class SimpleLinkedListTest extends FlatSpec with Matchers with GeneratorDrivenPropertyChecks {
+class SimpleLinkedListTest extends AnyFlatSpec with Matchers with ScalaCheckDrivenPropertyChecks {
 
   private implicit def arbitrarySimpleLinkedList[T](implicit arbitraryTs: Arbitrary[Array[T]]): Arbitrary[SimpleLinkedList[T]] =
     Arbitrary {

@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class TriangleTest extends FunSuite with Matchers {
+class TriangleTest extends AnyFunSuite with Matchers {
 
   test("equilateral - true if all sides are equal") {
     Triangle(2, 2, 2).equilateral should be (true)

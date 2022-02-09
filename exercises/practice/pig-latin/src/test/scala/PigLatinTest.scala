@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.2.0 */
-class PigLatinTest extends FunSuite with Matchers {
+class PigLatinTest extends AnyFunSuite with Matchers {
 
   test("word beginning with a") {
     PigLatin.translate("apple") should be("appleay")

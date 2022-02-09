@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 2.3.0 */
-class AllYourBaseTest extends FunSuite with Matchers {
+class AllYourBaseTest extends AnyFunSuite with Matchers {
 
   test("single bit one to decimal") {
     AllYourBase.rebase(2, List(1), 10) should be(Some(List(1)))

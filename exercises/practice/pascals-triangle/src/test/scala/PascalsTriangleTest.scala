@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.3.0 */
-class PascalsTriangleTest extends FunSuite with Matchers {
+class PascalsTriangleTest extends AnyFunSuite with Matchers {
 
   test("zero rows") {
     PascalsTriangle.rows(0) should be(List())

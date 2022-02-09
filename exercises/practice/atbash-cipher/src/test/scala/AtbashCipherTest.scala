@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.2.0 */
-class AtbashCipherTest extends FunSuite with Matchers {
+class AtbashCipherTest extends AnyFunSuite with Matchers {
 
   test("encode yes") {
     AtbashCipher.encode("yes") should be("bvh")

@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 2.0.0 */
-class HighScoresTest extends FunSuite with Matchers {
+class HighScoresTest extends AnyFunSuite with Matchers {
 
   test("Latest score") {
     HighScores.latest(List(100, 0, 90, 30)) should be(30)

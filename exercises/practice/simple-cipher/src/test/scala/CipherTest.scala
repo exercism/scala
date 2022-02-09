@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version created manually **/
-class CipherTest extends FunSuite with Matchers {
+class CipherTest extends AnyFunSuite with Matchers {
 
   test("Random key cipher - can encode/decode") {
     // Here we take advantage of the fact that plaintext of "aaa..."

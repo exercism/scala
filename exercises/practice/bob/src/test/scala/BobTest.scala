@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.4.0 */
-class BobTest extends FunSuite with Matchers {
+class BobTest extends AnyFunSuite with Matchers {
 
   test("stating something") {
     Bob.response("Tom-ay-to, tom-aaaah-to.") should be("Whatever.")

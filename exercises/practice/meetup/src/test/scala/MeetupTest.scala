@@ -1,9 +1,11 @@
 import java.time.LocalDate
 
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class MeetupTest extends FunSuite with Matchers {
+class MeetupTest extends AnyFunSuite with Matchers {
 
   test("monteenth of May 2013") {
     Meetup(5, 2013).day(Meetup.Mon, Schedule.Teenth) should be(

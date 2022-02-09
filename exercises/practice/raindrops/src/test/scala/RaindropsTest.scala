@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class RaindropsTest extends FunSuite with Matchers {
+class RaindropsTest extends AnyFunSuite with Matchers {
   
   test("the sound for 1 is 1") {
     Raindrops.convert(1) should be ("1")

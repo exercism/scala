@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.0.0 */
-class EtlTest extends FunSuite with Matchers {
+class EtlTest extends AnyFunSuite with Matchers {
 
   test("a single letter") {
     Etl.transform(Map(1 -> Seq("A"))) should be(Map("a" -> 1))

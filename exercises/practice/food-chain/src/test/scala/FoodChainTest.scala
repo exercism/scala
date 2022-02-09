@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 2.1.0 */
-class FoodChainTest extends FunSuite with Matchers {
+class FoodChainTest extends AnyFunSuite with Matchers {
 
   test("fly") {
     FoodChain.recite(1, 1) should be ("""I know an old lady who swallowed a fly.

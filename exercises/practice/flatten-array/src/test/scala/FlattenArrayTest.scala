@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.2.0 */
-class FlattenArrayTest extends FunSuite with Matchers {
+class FlattenArrayTest extends AnyFunSuite with Matchers {
 
   test("no nesting") {
     FlattenArray.flatten(List(0, 1, 2)) should be(List(0, 1, 2))

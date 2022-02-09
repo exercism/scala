@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class ProteinTranslationTest extends FunSuite with Matchers {
+class ProteinTranslationTest extends AnyFunSuite with Matchers {
 
   test("Methionine RNA sequence") {
     ProteinTranslation.proteins("AUG") should be(Seq("Methionine"))

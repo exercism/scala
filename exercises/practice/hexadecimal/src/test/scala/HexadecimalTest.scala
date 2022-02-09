@@ -1,6 +1,8 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
 
-class HexadecimalTest extends FlatSpec with Matchers {
+
+class HexadecimalTest extends AnyFlatSpec with Matchers {
   it should "handle empty" in {
     Hexadecimal.hexToInt("") should equal(0)
   }

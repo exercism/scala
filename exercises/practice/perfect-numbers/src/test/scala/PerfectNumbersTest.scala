@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class PerfectNumbersTest extends FunSuite with Matchers {
+class PerfectNumbersTest extends AnyFunSuite with Matchers {
 
   test("Smallest perfect number is classified correctly") {
     PerfectNumbers.classify(6) should be(Right(NumberType.Perfect))

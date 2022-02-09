@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.3.0 */
-class LeapTest extends FunSuite with Matchers {
+class LeapTest extends AnyFunSuite with Matchers {
 
   test("year not divisible by 4: common year") {
     Leap.leapYear(2015) should be (false)

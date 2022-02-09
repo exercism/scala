@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.2.0 */
-class CollatzConjectureTest extends FunSuite with Matchers {
+class CollatzConjectureTest extends AnyFunSuite with Matchers {
 
   test("zero steps for one") {
     CollatzConjecture.steps(1) should be (Some(0))

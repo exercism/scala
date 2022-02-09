@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version created manually **/
-class BstTest extends FlatSpec with Matchers {
+class BstTest extends AnyFlatSpec with Matchers {
   val bst4 = Bst(4)
 
   it should "retain data" in {

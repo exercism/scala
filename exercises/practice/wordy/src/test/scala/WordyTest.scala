@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class WordyTest extends FunSuite with Matchers {
+class WordyTest extends AnyFunSuite with Matchers {
 
   test("addition") {
     Wordy.answer("What is 1 plus 1?") should be(Some(2))

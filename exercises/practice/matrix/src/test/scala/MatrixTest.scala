@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.0.0 */
-class MatrixTest extends FunSuite with Matchers {
+class MatrixTest extends AnyFunSuite with Matchers {
 
   test("extract row from one number matrix") {
     Matrix("1").row(0) should be(Vector(1))
