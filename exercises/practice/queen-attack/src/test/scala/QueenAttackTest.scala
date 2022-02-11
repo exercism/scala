@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 2.1.0 */
-class QueenAttackTest extends FunSuite with Matchers {
+class QueenAttackTest extends AnyFunSuite with Matchers {
 
   private def create(x: Int, y: Int): Queen = {
     Queen.create(x, y) match {

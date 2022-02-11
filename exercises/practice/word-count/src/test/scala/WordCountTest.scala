@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.2.0 */
-class WordCountTest extends FunSuite with Matchers {
+class WordCountTest extends AnyFunSuite with Matchers {
 
   test("count one word") {
     WordCount("word").countWords should be(Map(("word", 1)))

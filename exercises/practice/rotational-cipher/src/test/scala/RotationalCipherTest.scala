@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.2.0 */
-class RotationalCipherTest extends FunSuite with Matchers {
+class RotationalCipherTest extends AnyFunSuite with Matchers {
 
   test("rotate a by 0, same output as input") {
     RotationalCipher.rotate("a", 0) should be("a")

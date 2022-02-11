@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class PrimeFactorsTest extends FunSuite with Matchers {
+class PrimeFactorsTest extends AnyFunSuite with Matchers {
 
   test("no factors") {
     PrimeFactors.factors(1) should be(List())

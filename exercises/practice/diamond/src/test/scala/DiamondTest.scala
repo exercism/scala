@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class DiamondTest extends FunSuite with Matchers {
+class DiamondTest extends AnyFunSuite with Matchers {
 
   test("Degenerate case with a single 'A' row") {
     Diamond.rows('A') should be(List("A"))

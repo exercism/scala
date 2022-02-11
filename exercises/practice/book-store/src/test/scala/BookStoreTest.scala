@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.4.0 */
-class BookStoreTest extends FunSuite with Matchers {
+class BookStoreTest extends AnyFunSuite with Matchers {
 
 
   test("Only a single book") {

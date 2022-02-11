@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class VariableLengthQuantityTest extends FunSuite with Matchers {
+class VariableLengthQuantityTest extends AnyFunSuite with Matchers {
 
   test("zero") {
     VariableLengthQuantity.encode(List(0x0)) should be(List(0x0))

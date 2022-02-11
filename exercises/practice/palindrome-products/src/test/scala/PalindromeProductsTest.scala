@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class PalindromeProductsTest extends FunSuite with Matchers {
+class PalindromeProductsTest extends AnyFunSuite with Matchers {
 
   // PalindromeProducts largest call is expecting a return type of
   // Option[(Int, Set[(Int, Int)])] - None is expected for error cases.

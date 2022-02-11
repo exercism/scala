@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.2.0 */
-class DifferenceOfSquaresTest extends FunSuite with Matchers {
+class DifferenceOfSquaresTest extends AnyFunSuite with Matchers {
 
   test("square of sum 1") {
     DifferenceOfSquares.squareOfSum(1) should be (1)

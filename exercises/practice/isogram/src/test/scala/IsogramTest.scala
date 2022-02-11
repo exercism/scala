@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.4.0 */
-class IsogramTest extends FunSuite with Matchers {
+class IsogramTest extends AnyFunSuite with Matchers {
 
   test("empty string") {
     Isogram.isIsogram("") should be(true)

@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version created manually **/
-class SeriesTest extends FunSuite with Matchers {
+class SeriesTest extends AnyFunSuite with Matchers {
 
   test("slices of one") {
     Series.slices(1, "") should be (List())

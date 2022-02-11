@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.flatspec.AnyFlatSpec
+
 
 /** @version created manually **/
-class StrainTest extends FlatSpec with Matchers {
+class StrainTest extends AnyFlatSpec with Matchers {
 
   it should "handle empty keep" in {
     val result = Strain.keep[Int](List(), x => x < 10)

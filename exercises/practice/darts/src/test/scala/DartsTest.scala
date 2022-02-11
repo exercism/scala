@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.0.0 */
-class DartsTest extends FunSuite with Matchers {
+class DartsTest extends AnyFunSuite with Matchers {
 
   test("A dart lands outside the target") {
     Darts.score(15.3, 13.2) should be (0)

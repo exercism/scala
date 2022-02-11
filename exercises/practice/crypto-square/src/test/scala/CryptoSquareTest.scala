@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 3.2.0 */
-class CryptoSquareTest extends FunSuite with Matchers {
+class CryptoSquareTest extends AnyFunSuite with Matchers {
 
   test("empty plaintext results in an empty ciphertext") {
     CryptoSquare.ciphertext("") should be("")

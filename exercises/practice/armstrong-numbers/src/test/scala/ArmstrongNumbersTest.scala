@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.0.0 */
-class ArmstrongNumbersTest extends FunSuite with Matchers {
+class ArmstrongNumbersTest extends AnyFunSuite with Matchers {
 
   test("Single digit numbers are Armstrong numbers") {
     ArmstrongNumbers.isArmstrongNumber(5) should be (true)

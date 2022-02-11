@@ -1,7 +1,7 @@
 package testgen
 
 import scala.io.Source
-import scala.util.parsing.json.JSON
+import play.api.libs.json.Json
 import CanonicalDataParser._
 import scala.util.Try
 import scala.Left
@@ -28,9 +28,9 @@ object CanonicalDataParser {
   def parse(file: File): Exercise = {
     val fileContents = Source.fromFile(file).getLines.mkString
     val rawParseResult =
-      JSON.parseFull(fileContents).get.asInstanceOf[ParseResult]
+      Json.parse(fileContents).asInstanceOf[ParseResult]
     val parseResult = rawParseResult mapValues restoreInts
-    parseResult
+    Exercise.fromParseResult(parseResult.toMap)
   }
 
   private def restoreInts(any: Any): Any =

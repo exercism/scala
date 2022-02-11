@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.6.0 */
-class AcronymTest extends FunSuite with Matchers {
+class AcronymTest extends AnyFunSuite with Matchers {
 
   test("basic") {
     Acronym.abbreviate("Portable Network Graphics") should be ("PNG")

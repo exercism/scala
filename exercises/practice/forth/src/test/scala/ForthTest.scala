@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.6.0 */
-class ForthTest extends FunSuite with Matchers {
+class ForthTest extends AnyFunSuite with Matchers {
 
   private val forth = new Forth
 

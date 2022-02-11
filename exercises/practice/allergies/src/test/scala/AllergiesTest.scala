@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.2.0 */
-class AllergiesTest extends FunSuite with Matchers {
+class AllergiesTest extends AnyFunSuite with Matchers {
 
   test("Allergen.Peanuts - no allergies means not allergic") {
     Allergies.allergicTo(Allergen.Peanuts, 0) should be(false)

@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.0 */
-class SaddlePointsTest extends FunSuite with Matchers {
+class SaddlePointsTest extends AnyFunSuite with Matchers {
 
   test("Can identify single saddle point") {
     Matrix(List(List(9, 8, 7), List(5, 3, 2), List(6, 6, 7))).saddlePoints should be(

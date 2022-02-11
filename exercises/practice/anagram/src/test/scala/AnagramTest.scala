@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.4.0 */
-class AnagramTest extends FunSuite with Matchers {
+class AnagramTest extends AnyFunSuite with Matchers {
 
   test("no matches") {
     Anagram.findAnagrams("diaper", List("hello", "world", "zombies", "pants")) should be(

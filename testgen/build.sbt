@@ -1,14 +1,17 @@
 name := "ExcercismScalaTestGenerator"
 
-scalaVersion := "2.12.8"
+scalaVersion := "2.13.6"
+
+ThisBuild / scalacOptions ++= Seq("-deprecation")
 
 lazy val root = (project in file("."))
   .enablePlugins(SbtTwirl)
   .settings(
-    sourceDirectories in (Compile, TwirlKeys.compileTemplates) += (baseDirectory.value.getParentFile / "src" / "main" / "twirl"))
+    Compile / TwirlKeys.compileTemplates / sourceDirectories
+        += (baseDirectory.value.getParentFile / "src" / "main" / "twirl"))
 
-libraryDependencies += "com.typesafe.play" % "play-json_2.11" % "2.5.3"
+libraryDependencies += "com.typesafe.play" %% "play-json" % "2.9.2"
 
-libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4"
+libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.0"
 
-libraryDependencies += "com.typesafe.play" %% "twirl-api" % "1.3.0"
+libraryDependencies += "com.typesafe.play" %% "twirl-api" % "1.5.0"

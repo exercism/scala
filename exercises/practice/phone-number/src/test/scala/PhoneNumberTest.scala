@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.4.0 */
-class PhoneNumberTest extends FunSuite with Matchers {
+class PhoneNumberTest extends AnyFunSuite with Matchers {
 
   test("cleans the number") {
     PhoneNumber.clean("(223) 456-7890") should be(Some("2234567890"))

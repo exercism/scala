@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 2.1.0 */
-class DominoesTest extends FunSuite with Matchers {
+class DominoesTest extends AnyFunSuite with Matchers {
 
   private def check(input: List[(Int, Int)], hasResult: Boolean): Unit = {
     val result = Dominoes.chain(input)

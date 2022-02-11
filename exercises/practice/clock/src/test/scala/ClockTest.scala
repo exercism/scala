@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 2.2.1 */
-class ClockTest extends FunSuite with Matchers {
+class ClockTest extends AnyFunSuite with Matchers {
 
   test("on the hour") {
     Clock(8, 0) should be(Clock(8, 0))

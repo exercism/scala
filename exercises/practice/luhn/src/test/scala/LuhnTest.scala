@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.2.0 */
-class LuhnTest extends FunSuite with Matchers {
+class LuhnTest extends AnyFunSuite with Matchers {
 
   test("single digit strings can not be valid") {
     Luhn.valid("1") should be(false)

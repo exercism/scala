@@ -1,6 +1,6 @@
-scalaVersion := "2.12.8"
+scalaVersion := "2.13.6"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.0.1" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.10" % "test"
 
 val monocleVersion = "2.0.0"
 

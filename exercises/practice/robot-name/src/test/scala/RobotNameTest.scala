@@ -1,9 +1,10 @@
-import org.scalatest._
+import org.scalatest.funspec.AnyFunSpec
+import org.scalatest.matchers.should.Matchers
 
 import collection.mutable
 
 /** @version created manually **/
-class RobotNameSpecs extends FunSpec with Matchers {
+class RobotNameTest extends AnyFunSpec with Matchers {
   val nameRegex = """[A-Z]{2}\d{3}"""
 
   it ("has a name") {

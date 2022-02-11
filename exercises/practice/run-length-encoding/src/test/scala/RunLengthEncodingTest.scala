@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.0.0 */
-class RunLengthEncodingTest extends FunSuite with Matchers {
+class RunLengthEncodingTest extends AnyFunSuite with Matchers {
 
   test("encode - empty string") {
     RunLengthEncoding.encode("") should be ("")

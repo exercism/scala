@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.1.1 */
-class KindergartenGardenTest extends FunSuite with Matchers {
+class KindergartenGardenTest extends AnyFunSuite with Matchers {
 
   test("partial garden - garden with single student") {
     Garden.defaultGarden("RC\nGG").plants("Alice") should be(

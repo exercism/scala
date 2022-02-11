@@ -1,7 +1,10 @@
-import org.scalatest._
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.OneInstancePerTest
 
 /** @version created manually **/
-class GradeSchoolTest extends FunSuite with Matchers with OneInstancePerTest {
+class GradeSchoolTest extends AnyFunSuite with Matchers with OneInstancePerTest {
+
   val school = new School
 
   test ("empty school") {

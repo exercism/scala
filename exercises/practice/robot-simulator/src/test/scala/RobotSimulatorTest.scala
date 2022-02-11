@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 2.2.0 */
-class RobotSimulatorTest extends FunSuite with Matchers {
+class RobotSimulatorTest extends AnyFunSuite with Matchers {
 
   test(
     "A robot is created with a position and a direction - Robots are created with a position and direction") {

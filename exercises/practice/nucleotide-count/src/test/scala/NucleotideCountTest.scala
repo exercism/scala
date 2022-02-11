@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.3.0 */
-class NucleotideCountTest extends FunSuite with Matchers {
+class NucleotideCountTest extends AnyFunSuite with Matchers {
 
   test("empty strand") {
     new DNA("").nucleotideCounts should be(

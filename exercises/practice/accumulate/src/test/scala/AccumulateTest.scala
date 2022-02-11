@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.flatspec.AnyFlatSpec
+
 
 /** @version created manually **/
-class AccumulateTest extends FlatSpec with Matchers {
+class AccumulateTest extends AnyFlatSpec with Matchers {
 
   it should "allow empty accumulation" in {
     val accumulate = new Accumulate

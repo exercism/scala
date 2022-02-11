@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.2.0 */
-class RomanNumeralsTest extends FunSuite with Matchers {
+class RomanNumeralsTest extends AnyFunSuite with Matchers {
 
   test("1 is a single I") {
     RomanNumerals.roman(1) should be ("I")

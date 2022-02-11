@@ -1,7 +1,9 @@
-import org.scalatest.{Matchers, FunSuite}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 
 /** @version 1.3.0 */
-class MatchingBracketsTest extends FunSuite with Matchers {
+class MatchingBracketsTest extends AnyFunSuite with Matchers {
 
   test("paired square brackets") {
     MatchingBrackets.isPaired("[]") should be(true)

@@ -1,4 +1,5 @@
 import java.io.File
+import scala.language.postfixOps
 
 import testgen.TestSuiteBuilder.{toString, _}
 import testgen._

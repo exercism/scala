@@ -1,5 +1,8 @@
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
 /** @version 1.3.0 */
-class LasagnaTest extends FunSuite with Matchers {
+class LasagnaTest extends AnyFunSuite with Matchers {
 
   test("expected minutes in oven") {
     new Lasagna().expectedMinutesInOven() should be(40)
