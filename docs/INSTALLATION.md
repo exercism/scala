@@ -3,8 +3,11 @@
 
 In addition to the exercism CLI and your favorite text editor, practicing with Exercism exercises in Scala requires:
 
-* Recent build of the Java 8 Platform, such as [OpenJDK](http://openjdk.java.net/install/) or [Oracle Java JDK](http://www.oracle.com/technetwork/java/javase/downloads/index.html) 
-* [Download](http://www.scala-sbt.org/release/docs/Setup.html) and install the Simple Build Tool (`sbt`)
+* Java Development Kit (JDK) 11 or later. Use your preferred vendor or grab one from [Adoptium](https://adoptium.net/)
+* [Scala 2.13.x](https://www.scala-lang.org/download/scala2.html)
+* [sbt 1.6.x](https://www.scala-sbt.org/download.html)
+
+If you don't want install these various dependencies by hand, consider using [SDKMAN](https://sdkman.io/) to manage your java and java-adjacent development tools and libraries. 
 
 ---
 
@@ -19,3 +22,5 @@ To get started, see "[Running the Tests](http://exercism.io/languages/scala/test
 * [IntelliJ IDEA with Scala Plugin](https://www.jetbrains.com/idea/)
 * [ScalaIDE](http://scala-ide.org/index.html)
 * [NetBeans with Scala Plugin](https://netbeans.org/)
+* [Metals with VS Code](https://scalameta.org/metals/docs/editors/vscode)
+* [Metals with Vim or Neovim](https://scalameta.org/metals/docs/editors/vim)
