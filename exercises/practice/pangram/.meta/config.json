@@ -11,7 +11,7 @@
   ],
   "files": {
     "solution": [
-      "src/main/scala/Pangram.scala"
+      "src/main/scala/Pangrams.scala"
     ],
     "test": [
       "src/test/scala/PangramTest.scala"
