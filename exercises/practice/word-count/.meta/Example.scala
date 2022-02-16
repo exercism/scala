@@ -5,4 +5,5 @@ case class WordCount(phrase: String) {
     .map(_.toLowerCase)
     .groupBy(w => w)
     .mapValues(_.length)
+    .toMap
 }
