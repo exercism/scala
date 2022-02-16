@@ -4,7 +4,7 @@ object SumOfMultiples {
     def isMultiple(x: Int): Boolean = factors exists isDivisibleBy(x)
 
     val multiples = (1 until limit) filter isMultiple
-    multiples sum
+    multiples.sum
   }
 }
 
