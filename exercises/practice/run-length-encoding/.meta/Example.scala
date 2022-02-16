@@ -5,9 +5,9 @@ object RunLengthEncoding {
   def encode(str: Plain): Encoded = {
     def encodeGroup(xs: Seq[Char]): Seq[Char] =
       if (xs.length > 1) s"${xs.length}${xs.head}"
-      else xs mkString
+      else xs.mkString
 
-    splitByEquals(str) flatMap encodeGroup mkString
+    (splitByEquals(str) flatMap encodeGroup).mkString
   }
 
   def decode(str: Encoded): Plain = {
@@ -19,7 +19,7 @@ object RunLengthEncoding {
     }
 
     val result = str.foldLeft((0, Seq.empty[Char]))(nextChar)
-    result._2.reverse mkString
+    result._2.reverse.mkString
   }
 
   private def splitByEquals[T](xs: Seq[T]): Seq[Seq[T]] =
