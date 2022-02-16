@@ -7,7 +7,7 @@ object Alphametics {
 
   def solve(puzzle: Puzzle): Option[Solution] = {
     val expression = parse(puzzle)
-    val uniqueLetters = puzzle filter (_.isLetter) distinct
+    val uniqueLetters = (puzzle filter (_.isLetter)).distinct
 
     expression flatMap solveExpression(uniqueLetters)
   }
@@ -20,9 +20,9 @@ object Alphametics {
       boolExpr.eval(solution) getOrElse false
 
     def toSolution(tenChars: String): Solution =
-      tenChars.zipWithIndex.toMap filterKeys (_.isLetter)
+      (tenChars.zipWithIndex.toMap filterKeys (_.isLetter)).toMap
 
-    val tenChars = uniqueLetters ++ Seq.fill(10 - uniqueLetters.size)('.')
+    val tenChars = uniqueLetters ++ List.fill(10 - uniqueLetters.size)('.').mkString
     tenChars.permutations map toSolution find isSolution
   }
 }
@@ -81,7 +81,7 @@ sealed trait Expression[T] {
 case class Word(word: String) extends Expression[Long] {
   override def eval(solution: Solution) =
     if (solution(word(0)) == 0) None
-    else Some((word map solution mkString) toLong)
+    else Some(((word map solution).mkString).toLong)
 }
 
 case class Number(number: Long) extends Expression[Long] {
