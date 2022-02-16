@@ -1,9 +1,9 @@
-import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
 
 /** @version created manually **/
-class DequeTest extends FlatSpec with Matchers {
+class DequeTest extends AnyFlatSpec with Matchers {
 
   it should "handle push then pop" in {
     val deque = Deque[Char]()
