@@ -33,5 +33,5 @@ object DNA {
   val DnaNucleotides: Set[Nucleotide] = Set('A', 'T', 'C', 'G')
 
   val EmptyNucleotideCounts: NucleotideCounts =
-    DnaNucleotides map (_ -> 0) toMap
+    (DnaNucleotides map (_ -> 0)).toMap
 }
