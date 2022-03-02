@@ -3,40 +3,48 @@
 # Synopsis:
 # Test the track's exercises.
 
-# Example:
-# ./bin/test
+# Arguments:
+# $1: exercise slug: only this exercise will be tested (optional)
 
+# Examples:
+# ./bin/test
+# ./bin/test two-fer
+
+exercise_slug_filter="$1"
 exit_code=0
 
 function test_exercise() {
     exercise_dir="${1}"
+    exercise_slug=$(basename "${exercise_dir}")
     example_file_key="${2}"
 
-    echo "Checking $(basename "${exercise_dir}") exercise..."
-        
-    pushd "${exercise_dir}" > /dev/null
+    if [ -z "${exercise_slug_filter}" ] ||
+       [ "${exercise_slug}" == "${exercise_slug_filter}" ]; then
+        echo "Checking ${exercise_slug} exercise..."        
+        pushd "${exercise_dir}" > /dev/null
 
-    solution_file=$(jq -r '.files.solution[0]' '.meta/config.json')
-    test_file=$(jq -r '.files.test[0]' '.meta/config.json')
-    example_file=$(jq -r ".files.${example_file_key}[0]" '.meta/config.json')
-    tmp_solution_file=$(mktemp --suffix '-solution.scala')
-    tmp_test_file=$(mktemp --suffix '-test.scala')
+        solution_file=$(jq -r '.files.solution[0]' '.meta/config.json')
+        test_file=$(jq -r '.files.test[0]' '.meta/config.json')
+        example_file=$(jq -r ".files.${example_file_key}[0]" '.meta/config.json')
+        tmp_solution_file=$(mktemp --suffix '-solution.scala')
+        tmp_test_file=$(mktemp --suffix '-test.scala')
 
-    cp "${solution_file}" "${tmp_solution_file}"
-    cp "${test_file}" "${tmp_test_file}"
-    cp "${example_file}" "${solution_file}"
+        cp "${solution_file}" "${tmp_solution_file}"
+        cp "${test_file}" "${tmp_test_file}"
+        cp "${example_file}" "${solution_file}"
 
-    sed -i -e '/^\s*pending\s*$/d' "${test_file}"
+        sed -i -e '/^\s*pending\s*$/d' "${test_file}"
 
-    sbt test
-    if [ $? -ne 0 ]; then
-        exit_code=1
+        sbt test
+        if [ $? -ne 0 ]; then
+            exit_code=1
+        fi
+
+        mv "${tmp_solution_file}" "${solution_file}"
+        mv "${tmp_test_file}" "${test_file}"
+
+        popd > /dev/null
     fi
-
-    mv "${tmp_solution_file}" "${solution_file}"
-    mv "${tmp_test_file}" "${test_file}"
-
-    popd > /dev/null
 }
 
 # Verify the Concept Exercises
