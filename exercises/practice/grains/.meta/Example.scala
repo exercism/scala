@@ -25,5 +25,5 @@ object Grains {
   }
 
   def total: Grains =
-    (1 to ChessboardSquares) flatMap (square _).andThen(_.toList) sum
+    ((1 to ChessboardSquares) flatMap (square _).andThen(_.toList)).sum
 }

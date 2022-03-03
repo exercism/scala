@@ -43,6 +43,6 @@ object SpiralMatrix {
     data foreach { case ((x, y), n) =>
       matrix(y)(x) = n
     }
-    matrix map (_.toSeq) toSeq
+    (matrix map (_.toSeq)).toSeq
   }
 }

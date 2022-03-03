@@ -1,3 +1,4 @@
+import scala.language.postfixOps
 import java.time.LocalDate
 import LensPerson._
 

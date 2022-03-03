@@ -13,5 +13,5 @@ object Gigasecond {
   def add(startDateTime: LocalDateTime): LocalDateTime =
     startDateTime.plusSeconds(OneGigasecond)
 
-  private val OneGigasecond: Seconds = math.pow(10, 9) toLong
+  private val OneGigasecond: Seconds = math.pow(10, 9).toLong
 }

@@ -24,7 +24,7 @@ object Frequency {
     // Create a list of Futures. Each Future is to process a sequence of chunkSize
     // texts.
     val futures: Seq[Future[Map[Char, Int]]] =
-      texts.grouped(chunkSize).map(textsChunk => future {countChars(textsChunk)}).toSeq
+      texts.grouped(chunkSize).map(textsChunk => Future {countChars(textsChunk)}).toSeq
     val sequence: Future[Seq[Map[Char, Int]]] = Future.sequence(futures)
 
     // Wait for the results

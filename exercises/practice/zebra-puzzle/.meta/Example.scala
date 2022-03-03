@@ -92,7 +92,7 @@ object ZebraPuzzle {
       candidates = List(one, two, three, four, five) if validPositions(candidates)
     } yield candidates
 
-    candidates head
+    candidates.head
   }
 
   private lazy val validHouses: List[House] =
@@ -130,7 +130,7 @@ object ZebraPuzzle {
 
   private def uniqueHouses(houses: List[House]): Boolean = {
     def unique(what: House => HousePart): Boolean =
-      (houses map what distinct).length == houses.length
+      (houses map what).distinct.length == houses.length
 
     unique (_.color) && unique (_.resident) && unique (_.beverage) &&
     unique (_.cigarette) && unique (_.pet)

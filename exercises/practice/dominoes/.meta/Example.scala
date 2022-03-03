@@ -4,7 +4,7 @@ object Dominoes {
 
   def chain(dominoes: Dominoes): Option[Dominoes] = {
     val solutions = dominoes.permutations map createChain
-    solutions find (_.isDefined) flatten
+    (solutions find (_.isDefined)).flatten
   }
 
   private def createChain(dominoes: Dominoes): Option[Dominoes] = {
