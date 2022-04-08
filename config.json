@@ -30,7 +30,16 @@
     ]
   },
   "exercises": {
-    "concept": [],
+    "concept": [
+      {
+        "slug": "basics",
+        "name": "Lucians Luscious Lasagna",
+        "uuid": "ea9ee1b7-26e4-4612-839d-fc6a9ecc2e7c",
+        "status": "wip",
+        "concepts": ["basics"],
+        "prerequisites": []
+      }
+    ],
     "practice": [
       {
         "slug": "hello-world",
