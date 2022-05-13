@@ -1,4 +1,4 @@
-# Scala
+# Exercism Scala Track
 
 Exercism Exercises in Scala
 
