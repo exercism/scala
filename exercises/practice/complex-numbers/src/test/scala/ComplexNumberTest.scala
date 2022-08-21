@@ -7,7 +7,7 @@ class ComplexNumberTest extends AnyFunSuite with Matchers {
 
   private val equalityEpsilon = 1e-15
 
-  private def assertEquals(c1: ComplexNumber, c2: ComplexNumber) {
+  private def assertEquals(c1: ComplexNumber, c2: ComplexNumber) = {
     c1.real should be (c2.real +- equalityEpsilon)
     c1.imaginary should be (c2.imaginary +- equalityEpsilon)
   }
