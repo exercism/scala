@@ -33,4 +33,5 @@ class PythagoreanTripletTest extends AnyFunSuite with Matchers {
   test("pythagoreanTripletsSum N=1000") {
     pending
     PythagoreanTriplet.pythagoreanTripletsSum(1000) should be (Seq((200, 375, 425)))
+  }
 }
