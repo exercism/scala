@@ -13,7 +13,7 @@ If you don't want install these various dependencies by hand, consider using [SD
 
 After installing Java and `sbt` you will be ready to get started with the Scala track of Exercism.
 
-To get started, see "[Running the Tests](http://exercism.io/languages/scala/tests)".
+To get started, see "[Running the Tests](https://exercism.org/docs/tracks/scala/tests)".
 
 ---
 
