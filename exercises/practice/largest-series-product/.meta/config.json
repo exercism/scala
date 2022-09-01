@@ -18,6 +18,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source": "A variation on Problem 8 at Project Euler",

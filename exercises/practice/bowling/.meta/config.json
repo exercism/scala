@@ -16,6 +16,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source": "The Bowling Game Kata at but UncleBob",

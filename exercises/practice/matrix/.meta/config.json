@@ -17,6 +17,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source": "Warmup to the `saddle-points` warmup.",

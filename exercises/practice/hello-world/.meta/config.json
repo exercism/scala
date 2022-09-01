@@ -19,6 +19,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source": "This is an exercise to introduce users to using Exercism",

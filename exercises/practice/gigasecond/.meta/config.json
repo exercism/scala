@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source": "Chapter 9 in Chris Pine's online Learn to Program tutorial.",
