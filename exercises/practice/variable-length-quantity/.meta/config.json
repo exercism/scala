@@ -17,6 +17,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source": "A poor Splice developer having to implement MIDI encoding/decoding.",

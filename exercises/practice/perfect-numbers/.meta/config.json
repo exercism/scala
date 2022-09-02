@@ -17,6 +17,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source": "Taken from Chapter 2 of Functional Thinking by Neal Ford.",

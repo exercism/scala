@@ -21,6 +21,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source": "The Calculating Point Mutations problem at Rosalind",

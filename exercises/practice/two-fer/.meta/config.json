@@ -17,6 +17,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source_url": "https://github.com/exercism/problem-specifications/issues/757"

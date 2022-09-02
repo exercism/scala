@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source": "JavaRanch Cattle Drive, exercise 6",

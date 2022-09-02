@@ -23,6 +23,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source": "A debugging session with Paul Blackwell at gSchool."

@@ -17,6 +17,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source": "Inspired by the harry potter kata from Cyber-Dojo.",

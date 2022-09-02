@@ -20,6 +20,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "source": "A pairing session with Phil Battos at gSchool",
