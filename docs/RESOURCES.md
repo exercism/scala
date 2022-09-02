@@ -7,7 +7,7 @@ Exercism provides exercises and feedback but can be difficult to jump into for t
 * [Scala - Getting Started](http://www.scala-lang.org/documentation/getting-started.html)
 * [StackOverflow](http://stackoverflow.com/)
 * [Scala Exercises](https://www.scala-exercises.org/std_lib)
-* [The Neophyte's Guide to Scala](http://danielwestheide.com/scala/neophytes.html)
+* [The Neophyte's Guide to Scala](https://danielwestheide.com/books/the-neophytes-guide-to-scala/)
 
 ## Linting
 

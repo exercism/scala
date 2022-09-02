@@ -6,6 +6,7 @@
 * [Programming in Scala - Oderksy, Spoon, Venners](http://www.artima.com/shop/programming_in_scala_3ed)
 * [Functional Programming in Scala - Chiusano, Bjarnason](https://www.manning.com/books/functional-programming-in-scala)
 * [Scala for the Impatient - Cay S. Horstmann](http://horstmann.com/scala/)
+* [Hands on Scala Programming - Li Haoyi](https://www.handsonscala.com/)
 
 ## Online Courses
 
