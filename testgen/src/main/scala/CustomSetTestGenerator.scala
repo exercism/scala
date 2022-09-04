@@ -1,27 +1,28 @@
 import play.api.libs.json.Json
+import play.api.libs.json.Reads
 
 import scala.io.Source
 
 // Generates test suite from json test definition for the CustomSet exercise.
 class CustomSetTestGenerator {
-  implicit val singleSetInputReader = Json.reads[SingleSetInput]
-  implicit val doubleSetInputReader = Json.reads[DoubleSetInput]
-  implicit val setWithElementInputReader = Json.reads[SetWithElementInput]
-  implicit val emptyTestCaseReader = Json.reads[EmptyTestCase]
-  implicit val containsTestCasesReader = Json.reads[ContainsTestCase]
-  implicit val subsetTestCasesReader = Json.reads[SubsetTestCase]
-  implicit val disjointTestCasesReader = Json.reads[DisjointTestCase]
-  implicit val equalTestCasesReader = Json.reads[EqualTestCase]
-  implicit val addTestCasesReader = Json.reads[AddTestCase]
-  implicit val intersectionTestCasesReader = Json.reads[IntersectionTestCase]
-  implicit val differenceTestCasesReader = Json.reads[DifferenceTestCase]
-  implicit val unionTestCasesReader = Json.reads[UnionTestCase]
+  implicit val singleSetInputReader: Reads[SingleSetInput] = Json.reads[SingleSetInput]
+  implicit val doubleSetInputReader: Reads[DoubleSetInput] = Json.reads[DoubleSetInput]
+  implicit val setWithElementInputReader: Reads[SetWithElementInput] = Json.reads[SetWithElementInput]
+  implicit val emptyTestCaseReader: Reads[EmptyTestCase] = Json.reads[EmptyTestCase]
+  implicit val containsTestCasesReader: Reads[ContainsTestCase] = Json.reads[ContainsTestCase]
+  implicit val subsetTestCasesReader: Reads[SubsetTestCase] = Json.reads[SubsetTestCase]
+  implicit val disjointTestCasesReader: Reads[DisjointTestCase] = Json.reads[DisjointTestCase]
+  implicit val equalTestCasesReader: Reads[EqualTestCase] = Json.reads[EqualTestCase]
+  implicit val addTestCasesReader: Reads[AddTestCase] = Json.reads[AddTestCase]
+  implicit val intersectionTestCasesReader: Reads[IntersectionTestCase] = Json.reads[IntersectionTestCase]
+  implicit val differenceTestCasesReader: Reads[DifferenceTestCase] = Json.reads[DifferenceTestCase]
+  implicit val unionTestCasesReader: Reads[UnionTestCase] = Json.reads[UnionTestCase]
 
   private val filename = "src/main/resources/custom-set.json"
   private val fileContents = Source.fromFile(filename).getLines.mkString
   private val json = Json.parse(fileContents)
 
-  def write {
+  def write = {
     val testBuilder = new TestBuilder("CustomSetTest")
     setVersion(testBuilder)
     addEmptyTests(testBuilder)
@@ -89,9 +90,8 @@ class CustomSetTestGenerator {
       val set2 = s"CustomSet.fromList(${tc.input.set2})"
       val callSUT = s"CustomSet.isSubsetOf(set1, set2)"
       val expected = tc.expected.toString
-      val result =
-s"""val set1 = $set1
-    val set2 = $set2"""
+      val result = s"""val set1 = $set1
+                      |val set2 = $set2""".stripMargin
       val checkResult = s"$callSUT should be ($expected)"
 
       TestCaseGen(tc.description, callSUT, expected, result, checkResult)
@@ -101,9 +101,7 @@ s"""val set1 = $set1
   }
 
   private def addDisjointTests(testBuilder: TestBuilder): Unit = {
-    val description =
-      "Disjoint test cases - " + (json \ "cases" \ 3 \ "description").get.as[String]
-
+    val description =  "Disjoint test cases - " + (json \ "cases" \ 3 \ "description").get.as[String]
     val disjointTestCases = (json \ "cases" \ 3 \ "cases").get.as[List[DisjointTestCase]]
 
     implicit def testCaseToGen(tc: DisjointTestCase): TestCaseGen = {
@@ -111,9 +109,8 @@ s"""val set1 = $set1
       val set2 = s"CustomSet.fromList(${tc.input.set2})"
       val callSUT = s"CustomSet.isDisjointFrom(set1, set2)"
       val expected = tc.expected.toString
-      val result =
-s"""val set1 = $set1
-    val set2 = $set2"""
+      val result = s"""val set1 = $set1
+                      |val set2 = $set2""".stripMargin
       val checkResult = s"$callSUT should be ($expected)"
 
       TestCaseGen(tc.description, callSUT, expected, result, checkResult)
@@ -133,9 +130,8 @@ s"""val set1 = $set1
       val set2 = s"CustomSet.fromList(${tc.input.set2})"
       val callSUT = s"CustomSet.isEqual(set1, set2)"
       val expected = tc.expected.toString
-      val result =
-s"""val set1 = $set1
-    val set2 = $set2"""
+      val result = s"""val set1 = $set1
+                      |val set2 = $set2""".stripMargin
       val checkResult = s"$callSUT should be ($expected)"
 
       TestCaseGen(tc.description, callSUT, expected, result, checkResult)
@@ -154,9 +150,8 @@ s"""val set1 = $set1
       val set = s"CustomSet.fromList(${tc.input.set})"
       val callSUT = s"CustomSet.insert(set, ${tc.input.element})"
       val expected = s"CustomSet.fromList(${tc.expected})"
-      val result =
-s"""val set = $set
-    val expected = $expected"""
+      val result = s"""val set = $set
+                      |val expected = $expected""".stripMargin
       val checkResult = s"CustomSet.isEqual($callSUT, expected) should be (true)"
 
       TestCaseGen(tc.description, callSUT, expected, result, checkResult)
@@ -176,10 +171,9 @@ s"""val set = $set
       val set2 = s"CustomSet.fromList(${tc.input.set2})"
       val callSUT = s"CustomSet.intersection(set1, set2)"
       val expected = s"CustomSet.fromList(${tc.expected})"
-      val result =
-s"""val set1 = $set1
-    val set2 = $set2
-    val expected = $expected"""
+      val result = s"""val set1 = $set1
+                      |val set2 = $set2
+                      |val expected = $expected""".stripMargin
       val checkResult = s"CustomSet.isEqual($callSUT, expected) should be (true)"
 
       TestCaseGen(tc.description, callSUT, expected, result, checkResult)
@@ -199,10 +193,9 @@ s"""val set1 = $set1
       val set2 = s"CustomSet.fromList(${tc.input.set2})"
       val callSUT = s"CustomSet.difference(set1, set2)"
       val expected = s"CustomSet.fromList(${tc.expected})"
-      val result =
-s"""val set1 = $set1
-    val set2 = $set2
-    val expected = $expected"""
+      val result = s"""val set1 = $set1
+                      |val set2 = $set2
+                      |val expected = $expected""".stripMargin
       val checkResult = s"CustomSet.isEqual($callSUT, expected) should be (true)"
 
       TestCaseGen(tc.description, callSUT, expected, result, checkResult)
@@ -222,10 +215,9 @@ s"""val set1 = $set1
       val set2 = s"CustomSet.fromList(${tc.input.set2})"
       val callSUT = s"CustomSet.union(set1, set2)"
       val expected = s"CustomSet.fromList(${tc.expected})"
-      val result =
-s"""val set1 = $set1
-    val set2 = $set2
-    val expected = $expected"""
+      val result = s"""val set1 = $set1
+                      |val set2 = $set2
+                      |val expected = $expected""".stripMargin
       val checkResult = s"CustomSet.isEqual($callSUT, expected) should be (true)"
 
       TestCaseGen(tc.description, callSUT, expected, result, checkResult)

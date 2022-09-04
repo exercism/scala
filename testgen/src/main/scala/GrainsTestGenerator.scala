@@ -37,14 +37,16 @@ object GrainsTestGenerator {
           }
 
           val property = labeledTest.property.mkString
-          val sutCall = if (args.length > 0)
+          val sutCall = if (args.length > 0) {
               s"""Grains.$property($args)"""
-            else
+            } else {
               s"""Grains.$property"""
-          val expected = if (args.length > 0)
+            }
+          val expected = if (args.length > 0) {
               toString(labeledTest.expected)
-            else
+            } else {
               toStringForTotal(labeledTest.expected)
+            }
           TestCaseData(labeledTest.description, sutCall, expected)
       }
 

@@ -35,13 +35,11 @@ class TestBuilder(testName: String) {
     println(s"file ${file.getAbsolutePath} created")
   }
 
-  def build: String =
-s"""$printImports
-$printVersion
-class $testName extends AnyFunSuite with Matchers {
-$printTestCases
-}
-"""
+  def build: String = s"""$printImports
+                         |$printVersion
+                         |class $testName extends AnyFunSuite with Matchers {
+                         |$printTestCases
+                         |}""".stripMargin
 
   private lazy val printVersion: String =
     version match {
@@ -68,13 +66,12 @@ $printTestCases
       s"$description$testCases"
     }
 
-    def printTestCase(tc: TestCaseGen): String =
-s"""
-  test("${tc.description}") {
-    ${printPending}${tc.result}
-    ${tc.checkResult}
-  }
-"""
+    def printTestCase(tc: TestCaseGen): String = {
+      s"""test("${tc.description}") {
+         |${printPending}${tc.result}
+         |${tc.checkResult}
+         |}""".stripMargin
+    }
 
     testCases map (printTestCaseGroup _).tupled mkString
   }
