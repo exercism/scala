@@ -1,5 +1,4 @@
 {
-  "blurb": "Compute the result for a game of Hex / Polygon",
   "authors": [
     "ricemery"
   ],
@@ -24,5 +23,6 @@
     "invalidator": [
       "build.sbt"
     ]
-  }
+  },
+  "blurb": "Compute the result for a game of Hex / Polygon"
 }
