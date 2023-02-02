@@ -60,7 +60,7 @@ In other words, if the last call in `recurMe()` is `recurMe(arg1, arg2) + 1`, th
 If the last call in `recurMe()` is `recurMe(arg1, arg2, acc + 1)`, then the recursion is a tail call, because only the method is being called
 with no other operation being peformed on it.
 
-A `[match`][match] expression is used to perform [pattern matching][pattern-matching] on the result of passing in the number to
+A [`match`][match] expression is used to perform [pattern matching][pattern-matching] on the result of passing in the number to
 the `getStatus()` method.
 
 If the `Status` of the number is `ILLEGAL`, then `None` is returned.
