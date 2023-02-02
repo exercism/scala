@@ -28,6 +28,8 @@ It it is passed as `_` since its name isn't needed to make the call.
 The `collatzStream()` method starts by calling the [`Stream.iterate()`][stream] method which repeatedly calls its lambda.
 `iterate()` is passed a starting value of the number passed in to the `collatzStream()` method.
 That number is continually modified by the result of the lambda.
+It does that by using a [ternary][ternary] expression that calculates the new value depending on whether the number is evenly divisible
+by `2` or not.
 It would go on forever except that the `Stream` is chained to the [`takeWhile()`][takewhile] method whose lambda
 keeps asking for an iteration of the `Stream` as long as the number being calculated does not equal `1`.
 Once the `takeWhile()` condition returns false, the length of the numbers generated in the `Stream` sequence is returned from the `steps()` function.
@@ -38,4 +40,5 @@ Once the `takeWhile()` condition returns false, the length of the numbers genera
 [underscore]: https://www.baeldung.com/scala/underscore
 [map]: https://www.scala-lang.org/api/2.13.6/scala/Option.html#map[B](f:A=%3EB):Option[B]
 [stream]: https://www.scala-lang.org/api/2.13.6/scala/collection/immutable/Stream$.html#iterate[A](start:A)(f:A=%3EA):scala.collection.immutable.Stream[A]
+[ternary]: https://alvinalexander.com/scala/scala-ternary-operator-syntax/
 [takewhile]: https://www.scala-lang.org/api/2.13.6/scala/collection/immutable/Stream.html#takeWhile(p:A=%3EBoolean):C
