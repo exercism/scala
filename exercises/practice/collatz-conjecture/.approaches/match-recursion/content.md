@@ -50,7 +50,7 @@ enum Status:
 
 The `getStatus()` method returns an `enum` value depending on the value of the passed-in `Int`.
 
-The `collatzMeBaby()` method is annotated with the [`@tailrec`][tailrec-annotation] to verify that the method can be compiled
+The `collatzMeBaby()` method is annotated with the [`@tailrec`][tailrec-annotation] annotation to verify that the method can be compiled
 with [tail call optimization][tail-opt].
 
 A tail call is a particular form of [recursion][recursion] where the last call in the method is a call to the same method _and nothing else_.
@@ -76,9 +76,25 @@ method as the number to be recalculated until it reaches `1`.
 
 All of the ceremony involving the enumeration could be gotten rid of by using [pattern guards][pattern-guard], and the code shortened to
 
-
 ```scala
-// TODO
+import scala.annotation.tailrec
+
+object CollatzConjecture {
+
+  @tailrec
+  private def collatzMeBaby(steps: Int, num: Int): Option[Int] = {
+    num match {
+      case nbr0 if nbr0 <= 0     => None
+      case num1 if num1 == 1     => Some(steps)
+      case num2 if num2 % 2 == 0 => collatzMeBaby(steps + 1, num2 / 2)
+      case num3                  => collatzMeBaby(steps + 1, (num3 * 3) + 1)
+    }
+  }
+
+  def steps(start: Int) = {
+    collatzMeBaby(0, start)
+  }
+}
 ```
 
 [enum-v2]: https://www.scala-lang.org/api/2.13.x/scala/Enumeration.html
