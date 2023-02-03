@@ -51,10 +51,10 @@ object ProteinTranslation {
     if (input.length < 3)
       proteins
     else
-      codonToProtein(input.substring(0, 3)) match {
+      codonToProtein(input.take(3)) match {
         case "STOP" => proteins
         case protein =>
-          codonsToProteins(input.substring(3), proteins :+ protein)
+          codonsToProteins(input.drop(3), proteins :+ protein)
       }
   }
 
