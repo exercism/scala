@@ -1,0 +1,8 @@
+private def collatzMeRecur(steps: Int, num: Int): Option[Int] = {
+  getStatus(num) match {
+    case ILLEGAL => None
+    case ONE     => Some(steps)
+    case EVEN    => collatzMeRecur(steps + 1, num / 2)
+    case ODD     => collatzMeRecur(steps + 1, (num * 3) + 1)
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "cb21dc25-c5a9-4bb1-aadc-29f798727896",
+      "slug": "filter-map-stream-takewhile",
+      "title": "filter and map with Stream and takeWhile",
+      "blurb": "Use filter and map with Stream and takeWhile to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "78e77a70-d872-4236-a569-9c9f038d39d3",
+      "slug": "match-recursion",
+      "title": "match with recursion",
+      "blurb": "Use match with recursion to return the answer.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
