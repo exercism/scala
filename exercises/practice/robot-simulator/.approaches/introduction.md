@@ -11,7 +11,7 @@ One way to address it is through the handling of [`Enumeration`][enumeration] (S
 
 ## Approach: `foldLeft()`
 
-```java
+```scala
 object Bearing extends Enumeration {
   val North = Value(0)
   val East = Value(1)
@@ -57,7 +57,7 @@ For more information, check the [`foldLeft()` approach][approach-foldleft].
 
 ## Approach: Recursion
 
-```java
+```scala
 object Bearing extends Enumeration {
   val North = Value(0)
   val East = Value(1)
