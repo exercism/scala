@@ -58,7 +58,7 @@ If the length of the input `String` is less than `3`, the method returns the `Se
 Otherwise, a [`match`][match] expression is used to perform [pattern matching][pattern-matching] on the result of passing the codon
 to the `codonToProtein()` method.
 
-The `codonToProtein()` method uses a `match` to look up the protein for the codon and returns the protein.
+The `codonToProtein()` method uses a `match` to look up the protein for the codon and returns the protein from the method.
 
 If the protein is for a `STOP` codon, the `match` returns the `Sequence` of proteins from the method.
 Otherwise, the method calls itself, passing in all but the first `3` `Char`s of the input `String`,
