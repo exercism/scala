@@ -77,5 +77,5 @@ the choice between the approaches can be made by perceived readability.
 [takewhile]: https://www.scala-lang.org/api/2.13.6/scala/collection/immutable/Stream.html#takeWhile(p:A=%3EBoolean):C
 [match]: https://docs.scala-lang.org/tour/pattern-matching.html
 [recursion]: https://www.geeksforgeeks.org/recursion-in-scala/
-[approach-filter-map-stream-takewhile]: https://exercism.org/tracks/scala/exercises/hamming/approaches/filter-map-stream-takewhile
-[approach-match-recursion]: https://exercism.org/tracks/scala/exercises/hamming/approaches/match-recursion
+[approach-filter-map-stream-takewhile]: https://exercism.org/tracks/scala/exercises/collatz-conjecture/approaches/filter-map-stream-takewhile
+[approach-match-recursion]: https://exercism.org/tracks/scala/exercises/collatz-conjecture/approaches/match-recursion
