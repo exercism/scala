@@ -1,0 +1,8 @@
+  private def codonsToProteins(input: String, proteins: Seq[String]): Seq[String] = {
+    if (input.length < 3)
+      proteins
+    else
+      codonToProtein(input.take(3)) match {
+        case "STOP" => proteins
+        case protein =>
+          codonsToProteins(input.drop(3), proteins :+ protein)}}

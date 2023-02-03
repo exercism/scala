@@ -1,0 +1,22 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "59ba89fb-461b-4dff-aa4b-cd0a0762742a",
+      "slug": "grouped-map-takewhile",
+      "title": "grouped with map and takeWhile",
+      "blurb": "Use grouped with map and takeWhile to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "d0fd366c-da86-4892-803e-eae1e9c61a2a",
+      "slug": "if-else-match-recursion",
+      "title": "if and else with match and recursion",
+      "blurb": "Use if and else with match and recursion to return the answer.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
