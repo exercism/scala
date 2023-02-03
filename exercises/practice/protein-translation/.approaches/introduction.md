@@ -27,7 +27,6 @@ object ProteinTranslation {
     }
   }
 }
-
 ```
 
 For more information, check the
@@ -36,12 +35,15 @@ For more information, check the
 ## Approach: `if` and `else` with `match` and recursion
 
 ```scala
+import scala.annotation.tailrec
+
 object ProteinTranslation {
 
   def proteins(input: String): Seq[String] = {
     codonsToProteins(input, Seq())
   }
 
+  @tailrec
   private def codonsToProteins(
       input: String,
       proteins: Seq[String]
