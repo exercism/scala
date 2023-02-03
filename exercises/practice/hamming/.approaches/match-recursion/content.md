@@ -53,6 +53,17 @@ The substring is for everything after the first character.
 Fortunately for this context, if the index is `1` past the length of the `String`, it returns an empty `String` instead of raising
 a `StringIndexOutOfBoundsException` exception.
 
+A more idiomatic way to do the same thing as the `substring()` method calls is to use the [`head()`][head] and [`tail()`][tail] methods.
+The `head()` method returns the first `Char` in the `String`, and the `tail()` method returns all of the `Char`s after the first `Char`, like so:
+
+```scala
+distanceCount(
+  (if (s1.head != s2.head) acc + 1 else acc),
+  s1.tail,
+  s2.tail
+)
+```
+
 The result from `distanceCount()` is returned to `distance()` and wrapped in a [`Some`][some].
 Since the `match` expression is the last line in the function, the result from either `match` case is implicitly returned from the function
 without needing the `return` keyword.
@@ -65,3 +76,5 @@ without needing the `return` keyword.
 [ternary]: https://alvinalexander.com/scala/scala-ternary-operator-syntax/
 [some]: https://www.scala-lang.org/api/2.13.3/scala/Some.html
 [char]: https://www.scala-lang.org/api/2.12.1/scala/Char.html
+[head]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/StringOps.html#head:A
+[tail]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/StringOps.html#tail:Repr
