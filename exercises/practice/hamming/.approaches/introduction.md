@@ -62,12 +62,13 @@ object Hamming {
       case 0 => acc
       case _ =>
         distanceCount(
-          (if (s1.charAt(0) != s2.charAt(0)) acc + 1 else acc),
-          s1.substring(1),
-          s2.substring(1)
+          (if (s1.head != s2.head) acc + 1 else acc),
+          s1.tail,
+          s2.tail
         )
     }
   }
+
 }
 ```
 
