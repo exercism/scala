@@ -1,4 +1,4 @@
-def simulate(orders: String): Robot =
+final def simulate(orders: String): Robot =
   if (orders.isEmpty) this
   else
     (orders.head match {
