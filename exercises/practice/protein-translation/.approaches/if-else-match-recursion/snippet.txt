@@ -1,0 +1,8 @@
+private def codonsToProteins(
+      input: String,
+      proteins: Seq[String]
+  ): Seq[String] = {
+    if (input.length < 3)
+      proteins
+    else
+      codonToProtein(input.substring(0, 3)) match {
