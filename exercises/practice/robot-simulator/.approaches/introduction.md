@@ -58,6 +58,8 @@ For more information, check the [`foldLeft()` approach][approach-foldleft].
 ## Approach: Recursion
 
 ```scala
+import scala.annotation.tailrec;
+
 object Bearing extends Enumeration {
   val North = Value(0)
   val East = Value(1)
@@ -88,7 +90,8 @@ case class Robot(bearing: Bearing.Value, pos: (Int, Int)) {
       case Bearing.West  => Robot(bearing, (pos._1 - 1, pos._2))
     }
 
-  def simulate(orders: String): Robot =
+  @tailrec
+  final def simulate(orders: String): Robot =
     if (orders.isEmpty) this
     else
       (orders.head match {
