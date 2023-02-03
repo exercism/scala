@@ -4,7 +4,7 @@ There are at least a couple of idiomatic ways to solve Protein Translation.
 One approach is to use [`grouped()`][grouped] with [`map()`][map] and [`takeWhile()`][takewhile].
 Another approach is to use `if` and `else` with [`match`][match] and [recursion][recursion].
 
-## Approach: `grouped() with `map()` and `takeWhile()`
+## Approach: `grouped()` with `map()` and `takeWhile()`
 
 ```scala
 object ProteinTranslation {
