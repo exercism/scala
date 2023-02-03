@@ -18,12 +18,13 @@ object Hamming {
       case 0 => acc
       case _ =>
         distanceCount(
-          (if (s1.charAt(0) != s2.charAt(0)) acc + 1 else acc),
-          s1.substring(1),
-          s2.substring(1)
+          (if (s1.head != s2.head) acc + 1 else acc),
+          s1.tail,
+          s2.tail
         )
     }
   }
+
 }
 ```
 
@@ -48,21 +49,9 @@ If the length is down to `0`, then the accumulated value is returned.
 If not, then `distanceCount()` is called again.
 A [ternary expression][ternary] expression is used to add to the acccumulating value if the first character in the strands are different,
 otherwise the accumulating value is passed to the next method call as is.
-A substring of each strand is passed to the next method call.
-The substring is for everything after the first character.
-Fortunately for this context, if the index is `1` past the length of the `String`, it returns an empty `String` instead of raising
-a `StringIndexOutOfBoundsException` exception.
-
-A more idiomatic way to do the same thing as the `substring()` method calls is to use the [`head()`][head] and [`tail()`][tail] methods.
-The `head()` method returns the first `Char` in the `String`, and the `tail()` method returns all of the `Char`s after the first `Char`, like so:
-
-```scala
-distanceCount(
-  (if (s1.head != s2.head) acc + 1 else acc),
-  s1.tail,
-  s2.tail
-)
-```
+The [`head()`][head] method is used to return the first `Char` in the `String`s for the comparison.
+A [`tail()`][tail] of each strand is passed to the next method call.
+The `tail()` method returns all of the `Char`s after the first `Char`.
 
 The result from `distanceCount()` is returned to `distance()` and wrapped in a [`Some`][some].
 Since the `match` expression is the last line in the function, the result from either `match` case is implicitly returned from the function
