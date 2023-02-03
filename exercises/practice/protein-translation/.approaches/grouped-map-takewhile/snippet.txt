@@ -1,0 +1,8 @@
+def proteins(input: String): Seq[String] = {
+  input.grouped(3).map(codonsToProteins).takeWhile(_ != "STOP").toSeq
+}
+private def codonsToProteins(codon: String): String = {
+
+  codon match {
+    case "AUG"                         => "Methionine"
+    case "UUU" | "UUC"                 => "Phenylalanine"
