@@ -48,17 +48,17 @@ object CollatzConjecture {
   }
 
   @tailrec
-  private def collatzMeBaby(steps: Int, num: Int): Option[Int] = {
+  private def collatzMeRecur(steps: Int, num: Int): Option[Int] = {
     getStatus(num) match {
       case ILLEGAL => None
       case ONE     => Some(steps)
-      case EVEN    => collatzMeBaby(steps + 1, num / 2)
-      case ODD     => collatzMeBaby(steps + 1, (num * 3) + 1)
+      case EVEN    => collatzMeRecur(steps + 1, num / 2)
+      case ODD     => collatzMeRecur(steps + 1, (num * 3) + 1)
     }
   }
 
   def steps(start: Int) = {
-    collatzMeBaby(0, start)
+    collatzMeRecur(0, start)
   }
 }
 ```
