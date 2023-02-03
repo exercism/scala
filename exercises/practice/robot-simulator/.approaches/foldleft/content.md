@@ -1,6 +1,6 @@
 # `foldLeft()`
 
-```java
+```scala
 object Bearing extends Enumeration {
   val North = Value(0)
   val East = Value(1)
@@ -40,6 +40,27 @@ case class Robot(bearing: Bearing.Value, pos: (Int, Int)) {
       }
     )
 }
+```
+
+TODO
+
+```scala
+enum Bearing {
+  case North, East, South, West
+}
+
+// code snipped
+
+def turnRight: Robot =
+  Robot(Bearing.fromOrdinal((bearing.ordinal + 1) % DirectionCount), pos)
+
+def turnLeft: Robot =
+  Robot(
+    Bearing.fromOrdinal(
+      (DirectionCount + (bearing.ordinal - 1)) % DirectionCount
+    ),
+    pos
+  )
 ```
 
 TODO
