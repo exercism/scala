@@ -38,7 +38,7 @@ and will be an empty `Iterator` if no `Char`s are left.
 The `Char`s are chained to the [`map()`][map] method which passes them to the `codonsToProteins()` method,
 which accepts them as a `String`.
 
-The `codonsToProteins()` method uses a [`match`][match] to look up the protein for the codon and returns it.
+The `codonsToProteins()` method uses a [`match`][match] to look up the protein for the codon and returns the protein from the method.
 
 The proteins are chained to the [`takeWhile()`][takewhile] method which keeps requesting codons until they run out or
 a `STOP` codon is received.
