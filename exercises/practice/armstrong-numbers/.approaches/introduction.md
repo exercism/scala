@@ -34,7 +34,7 @@ object ArmstrongNumbers {
   def isArmstrongNumber(num: Int): Boolean =
     if (num < 10) true
     else {
-      val len = log10(num).toInt + 1
+      val len: Double = log10(num).toInt + 1
       Iterator
         .iterate((num, 0.0, false))(tup =>
           (tup._1 / 10, tup._2 + pow(tup._1 % 10, len), tup._1 == 0)
