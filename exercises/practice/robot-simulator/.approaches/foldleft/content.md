@@ -88,7 +88,24 @@ def turnLeft: Robot =
   )
 ```
 
-TODO
+The `simulate()` method uses the [`foldLeft()`][foldleft] method to iterate the characters of the orders `String`.
+
+```scala
+def simulate(orders: String): Robot =
+  orders.foldLeft(this)((robbie, cmd) =>
+    cmd match {
+      case 'L' => robbie.turnLeft
+      case 'R' => robbie.turnRight
+      case 'A' => robbie.advance
+    }
+  )
+```
+The initial value for `foldLeft()` is set to the `Robot` instance.
+The first iteration passes the `Robot` instance and the first character of the orders `String` into a [lambda][lambda]
+which uses a [`match`][match] for [pattern matching][pattern-matching] on the command letter.
+The `match` returns a new `Robot` which is passed to the next iteration of `foldLeft` along with the next
+character of the orders `String`.
+When `foldLeft()` is done iterating through all of the letters, it returns the `Robot` instance from its last iteration.
 
 [foldleft]: https://www.scala-lang.org/api/2.13.10/scala/collection/StringOps.html#foldLeft[B](z:B)(op:(B,Char)=%3EB):B
 [enumeration]: https://www.scala-lang.org/api/2.13.10/scala/Enumeration.html
@@ -97,5 +114,8 @@ TODO
 [modulus]: https://www.geeksforgeeks.org/operators-in-scala/
 [enum]: https://docs.scala-lang.org/scala3/reference/enums/enums.html
 [ordinal]: https://www.scala-lang.org/api/3.2.2/scala/reflect/Enum.html#
+[lambda]: https://www.geeksforgeeks.org/lambda-expression-in-scala/
+[match]: https://docs.scala-lang.org/tour/pattern-matching.html
+[pattern-matching]: https://docs.scala-lang.org/tour/pattern-matching.html
 [fluent]: https://alvinalexander.com/scala/how-to-fluent-style-programming-methods-in-scala/
 [immutability]: https://alvinalexander.com/scala/scala-idiom-immutable-code-functional-programming-immutability/
