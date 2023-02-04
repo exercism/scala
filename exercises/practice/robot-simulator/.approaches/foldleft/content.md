@@ -67,7 +67,7 @@ The modulus operator would give a remainder of `0` when divided by the `Directio
 
 At the time of the writing, Scala 3 is not yet supported on the Scala track.
 The Scala 3 way of [`enum`][enum]s would be handled similarly, with the [`ordinal()`][ordinal] method functioning like
-`id` and the `fromOrdinal()` method functioning like `apply()`, like so
+`id` and the `fromOrdinal()` method functioning like `apply()`, like so:
 
 ```scala
 enum Bearing {
