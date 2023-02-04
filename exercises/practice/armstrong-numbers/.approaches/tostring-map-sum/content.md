@@ -10,7 +10,7 @@ object ArmstrongNumbers {
 }
 ```
 
-This approach starts be calling the [`toString()`][tostring] method on the input `Double`.
+This approach starts be calling the [`toString()`][tostring] method on the input `Int`.
 
 After the length is taken of the `String`, the [`map()`][map] method is called in the `String`.
 This passes each character in the `String` to a [lambda][lambda] which uses [`asDigit`][asdigit] to convert the character to
