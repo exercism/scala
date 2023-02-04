@@ -9,6 +9,12 @@ Another is to use [recursion][recursion] to implement `simulate()`.
 The handling of the `Bearing` values is an important implementation detail.
 One way to address it is through the handling of [`Enumeration`][enumeration] (Scala version 2) or [`enum`][enum] (Scala version 3) values.
 
+Another consideration is how the tests enforce implementing the robot with a [Fluent API][fluent] which lends itself
+to [immutability][immutability].
+The methods that operate on the robot don't change its state but create a new robot with a new state.
+The less state to manage means the less chance for state to accidentally be changed to something unintended.
+The lower the chance for unintended consequences, the more predictability in the code, and the less chance for bugs.
+
 ## Approach: `foldLeft()`
 
 ```scala
@@ -113,5 +119,7 @@ the choice between the approaches can be made by perceived readability.
 [recursion]: https://www.geeksforgeeks.org/recursion-in-scala/
 [enumeration]: https://www.scala-lang.org/api/2.13.10/scala/Enumeration.html
 [enum]: https://docs.scala-lang.org/scala3/reference/enums/enums.html
+[fluent]: https://alvinalexander.com/scala/how-to-fluent-style-programming-methods-in-scala/
+[immutability]: https://alvinalexander.com/scala/scala-idiom-immutable-code-functional-programming-immutability/
 [approach-foldleft]: https://exercism.org/tracks/scala/exercises/robot-simulator/approaches/foldleft
 [approach-recursion]: https://exercism.org/tracks/scala/exercises/robot-simulator/approaches/recursion
