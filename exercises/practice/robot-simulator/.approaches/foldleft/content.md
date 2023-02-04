@@ -42,7 +42,7 @@ case class Robot(bearing: Bearing.Value, pos: (Int, Int)) {
 }
 ```
 
-This approach starts be defining the `Bearing` [Enumeration][enumeration] in the Scala 2 way.
+This approach starts by defining the `Bearing` [Enumeration][enumeration] in the Scala 2 way.
 
 The `Robot` `class` starts by defining an [immutable][immutability] value that represents the count of the four directions being used
 in the program.
