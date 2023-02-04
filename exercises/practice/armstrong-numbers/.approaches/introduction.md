@@ -16,8 +16,8 @@ from calculations.
 object ArmstrongNumbers {
   def isArmstrongNumber(num: Int): Boolean = {
     val text = num.toString()
-    val len = text.length().toDouble
-    text.map(chr => Math.pow(chr.asDigit, len).toInt).sum == num
+    val len: Double = text.length()
+    text.map(chr => Math.pow(chr.asDigit, len)).sum == num
   }
 }
 ```
