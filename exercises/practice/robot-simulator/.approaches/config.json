@@ -6,7 +6,7 @@
   "approaches": [
     {
       "uuid": "01459161-87e9-47db-bd43-d3bc046b699d",
-      "slug": "foldLeft",
+      "slug": "foldleft",
       "title": "foldLeft",
       "blurb": "Use foldLeft for simulate.",
       "authors": ["bobahop"]
