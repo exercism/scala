@@ -4,8 +4,8 @@
 object ArmstrongNumbers {
   def isArmstrongNumber(num: Int): Boolean = {
     val text = num.toString()
-    val len = text.length().toDouble
-    text.map(chr => Math.pow(chr.asDigit, len).toInt).sum == num
+    val len: Double = text.length()
+    text.map(chr => Math.pow(chr.asDigit, len)).sum == num
   }
 }
 ```
@@ -21,7 +21,6 @@ Since `pow()` take two `Double` arguments,
 the length of the `String` is set to the `Double` type to keep from doing a widening conversion of `Int` to `Double` on every call
 to `pow()`.
 
-Since the result of `pow` is a `Double`, it is converted to an `Int` to make sure we are always dealing with a whole number.
 After `map()` is done iterating all the characters, the [`sum()`][sum] method is called to total all the calls to `pow()`.
 The method returns whether that total is equal to the original number.
 
