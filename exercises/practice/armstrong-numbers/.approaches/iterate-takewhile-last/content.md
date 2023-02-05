@@ -30,11 +30,11 @@ Otherwise the result of the `else` expression is returned.
 The `else` expression starts by using the [`log10()`][log10] method to calculate the number of digits in the input `Int`.
 
 The [`iterate()`][iterate] method is called with a three-element [tuple][tuple] for a start value.
-The starting tuple is made of the input `Int`, a double value of `0.0` for the total, and a `Boolean` `false` to stop.
+The starting tuple is made of the input `Int`, a `Double` value of `0.0` for the total, and a `Boolean` `false` to stop.
 The tuple is passed into the lambda where a new tuple is generated for the next iteration.
 
 Since `pow()` take two `Double` arguments, 
-the length of the `String` is set to the `Double` type to keep from doing a widening conversion of `Int` to `Double` on every call
+the length of the `String` was set to the `Double` type to keep from doing a widening conversion of `Int` to `Double` on every call
 to `pow()`.
 
 For an input number of `153`, the iterations would give the following tuples
