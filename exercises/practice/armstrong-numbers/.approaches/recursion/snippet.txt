@@ -1,0 +1,8 @@
+@tailrec
+def recurMe(nbr: Int, total: Double): Boolean =
+  nbr match {
+    case 0 => total == num
+    case n => recurMe(n / 10, total + pow(n % 10, len))
+  }
+
+recurMe(num, 0.0)
