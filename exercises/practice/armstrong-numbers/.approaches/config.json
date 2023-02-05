@@ -17,6 +17,13 @@
       "title": "iterate with takeWhile and last",
       "blurb": "Use iterate with takeWhile and last to return the answer.",
       "authors": ["bobahop"]
-    }
+    },
+    {
+      "uuid": "70ebcc42-e087-4724-a28e-26fa26a6e3ac",
+      "slug": "recursion",
+      "title": "Recursion",
+      "blurb": "Use recursion to return the answer.",
+      "authors": ["bobahop"]
+    },
   ]
 }
