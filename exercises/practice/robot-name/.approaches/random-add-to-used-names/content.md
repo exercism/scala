@@ -59,9 +59,10 @@ This approach uses a [mutable `Set`][mutable-set] for storing the names.
 An [`Enumeration`][enumeration] is defined for determining if a letter or digit is being generated.
 
 The `getNextRandom()` method is passed in the lower bound for an [ASCII][ascii] value as the first argument.
-The second argument is a value for generating a random number from 0 up but not including the second argument.
+The value will be `65` for `A` or `40` for `0`.
+The second argument is a value for generating a random number from `0` up but not including the second argument.
 The randomly generated number from the [`nextInt()`][nextint] method is added to the lower bound and returned from the method
-as a character.
+as a character, from either `A` through `Z` or `0` through `9`.
 
 The `genChar()` method passes the appropriate bounds to `getNextRandom()` for either a letter or a number.
 
@@ -84,9 +85,26 @@ The `addName()` method is also tail recursive.
 It will keep calling itself until a name is generated which hasn't been generated before, at which point the newly generated name is
 added to the `Set` of used names and is returned from the method.
 
-Other variations of this approach could generate the numeric part of the name as one number instead of three separate digits.
-Still, this particular variation, even with the collision with used names, can finish all the tests, including generating all
-676,000 unique names, in about five seconds.
+Other variations of this approach _could_ generate the numeric part of the name as one number instead of three separate digits.
+This particular variation of generating three separate digits, even with the collision against used names, can finish all the tests,
+including generating all 676,000 unique names, in about five seconds.
+
+Interestingly, when the code was refactored to generate the name with one number instead of three digits, it ran for over `90` seconds
+without completing, which better demonstrates the disadvantage of collision:
+
+```scala
+private def genChar(): Char = (65 + randy.nextInt(26)).toChar
+
+private def genNumber(): String = f"${40 + randy.nextInt(10)}%03d"
+
+@tailrec
+private def nameMe(chars: List[Char]): String = {
+  chars.length match {
+    case len if len < 2 => nameMe(genChar() :: chars)
+    case _              => chars.mkString("", "", genNumber())
+  }
+}
+```
 
 [mutable-set]: https://www.scala-lang.org/api/2.13.6/scala/collection/mutable/Set.html
 [enumeration]: https://www.scala-lang.org/api/2.13.10/scala/Enumeration.html
