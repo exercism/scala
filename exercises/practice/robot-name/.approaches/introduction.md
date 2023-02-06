@@ -20,9 +20,9 @@ import scala.annotation.tailrec
 import scala.util.Random
 
 class Robot() {
-  import Robot.AddName
-  var name: String = AddName
-  def reset(): Unit = name = AddName
+  import Robot.addName
+  var name: String = addName
+  def reset(): Unit = name = addName
 }
 
 object Robot {
@@ -55,10 +55,10 @@ object Robot {
   }
 
   @tailrec
-  private def AddName: String = {
+  private def addName: String = {
     val temp = nameMe(List[Char]())
     temp match {
-      case name if savedNames contains name => AddName
+      case name if savedNames contains name => addName
       case name =>
         savedNames += temp
         name
