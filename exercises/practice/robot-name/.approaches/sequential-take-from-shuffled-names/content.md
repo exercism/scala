@@ -37,7 +37,7 @@ The `Iterator` is what is returned from the `names` value.
 
 Although `names` keeps returning a different value every time it is called, it is an immutable `val` because it is not reassigned.
 
-The shuffled approach can finish all the tests, incuding generating all 676,000 unique names, in about one-and-a-half seconds.
+The shuffled approach can finish all the tests, including generating all 676,000 unique names, in about one-and-a-half seconds.
 
 [for-comprehension]: https://docs.scala-lang.org/tour/for-comprehensions.html
 [yield]: https://www.geeksforgeeks.org/scala-yield-keyword/
