@@ -1,0 +1,22 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "01459161-87e9-47db-bd43-d3bc046b699d",
+      "slug": "foldleft",
+      "title": "foldLeft",
+      "blurb": "Use foldLeft for simulate.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "c7c6a192-7897-489e-b662-6a9bf38f22ee",
+      "slug": "recursion",
+      "title": "Recursion",
+      "blurb": "Use recursion for simulate.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
