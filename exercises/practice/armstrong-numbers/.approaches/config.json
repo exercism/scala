@@ -1,0 +1,29 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "b4174fe4-eef3-4f21-a4c2-69829c611bef",
+      "slug": "tostring-map-sum",
+      "title": "toString with map and sum",
+      "blurb": "Use toString with map and sum to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "6efcd9c6-cf20-4b01-af87-938b5afbe81b",
+      "slug": "iterate-takewhile-last",
+      "title": "iterate with takeWhile and last",
+      "blurb": "Use iterate with takeWhile and last to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "70ebcc42-e087-4724-a28e-26fa26a6e3ac",
+      "slug": "recursion",
+      "title": "Recursion",
+      "blurb": "Use recursion to return the answer.",
+      "authors": ["bobahop"]
+    }
+  ]
+}

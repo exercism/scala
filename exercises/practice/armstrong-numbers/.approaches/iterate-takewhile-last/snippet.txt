@@ -1,0 +1,8 @@
+Iterator
+  .iterate((num, 0.0, false))(tup =>
+    (tup._1 / 10, tup._2 + pow(tup._1 % 10, len), tup._1 == 0)
+  )
+  .takeWhile(tup => !tup._3)
+  .to(Seq)
+  .last
+  ._2 == num
