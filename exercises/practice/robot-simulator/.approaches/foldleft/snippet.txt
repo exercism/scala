@@ -1,0 +1,8 @@
+def simulate(orders: String): Robot =
+  orders.foldLeft(this)((robbie, cmd) =>
+    cmd match {
+      case 'L' => robbie.turnLeft
+      case 'R' => robbie.turnRight
+      case 'A' => robbie.advance
+    }
+  )
