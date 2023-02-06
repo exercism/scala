@@ -46,17 +46,17 @@ object Robot {
   }
 
   @tailrec
-  private def nameMeBaby(chars: List[Char]): String = {
+  private def nameMe(chars: List[Char]): String = {
     chars.length match {
-      case len if len < 2 => nameMeBaby(genChar(Letter) :: chars)
-      case len if len < 5 => nameMeBaby(genChar(Number) :: chars)
+      case len if len < 2 => nameMe(genChar(Letter) :: chars)
+      case len if len < 5 => nameMe(genChar(Number) :: chars)
       case _              => chars.reverse.mkString("")
     }
   }
 
   @tailrec
   private def AddName: String = {
-    val temp = nameMeBaby(List[Char]())
+    val temp = nameMe(List[Char]())
     temp match {
       case name if savedNames contains name => AddName
       case name =>
