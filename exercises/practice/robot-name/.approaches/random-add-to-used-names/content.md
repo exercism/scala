@@ -89,13 +89,13 @@ Other variations of this approach _could_ generate the numeric part of the name 
 This particular variation of generating three separate digits, even with the collision against used names, can finish all the tests,
 including generating all 676,000 unique names, in about five seconds.
 
-Interestingly, when the code was refactored to generate the name with one number instead of three digits, it ran for over `90` seconds
-without completing, which better demonstrates the disadvantage of collision:
+Interestingly, when the code is refactored to generate the name with one number instead of three digits, it takes about eight seconds
+to finish all the tests, including generating all 676,000 unique names, which perhaps better demonstrates the disadvantage of collision:
 
 ```scala
 private def genChar(): Char = (65 + randy.nextInt(26)).toChar
 
-private def genNumber(): String = f"${40 + randy.nextInt(10)}%03d"
+private def genNumber(): String = f"${randy.nextInt(1000)}%03d"
 
 @tailrec
 private def nameMe(chars: List[Char]): String = {
