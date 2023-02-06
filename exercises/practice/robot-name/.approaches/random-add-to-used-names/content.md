@@ -85,7 +85,7 @@ It will keep calling itself until a name is generated which hasn't been generate
 added to the `Set` of used names and is returned from the method.
 
 Other variations of this approach could generate the numeric part of the name as one number instead of three separate digits.
-Still, this particular variation, even with the collision with used names, can finish all the tests, incuding generating all
+Still, this particular variation, even with the collision with used names, can finish all the tests, including generating all
 676,000 unique names, in about five seconds.
 
 [mutable-set]: https://www.scala-lang.org/api/2.13.6/scala/collection/mutable/Set.html
