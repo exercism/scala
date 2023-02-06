@@ -1,0 +1,7 @@
+for {
+  ltr1 <- ('A' to 'Z')
+  ltr2 <- ('A' to 'Z')
+  num <- (0 to 999)
+} yield {
+  f"$ltr1%c$ltr2%c$num%03d"
+}
