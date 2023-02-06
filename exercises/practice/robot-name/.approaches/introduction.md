@@ -108,7 +108,7 @@ One advantage to checking randomly generated names against used names would be i
 In that case, randomly generating names would use much less processing and memory than creating a collection of all possible names.
 
 The test for "a large number of new instances have unique names" is ignored by default.
-If `igored" is changed to "it", then the code needs to be efficient enough to allow all 676,000 unique names to be generated.
+If `ignored` is changed to `it`, then the code needs to be efficient enough to allow all 676,000 unique names to be generated.
 
 [approach-random-add-to-used-names]: https://exercism.org/tracks/scala/exercises/robot-name/approaches/random-add-to-used-names
 [approach-sequential-take-from-shuffled-names]: https://exercism.org/tracks/scala/exercises/robot-name/approaches/sequential-take-from-shuffled-names
