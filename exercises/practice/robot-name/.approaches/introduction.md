@@ -60,7 +60,7 @@ object Robot {
     temp match {
       case name if savedNames contains name => addName
       case name =>
-        savedNames += temp
+        savedNames += name
         name
     }
   }
