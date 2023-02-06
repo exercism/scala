@@ -58,7 +58,7 @@ object Robot {
   private def AddName: String = {
     val temp = nameMeBaby(List[Char]())
     temp match {
-      case name if savedNames contains temp => AddName
+      case name if savedNames contains name => AddName
       case name =>
         savedNames += temp
         name
