@@ -1,0 +1,29 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "72616eff-ad51-469e-adbb-be0ea295ab16",
+      "slug": "if-expressions",
+      "title": "if expressions",
+      "blurb": "Use if expressions to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "80ad0f5d-9cb7-40aa-b453-d7b36cc6c06e",
+      "slug": "match-expression",
+      "title": "match expression",
+      "blurb": "Use a match expression to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "6334f482-f75b-4cca-bade-a182fd585c72",
+      "slug": "answer-array",
+      "title": "Answer array",
+      "blurb": "Index into an array to return the answer.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
