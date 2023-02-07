@@ -3,7 +3,7 @@
 There are various idiomatic approaches to solve Bob.
 A basic approach can use a series of `if` expressions to test the conditions.
 Or a [match][match] on a [tuple][tuple] of the conditions can be used.
-An [`Vector`][vector] can contain answers from which the right response is selected by an index calculated from scores given to the conditions.
+A [`Vector`][vector] can contain answers from which the right response is selected by an index calculated from scores given to the conditions.
 
 ## General guidance
 
@@ -73,7 +73,7 @@ object Bob {
 
 For more information, check the [`match` expression approach][approach-match].
 
-## Approach: Answers array
+## Approach: Answers Vector
 
 ```scala
 object Bob {
