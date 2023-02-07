@@ -1,0 +1,8 @@
+val isShout = input.exists(_.isLetter) && input.toUpperCase() == input
+val isQuestion = input.endsWith("?")
+(isQuestion, isShout) match {
+  case (true, true) => "Calm down, I know what I'm doing!"
+  case (_, true)    => "Whoa, chill out!"
+  case (true, _)    => "Sure."
+  case _            => "Whatever."
+}
