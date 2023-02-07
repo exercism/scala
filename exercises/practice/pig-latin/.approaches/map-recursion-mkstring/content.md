@@ -73,7 +73,7 @@ After all of the words have been mapped, they are reassembled into a string by t
 [tailrec-annotation]: https://www.scala-lang.org/api/2.12.1/scala/annotation/tailrec.html
 [tail-opt]: https://www.baeldung.com/scala/tail-recursion
 [pattern-matching]: https://docs.scala-lang.org/tour/pattern-matching.html
-[charat]: https://docs.oracle.com/javase/7/docs/api/java/lang/String.html#charAt(int)
+[charat]: https://www.scala-lang.org/api/2.12.8/scala/collection/immutable/StringOps.html#charAt(x$1:Int):Char
 [pattern-guard]: https://alvinalexander.com/scala/how-to-use-if-then-expressions-guards-in-case-statements-scala/
 [ternary]: https://alvinalexander.com/scala/scala-ternary-operator-syntax/
 [mkstring]: https://www.scala-lang.org/api/2.13.3/scala/Array.html#mkString(sep:String):String
