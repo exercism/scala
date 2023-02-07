@@ -1,0 +1,15 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "933e626a-b060-4fa1-acd3-d4a84abf78ed",
+      "slug": "map-recursion-mkstring",
+      "title": "map with recursion and mkString",
+      "blurb": "Use map with recursion and mkString to return the answer.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
