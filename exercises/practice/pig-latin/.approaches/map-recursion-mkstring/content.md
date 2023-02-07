@@ -36,7 +36,7 @@ This approach starts by defining some [Set][set]s to to hold the vowels, vowels 
 The input phrase is split on a space character and the word or words are chained to the [`map()`][map] method.
 Each word is passed to the [lambda][lambda] which consists of an `if/else` expression.
 If the `Set` of vowels includes the first character of the word (also called the [`head`][head]), or if a [`slice()`][slice]
-of the first two characters is one of the special grouops of letters, then `map()` outputs the word appended with `ay`.
+of the first two characters is one of the special groups of letters, then `map()` outputs the word appended with `ay`.
 
 Otherwise, the `findVowel()` method is passed the word and a starting position of `1`.
 
@@ -53,7 +53,7 @@ with no other operation being peformed on it.
 A [`match`][match] expression is used to perform [pattern matching][pattern-matching] on the result of passing the position
 to the [`charAt()`][charat] method.
 
-A [pattern guard][pattern-guard] is used to check if the character is a vowel (`y` is considered a vowel at this point).
+A [pattern guard][pattern-guard] is used to check if the character is a vowel (`y` is considered a vowel at this point.)
 If so, the positon is adjusted if the previous character and the current character are `qu`, otherwise it stays the same.
 The `match` returns a `slice()` from the position until the end of the word, to which is concatenated a `slice()` from the
 beginning of the word up to but not including the character at the position,  to which is concatenated `ay`.
