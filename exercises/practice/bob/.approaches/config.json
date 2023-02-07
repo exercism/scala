@@ -20,8 +20,8 @@
     },
     {
       "uuid": "6334f482-f75b-4cca-bade-a182fd585c72",
-      "slug": "answer-vector",
-      "title": "Answer Vector",
+      "slug": "answers-vector",
+      "title": "Answers Vector",
       "blurb": "Index into a Vector to return the answer.",
       "authors": ["bobahop"]
     }
