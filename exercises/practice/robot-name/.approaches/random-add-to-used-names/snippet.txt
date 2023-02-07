@@ -1,0 +1,8 @@
+private def addName: String = {
+  val temp = nameMeBaby(List[Char]())
+  temp match {
+    case name if savedNames contains name => addName
+    case name =>
+      savedNames += name
+      name
+}}
