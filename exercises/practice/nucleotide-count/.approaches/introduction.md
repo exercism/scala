@@ -83,9 +83,6 @@ For more information, check the [Recursion approach][approach-recursion].
 Since benchmarking is currently outside the scope of this document,
 the choice between the approaches can be made by perceived readability.
 
-An informal comparison of the time to complete the tests showed `foldLeft()` as a bit faster than
-validate first, which in turn was a bit faster than recursion.
-
 [foldleft]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/StringOps.html#foldLeft[B](z:B)(op:(B,A)=%3EB):B
 [recursion]: https://www.geeksforgeeks.org/recursion-in-scala/
 [left]: https://www.scala-lang.org/api/2.13.10/scala/util/Left.html
