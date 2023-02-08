@@ -30,8 +30,8 @@ It is initialized with `1` for the starting position and `0` for the sum, both w
 The tuple and each character is passed into the [lambda][lambda] where the character is tested in a [`match`][match]
 expression. The [pattern matching][pattern-matching] first checks if the character is a digit.
 If so, an `Int` is set from the character and the tuple is then matched to whether the position is even or odd.
-A new tuple is passed into the next iteration of `foldRight()`, with the sum added to according to the position,
-and the position added to by `1`.
+A new tuple is passed into the next iteration of `foldRight()`, with the sum increased according to the position,
+and the position increased by `1`.
 Note that the original tuple does not have its position or sum mutated, but a new tuple is created from the operations
 on the position and sum, thus supporting [immutability][immutability].
 
