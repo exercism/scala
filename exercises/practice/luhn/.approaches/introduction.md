@@ -144,6 +144,8 @@ the choice between the approaches can be made by perceived readability.
 The validate-as-you-go general approach may be more efficient if the input is usually valid.
 The validate-and-scrub-first general approach may be more efficient if the input is usually invalid.
 
+A nice feature of using recurson is that the method can immediately return `false` upon encountering an illegal character.
+
 [foldright]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/StringOps.html#foldRight[B](z:B)(op:(A,B)=%3EB):B
 [recursion]: https://www.geeksforgeeks.org/recursion-in-scala/
 [approach-validate-scrub-foldright]: https://exercism.org/tracks/scala/exercises/luhn/approaches/validate-scrub-foldright
