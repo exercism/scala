@@ -1,0 +1,8 @@
+private def findInvalid(strand: String): Option[Either[String, Nothing]] =
+  strand
+    .find(!"ACTG".contains(_))
+    .map(chr => Left(f"invalid nucleotide '$chr'"))
+
+def nucleotideCounts: Either[String, Map[Char, Int]] =
+  findInvalid(strand)
+    .getOrElse(Right("ACTG".map(chr => (chr, strand.count(_ == chr))).toMap))
