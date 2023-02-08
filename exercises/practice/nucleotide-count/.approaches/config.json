@@ -1,0 +1,29 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "e4a2dea3-bc4c-45be-9310-899c11fdc2e6",
+      "slug": "validate-map-count",
+      "title": "Validate, then map and count",
+      "blurb": "Validate, then count chars.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "0929607d-e800-4698-bed8-2363b2d6b0ad",
+      "slug": "foldleft-match",
+      "title": "foldLeft and match",
+      "blurb": "Validate in foldLeft and match for result.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "55cad21b-837b-449e-9bb3-a1ce5563eab3",
+      "slug": "recursion",
+      "title": "Recursion",
+      "blurb": "Validate while recursing to result.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
