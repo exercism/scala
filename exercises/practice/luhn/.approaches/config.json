@@ -20,7 +20,7 @@
     },
     {
       "uuid": "0929607d-e800-4698-bed8-2363b2d6b0ad",
-      "slug": "foldRight",
+      "slug": "foldright",
       "title": "foldRight",
       "blurb": "foldRight while ignorig spaces and checking for digit.",
       "authors": ["bobahop"]
