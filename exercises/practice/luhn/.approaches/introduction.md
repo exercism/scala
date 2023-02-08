@@ -128,7 +128,7 @@ object Luhn {
         }
       }
       case chr if chr.isSpaceChar => validRecur(pos, sum, input.init)
-      case _                      => validRecur(-100, 0, input.init)
+      case _                      => false
     }
   }
 }
