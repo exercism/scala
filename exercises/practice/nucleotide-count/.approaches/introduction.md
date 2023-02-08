@@ -37,9 +37,11 @@ case class DNA(strand: String) {
   def nucleotideCounts: Either[String, Map[Char, Int]] = {
     val output = Map('A' -> 0, 'C' -> 0, 'G' -> 0, 'T' -> 0)
     strand.foldLeft(("", output)) { (tup, chr) =>
-      if (tup._2.contains(chr)) {
-        (tup._1, tup._2 + (chr -> (tup._2(chr) + 1)))
-      } else (s"invalid nucleotide '$chr'", tup._2)
+      tup match {
+        case (errStr, output) if output.contains(chr) =>
+          (errStr, output + (chr -> (output(chr) + 1)))
+        case (errStr, output) => (s"invalid nucleotide '$chr'", output)
+      }
     } match {
       case (errStr, output) if errStr.isEmpty() => Right(output)
       case (errStr, _)                          => Left(errStr)
