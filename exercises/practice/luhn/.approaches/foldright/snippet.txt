@@ -1,0 +1,8 @@
+input
+  .foldRight((1, 0)) { (chr, tup) =>
+    chr match {
+      case chr if chr.isDigit => {
+        val num = chr.asDigit
+        tup match {
+          case (pos, sum) if pos % 2 == 0 =>
+            (pos + 1, sum + (if (num > 4) (num * 2) - 9 else num * 2))
