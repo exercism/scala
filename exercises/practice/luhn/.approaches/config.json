@@ -1,0 +1,36 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "e4a2dea3-bc4c-45be-9310-899c11fdc2e6",
+      "slug": "validate-scrub-foldright",
+      "title": "Validate and scrub, then foldRight",
+      "blurb": "Validate, scrub out spaces and foldRight.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "c8178920-dd6b-42ad-a5fd-565ea0f3a075",
+      "slug": "validate-scrub-recursion",
+      "title": "Validate and scrub, then recurse",
+      "blurb": "Validate, scrub out spaces and recurse.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "0929607d-e800-4698-bed8-2363b2d6b0ad",
+      "slug": "foldright",
+      "title": "foldRight",
+      "blurb": "foldRight while ignoring spaces and checking for digit.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "55cad21b-837b-449e-9bb3-a1ce5563eab3",
+      "slug": "recursion",
+      "title": "Recursion",
+      "blurb": "Recurse while ignoring spaces and checking for digit.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
