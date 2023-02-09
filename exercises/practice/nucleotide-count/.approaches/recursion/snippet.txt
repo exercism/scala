@@ -1,0 +1,8 @@
+private def countRecur(strand: String, output: Map[Char, Int]): Either[String, Map[Char, Int]] = {
+  if (strand.isEmpty) return Right(output)
+  strand.head match {
+    case chr if output.contains(chr) =>
+      countRecur(strand.tail, output + (chr -> (output(chr) + 1)))
+    case chr => Left(s"invalid nucleotide '$chr'")
+  }
+}
