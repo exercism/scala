@@ -38,7 +38,35 @@ For more information, check the [`foldLeft()` approach][approach-foldleft].
 ## Approach: Recursion
 
 ```scala
+object MatchingBrackets {
+  private val brackets = Map('(' -> ')', '{' -> '}', '[' -> ']')
+  private val ends = Set(')', '}', ']')
 
+  private def isValid(stack: Vector[Char], char: Char): Boolean =
+    stack.length > 0 && stack.last == char
+  private def safeInit(stack: Vector[Char]): Vector[Char] = {
+    if (!stack.isEmpty) stack.init else stack
+  }
+
+  def isPaired(input: String): Boolean = {
+    isPairedRecur(input, Vector[Char]())
+  }
+
+  @scala.annotation.tailrec
+  private def isPairedRecur(input: String, stack: Vector[Char]): Boolean = {
+    if (input.isEmpty) return stack.isEmpty
+    (input.head, stack) match {
+      case (chr, stack) if ends.contains(chr) =>
+        if (isValid(stack, chr))
+          isPairedRecur(input.tail, safeInit(stack))
+        else
+          false
+      case (chr, stack) if (brackets.contains(chr)) =>
+        isPairedRecur(input.tail, stack.appended(brackets(chr)))
+      case _ => isPairedRecur(input.tail, stack)
+    }
+  }
+}
 ```
 
 For more information, check the [Recursion approach][approach-recursion].
