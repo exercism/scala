@@ -14,7 +14,7 @@ case class DNA(strand: String) {
 }
 ```
 
-This approach starts be defining a private validating method that checks for invalid characters.
+This approach starts by defining a private validating method that checks for invalid characters.
 It does this by calling the [`find()`][find] method on the input `String`, passing each character in the `String`
 to be checked by the [`contains()`][contains] method.
 The underscore (`_`) wildcard is used to pass in the character, since it doesn't need to be named.
@@ -26,7 +26,7 @@ If map receives a `Some`, then `map()` converts it to a `Some` [`Left`][left] va
 
 The `nucleotideCounts()` method calls the validating method. If there is any invalid character, then
 the [`getOrElse()`][getOrElse] method returns the `Left` value from `nucleotideCounts()`.
-If `getOrElse()` receives `None`, then it [map][string-map]s each character in the `ACGT` `String`, passing them into
+If `getOrElse()` receives `None`, then it [map][string-map]s each character in the `ACGT` `String`, passing each into
 a [lambda][lambda] which uses the [`count()`][count] method to count the occurrences of the character in the 
 input `String`.
 The resulting `IndexedSeq` is converted to a [`Map`][map] by the [`toMap()`][tomap] method, which is returned from
