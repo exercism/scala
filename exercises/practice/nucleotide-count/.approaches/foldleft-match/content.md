@@ -21,7 +21,7 @@ case class DNA(strand: String) {
 
 This approach starts be defining a [`Map`][map].
 The [`foldLeft()`][foldleft] method is then called on the input `String`.
-It is initalized with en empty `String` intended for the [`Left`][left] error `String` value and
+It is initalized with en empty `String` intended for the [`Left`][left] error value and
 the `Map` intended for the [`Right`][right] value,
 both wrapped together in a [tuple][tuple].
 The tuple and each character from the input `String` are passed into the [lambda][lambda].
