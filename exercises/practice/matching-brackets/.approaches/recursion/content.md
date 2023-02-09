@@ -5,27 +5,27 @@ object MatchingBrackets {
   private val brackets = Map('(' -> ')', '{' -> '}', '[' -> ']')
   private val ends = Set(')', '}', ']')
 
-  private def isValid(stack: Vector[Char], char: Char): Boolean =
-    stack.length > 0 && stack.last == char
-  private def safeInit(stack: Vector[Char]): Vector[Char] = {
-    if (!stack.isEmpty) stack.init else stack
+  private def isValid(stack: List[Char], char: Char): Boolean =
+    stack.length > 0 && stack.head == char
+  private def safeTail(stack: List[Char]): List[Char] = {
+    if (!stack.isEmpty) stack.tail else stack
   }
 
   def isPaired(input: String): Boolean = {
-    isPairedRecur(input, Vector[Char]())
+    isPairedRecur(input, List[Char]())
   }
 
   @scala.annotation.tailrec
-  private def isPairedRecur(input: String, stack: Vector[Char]): Boolean = {
+  private def isPairedRecur(input: String, stack: List[Char]): Boolean = {
     if (input.isEmpty) return stack.isEmpty
     (input.head, stack) match {
       case (chr, stack) if ends.contains(chr) =>
         if (isValid(stack, chr))
-          isPairedRecur(input.tail, safeInit(stack))
+          isPairedRecur(input.tail, safeTail(stack))
         else
           false
       case (chr, stack) if (brackets.contains(chr)) =>
-        isPairedRecur(input.tail, stack.appended(brackets(chr)))
+        isPairedRecur(input.tail, brackets(chr) :: stack)
       case _ => isPairedRecur(input.tail, stack)
     }
   }
@@ -36,11 +36,21 @@ This approach starts by defining a [`Map`][map] for associating beginning bracke
 A [`Set`][set] is defined to hold the ending brackets.
 
 A private helper method is defined to determine if an ending bracket is valid.
-Another private helper method returns all but the last element from a [`Vector`][vector], or returns the `Vector`
+Another private helper method returns all but the first element from a [`List`][list], or returns the `List`
 as is if it is already empty.
 
 The `isPaired()` method returns the result of calling the private recursive method, to which it passes the input `String`.
-and an empty `Vector` for the "stack".
+and an empty `List` for the "stack".
+
+```exercism/note
+Note that the [immutable `Stack`](https://www.scala-lang.org/api/2.12.17/scala/collection/immutable/Stack.html)
+exists only for historical reason and as an analogue of mutable stacks.
+Instead of an immutable stack you can just use a list.
+
+The [mutable `Stack`](https://www.scala-lang.org/api/2.12.17/scala/collection/mutable/Stack.html) was deprecated since version 2.12.0.
+`Stack` is an inelegant and potentially poorly-performing wrapper around List.
+Use a List assigned to a var instead.
+```
 
 The recursive method is annotated with the [`@tailrec`][tailrec-annotation] annotation to verify that the method can be compiled
 with [tail call optimization][tail-opt].
@@ -52,26 +62,27 @@ In other words, if the last call in `recurMe()` is `recurMe(arg1, arg2) + 1`, th
 If the last call in `recurMe()` is `recurMe(arg1, arg2, acc + 1)`, then the recursion is a tail call, because only the method is being called
 with no other operation being peformed on it.
 
-If the input `String` is empty, then the method returns if the "stack" `Vector` is empty.
+If the input `String` is empty, then the method returns if the "stack" `List` is empty.
 
 The [`head`][head] method is used to get the first character in the input `String`. It is wrapped in a [tuple][tuple] with
-the "stack" `Vector`, which is passed to the [`match`][match].
+the "stack" `List`, which is passed to the [`match`][match].
 
 The [pattern matching][pattern-matching] uses the [`contains()`][set-contains] method to check if the character is an ending bracket.
-If so, and it is valid, then the recursive method calls itself, passing the [tail][tail] of the input `String` and all but the last element of the "stack" `Vector`.
+If so, and it is valid, then the recursive method calls itself, passing the [tail][tail] of the input `String` and all but the first element of the "stack" `List`.
 If it is not a valid ending bracket, then the recursive method immediately returns `false`.
 
 If the character is not an ending bracket, then the [`contains()`][map-contains] method is used to check for it being a beginning bracket.
-If so, then the recursive method calls itself, passing the [`tail`][tail] of the input `String` and the [`appended()`][appended] "stack" `Vector`.
+If so, then the recursive method calls itself, passing the [`tail`][tail] of the input `String` and the the associated ending bracket
+prepended to the "stack" `List`.
 
-Note that the operations on the `Vector` create a new `Vector`, thus supporting [immutability][immutability].
+Note that the operations on the `List` create a new `List`, thus supporting [immutability][immutability].
 
 If the character is not any bracket, then the underscore (`_`) wildcard is used to have the the recursive method call itself,
-passing the [`tail`][tail] of the input `String` and the "stack" `Vector` as is.
+passing the [`tail`][tail] of the input `String` and the "stack" `List` as is.
 
 [map]: https://www.scala-lang.org/api/2.13.10/scala/collection/immutable/Map.html
 [set]: https://www.scala-lang.org/api/2.13.10/scala/collection/immutable/Set.html
-[vector]: https://www.scala-lang.org/api/2.13.10/scala/collection/immutable/Vector.html
+[list]: https://www.scala-lang.org/api/2.13.10/scala/collection/immutable/List.html
 [tuple]: https://docs.scala-lang.org/tour/tuples.html
 [match]: https://docs.scala-lang.org/tour/pattern-matching.html
 [pattern-matching]: https://docs.scala-lang.org/tour/pattern-matching.html
