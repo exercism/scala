@@ -4,6 +4,10 @@ There are at least two idiomatic ways to solve Matching Brackets.
 One approach is to use the [`foldLeft()`][foldleft] method.
 Another is to use [recursion][recursion].
 
+## General guidance
+
+One concern is to try to maintain [immutability][immutability].
+
 ## Approach: `foldLeft()`
 
 ```scala
@@ -78,5 +82,6 @@ the choice between the approaches can be made by perceived readability.
 
 [foldleft]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/StringOps.html#foldLeft[B](z:B)(op:(B,A)=%3EB):B
 [recursion]: https://www.geeksforgeeks.org/recursion-in-scala/
+[immutability]: https://alvinalexander.com/scala/scala-idiom-immutable-code-functional-programming-immutability/
 [approach-foldleft]: https://exercism.org/tracks/scala/exercises/matching-brackets/approaches/foldleft
 [approach-recursion]: https://exercism.org/tracks/scala/exercises/matching-brackets/approaches/recursion
