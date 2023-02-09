@@ -10,20 +10,20 @@ Another is to use [recursion][recursion].
 object MatchingBrackets {
   private val brackets = Map('(' -> ')', '{' -> '}', '[' -> ']')
   private val ends = Set(')', '}', ']')
-  def isValid(stack: Vector[Char], char: Char): Boolean =
-    stack.length > 0 && stack.last == char
-  def safeInit(stack: Vector[Char]): Vector[Char] = {
-    if (!stack.isEmpty) stack.init else stack
+  def isValid(stack: List[Char], char: Char): Boolean =
+    stack.length > 0 && stack.head == char
+  def safeTail(stack: List[Char]): List[Char] = {
+    if (!stack.isEmpty) stack.tail else stack
   }
 
   def isPaired(input: String): Boolean = {
     input
-      .foldLeft((Vector[Char](), true))((tup, chr) =>
+      .foldLeft((List[Char](), true))((tup, chr) =>
         tup match {
           case (stack, valid) if ends.contains(chr) =>
-            (safeInit(stack), valid && isValid(stack, chr))
+            (safeTail(stack), valid && isValid(stack, chr))
           case (stack, valid) if (brackets.contains(chr)) =>
-            (stack.appended(brackets(chr)), valid)
+            (brackets(chr) :: stack, valid)
           case _ => tup
         }
       ) match {
@@ -42,27 +42,27 @@ object MatchingBrackets {
   private val brackets = Map('(' -> ')', '{' -> '}', '[' -> ']')
   private val ends = Set(')', '}', ']')
 
-  private def isValid(stack: Vector[Char], char: Char): Boolean =
-    stack.length > 0 && stack.last == char
-  private def safeInit(stack: Vector[Char]): Vector[Char] = {
-    if (!stack.isEmpty) stack.init else stack
+  private def isValid(stack: List[Char], char: Char): Boolean =
+    stack.length > 0 && stack.head == char
+  private def safeTail(stack: List[Char]): List[Char] = {
+    if (!stack.isEmpty) stack.tail else stack
   }
 
   def isPaired(input: String): Boolean = {
-    isPairedRecur(input, Vector[Char]())
+    isPairedRecur(input, List[Char]())
   }
 
   @scala.annotation.tailrec
-  private def isPairedRecur(input: String, stack: Vector[Char]): Boolean = {
+  private def isPairedRecur(input: String, stack: List[Char]): Boolean = {
     if (input.isEmpty) return stack.isEmpty
     (input.head, stack) match {
       case (chr, stack) if ends.contains(chr) =>
         if (isValid(stack, chr))
-          isPairedRecur(input.tail, safeInit(stack))
+          isPairedRecur(input.tail, safeTail(stack))
         else
           false
       case (chr, stack) if (brackets.contains(chr)) =>
-        isPairedRecur(input.tail, stack.appended(brackets(chr)))
+        isPairedRecur(input.tail, brackets(chr) :: stack)
       case _ => isPairedRecur(input.tail, stack)
     }
   }
