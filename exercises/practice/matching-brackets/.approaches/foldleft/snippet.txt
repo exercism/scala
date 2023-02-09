@@ -1,8 +1,8 @@
 input
-  .foldLeft((Vector[Char](), true))((tup, chr) =>
+  .foldLeft((List[Char](), true))((tup, chr) =>
     tup match {
       case (stack, valid) if ends.contains(chr) =>
-        (safeInit(stack), valid && isValid(stack, chr))
+        (safeTail(stack), valid && isValid(stack, chr))
       case (stack, valid) if (brackets.contains(chr)) =>
-        (stack.appended(brackets(chr)), valid)
+        (brackets(chr) :: stack, valid)
       case _ => tup}
