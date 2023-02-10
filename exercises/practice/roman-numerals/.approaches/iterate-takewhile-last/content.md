@@ -54,13 +54,13 @@ in the `Vector` at that index.
 If the number is less than the the Arabic number at the index, then a new tuple is created with the number as is, the index added to by `1`,
 and the `List` as is.
 
-Note that the operations on the `List` create a new `List`, thus supporting [immutability][immutability].
-
 The [`takewhile()`][takeWhile] will keep calling the iterator while the index is less than `13`.
 
 After all of the values in the Arabic `Vector` have been checked against the number, the tuples are collected into a [`Seq`][seq]
 and the [`last`][last] tuple is destructured by a `match` that [reverse][reverse]s the `List` and converts it to a `String`
 with [`mkString`][mkstring], which is returned from the `roman()` method.
+
+Note that the operations on the values create new values instead of mutating them, thus supporting [immutability][immutability].
 
 [iterate]: https://www.scala-lang.org/api/2.13.10/scala/collection/Iterator$.html#iterate[T](start:T)(f:T=%3ET):Iterator[T]
 [list]: https://www.scala-lang.org/api/2.13.10/scala/collection/immutable/List.html
