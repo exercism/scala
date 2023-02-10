@@ -60,7 +60,7 @@ The [`takewhile()`][takeWhile] will keep calling the iterator while the index is
 
 After all of the values in the Arabic `Vector` have been checked against the number, the tuples are collected into a [`Seq`][seq]
 and the [`last`][last] tuple is destructured by a `match` that [reverse][reverse]s the `List` and converts it to a `String`
-with [`mkString`][mkstring].
+with [`mkString`][mkstring], which is returned from the `roman()` method.
 
 [iterate]: https://www.scala-lang.org/api/2.13.10/scala/collection/Iterator$.html#iterate[T](start:T)(f:T=%3ET):Iterator[T]
 [list]: https://www.scala-lang.org/api/2.13.10/scala/collection/immutable/List.html
