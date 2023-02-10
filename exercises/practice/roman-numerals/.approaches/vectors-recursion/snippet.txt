@@ -1,0 +1,7 @@
+private def romanRecur(num: Int, idx: Int, digits: List[String]): String = {
+  (num, idx, digits) match {
+    case (_, 13, digits) => digits.reverse.mkString
+    case (num, idx, digits) if num >= ArabicNum(idx) =>
+      romanRecur(num - ArabicNum(idx), idx, RomanNum(idx) :: digits)
+    case (num, idx, digits) =>
+      romanRecur(num, idx + 1, digits)}}
