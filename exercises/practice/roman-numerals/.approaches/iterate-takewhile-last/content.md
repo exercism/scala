@@ -51,7 +51,7 @@ at the index.
 If so, a new tuple is created with the number subtracted by the Arabic number, the index as is, and the `List` prepended by the Roman numeral
 in the `Vector` at that index.
 
-If the number is less than the the Arabic number at the index, then a new tuple is created with the number as is, the index added to by `1`,
+Otherwise, if the number is less than the the Arabic number at the index, then a new tuple is created with the number as is, the index added to by `1`,
 and the `List` as is.
 
 The [`takewhile()`][takeWhile] will keep calling the iterator while the index is less than `13`.
@@ -74,3 +74,4 @@ Note that the operations on the values create new values instead of mutating the
 [seq]: https://www.scala-lang.org/api/2.13.10/scala/collection/Seq.html
 [reverse]: https://www.scala-lang.org/api/2.13.10/scala/collection/Seq.html
 [mkstring]: https://www.scala-lang.org/api/2.13.10/scala/collection/Seq.html
+[immutability]: https://alvinalexander.com/scala/scala-idiom-immutable-code-functional-programming-immutability/
