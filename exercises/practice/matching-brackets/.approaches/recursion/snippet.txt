@@ -1,0 +1,8 @@
+(input.head, stack) match {
+  case (chr, stack) if ends.contains(chr) =>
+    if (isValid(stack, chr))
+      isPairedRecur(input.tail, safeTail(stack))
+    else false
+  case (chr, stack) if (brackets.contains(chr)) =>
+    isPairedRecur(input.tail, brackets(chr) :: stack)
+  case _ => isPairedRecur(input.tail, stack)}
