@@ -139,6 +139,7 @@ the choice between the approaches can be made by perceived readability.
 [recursion]: https://www.geeksforgeeks.org/recursion-in-scala/
 [vector]: https://www.scala-lang.org/api/2.13.10/scala/collection/immutable/Vector.html
 [map]: https://www.scala-lang.org/api/2.13.10/scala/collection/immutable/Map.html
+[immutability]: https://alvinalexander.com/scala/scala-idiom-immutable-code-functional-programming-immutability/
 [approach-iterate-takewhie-last]: https://exercism.org/tracks/scala/exercises/roman-numerals/approaches/iterate-takewhile-last
 [approach-vectors-recursion]: https://exercism.org/tracks/scala/exercises/roman-numerals/approaches/vectors-recursion
 [approach-map-recursion]: https://exercism.org/tracks/scala/exercises/roman-numerals/approaches/map-recursion
