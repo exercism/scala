@@ -1,0 +1,8 @@
+def romanRecur(num: Int, digits: List[String]): String =
+  (num, digits) match {
+    case (0, digits) => digits.reverse.mkString
+    case (num, digits) => {
+      val digit = ArabicToRoman.keys.filter(_ <= num).max
+      romanRecur(num - digit, ArabicToRoman(digit) :: digits)
+    }
+  }
