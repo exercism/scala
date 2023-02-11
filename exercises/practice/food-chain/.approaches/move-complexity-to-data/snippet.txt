@@ -1,0 +1,5 @@
+private val cow = s"""I know an old lady who swallowed a cow.
+I don't know how she swallowed a cow!
+She swallowed the cow to catch the goat.
+${backwash(goat, 2, 8)}
+"""
