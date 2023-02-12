@@ -30,7 +30,7 @@ object FoodChain {
   private def backwash(reflux: String, start: Int, end: Int): String =
     reflux.split("\n").slice(start, end).mkString("\n")
 
-  private val fly = s"""I know an old lady who swallowed a fly.
+  private val fly = """I know an old lady who swallowed a fly.
 I don't know why she swallowed the fly. Perhaps she'll die.
 """
 
