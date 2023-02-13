@@ -1,0 +1,22 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "48ebbfe6-4b0a-4029-bd51-b4b0ff43ea1a",
+      "slug": "foldLeft",
+      "title": "foldLeft",
+      "blurb": "Use foldLeft to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "232825f0-61b5-4270-85ac-aa2a3f47604e",
+      "slug": "recursion",
+      "title": "Recursion",
+      "blurb": "Use recursion to return the answer.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
