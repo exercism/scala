@@ -1,0 +1,8 @@
+case (head :: tail, index) => {
+  head.isDigit match {
+    case true => cleanRecur(tail, head :: cleaned)
+    case false if (index == 6 && List(' ', '-', '.').contains(head)) =>
+      cleanRecur(tail, cleaned)
+    case false if (head == ' ') => cleanRecur(tail, cleaned)
+    case _                      => None
+}}
