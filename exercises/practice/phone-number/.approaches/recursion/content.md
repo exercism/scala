@@ -40,3 +40,52 @@ object PhoneNumber {
   }
 }
 ```
+
+The `clean()` method returns the result of calling the recursive method, passing in the input `String` converted to a `List` and
+an empty List for building the output `String`.
+
+The recursive method is annotated with the [`@tailrec`][tailrec-annotation] annotation to verify that the method can be compiled
+with [tail call optimization][tail-opt].
+
+A tail call is a particular form of [recursion][recursion] where the last call in the method is a call to the same method _and nothing else_.
+
+In other words, if the last call in `recurMe()` is `recurMe(arg1, arg2) + 1`, the `+ 1` makes the recursion non-tail recursive.
+
+If the last call in `recurMe()` is `recurMe(arg1, arg2, acc + 1)`, then the recursion is a tail call, because only the method is being called
+with no other operation being peformed on it.
+
+The input `List` and the length of the output `List` are matched.
+The length of the output `List` is used for the `index` value.
+
+If the input `List` is `Nil` (meaning it is empty), then the index is checked.
+If the index is `10`, then the [`reverse`][reverse] and [`mkString`][mkstring] methods are used on the output `List` to return a `Some` value
+from the recursive method.
+If the index is not `10`, then `None` is returned from the recursive method.
+
+Otherwise, the cons operator (`::`) is used to destructure the [head][head] and [tail][tail] from the input `List`, and
+the index is checked for being `1` or `3`.
+If the `head` is checked for being a digit greater than `1`, then the method calls itself, passing in the `tail` of the input `List`
+and the `head` prepended to the output `List` with the cons operator (`::`).
+If the `head` is some other legal character for its index, the method calls itself with the `tail` of the input `List`
+and the output `Lists` as is.
+If the head is not a legal character for its index, then the method returns `None`.
+
+If the `index` is neither `0` or `3`, then the `head` is checked for being a digit.
+If it is a digit, then the method calls itself, passing in the `tail` of the input `List`
+and the `head` prepended to the output `List` with the cons operator (`::`).
+If the `head` is not a digit but is some other legal character, then the method calls itself with the `tail` of the input `List`
+and the output `Lists` as is.
+If the `head` is not a legal character, then the method returns `None`.
+
+TODO: put in links after scala-org comes back up.
+
+[match]: https://docs.scala-lang.org/tour/pattern-matching.html
+[pattern-matching]: https://docs.scala-lang.org/tour/pattern-matching.html
+[immutability]: https://alvinalexander.com/scala/scala-idiom-immutable-code-functional-programming-immutability/
+[recursion]: https://www.geeksforgeeks.org/recursion-in-scala/
+[tailrec-annotation]: https://www.scala-lang.org/api/2.12.1/scala/annotation/tailrec.html
+[tail-opt]: https://www.baeldung.com/scala/tail-recursion
+[last]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/StringOps.html#last:A
+[init]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/StringOps.html#init:Repr
+[reverse]: 
+[mkstring]: 
