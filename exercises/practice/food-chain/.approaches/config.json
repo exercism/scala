@@ -1,0 +1,15 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "9ff84c5b-080e-41b7-92e4-f2f1743bc925",
+      "slug": "move-complexity-to-data",
+      "title": "Move complexity to data",
+      "blurb": "Move complexity to data to keep code simple.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
