@@ -15,7 +15,7 @@ One concern is to try to maintain [immutability][immutability].
 
 ```scala
 object PhoneNumber {
-  private val VALID_PHONE_NUMBER = raw"1?([2-9]\d{2}[2-9]\d{6})".r
+  private val VALID_PHONE_NUMBER = raw"^1?([2-9]\d{2}[2-9]\d{6})$$".r
 
   def clean(input: String): Option[String] = {
     val cleaned = input.filter(_.isDigit)
