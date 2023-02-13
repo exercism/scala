@@ -54,7 +54,7 @@ In other words, if the last call in `recurMe()` is `recurMe(arg1, arg2) + 1`, th
 If the last call in `recurMe()` is `recurMe(arg1, arg2, acc + 1)`, then the recursion is a tail call, because only the method is being called
 with no other operation being peformed on it.
 
-The input `List` and the length of the output `List` are matched.
+In the recursive method, the input `List` and the length of the output `List` are matched.
 The length of the output `List` is used for the `index` value.
 
 If the input `List` is `Nil` (meaning it is empty), then the index is checked.
@@ -62,7 +62,7 @@ If the index is `10`, then the [`reverse`][reverse] and [`mkString`][mkstring] m
 from the recursive method.
 If the index is not `10`, then `None` is returned from the recursive method.
 
-Otherwise, the cons operator (`::`) is used to destructure the [head][head] and [tail][tail] from the input `List`, and
+Otherwise, the cons operator (`::`) is used to destructure the [`head`][head] and [`tail`][tail] from the input `List`, and
 the index is checked for being `1` or `3`.
 If the `head` is checked for being a digit greater than `1`, then the method calls itself, passing in the `tail` of the input `List`
 and the `head` prepended to the output `List` with the cons operator (`::`).
@@ -70,7 +70,8 @@ If the `head` is some other legal character for its index, the method calls itse
 and the output `Lists` as is.
 If the head is not a legal character for its index, then the method returns `None`.
 
-If the `index` is neither `0` or `3`, then the `head` is checked for being a digit.
+If the `index` is neither `0` or `3`, then  the cons operator (`::`) is used to destructure the [`head`][head] and [`tail`][tail] from the input `List`,
+and the `head` is checked for being a digit.
 If it is a digit, then the method calls itself, passing in the `tail` of the input `List`
 and the `head` prepended to the output `List` with the cons operator (`::`).
 If the `head` is not a digit but is some other legal character, then the method calls itself with the `tail` of the input `List`
