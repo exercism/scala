@@ -6,7 +6,7 @@
   "approaches": [
     {
       "uuid": "48ebbfe6-4b0a-4029-bd51-b4b0ff43ea1a",
-      "slug": "foldLeft",
+      "slug": "foldleft",
       "title": "foldLeft",
       "blurb": "Use foldLeft to return the answer.",
       "authors": ["bobahop"]
