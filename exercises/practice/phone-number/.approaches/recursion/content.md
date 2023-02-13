@@ -68,7 +68,7 @@ If so, and the `head` is a digit greater than `1`, then the method calls itself,
 and the `head` prepended to the output `List` with the cons operator (`::`).
 If the `head` is some other legal character for its index, then the method calls itself with the `tail` of the input `List`
 and the output `Lists` as is.
-If the head is not a legal character for its index, then the method returns `None`.
+If the `head` is not a legal character for its index, then the method returns `None`.
 
 If the `index` is neither `0` or `3`, then  the cons operator (`::`) is used to destructure the [`head`][head] and [`tail`][tail] from the input `List`,
 and the `head` is checked for being a digit.
