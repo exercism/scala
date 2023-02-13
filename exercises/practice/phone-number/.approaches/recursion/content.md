@@ -64,9 +64,9 @@ If the index is not `10`, then `None` is returned from the recursive method.
 
 Otherwise, the cons operator (`::`) is used to destructure the [`head`][head] and [`tail`][tail] from the input `List`, and
 the index is checked for being `1` or `3`.
-If the `head` is checked for being a digit greater than `1`, then the method calls itself, passing in the `tail` of the input `List`
+If so, and the `head` is a digit greater than `1`, then the method calls itself, passing in the `tail` of the input `List`
 and the `head` prepended to the output `List` with the cons operator (`::`).
-If the `head` is some other legal character for its index, the method calls itself with the `tail` of the input `List`
+If the `head` is some other legal character for its index, then the method calls itself with the `tail` of the input `List`
 and the output `Lists` as is.
 If the head is not a legal character for its index, then the method returns `None`.
 
@@ -78,8 +78,6 @@ If the `head` is not a digit but is some other legal character, then the method 
 and the output `Lists` as is.
 If the `head` is not a legal character, then the method returns `None`.
 
-TODO: put in links after scala-org comes back up.
-
 [match]: https://docs.scala-lang.org/tour/pattern-matching.html
 [pattern-matching]: https://docs.scala-lang.org/tour/pattern-matching.html
 [immutability]: https://alvinalexander.com/scala/scala-idiom-immutable-code-functional-programming-immutability/
@@ -88,5 +86,7 @@ TODO: put in links after scala-org comes back up.
 [tail-opt]: https://www.baeldung.com/scala/tail-recursion
 [last]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/StringOps.html#last:A
 [init]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/StringOps.html#init:Repr
-[reverse]: 
-[mkstring]: 
+[reverse]: https://www.scala-lang.org/api/2.13.4/scala/collection/immutable/List.html#reverse:List[A]
+[mkstring]: https://www.scala-lang.org/api/2.13.4/scala/collection/immutable/List.html#mkString:String
+[head]: https://www.scala-lang.org/api/2.13.4/scala/collection/immutable/List.html#head:A
+[tail]: https://www.scala-lang.org/api/2.13.4/scala/collection/immutable/List.html#tail:C
