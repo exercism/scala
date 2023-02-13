@@ -1,0 +1,8 @@
+case index => {
+  head.isDigit match {
+    case true => (head :: tup._1, index + 1)
+    case false
+        if (index == 6 && List(' ', '-', '.').contains(head)) =>
+      tup
+    case false if (head == ' ') => tup
+    case _                      => (Nil, -100)}}
