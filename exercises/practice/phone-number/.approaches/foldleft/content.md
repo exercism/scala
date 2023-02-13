@@ -40,3 +40,34 @@ object PhoneNumber {
 }
 ```
 
+This approach starts by calling the [`foldLeft()`][foldLeft] method in the input `String`.
+It is initialized  with an empty`List` for building the output `String` and `0` for the index, both wrapped in a [tuple][tuple].
+The tuple and each character in the input `String` are passed to the [lambda][lambda], where the tuple is passed to the [match][match].
+The [pattern matching][pattern-matching] checks if the index is `0` or `3`.
+
+If the `head` character is a digit greater than `1`, then the method creates a new tuple made from the the `head` prepended to the output `List`
+with the cons operator (`::`), and with the index added to by `1`.
+If the `head` is some other legal character for its index, then the tuple is passed as is.
+If the head is not a legal character for its index, then the method creates a new tuple made from a `Nil` output `List`
+and with the index given a value such that it will reasonably never be valid.
+
+If the `index` is neither `0` or `3`, then the `head` is checked for being a digit.
+If it is a digit, then the method the method creates a new tuple made from the the `head` prepended to the output `List`
+with the cons operator (`::`), and with the index added to by `1`.
+If the `head` is not a digit but is some other legal character, then the tuple is passed as is.
+If the `head` is not a legal character, then the method creates a new tuple made from a `Nil` output `List`
+and with the index given a value such that it will reasonably never be valid.
+
+The result of `foldLeft()` is passed to the `match`.
+If the index is `10`, then the [`reverse`][reverse] and [`mkString`][mkstring] methods are used on the output `List` to return a `Some` value
+from the recursive method.
+If the index is not `10`, then `None` is returned from the recursive method.
+
+TODO: put in links after scala-org comes back up.
+
+[foldLeft]: 
+[tuple]: 
+[lambda]: 
+[pattern-matching]: 
+[reverse]: 
+[mkstring]: 
