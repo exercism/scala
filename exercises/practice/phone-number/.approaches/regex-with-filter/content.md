@@ -29,11 +29,9 @@ Otherwise, the cleaned `String` is passed to [`collect()`][collect].
 The `case` returns the cleaned `String` if it matches the valid phone number pattern.
 If the phone number does not match the valid pattern, then `None` is returned.
 
-TODO: put in links after scala-org comes back up.
-
-[regex-pattern]: 
-[raw-string]: 
-[filter]: 
-[isdigit]: 
-[option]: 
-[collect]: 
+[regex-pattern]: https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html#java.util.regex.Pattern
+[raw-string]: https://docs.scala-lang.org/overviews/core/string-interpolation.html
+[filter]: https://www.scala-lang.org/api/2.13.4/scala/collection/StringOps.html#filter(pred:Char=%3EBoolean):String
+[isdigit]: https://www.scala-lang.org/api/2.13.4/scala/Char.html#isDigit:Boolean
+[option]: https://www.scala-lang.org/api/2.13.4/scala/Option.html
+[collect]: https://www.scala-lang.org/api/2.13.4/scala/Option.html#collect[B](pf:PartialFunction[A,B]):Option[B]
