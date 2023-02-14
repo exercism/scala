@@ -92,7 +92,7 @@ The `applyDynamic()` approach avoids defining a lot of methods, but for the same
 Calling a method by the wrong name would not be a compile error.
 A typo in the method name would not even be a runtime error, but an unexpected value would likely be returned.
 
-[currying]: https://www.baeldung.com/scala/currying
+[currying]: https://www.geeksforgeeks.org/currying-functions-in-scala-with-examples/
 [partial-application]: https://www.geeksforgeeks.org/scala-partially-applied-functions/
 [applydynamic]: https://www.scala-lang.org/api/2.13.3/scala/Dynamic.html
 [dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
