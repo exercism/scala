@@ -27,9 +27,9 @@
     },
     {
       "uuid": "7d9baeca-be7b-4c3b-b56f-e033dbe3a8c8",
-      "slug": "datetime-addition",
-      "title": "LocalDate addition",
-      "blurb": "Use LocalDate addition.",
+      "slug": "localdate-plusdays",
+      "title": "LocalDate plusDays",
+      "blurb": "Use LocalDate plusDays.",
       "authors": ["bobahop"]
     },
     {
