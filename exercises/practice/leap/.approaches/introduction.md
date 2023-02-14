@@ -31,7 +31,7 @@ object Leap {
 }
 ```
 
-For more information, check the [Ternary expression approach][approach-ternary-operator].
+For more information, check the [Ternary expression approach][approach-ternary-expression].
 
 ## Approach: `match` on a `tuple`
 
@@ -76,7 +76,7 @@ Since benchmarking is currently outside the scope of this document, the choice b
 [match]: https://docs.scala-lang.org/tour/pattern-matching.html
 [ternary]: https://alvinalexander.com/scala/scala-ternary-operator-syntax/
 [approach-boolean-chain]: https://exercism.org/tracks/scala/exercises/leap/approaches/boolean-chain
-[approach-ternary-operator]: https://exercism.org/tracks/scala/exercises/leap/approaches/ternary-operator
+[approach-ternary-expression]: https://exercism.org/tracks/scala/exercises/leap/approaches/ternary-expression
 [approach-match-on-a-tuple]: https://exercism.org/tracks/scala/exercises/leap/approaches/match-on-a-tuple
 [approach-localdate-plusdays]: https://exercism.org/tracks/scala/exercises/leap/approaches/localdate-plusdays
 [approach-localdate-isleapyear]: https://exercism.org/tracks/scala/exercises/leap/approaches/built-in-method
