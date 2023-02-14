@@ -17,3 +17,11 @@ object SpaceAge {
 }
 ```
 
+
+```scala
+private def calculate(seconds: Double, orbitPeriod: Double): Double =
+    seconds / EARTH_SECONDS / orbitPeriod
+
+  val onEarth: Double => Double = calculate(_, 1)
+  val onMercury: Double => Double = calculate(_, 0.2408467)
+```
