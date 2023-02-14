@@ -1,0 +1,43 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "a2b68c4b-1285-41a4-826f-b319bd472920",
+      "slug": "boolean-chain",
+      "title": "Boolean chain",
+      "blurb": "Use a chain of boolean expressions.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "ec67dae7-6709-4ee9-af82-ce90520b0199",
+      "slug": "ternary-operator",
+      "title": "Ternary operator",
+      "blurb": "Use a ternary operator of boolean expressions.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "bf3c02ca-5082-4eee-a580-ce1d72f522d9",
+      "slug": "match-on-a-tuple",
+      "title": "match on a tuple",
+      "blurb": "Use a match on a tuple made from boolean expressions.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "7d9baeca-be7b-4c3b-b56f-e033dbe3a8c8",
+      "slug": "datetime-addition",
+      "title": "LocalDate addition",
+      "blurb": "Use LocalDate addition.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "d22e54b1-ff48-49ff-b069-4e55210c1d19",
+      "slug": "built-in-method",
+      "title": "Built-in method",
+      "blurb": "Use the built-in method.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
