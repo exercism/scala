@@ -1,8 +1,9 @@
 # Introduction
 
-There are at least two general ways to solve Space Age.
+There are at least three general ways to solve Space Age.
 One approach is to use currying to reduce boilerplate.
-Another approach is to use [`applyDynamic()`][applydynamic] to keep the code [DRY][dry].
+Another approach is to use [partially applied functions][partial-application].
+A third approach is to use [`applyDynamic()`][applydynamic] to keep the code [DRY][dry].
 
 ## General guidance
 
@@ -92,6 +93,7 @@ Calling a method by the wrong name would not be a compile error.
 A typo in the method name would not even be a runtime error, but an unexpected value would likely be returned.
 
 [currying]: https://www.baeldung.com/scala/currying
+[partial-application]: https://www.geeksforgeeks.org/scala-partially-applied-functions/
 [applydynamic]: https://www.scala-lang.org/api/2.13.3/scala/Dynamic.html
 [dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
 [immutability]: https://alvinalexander.com/scala/scala-idiom-immutable-code-functional-programming-immutability/
