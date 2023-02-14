@@ -17,9 +17,9 @@ As always, a concern is to try to maintain [immutability][immutability].
 ```scala
 object SpaceAge {
   private val EARTH_SECONDS = 31_557_600.0
-  private val calculate = (orbitPeriod: Double) =>
+  private def calculate(orbitPeriod: Double) =
     (seconds: Double) => seconds / EARTH_SECONDS / orbitPeriod
-    
+
   val onEarth: Double => Double = calculate(1)
   val onMercury: Double => Double = calculate(0.2408467)
   val onVenus: Double => Double = calculate(0.61519726)
