@@ -1,0 +1,22 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "4547f548-3f57-41d5-922c-037ddaac0ac4",
+      "slug": "currying",
+      "title": "Currying",
+      "blurb": "Use currying to reduce boilerplate.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "46132cdf-d2fb-47e8-bc00-296b19221c3a",
+      "slug": "applydynamic",
+      "title": "applyDynamic",
+      "blurb": "Use applyDynamic to reduce boilerplate.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
