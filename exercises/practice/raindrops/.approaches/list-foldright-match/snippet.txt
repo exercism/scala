@@ -1,0 +1,8 @@
+private val drops = List((3, "Pling"), (5, "Plang"), (7, "Plong"))
+
+def convert(n: Int): String =
+  drops.foldRight(List[String]())((factor_drop, acc) =>
+    if (n % factor_drop._1 == 0) factor_drop._2 :: acc else acc
+  ) match {
+    case drops if !drops.isEmpty => drops.mkString
+    case _                       => n.toString()}}

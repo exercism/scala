@@ -1,0 +1,22 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "c7996138-d3d7-4978-8ee8-84b68a5c8165",
+      "slug": "sortedmap-filterkeys-match",
+      "title": "SortedMap with filterKeys and match",
+      "blurb": "Use a SortdMap to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "2eeac454-cbea-429e-94a4-af2d08c81e3f",
+      "slug": "list-foldright-match",
+      "title": "List with foldRight and match",
+      "blurb": "Use a List to return the answer.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
