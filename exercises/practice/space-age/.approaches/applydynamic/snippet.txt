@@ -1,0 +1,5 @@
+private def calculate(planet: String, seconds: Double): Double =
+  seconds / EarthSeconds / PlanetRatio.getOrElse(planet, 1.0)
+
+def applyDynamic(methodCall: String)(seconds: Double): Double =
+  calculate(methodCall.substring(2), seconds)
