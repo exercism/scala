@@ -6,7 +6,7 @@ object SpaceAge {
   private def calculate(orbitPeriod: Double) =
     (seconds: Double) => seconds / EARTH_SECONDS / orbitPeriod
 
-  val onEarth: Double => Double = calculate(1)
+  val onEarth: Double => Double = calculate(1.0)
   val onMercury: Double => Double = calculate(0.2408467)
   val onVenus: Double => Double = calculate(0.61519726)
   val onMars: Double => Double = calculate(1.8808158)
