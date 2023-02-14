@@ -19,6 +19,7 @@ object Raindrops {
     5 -> "Plang",
     7 -> "Plong"
   )
+  
   def convert(n: Int): String =
     sound.filterKeys(n % _ == 0).values match {
       case drops if (!drops.isEmpty) => drops.mkString
@@ -33,10 +34,12 @@ For more information, check the [`SortedMap` with `filterKeys()` and `match` app
 
 ```scala
 object Raindrops {
+
+  private val drops = List((3, "Pling"), (5, "Plang"), (7, "Plong"))
+
   def convert(n: Int): String =
-    List((3, "Pling"), (5, "Plang"), (7, "Plong")).foldRight(List[String]())(
-      (factor_drop, acc) =>
-        if (n % factor_drop._1 == 0) factor_drop._2 :: acc else acc
+    drops.foldRight(List[String]())((factor_drop, acc) =>
+      if (n % factor_drop._1 == 0) factor_drop._2 :: acc else acc
     ) match {
       case drops if !drops.isEmpty => drops.mkString
       case _                       => n.toString()
