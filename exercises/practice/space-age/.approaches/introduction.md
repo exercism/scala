@@ -55,7 +55,6 @@ object SpaceAge extends Dynamic {
     seconds / EarthSeconds / PlanetRatio.getOrElse(planet, 1.0)
 
   def applyDynamic(methodCall: String)(seconds: Double): Double =
-    // changes "onEarth" to "Earth"
     calculate(methodCall.substring(2), seconds)
 }
 ```
