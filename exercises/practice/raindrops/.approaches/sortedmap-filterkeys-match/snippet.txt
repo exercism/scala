@@ -1,0 +1,6 @@
+private val sound = SortedMap(
+    3 -> "Pling", 5 -> "Plang", 7 -> "Plong")
+def convert(n: Int): String =
+  sound.filterKeys(n % _ == 0).values match {
+    case drops if (!drops.isEmpty) => drops.mkString
+    case _                         => n.toString}
