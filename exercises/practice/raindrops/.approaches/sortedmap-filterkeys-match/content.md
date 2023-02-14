@@ -25,7 +25,7 @@ Each key is passed to the [lambda][lambda], where the input number is tested to 
 Those keys by which the input number can be evenly divided have their values passed to the [`match`][match], where the values are checked for being empty.
 If not empty, then the [`mkString`][mkstring] method is used to return the values as a `String` from the `convert()` method.
 
-Otherwise, if there are no matching keys, then the values will be empty and the `match` returns the original number as a `String` from the `convert()` method.
+Otherwise, if there are no matching keys, then the values will be empty, and the `match` returns the original number as a `String` from the `convert()` method.
 
 [sortedmap]: https://www.scala-lang.org/api/2.13.6/scala/collection/immutable/SortedMap.html
 [filterkeys]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/SortedMap.html#filterKeys(p:A=%3EBoolean):scala.collection.immutable.SortedMap[A,B]
