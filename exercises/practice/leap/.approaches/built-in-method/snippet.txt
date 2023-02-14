@@ -1,6 +1,6 @@
-import java.time.{LocalDate, Month}
+import java.time.{Year}
 
 object Leap {
   def leapYear(year: Int): Boolean =
-    LocalDate.of(year, Month.FEBRUARY, 28).isLeapYear()
+    Year.of(year).isLeap()
 }
