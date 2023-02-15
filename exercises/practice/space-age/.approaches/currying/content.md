@@ -17,7 +17,7 @@ object SpaceAge {
 }
 ```
 
-This approach starts be defining the number of earth seconds in a year.
+This approach starts by defining the number of earth seconds in a year.
 Note the use of digit separators (`_`) makes long numbers more readable.
 
 The `calculate()` method is defined as a [curried][currying] function.
@@ -41,7 +41,7 @@ and returns a function which takes the parameter 'seconds' and returns seconds /
 
 Following the `calculate()` method are bindings with the same names as the methods expected by the tests.
 The bindings are set to the `calculate()` method with the first argument passed for the orbit period. 
-The `calculate()` method called with its first argument returns a function which takes the argument for the `seconds`.
+The `calculate()` method called with its first argument returns a function which takes the argument for `seconds`.
 So each binding is the `calculate()` method ready to accept its second argument.
 
 When a test calls one of the bindings with the `seconds` value, it is calling the curried `calculate()` function that is expecting its second
