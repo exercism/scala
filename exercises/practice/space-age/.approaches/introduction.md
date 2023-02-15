@@ -41,15 +41,14 @@ object SpaceAge {
   private def calculate(orbitPeriod: Double, seconds: Double): Double =
     seconds / EARTH_SECONDS / orbitPeriod
 
-  val onEarth: Double => Double = calculate(1.0, _)
-  val onMercury: Double => Double = calculate(0.2408467, _)
-  val onVenus: Double => Double = calculate(0.61519726, _)
-  val onMars: Double => Double = calculate(1.8808158, _)
-  val onJupiter: Double => Double = calculate(11.862615, _)
-  val onSaturn: Double => Double = calculate(29.447498, _)
-  val onUranus: Double => Double = calculate(84.016846, _)
-  val onNeptune: Double => Double = calculate(164.79132, _)
-}
+  val onEarth = calculate(_, 1)
+  val onMercury = calculate(_, 0.2408467)
+  val onVenus = calculate(_, 0.61519726)
+  val onMars = calculate(_, 1.8808158)
+  val onJupiter = calculate(_, 11.862615)
+  val onSaturn = calculate(_, 29.447498)
+  val onUranus = calculate(_, 84.016846)
+  val onNeptune = calculate(_, 164.79132)}
 ```
 
 For more information, check the [Partial application approach][approach-partial-application].
