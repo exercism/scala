@@ -1,0 +1,6 @@
+import java.time.{Year}
+
+object Leap {
+  def leapYear(year: Int): Boolean =
+    Year.of(year).isLeap()
+}
