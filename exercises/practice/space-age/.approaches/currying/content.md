@@ -44,7 +44,7 @@ The bindings are set to the `calculate()` method with the first argument passed 
 The `calculate()` method called with its first argument returns a function which takes the argument for the `seconds`.
 So each binding is the `calculate()` method ready to accept its second argument.
 
-When a test calls one of the bindings with the `seconds` value, it is calling the curried `calculate` function that is expecting its second
+When a test calls one of the bindings with the `seconds` value, it is calling the curried `calculate()` function that is expecting its second
 argument.
 The curried function takes the `seconds` value and returns the result of the expression in the body of the curried function.
 
