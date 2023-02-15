@@ -17,7 +17,7 @@ object SpaceAge {
 }
 ```
 
-This approach starts be defining the number of earth seconds in a year.
+This approach starts by defining the number of earth seconds in a year.
 Note the use of digit separators (`_`) makes long numbers more readable.
 
 The `calculate()` method is defined as a regular function taking two parameters.
