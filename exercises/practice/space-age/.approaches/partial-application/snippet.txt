@@ -2,7 +2,7 @@ private val EARTH_SECONDS = 31_557_600.0
 private def calculate(orbitPeriod: Double, seconds: Double): Double =
   seconds / EARTH_SECONDS / orbitPeriod
 
-val onEarth: Double => Double = calculate(1.0, _)
-val onMercury: Double => Double = calculate(0.2408467, _)
-val onVenus: Double => Double = calculate(0.61519726, _)
-val onMars: Double => Double = calculate(1.8808158, _)
+val onEarth = calculate(_, 1)
+val onMercury = calculate(_, 0.2408467)
+val onVenus = calculate(_, 0.61519726)
+val onMars = calculate(_, 1.8808158)
