@@ -30,7 +30,7 @@ object SecretHandshake {
 
 For more information, check the [`foldLeft()` and `reverse()` approach][approach-foldleft-and-reverse].
 
-## Approach: `foldLeft()` and appended or prepended
+## Approach: `foldLeft()` and appended or prepended (Scala version 3.x only)
 
 ```scala
 object SecretHandshake {
@@ -59,7 +59,11 @@ For more information, check the [`foldLeft()` with appended or prepended approac
 
 ## Which approach to use?
 
-Since benchmarking is currently outside the scope of this document, the choice between the approaches can be made by persoanl preference.
+As of this writing, the `appended or prepended` version will not compile with the online test runner.
+However, if the exercise is downloaded, the tests can pass when run locally with Scala version 3.x.
+
+Once version 3.x is supported on the Scala track, and since benchmarking is currently outside the scope of this document,
+the choice between the approaches can be made by personal preference.
 
 [range]: https://www.scala-lang.org/api/2.12.x/scala/collection/immutable/Range.html
 [foldleft]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/StringOps.html#foldLeft[B](z:B)(op:(B,A)=%3EB):B
