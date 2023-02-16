@@ -13,7 +13,7 @@ which isn't necessary.
 
 ```scala
 object Acronym {
-  def abbreviate(phrase: String): String = "[\\s-]+".r
+  def abbreviate(phrase: String): String = raw"[\s-]+".r
     .split(phrase)
     .map(_.head.toUpper)
     .mkString
