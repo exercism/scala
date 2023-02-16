@@ -1,0 +1,8 @@
+object Acronym {
+  def abbreviate(phrase: String): String = {
+    "[a-zA-Z']+".r
+      .findAllIn(phrase)
+      .map(_.head.toUpper)
+      .mkString
+  }
+}
