@@ -22,7 +22,6 @@ object SecretHandshake {
           if ((1 << index & orders) != 0) output :+ SIGNS(index)
           else output
         )
-        .toSeq
 
     if ((orders & REVERSE_SIGNS) == 0) signs else signs.reverse
   }
@@ -52,7 +51,6 @@ object SecretHandshake {
         if ((1 << index & orders) != 0) output stitch SIGNS(index)
         else output
       )
-      .toSeq
   }
 }
 ```
