@@ -12,8 +12,7 @@ object SecretHandshake {
 
     (0 until SIGNS.length)
       .foldLeft(Seq(): Seq[String])((output, index) =>
-        if ((1 << index & orders) != 0)
-          stitch(output, SIGNS(index))
+        if ((1 << index & orders) != 0) stitch(output, SIGNS(index))
         else output
       )
   }
