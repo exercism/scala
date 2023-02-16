@@ -27,7 +27,7 @@ For more information, check the [`split()` approach][approach-split].
 ```scala
 object Acronym {
   def abbreviate(phrase: String): String = {
-    "[a-zA-Z']+".r
+    raw"[\p{L}']+".r
       .findAllIn(phrase)
       .map(_.head.toUpper)
       .mkString
