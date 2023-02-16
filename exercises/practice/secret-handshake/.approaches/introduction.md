@@ -30,7 +30,7 @@ object SecretHandshake {
 
 For more information, check the [`foldLeft()` and `reverse()` approach][approach-foldleft-and-reverse].
 
-## Approach: `foldLeft()` and appended or prepended (Scala version 3.x only)
+## Approach: `foldLeft()` and appended or prepended
 
 ```scala
 object SecretHandshake {
@@ -38,17 +38,13 @@ object SecretHandshake {
   val REVERSE_SIGNS = 16
 
   def commands(orders: Int): Seq[String] = {
-    object MySeqOps {
-      extension (coll: Seq[String]) {
-        def stitch(that: String): Seq[String] =
-          if ((orders & REVERSE_SIGNS) == 0) coll.:+(that) else coll.+:(that)
-      }
-    }
-    import MySeqOps.stitch
+  
+    def stitch(coll: Seq[String], that: String): Seq[String] =
+      if ((orders & REVERSE_SIGNS) == 0) coll.:+(that) else coll.+:(that)
 
     (0 until SIGNS.length)
       .foldLeft(Seq(): Seq[String])((output, index) =>
-        if ((1 << index & orders) != 0) output stitch SIGNS(index)
+        if ((1 << index & orders) != 0) stitch(output, SIGNS(index))
         else output
       )
   }
@@ -59,11 +55,7 @@ For more information, check the [`foldLeft()` with appended or prepended approac
 
 ## Which approach to use?
 
-As of this writing, the `appended or prepended` version will not compile with the online test runner.
-However, if the exercise is downloaded, the tests can pass when run locally with Scala version 3.x.
-
-Once version 3.x is supported on the Scala track, and since benchmarking is currently outside the scope of this document,
-the choice between the approaches can be made by personal preference.
+Since benchmarking is currently outside the scope of this document, the choice between the approaches can be made by personal preference.
 
 [range]: https://www.scala-lang.org/api/2.12.x/scala/collection/immutable/Range.html
 [foldleft]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/StringOps.html#foldLeft[B](z:B)(op:(B,A)=%3EB):B
