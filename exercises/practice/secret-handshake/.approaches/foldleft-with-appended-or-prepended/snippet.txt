@@ -1,0 +1,8 @@
+import MySeqOps.stitch
+
+(0 until SIGNS.length)
+  .foldLeft(Seq(): Seq[String])((output, index) =>
+    if ((1 << index & orders) != 0) output stitch SIGNS(index)
+    else output
+  )
+  .toSeq
