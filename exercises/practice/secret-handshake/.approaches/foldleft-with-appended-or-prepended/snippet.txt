@@ -5,4 +5,3 @@ import MySeqOps.stitch
     if ((1 << index & orders) != 0) output stitch SIGNS(index)
     else output
   )
-  .toSeq
