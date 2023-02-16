@@ -25,8 +25,6 @@ For more information, check the [`split()` approach][approach-split].
 # Approach: `findAllIn()`
 
 ```scala
-import scala.util.matching.Regex
-
 object Acronym {
   def abbreviate(phrase: String): String = {
     "[a-zA-Z']+".r
