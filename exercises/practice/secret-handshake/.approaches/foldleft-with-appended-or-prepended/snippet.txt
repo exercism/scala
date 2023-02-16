@@ -1,7 +1,7 @@
-import MySeqOps.stitch
+def stitch(coll: Seq[String], that: String): Seq[String] =
+  if ((orders & REVERSE_SIGNS) == 0) coll.:+(that) else coll.+:(that)
 
 (0 until SIGNS.length)
   .foldLeft(Seq(): Seq[String])((output, index) =>
-    if ((1 << index & orders) != 0) output stitch SIGNS(index)
-    else output
-  )
+    if ((1 << index & orders) != 0) stitch(output, SIGNS(index))
+    else output)
