@@ -1,0 +1,22 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "83f3d79b-fc07-4160-87e5-e11e21d31ac2",
+      "slug": "split",
+      "title": "split",
+      "blurb": "Use split to get the words.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "986e4b72-1a7a-4684-9dd1-280537d285c8",
+      "slug": "findallin",
+      "title": "findAllIn",
+      "blurb": "Use findAllIn to get the words.",
+      "authors": ["bobahop"]
+    }
+  ]
+}

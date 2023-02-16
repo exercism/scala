@@ -1,0 +1,6 @@
+object Acronym {
+  def abbreviate(phrase: String): String = raw"[\s-]+".r
+    .split(phrase)
+    .map(_.head.toUpper)
+    .mkString
+}
