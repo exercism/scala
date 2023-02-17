@@ -39,8 +39,10 @@ object SecretHandshake {
 
   def commands(orders: Int): Seq[String] = {
   
-    def stitch(coll: Seq[String], that: String): Seq[String] =
-      if ((orders & REVERSE_SIGNS) == 0) coll.:+(that) else coll.+:(that)
+    val stitch =
+      if ((orders & REVERSE_SIGNS) == 0)
+        (coll: Seq[String], that: String) => coll.:+(that)
+      else (coll: Seq[String], that: String) => coll.+:(that)
 
     (0 until SIGNS.length)
       .foldLeft(Seq(): Seq[String])((output, index) =>
