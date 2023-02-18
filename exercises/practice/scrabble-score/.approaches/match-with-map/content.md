@@ -20,7 +20,8 @@ object ScrabbleScore {
 This approach starts be defining a private method that uses a [`match`][match] for returning a score based on the letter.
 Note that the most likely cases values are in the first arm, and the least likely values are in the last arm.
 
-The `score()` method passses each uppercased character to the [`map()`][map] method, which passes each character to the lookup method.
+The `score()` method passes each uppercased character to the [`map()`][map] method, which passes each character to the lookup method,
+which returns the score for the character.
 
 The `score()` method returns the result of passing all of the scores to the [`sum()`][sum] method.
 
