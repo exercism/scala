@@ -1,4 +1,4 @@
-val lookup: Map[Char, Int] = Map(
+private val lookup: Map[Char, Int] = Map(
   1 -> "AEIOULNRST",
   2 -> "DG",
   3 -> "BCMP",
