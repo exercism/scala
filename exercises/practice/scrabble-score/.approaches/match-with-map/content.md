@@ -17,4 +17,13 @@ object ScrabbleScore {
 }
 ```
 
-TODO
+This approach starts be defining a private method that uses a [`match`][match] for returning a score based on the letter.
+Note that the most likely cases values are in the first arm, and the least likely values are in the last arm.
+
+The `score()` method passses each uppercased character to the [`map()`][map] method, which passes each character to the lookup method.
+
+The `score()` method returns the result of passing all of the scores to the [`sum()`][sum] method.
+
+[match]: https://docs.scala-lang.org/tour/pattern-matching.html
+[map]: https://www.scala-lang.org/api/current/scala/collection/StringOps.html#map[B](f:Char=%3EB):IndexedSeq[B]
+[sum]: https://www.scala-lang.org/api/current/scala/collection/immutable/IndexedSeq.html#sum[B%3E:A](implicitnum:scala.math.Numeric[B]):B
