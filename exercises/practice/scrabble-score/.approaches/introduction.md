@@ -44,7 +44,7 @@ object ScrabbleScore {
     10 -> "QZ"
   ).flatMap(tuple => tuple._2.map((_, tuple._1)))
 
-  def score(word: String): Int = word.toUpperCase.map(lookup(_)).sum
+  def score(word: String): Int = word.toUpperCase.map(lookup).sum
 }
 ```
 
