@@ -34,7 +34,7 @@ For more information, check the [`match` with `map()` approach][approach-match-w
 ```scala
 object ScrabbleScore {
 
-  val lookup: Map[Char, Int] = Map(
+  private val lookup: Map[Char, Int] = Map(
     1 -> "AEIOULNRST",
     2 -> "DG",
     3 -> "BCMP",
