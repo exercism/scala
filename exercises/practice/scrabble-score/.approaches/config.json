@@ -1,0 +1,22 @@
+{
+  "introduction": {
+    "authors": ["bobahop"],
+    "contributors": []
+  },
+  "approaches": [
+    {
+      "uuid": "5f2eaa9e-8112-422d-a385-b63fc216dbc4",
+      "slug": "match-with-map",
+      "title": "match with map",
+      "blurb": "Use a match with map to return the answer.",
+      "authors": ["bobahop"]
+    },
+    {
+      "uuid": "ba7fe14d-acf6-4998-aab7-1f64a9d2c522",
+      "slug": "map-with-map",
+      "title": "Map with map",
+      "blurb": "Use a Map with map to return the answer.",
+      "authors": ["bobahop"]
+    }
+  ]
+}
