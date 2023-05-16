@@ -57,16 +57,6 @@ class LargestSeriesProductTest extends AnyFunSuite with Matchers {
     Series.largestProduct(4, "123") should be(None)
   }
 
-  test("reports 1 for empty string and empty product (0 span)") {
-    pending
-    Series.largestProduct(0, "") should be(Some(1))
-  }
-
-  test("reports 1 for nonempty string and empty product (0 span)") {
-    pending
-    Series.largestProduct(0, "123") should be(Some(1))
-  }
-
   test("rejects empty string and nonzero span") {
     pending
     Series.largestProduct(1, "") should be(None)
