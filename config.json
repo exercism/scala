@@ -1222,6 +1222,17 @@
         ]
       },
       {
+        "slug": "yacht",
+        "name": "Yacht",
+        "uuid": "d4b60464-31e3-47f9-a99d-08a6e3a255b6",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5,
+        "topics": [
+          "pattern_matching"
+        ]
+      },
+      {
         "slug": "sgf-parsing",
         "name": "SGF Parsing",
         "uuid": "8b4c7142-6790-4d89-a5cb-fa094e2c969a",
