@@ -8,6 +8,7 @@ class YachtTests extends AnyFunSuite with Matchers {
   }
 
   test("Not Yacht") {
+    pending
     Yacht.score(Category.Yacht, List(Die.One, Die.Three, Die.Three, Die.Two, Die.Five)) shouldEqual 0
   }
 
