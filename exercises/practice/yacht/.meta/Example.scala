@@ -1,80 +1,51 @@
-object Yacht {
+object yacht {
+  def yacht(dices: List[Int]): Int =
+    if (dices.toSet.size == 1) 50 else 0
 
-  sealed trait Category
-  case object Ones extends Category
-  case object Twos extends Category
-  case object Threes extends Category
-  case object Fours extends Category
-  case object Fives extends Category
-  case object Sixes extends Category
-  case object FullHouse extends Category
-  case object FourOfAKind extends Category
-  case object LittleStraight extends Category
-  case object BigStraight extends Category
-  case object Choice extends Category
-  case object Yacht extends Category
+  def diceFrequencies(dices: List[Int]): Vector[Int] =
+    (1 to 6).map(i => dices.count(_ == i)).toVector
 
-  sealed trait Die
-  case object One extends Die
-  case object Two extends Die
-  case object Three extends Die
-  case object Four extends Die
-  case object Five extends Die
-  case object Six extends Die
-  
-  object Die {
-    def eval(d: Die): Int = d match {
-      case One => 1
-      case Two => 2
-      case Three => 3
-      case Four => 4
-      case Five => 5
-      case Six => 6
-    }
+  def appearances(dices: List[Int], diceValue: Int): Int =
+    diceFrequencies(dices)(diceValue - 1)
+
+  def getSumOfDices(dices: List[Int]): Int =
+    dices.sum
+
+  def fourOfKind(dices: List[Int]): Int = {
+    val counterArray = diceFrequencies(dices)
+    val scores = (0 to 5).flatMap(i =>
+      if (counterArray(i) >= 4) Some((i + 1) * 4) else None
+    )
+    if (scores.isEmpty) 0 else scores.head
   }
 
-  private def diceWithCount(dice: List[Die]): List[(Die, Int)] =
-    dice.groupBy(identity).mapValues(_.size).toList.sortBy(-_._2)
+  def littleStraight(dices: List[Int]): Int =
+    if (dices.sorted == List(1, 2, 3, 4, 5)) 30 else 0
 
-  private def valueScore(value: Die, dice: List[Die]): Int = {
-    val count = dice.count(_ == value)
-    count * Die.eval(value)
+  def bigStraight(dices: List[Int]): Int =
+    if (dices.sorted == List(2, 3, 4, 5, 6)) 30 else 0
+
+  def fullHouse(dices: List[Int]): Int = {
+    val counterArray = diceFrequencies(dices)
+    if (counterArray.contains(2) && counterArray.contains(3))
+      dices.sum
+    else
+      0
   }
 
-  private def fullHouseScore(dice: List[Die]): Int = diceWithCount(dice) match {
-    case List((_, 3), (_, 2)) => dice.sumBy(Die.eval)
+  def score(dices: List[Int], category: String): Int = category match {
+    case "yacht" => yacht(dices)
+    case "ones" => appearances(dices, 1)
+    case "twos" => appearances(dices, 2) * 2
+    case "threes" => appearances(dices, 3) * 3
+    case "fours" => appearances(dices, 4) * 4
+    case "fives" => appearances(dices, 5) * 5
+    case "sixes" => appearances(dices, 6) * 6
+    case "full house" => fullHouse(dices)
+    case "four of a kind" => fourOfKind(dices)
+    case "little straight" => littleStraight(dices)
+    case "big straight" => bigStraight(dices)
+    case "choice" => getSumOfDices(dices)
     case _ => 0
-  }
-
-  private def fourOfAKindScore(dice: List[Die]): Int = diceWithCount(dice) match {
-    case List((d, 4), _*) => Die.eval(d) * 4
-    case List((d, 5)) => Die.eval(d) * 4
-    case _ => 0
-  }
-
-  private def littleStraightScore(dice: List[Die]): Int =
-    if (dice.sorted == List(One, Two, Three, Four, Five)) 30 else 0
-
-  private def bigStraightScore(dice: List[Die]): Int =
-    if (dice.sorted == List(Two, Three, Four, Five, Six)) 30 else 0
-
-  private def choiceScore(dice: List[Die]): Int = dice.sumBy(Die.eval)
-
-  private def yachtScore(dice: List[Die]): Int =
-    if (dice.distinct.size == 1) 50 else 0
-
-  def score(category: Category, dice: List[Die]): Int = category match {
-    case Ones => valueScore(One, dice)
-    case Twos => valueScore(Two, dice)
-    case Threes => valueScore(Three, dice)
-    case Fours => valueScore(Four, dice)
-    case Fives => valueScore(Five, dice)
-    case Sixes => valueScore(Six, dice)
-    case FullHouse => fullHouseScore(dice)
-    case FourOfAKind => fourOfAKindScore(dice)
-    case LittleStraight => littleStraightScore(dice)
-    case BigStraight => bigStraightScore(dice)
-    case Choice => choiceScore(dice)
-    case Yacht => yachtScore(dice)
   }
 }
