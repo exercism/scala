@@ -1,4 +1,4 @@
-object yacht {
+object Yacht {
   def yacht(dices: List[Int]): Int =
     if (dices.toSet.size == 1) 50 else 0
 
