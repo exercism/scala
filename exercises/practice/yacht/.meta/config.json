@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "wangxiaoxuan273"
+  ],
+  "files": {
+    "solution": [
+      "src/main/scala/Yacht.scala"
+    ],
+    "test": [
+      "src/test/scala/YachtTest.scala"
+    ],
+    "example": [
+      ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
+    ]
+  },
+  "blurb": "Score a single throw of dice in the game Yacht.",
+  "source": "James Kilfiger, using wikipedia",
+  "source_url": "https://en.wikipedia.org/wiki/Yacht_(dice_game)"
+}
