@@ -1,7 +1,7 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
-class YachtTests extends AnyFunSuite with Matchers {
+class YachtTest extends AnyFunSuite with Matchers {
 
   test("Yacht") {
     Yacht.score(List(5, 5, 5, 5, 5), "yacht") shouldEqual 50
