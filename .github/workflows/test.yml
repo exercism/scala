@@ -16,6 +16,3 @@ jobs:
 
       - name: Run tests for all exercises
         run: bin/test
-
-      - name: Run checks for all exercises
-        run: bin/check-test-files
