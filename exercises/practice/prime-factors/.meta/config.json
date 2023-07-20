@@ -10,10 +10,10 @@
   ],
   "files": {
     "solution": [
-      "src/main/scala/Primefactors.scala"
+      "src/main/scala/PrimeFactors.scala"
     ],
     "test": [
-      "src/test/scala/PrimefactorsTest.scala"
+      "src/test/scala/PrimeFactorsTest.scala"
     ],
     "example": [
       ".meta/Example.scala"

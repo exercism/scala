@@ -11,10 +11,10 @@
   ],
   "files": {
     "solution": [
-      "src/main/scala/Series.scala"
+      "src/main/scala/LargestSeriesProduct.scala"
     ],
     "test": [
-      "src/test/scala/SeriesTest.scala"
+      "src/test/scala/LargestSeriesProductTest.scala"
     ],
     "example": [
       ".meta/Example.scala"
