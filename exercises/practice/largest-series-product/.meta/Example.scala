@@ -1,4 +1,4 @@
-object Series {
+object LargestSeriesProduct {
   private def digits(s: String): List[Int] = s.filter(_.isDigit).map(_.asDigit).toList
 
   private def slices(n: Int, digits: List[Int]): List[List[Int]] =
