@@ -42,7 +42,7 @@ as is if it is already empty.
 The `isPaired()` method returns the result of calling the private recursive method, to which it passes the input `String`.
 and an empty `List` for the "stack".
 
-```exercism/note
+~~~~exercism/note
 Note that the [immutable `Stack`](https://www.scala-lang.org/api/2.12.17/scala/collection/immutable/Stack.html)
 exists only for historical reason and as an analogue of mutable stacks.
 Instead of an immutable stack you can just use a list.
@@ -50,7 +50,7 @@ Instead of an immutable stack you can just use a list.
 The [mutable `Stack`](https://www.scala-lang.org/api/2.12.17/scala/collection/mutable/Stack.html) was deprecated since version 2.12.0.
 `Stack` is an inelegant and potentially poorly-performing wrapper around List.
 Use a List assigned to a var instead.
-```
+~~~~
 
 The recursive method is annotated with the [`@tailrec`][tailrec-annotation] annotation to verify that the method can be compiled
 with [tail call optimization][tail-opt].

@@ -37,10 +37,10 @@ Then a [nested function][nested-function] (also called a [closure][closure]) is 
 The first argument is for the number that is being calculated.
 The second number is for totaling the results of the calculations.
 
-```exercism/note
+~~~~exercism/note
 Although the number of digits is not passed into the inner function, the inner function still has access to it.
 It is said that the value for the number of digits is _captured_ by the inner function.
-```
+~~~~
 
 The [nested function][nested-function] is annotated with the [`@tailrec`][tailrec-annotation] annotation to verify that the function can be compiled
 with [tail call optimization][tail-opt].

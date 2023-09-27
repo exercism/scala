@@ -29,10 +29,10 @@ The correct answer is selected from the array by using the score as the array in
 The `String` [`trim()`][trim] method is applied to the input to eliminate any whitespace at either end of the input.
 If the string has no characters left, it returns the response for saying nothing.
 
-```exercism/caution
+~~~~exercism/caution
 Note that a `null` `String` would be different from a `String` of all whitespace.
 A `null` `String` would throw a `NullPointerException` if `trim()` were applied to it.
-```
+~~~~
 
 The first half of setting `isShout` uses the [`exists`][exists] and [`isLetter`][isletter] methods to look for
 at least one English alphabetic character.
