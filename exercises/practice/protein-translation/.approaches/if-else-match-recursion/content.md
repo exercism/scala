@@ -65,12 +65,12 @@ If the protein is for a `STOP` codon, the `match` returns the `Sequence` of prot
 Otherwise, the method calls itself, using the [`drop()`][drop] method to pass in all but the first `3` `Char`s of the input `String`,
 and passing in the existing `Sequence` of proteins with the protein added to the end of it with the [`:+`][append-operator] operator.
 
-```exercism/caution
+~~~~exercism/caution
 The `take()` and `drop()` methods treat a string as a plain sequence of Char code units and makes no attempt to keep surrogate pairs or codepoint sequences together.
 The user is responsible for making sure such cases are handled correctly.
 Failing to do so may result in an invalid Unicode string.
 The `take()` and `drop()` methods work here because all of the characters are [ASCII](https://www.asciitable.com/).
-```
+~~~~
 
 [sequence]: https://www.geeksforgeeks.org/scala-sequence/
 [match]: https://docs.scala-lang.org/tour/pattern-matching.html

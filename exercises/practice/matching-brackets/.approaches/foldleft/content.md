@@ -37,7 +37,7 @@ as is if it is already empty.
 The `isPaired()` method starts by calling the [`foldLeft()`][foldleft] method on the input `String`.
 It is initialized with an empty `List` for the "stack" and `true` for a validity flag, both wrapped in a [tuple][tuple].
 
-```exercism/note
+~~~~exercism/note
 Note that the [immutable `Stack`](https://www.scala-lang.org/api/2.12.17/scala/collection/immutable/Stack.html)
 exists only for historical reason and as an analogue of mutable stacks.
 Instead of an immutable stack you can just use a list.
@@ -45,7 +45,7 @@ Instead of an immutable stack you can just use a list.
 The [mutable `Stack`](https://www.scala-lang.org/api/2.12.17/scala/collection/mutable/Stack.html) was deprecated since version 2.12.0.
 `Stack` is an inelegant and potentially poorly-performing wrapper around List.
 Use a List assigned to a var instead.
-```
+~~~~
 
 The tuple and each character from the input is passed into the [lambda][lambda].
 A [match][match] is used to destructure the tuple and uses the [`contains()`][set-contains] method

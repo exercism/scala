@@ -48,12 +48,12 @@ what iterations it will ask for.
 In this case it will keep taking iterations until the third element of the tuple is `true`, which is not set until
 creating the tuple for the iteration _after_ the first element number has been calculated down to 0.
 
-```exercism/caution
+~~~~exercism/caution
 We might be tempted to use a tuple of only two elements and `takeWhile(tup => tup._1 > 0)`,
 but this will omit the last iteration where the tuple generated is `(0,153.0)`.
 The tuple is generated, but since it has a first element of `0`, it is not _taken_.
 This is why we need the `Boolean` flag to stop _after_ we've taken the tuple with a first element of `0`.
-```
+~~~~
 
 As of this writing, Scala 3 is not yet supported on the Scala track. With Scala 3 we could destructure the tuple in the lambda like so:
 
