@@ -24,6 +24,10 @@ class RunLengthEncodingTest extends AnyFunSuite with Matchers {
     RunLengthEncoding.encode("WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB") should be ("12WB12W3B24WB")
   }
 
+  test("encode - string with one character") {
+    RunLengthEncoding.encode("X") should be ("X")
+  }
+
   test("encode - multiple whitespace mixed in string") {
     pending
     RunLengthEncoding.encode("  hsqq qww  ") should be ("2 hs2q q2w2 ")
@@ -47,6 +51,10 @@ class RunLengthEncodingTest extends AnyFunSuite with Matchers {
   test("decode - string with no single characters") {
     pending
     RunLengthEncoding.decode("2A3B4C") should be ("AABBBCCCC")
+  }
+
+  test("decode - string with one character") {
+    RunLengthEncoding.decode("X") should be ("X")
   }
 
   test("decode - single characters with repeated characters") {
