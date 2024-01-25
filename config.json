@@ -41,9 +41,11 @@
         "slug": "basics",
         "name": "Lucians Luscious Lasagna",
         "uuid": "ea9ee1b7-26e4-4612-839d-fc6a9ecc2e7c",
-        "status": "wip",
-        "concepts": ["basics"],
-        "prerequisites": []
+        "concepts": [
+          "basics"
+        ],
+        "prerequisites": [],
+        "status": "wip"
       }
     ],
     "practice": [
@@ -265,8 +267,7 @@
         "uuid": "2be75924-fce4-49fa-b52e-6cdcf222b283",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 3,
-        "topics": []
+        "difficulty": 3
       },
       {
         "slug": "pascals-triangle",
@@ -415,8 +416,7 @@
         "uuid": "e6e88c52-b984-479d-8b9c-047d25f2aa47",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 9,
-        "topics": []
+        "difficulty": 9
       },
       {
         "slug": "binary-search",
@@ -678,7 +678,6 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 2,
-        "topics": null,
         "status": "deprecated"
       },
       {
@@ -688,7 +687,6 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 2,
-        "topics": null,
         "status": "deprecated"
       },
       {
@@ -698,7 +696,6 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 2,
-        "topics": null,
         "status": "deprecated"
       },
       {
@@ -708,7 +705,6 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 2,
-        "topics": null,
         "status": "deprecated"
       },
       {
@@ -1273,7 +1269,6 @@
       }
     ]
   },
-  "concepts": [],
   "key_features": [
     {
       "title": "Modern",
@@ -1307,19 +1302,19 @@
     }
   ],
   "tags": [
-    "runtime/jvm",
-    "platform/windows",
+    "execution_mode/compiled",
+    "paradigm/functional",
+    "paradigm/imperative",
+    "paradigm/object_oriented",
     "platform/linux",
     "platform/mac",
     "platform/web",
-    "paradigm/imperative",
-    "paradigm/functional",
-    "paradigm/object_oriented",
+    "platform/windows",
+    "runtime/jvm",
     "typing/static",
     "typing/strong",
-    "execution_mode/compiled",
     "used_for/backends",
-    "used_for/frontends",
-    "used_for/financial_systems"
+    "used_for/financial_systems",
+    "used_for/frontends"
   ]
 }
