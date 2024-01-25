@@ -15,6 +15,9 @@
     ],
     "exemplar": [
       ".meta/Exemplar.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   }
 }
