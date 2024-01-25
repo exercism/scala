@@ -1,7 +1,8 @@
 {
   "introduction": {
-    "authors": ["bobahop"],
-    "contributors": []
+    "authors": [
+      "bobahop"
+    ]
   },
   "approaches": [
     {
@@ -9,14 +10,18 @@
       "slug": "foldleft",
       "title": "foldLeft",
       "blurb": "foldLeft to iterate for the result.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "cb041f76-3569-4723-8627-fdf5004ae341",
       "slug": "recursion",
       "title": "Recursion",
       "blurb": "Recurse to iterate for the result.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     }
   ]
 }

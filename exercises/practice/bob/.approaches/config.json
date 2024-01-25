@@ -1,7 +1,8 @@
 {
   "introduction": {
-    "authors": ["bobahop"],
-    "contributors": []
+    "authors": [
+      "bobahop"
+    ]
   },
   "approaches": [
     {
@@ -9,21 +10,27 @@
       "slug": "if-expressions",
       "title": "if expressions",
       "blurb": "Use if expressions to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "80ad0f5d-9cb7-40aa-b453-d7b36cc6c06e",
       "slug": "match-expression",
       "title": "match expression",
       "blurb": "Use a match expression to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "6334f482-f75b-4cca-bade-a182fd585c72",
       "slug": "answers-vector",
       "title": "Answers Vector",
       "blurb": "Index into a Vector to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     }
   ]
 }
