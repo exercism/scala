@@ -1,7 +1,8 @@
 {
   "introduction": {
-    "authors": ["bobahop"],
-    "contributors": []
+    "authors": [
+      "bobahop"
+    ]
   },
   "approaches": [
     {
@@ -9,14 +10,18 @@
       "slug": "foldleft-and-reverse",
       "title": "foldLeft and reverse",
       "blurb": "foldLeft and reverse to iterate to the solution.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "f86fdf3c-1745-455c-80a5-0b5c57404ba5",
       "slug": "foldleft-with-appended-or-prepended",
       "title": "foldLeft with appended or prepended",
       "blurb": "foldLeft with appended or prepended to iterate to the solution.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     }
   ]
 }

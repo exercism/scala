@@ -1,5 +1,4 @@
 {
-  "blurb": "Creating a zipper for a binary tree.",
   "authors": [
     "abo64"
   ],
@@ -22,5 +21,6 @@
     "invalidator": [
       "build.sbt"
     ]
-  }
+  },
+  "blurb": "Creating a zipper for a binary tree."
 }
