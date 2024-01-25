@@ -1,5 +1,4 @@
 {
-  "blurb": "Make a chain of dominoes.",
   "authors": [
     "abo64"
   ],
@@ -22,5 +21,6 @@
     "invalidator": [
       "build.sbt"
     ]
-  }
+  },
+  "blurb": "Make a chain of dominoes."
 }

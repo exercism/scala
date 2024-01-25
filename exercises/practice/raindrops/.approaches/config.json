@@ -1,7 +1,8 @@
 {
   "introduction": {
-    "authors": ["bobahop"],
-    "contributors": []
+    "authors": [
+      "bobahop"
+    ]
   },
   "approaches": [
     {
@@ -9,14 +10,18 @@
       "slug": "sortedmap-filterkeys-match",
       "title": "SortedMap with filterKeys and match",
       "blurb": "Use a SortdMap to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "2eeac454-cbea-429e-94a4-af2d08c81e3f",
       "slug": "list-foldright-match",
       "title": "List with foldRight and match",
       "blurb": "Use a List to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     }
   ]
 }

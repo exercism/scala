@@ -1,7 +1,8 @@
 {
   "introduction": {
-    "authors": ["bobahop"],
-    "contributors": []
+    "authors": [
+      "bobahop"
+    ]
   },
   "approaches": [
     {
@@ -9,14 +10,18 @@
       "slug": "filter-map-stream-takewhile",
       "title": "filter and map with Stream and takeWhile",
       "blurb": "Use filter and map with Stream and takeWhile to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "78e77a70-d872-4236-a569-9c9f038d39d3",
       "slug": "match-recursion",
       "title": "match with recursion",
       "blurb": "Use match with recursion to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     }
   ]
 }

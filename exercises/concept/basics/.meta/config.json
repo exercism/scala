@@ -1,10 +1,6 @@
 {
-  "blurb": "TODO: add blurb for basics exercise",
   "authors": [
     "stillleben"
-  ],
-  "forked_from": [
-    "csharp/lucians-luscious-lasagna"
   ],
   "files": {
     "solution": [
@@ -19,5 +15,9 @@
     "invalidator": [
       "build.sbt"
     ]
-  }
+  },
+  "forked_from": [
+    "csharp/lucians-luscious-lasagna"
+  ],
+  "blurb": "TODO: add blurb for basics exercise"
 }

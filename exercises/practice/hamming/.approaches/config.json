@@ -1,7 +1,8 @@
 {
   "introduction": {
-    "authors": ["bobahop"],
-    "contributors": []
+    "authors": [
+      "bobahop"
+    ]
   },
   "approaches": [
     {
@@ -9,21 +10,27 @@
       "slug": "if-zip-count",
       "title": "if with zip and count",
       "blurb": "Use if with zip and count to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "7bc1db17-b777-4304-bc22-092e2e3304b0",
       "slug": "match-zip-count",
       "title": "match with zip and count",
       "blurb": "Use match with zip and count to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "849af0db-824b-4560-b5c6-e65b0cd7bb3e",
       "slug": "match-recursion",
       "title": "match with recursion",
       "blurb": "Use match with recursion to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     }
   ]
 }
