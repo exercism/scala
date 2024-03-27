@@ -2,12 +2,14 @@ package testgen
 
 import java.io.FileWriter
 import java.io.File
-
 import play.twirl.api.Txt
 import play.twirl.api.Template1
-import TestSuiteBuilder._
+import TestSuiteBuilder.*
 import testgen.CanonicalDataParser.ParseResult
+
 import scala.language.postfixOps
+import scala.quoted.Quotes
+
 
 object TestSuiteBuilder {
 
@@ -166,8 +168,9 @@ object TestSuiteBuilder {
   def quote(str: String): String =
     if ("\"\n" exists (str.contains(_:Char))) "\"\"\"" else "\""
 
-  def escape(raw: String): String = {
-    import scala.reflect.runtime.universe._
+  def escape(raw: String)(using Quotes): String = {
+    
+
     Literal(Constant(raw)).toString
   }
 

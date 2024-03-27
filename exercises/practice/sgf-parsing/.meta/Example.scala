@@ -2,53 +2,46 @@ import scala.util.parsing.combinator.RegexParsers
 
 object Sgf extends RegexParsers {
 
-  type Tree[A] = Node[A] // to separate the type from the constructor, cf. Haskell's Data.Tree
-  type Forest[A] = List[Tree[A]]
-  case class Node[A](rootLabel: A, subForest: Forest[A] = List())
-
-  // A tree of nodes.
-  type SgfTree = Tree[SgfNode]
-
-  // A node is a property list, each key can only occur once.
-  // Keys may have multiple values associated with them.
-  type SgfNode = Map[String, List[String]]
+  case class Node(properties: SgfProperties, children: List[Node] = List())
 
   override val skipWhitespace = false
+
+  type SgfProperties = Map[String, List[String]]
 
   private implicit def parseResultToOption[T](parseResult: ParseResult[T]): Option[T] =
     parseResult map (Some(_)) getOrElse None
 
-  def parseSgf(text: String): Option[SgfTree] =
+  def parseSgf(text: String): Option[Node] =
     parseAll(sgfGameTree, text)
 
-  private val sgfGameTree: Parser[SgfTree] =
-    ("(" ~ rep1(sgfNode) ~ rep(sgfGameTree) ~ ")") ^^ {
+  private val sgfGameTree: Parser[Node] =
+    ("(" ~ rep1(sgfProperties) ~ rep(sgfGameTree) ~ ")") ^^ {
       case _ ~ (rootNode::subNodes) ~ subTrees ~ _ =>
-        val subNodeForest: List[SgfTree] = subNodes map (Node(_))
+        val subNodeForest: List[Node] = subNodes map (Node(_))
         Node(rootNode, subNodeForest ++ subTrees)
-    } named "sgfGameTree"
+    }
 
-  private val sgfNode: Parser[SgfNode] =
+  private val sgfProperties: Parser[SgfProperties] =
     ";" ~ (sgfProperty | emptySgfNode) ^^ {
-      case _ ~ sgfNode => sgfNode
-    } named "sgfNode"
+      case _ ~ sgfProps => sgfProps
+    }
 
-  private val emptySgfNode: Parser[SgfNode] =
+  private val emptySgfNode: Parser[SgfProperties] =
     "" ^^ const(Map())
 
-  private def sgfProperty: Parser[SgfNode] =
+  private def sgfProperty: Parser[SgfProperties] =
     propIdent ~ propValues ^^ {
       case identifier ~ values => Map(identifier -> values)
-    } named "sgfProperty"
+    }
 
-  private val propIdent: Parser[String] = "[A-Z]".r named "propIdent"
+  private val propIdent: Parser[String] = "[A-Z]".r
 
   private val propValues: Parser[List[String]] = rep1(propValue)
 
   private val propValue: Parser[String] =
     "[" ~ rep1(propValuePart) ~ "]" ^^ {
-      case _ ~ values ~ _ => values mkString
-    } named "propValue"
+      case _ ~ values ~ _ => values.mkString
+    }
 
   private val propValuePart: Parser[String] = {
     implicit class AsStringParser(self: String) { def p: Parser[String] = self }
