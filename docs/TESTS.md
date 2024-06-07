@@ -16,9 +16,4 @@ $ sbt
 Note that all tests have been disabled except the first one for you to work on. 
 To continue, just remove the `pending` keyword from the beginning of each test case.
 
-Tests can also be run within the following IDEs
-
-* [IntelliJ IDEA with Scala Plugin](https://www.jetbrains.com/idea/)
-* [ScalaIDE](http://scala-ide.org/index.html)
-* [NetBeans with Scala Plugin](https://netbeans.org/)
-
+Tests can also be run within the IDEs listed on the "Installing Scala Locally" page.
