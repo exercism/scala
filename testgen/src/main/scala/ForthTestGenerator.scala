@@ -42,15 +42,16 @@ object ForthTestGenerator {
         labeledTest =>
           val args = sutArgsFromInput(labeledTest.result, argNames: _*)
           val isErr = isError(labeledTest.expected)
+
           val sutCall = if (isErr)
-              s"""forth.eval($args).isLeft"""
-            else
-              s"""forth.eval($args).fold(_ => "", _.toString)"""
+            s"""forth.eval($args).isLeft"""
+          else
+            s"""forth.eval($args).fold(_ => "", _.toString)"""
 
           val expected = if (isErr)
-              "true"
-            else
-              toString(labeledTest.expected)
+            "true"
+          else
+            toString(labeledTest.expected)
 
           TestCaseData(s"${labeledTest.parentDescriptions.mkString(" - " )} - ${labeledTest.description}", sutCall, expected)
       }

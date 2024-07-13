@@ -7,7 +7,7 @@ class School {
 
   def db: DB = _db
 
-  def add(name: String, g: Int) {
+  def add(name: String, g: Int) = {
     _db = db.updated(g, grade(g) :+ name)
   }
 
