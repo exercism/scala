@@ -2,6 +2,7 @@
 *.swp
 .DS_Store
 .idea
+.vscode
 tmp
 target/
 bin/configlet
@@ -13,7 +14,7 @@ bin/configlet.exe
 .bloop/
 .metals/
 
-project/
+project/*
 !project/build.properties
 !project/plugins.sbt
 project/target
