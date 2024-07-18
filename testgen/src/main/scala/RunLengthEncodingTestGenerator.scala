@@ -10,7 +10,7 @@ object RunLengthEncodingTestGenerator {
   def fromLabeledTestAlt(propArgs: (String, Seq[String])*): ToTestCaseData =
     withLabeledTest { sut => labeledTest =>
       val sutFunction = labeledTest.property
-      val args = sutArgsAlt(labeledTest.result, propArgs:_*)
+      val args = sutArgsAlt(labeledTest.result, propArgs*)
       val sutCall =
         if (sutFunction.toString == "consistency")
           s"$sut.decode($sut.encode($args))"

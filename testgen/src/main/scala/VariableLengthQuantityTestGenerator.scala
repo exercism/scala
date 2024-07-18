@@ -5,7 +5,7 @@ import TestSuiteBuilder.{toString, _}
 
 object VariableLengthQuantityTestGenerator {
 
-  private def mapListToString(arg: List[_]): String = {
+  private def mapListToString(arg: List[?]): String = {
     s"List(${arg
       .map {
         case d: Double => "0x" + d.toLong.toHexString.toUpperCase
@@ -19,7 +19,7 @@ object VariableLengthQuantityTestGenerator {
     expected match {
       case Left(_) => "None"
       case Right(null) => "None"
-      case Right(n) => s"${mapListToString(n.asInstanceOf[List[_]])}"
+      case Right(n) => s"${mapListToString(n.asInstanceOf[List[?]])}"
     }
   }
 
@@ -56,7 +56,7 @@ object VariableLengthQuantityTestGenerator {
   def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
     withLabeledTest { sut =>
       labeledTest =>
-        val args = sutArgsFromInput(labeledTest.result, argNames: _*)
+        val args = sutArgsFromInput(labeledTest.result, argNames*)
         val property = labeledTest.property
         val sutCall = toSutCall(sut, property, args, labeledTest.expected)
         val expected =

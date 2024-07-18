@@ -36,7 +36,7 @@ object EtlTestGenerator {
     def fromLabeledTest(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgs(labeledTest.result, argNames: _*)
+          val args = sutArgs(labeledTest.result, argNames*)
           val property = labeledTest.property
           val sutCall =
             s"""Etl.$property($args)"""

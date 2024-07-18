@@ -17,7 +17,7 @@ object PrimeFactorsTestGenerator {
     withLabeledTest { sut =>
       labeledTest =>
         val sutFunction = labeledTest.property
-        val args = sutArgsFromInput(labeledTest.result, argNames: _*)
+        val args = sutArgsFromInput(labeledTest.result, argNames*)
         val sutCall = s"$sut.$sutFunction($args)"
         val expected = toString(labeledTest.expected)
 

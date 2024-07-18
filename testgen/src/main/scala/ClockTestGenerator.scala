@@ -29,7 +29,7 @@ object ClockTestGenerator {
   def fromLabeledTestAltFromInput(propArgs: (String, Seq[String])*): ToTestCaseData =
     withLabeledTest { sut => labeledTest =>
       val sutFunction = labeledTest.property
-      val args = sutArgsAltFromInput(labeledTest.result, propArgs:_*)
+      val args = sutArgsAltFromInput(labeledTest.result, propArgs*)
 
       val sutFunc = sutFunction.toString
       val sutCall =

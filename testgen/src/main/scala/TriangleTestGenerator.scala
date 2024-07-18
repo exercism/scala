@@ -21,7 +21,7 @@ object TriangleTestGenerator {
     def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames*)
           val func = labeledTest.property.mkString
           val sutCall = s"""Triangle(${args}).$func"""
           val expected =

@@ -1,7 +1,7 @@
 name := "ExcercismScalaTestGenerator"
 
 ThisBuild / scalaVersion := "3.4.2"
-ThisBuild / scalacOptions ++= Seq("-deprecation")
+// ThisBuild / scalacOptions ++= Seq("-rewrite", "-source:3.4-migration")
 
 lazy val root = project
   .in(file("."))
@@ -13,7 +13,9 @@ lazy val testgen = project
     Compile / TwirlKeys.compileTemplates / sourceDirectories
         += (baseDirectory.value.getParentFile / "src" / "main" / "twirl")
     )
+  .settings(
+    libraryDependencies += "org.playframework" %% "play-json" % "3.0.4",
+    libraryDependencies += "org.playframework.twirl" %% "twirl-api" % "2.0.7",
+    libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.4.0"
+  )
 
-libraryDependencies += "com.typesafe.play" %% "play-json" % "2.10.6"
-libraryDependencies += "com.typesafe.play" %% "twirl-api" % "1.6.8"
-libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "2.4.0"

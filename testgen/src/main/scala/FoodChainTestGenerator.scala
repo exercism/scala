@@ -23,7 +23,7 @@ object FoodChainTestGenerator {
       withLabeledTest { sut =>
         labeledTest =>
           val sutFunction = labeledTest.property
-          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames*)
           val sutCall = s"$sut.$sutFunction(${args})"
           val expectedLines = labeledTest.expected.getOrElse(List()).asInstanceOf[List[String]]
           val expected = expectedLines mkString ("", "\n", "\n\n")

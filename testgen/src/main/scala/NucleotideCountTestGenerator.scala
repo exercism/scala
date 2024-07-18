@@ -23,7 +23,7 @@ object NucleotideCountTestGenerator {
     }
 
     def toSutCall(labeledTest: LabeledTest, argNames: String*): String = {
-      val args = sutArgsFromInput(labeledTest.result, argNames: _*)
+      val args = sutArgsFromInput(labeledTest.result, argNames*)
       val property = labeledTest.property
       labeledTest.expected match {
         case Left(_) => s"""new DNA($args).$property.isLeft"""
@@ -35,7 +35,7 @@ object NucleotideCountTestGenerator {
     def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val sutCall = toSutCall(labeledTest, argNames: _*)
+          val sutCall = toSutCall(labeledTest, argNames*)
           val expected = toString(labeledTest.expected)
           TestCaseData(labeledTest.description, sutCall, expected)
       }

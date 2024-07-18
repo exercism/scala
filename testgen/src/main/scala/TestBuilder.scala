@@ -36,12 +36,11 @@ class TestBuilder(testName: String) {
   }
 
   def build: String =
-s"""$printImports
-$printVersion
-class $testName extends AnyFunSuite with Matchers {
-$printTestCases
-}
-"""
+    s"""$printImports
+    |$printVersion
+    |class $testName extends AnyFunSuite with Matchers {
+    |$printTestCases
+    |}""".stripMargin
 
   private lazy val printVersion: String =
     version match {
@@ -69,14 +68,12 @@ $printTestCases
     }
 
     def printTestCase(tc: TestCaseGen): String =
-s"""
-  test("${tc.description}") {
-    ${printPending}${tc.result}
-    ${tc.checkResult}
-  }
-"""
+      s"""test("${tc.description}") {
+      | ${printPending}${tc.result}
+      | ${tc.checkResult}
+      |}"""
 
-    testCases map (printTestCaseGroup _).tupled mkString
+    testCases map (printTestCaseGroup).tupled mkString
   }
 }
 

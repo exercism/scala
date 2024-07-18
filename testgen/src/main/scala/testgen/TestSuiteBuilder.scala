@@ -77,7 +77,7 @@ object TestSuiteBuilder {
   def fromLabeledTest(argNames: String*): ToTestCaseData =
     withLabeledTest { sut => labeledTest =>
       val sutFunction = labeledTest.property
-      val args = sutArgs(labeledTest.result, argNames: _*)
+      val args = sutArgs(labeledTest.result, argNames*)
       val sutCall = s"$sut.$sutFunction(${args})"
       val expected = toString(labeledTest.expected)
 
@@ -88,7 +88,7 @@ object TestSuiteBuilder {
   def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
     withLabeledTest { sut => labeledTest =>
       val sutFunction = labeledTest.property
-      val args = sutArgsFromInput(labeledTest.result, argNames: _*)
+      val args = sutArgsFromInput(labeledTest.result, argNames*)
       val sutCall = s"$sut.$sutFunction(${args})"
       val expected = toString(labeledTest.expected)
 
@@ -98,7 +98,7 @@ object TestSuiteBuilder {
   def fromLabeledTestAlt(propArgs: (String, Seq[String])*): ToTestCaseData =
     withLabeledTest { sut => labeledTest =>
       val sutFunction = labeledTest.property
-      val args = sutArgsAlt(labeledTest.result, propArgs:_*)
+      val args = sutArgsAlt(labeledTest.result, propArgs*)
       val sutCall = s"$sut.$sutFunction(${args})"
       val expected = toString(labeledTest.expected)
 
@@ -109,7 +109,7 @@ object TestSuiteBuilder {
   def fromLabeledTestAltFromInput(propArgs: (String, Seq[String])*): ToTestCaseData =
     withLabeledTest { sut => labeledTest =>
       val sutFunction = labeledTest.property
-      val args = sutArgsAltFromInput(labeledTest.result, propArgs:_*)
+      val args = sutArgsAltFromInput(labeledTest.result, propArgs*)
       val sutCall = s"$sut.$sutFunction(${args})"
       val expected = toString(labeledTest.expected)
 
@@ -134,7 +134,7 @@ object TestSuiteBuilder {
   }
 
   def sutName(exerciseName: String) =
-    exerciseName split "-" map (_.capitalize) mkString
+    exerciseName `split` "-" map (_.capitalize) mkString
 
   def testSuiteName(exerciseName: String): String =
     sutName(exerciseName) + "Test"
@@ -149,14 +149,14 @@ object TestSuiteBuilder {
   def sutArgsAlt(parseResult: CanonicalDataParser.ParseResult, propArgs: (String, Seq[String])*): String =
     propArgs collect {
       case ((property, argNames)) if parseResult("property") == property =>
-        sutArgs(parseResult, argNames:_*)
+        sutArgs(parseResult, argNames*)
     } head
 
   // Use when arguments are layered under "input" json element
   def sutArgsAltFromInput(parseResult: CanonicalDataParser.ParseResult, propArgs: (String, Seq[String])*): String =
     propArgs collect {
       case ((property, argNames)) if parseResult("property") == property =>
-        sutArgsFromInput(parseResult, argNames:_*)
+        sutArgsFromInput(parseResult, argNames*)
     } head
 
 
@@ -167,8 +167,9 @@ object TestSuiteBuilder {
     if ("\"\n" exists (str.contains(_:Char))) "\"\"\"" else "\""
 
   def escape(raw: String): String = {
-    import scala.reflect.runtime.universe._
-    Literal(Constant(raw)).toString
+    // import scala.reflect.runtime.universe._
+    // Literal(Constant(raw)).toString
+    raw // TODO: escape special characters ?
   }
 
   def toString(any: Any): String = {

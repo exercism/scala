@@ -8,7 +8,7 @@ object PangramsTestGenerator {
     def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames*)
           val isPangram = labeledTest.property.mkString
           val sutCall =
             s"""Pangrams.$isPangram($args)"""

@@ -28,7 +28,7 @@ object TwoferTestGenerator {
     def fromLabeledTestFromInput(argNames: String*): ToTestCaseData =
       withLabeledTest { sut =>
         labeledTest =>
-          val args = sutArgsFromInput(labeledTest.result, argNames: _*)
+          val args = sutArgsFromInput(labeledTest.result, argNames*)
           val property = labeledTest.property
           val sutCall = s"""Twofer.twofer($args)"""
           val expected = toExpectedString(labeledTest.expected)
