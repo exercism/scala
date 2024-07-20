@@ -3,7 +3,6 @@ import @imp}
 
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
-@import testgen.TestSuiteBuilder._
 
 /** @@version @data.version */
 class @data.name extends AnyFunSuite with Matchers {

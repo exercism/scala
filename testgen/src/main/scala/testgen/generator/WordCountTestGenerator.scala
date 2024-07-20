@@ -1,32 +1,28 @@
 package testgen
 package generator
 
-import java.io.File
+import play.api.libs.json.*
 
-import TestSuiteBuilder.*
+final case class WordCountInput(sentence: String) derives Reads
+type ExpectedSuccess = Map[String, Int]
 
-object WordCountTestGenerator:
-  def toString(expected: CanonicalDataParser.Expected): String =
-    expected match
-      case Right(m: Map[String, Int]) =>
-        s"""Map(${m.map { case (s, i) => s"""("$s", $i)""" }.mkString(", ")})"""
-      case _                          => throw new IllegalArgumentException
+object WordCountTestGenerator extends TestGenerator[WordCountInput, ExpectedSuccess]:
 
-  def fromLabeledTestFromInput(): ToTestCaseData =
-    withLabeledTest { sut => labeledTest =>
-      val args     = labeledTest.result("input").asInstanceOf[Map[String, Any]]
-      val sentence = escape(args("sentence").toString)
-      val property = labeledTest.property
-      val sutCall  =
-        s"""$sut($sentence).$property"""
-      val expected = toString(labeledTest.expected)
-      TestCaseData(labeledTest.description, sutCall, expected)
-    }
+  override def toTestCaseData(suite: String, testItem: TestItem): Seq[TestCaseData] =
+    Seq(
+      TestCaseData(
+        description = testItem.description,
+        sutCall = s"""$suite("${testItem.input.sentence}").${testItem.property}""",
+        expected = testItem.expected.toCode: success =>
+          s"""Map(${success.map { case (s, i) => s"""("$s", $i)""" }.mkString(", ")})""",
+      ),
+    )
 
-  def main(args: Array[String]): Unit =
-    val file = new File("src/main/resources/word-count.json")
+  // def main(args: Array[String]): Unit =
+  //   val file        = File("/Users/grzegorzbielski/Library/Caches/exercism/configlet/problem-specifications/exercises/word-count/canonical-data.json")
+  //   val fileContent = io.Source.fromFile(file).getLines.mkString
 
-    val code = TestSuiteBuilder.build(file, fromLabeledTestFromInput())
-    println(s"-------------")
-    println(code)
-    println(s"-------------")
+  //   val code = WordCountTestGenerator.generate(fileContent)
+
+  //   println(code)
+
