@@ -47,12 +47,12 @@ object Sgf extends RegexParsers {
 
   private val propValue: Parser[String] =
     "[" ~ rep1(propValuePart) ~ "]" ^^ {
-      case _ ~ values ~ _ => values mkString
+      case _ ~ values ~ _ => values.mkString
     } named "propValue"
 
   private val propValuePart: Parser[String] = {
     implicit class AsStringParser(self: String) { def p: Parser[String] = self }
-    val ignore = const("") _
+    val ignore = const("")
 
     val escapedNewline: Parser[String] = "\\\n".p ^^ ignore
     val escapedChar: Parser[String] = """\\.""".r ^^ (_.takeRight(1))
