@@ -20,3 +20,5 @@ project/*
 project/target
 src/test/scala/project/
 target
+
+generated
