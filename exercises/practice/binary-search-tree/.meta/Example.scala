@@ -1,5 +1,7 @@
+import math.Ordered.orderingToOrdered
+
 case class Bst[+T](value: T, left: Option[Bst[T]], right: Option[Bst[T]]) {
-  def insert[U >: T <% Ordered[U]](x: U): Bst[U] = {
+  def insert[U >: T](x: U)(using Ordering[U]): Bst[U] = {
     def insert(x: U, node: Option[Bst[U]]): Option[Bst[U]] =
       node match {
         case Some(n) => Option(n.insert(x))
@@ -12,7 +14,7 @@ case class Bst[+T](value: T, left: Option[Bst[T]], right: Option[Bst[T]]) {
 }
 
 object Bst {
-  def fromList[T <% Ordered[T]](l: List[T]): Bst[T] = l match {
+  def fromList[T](l: List[T])(using Ordering[T]): Bst[T] = l match {
     case x::xs => xs.foldLeft(Bst(x, None, None))((r, e) => r.insert(e))
     case x::Nil => Bst(x, None, None)
     case Nil => throw new IllegalArgumentException("Tree must not be empty")

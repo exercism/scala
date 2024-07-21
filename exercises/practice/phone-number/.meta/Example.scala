@@ -1,11 +1,11 @@
 object PhoneNumber {
   type Parts = (String, String, String)
 
-  private[this] val AreaCodeLength = 3
-  private[this] val PrefixLength = 3
-  private[this] val LineNumberLength = 4
+  private val AreaCodeLength = 3
+  private val PrefixLength = 3
+  private val LineNumberLength = 4
 
-  private[this] val PhoneNumberPattern = {
+  private val PhoneNumberPattern = {
     def part(length: Int) = s"(\\d{$length})"
     s"""1?${part(AreaCodeLength)}${part(PrefixLength)}${part(LineNumberLength)}""".r
   }

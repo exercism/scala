@@ -78,7 +78,7 @@ trait MonocleSolution extends ToBeImplemented {
     def gregorianToEpochDay(g: Gregorian): EpochDay =
       LocalDate.of(g._year, g._month, g._dayOfMonth).toEpochDay
 
-    PIso(epochDayToGregorian _)(gregorianToEpochDay _)
+    PIso(epochDayToGregorian)(gregorianToEpochDay)
   }
 
   val setBirthMonth: Int => Person => Person =
