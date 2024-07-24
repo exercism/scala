@@ -6,28 +6,24 @@ Exercism Exercises in Scala
 
 Please see the [contributing guide](https://github.com/exercism/x-api/blob/master/CONTRIBUTING.md#the-exercise-data)
 
+Scala exercises are run by the [scala-test-runner](https://github.com/exercism/scala-test-runner).
+It ignores the dependencies listed in the `sbt` files of the exercises. It's important to add all dependencies necessary to run the exercise to the scala-test-runner's dependencies.
+
 ### Generated Test Suites
 
-Some of the test suites have been generated from shared test data. If a test suite was
-generated from test data, then the test suite should not be modified by hand. Instead
-the shared test data should be modified, and the generator rerun. To determine if
-a test suite generator was used, look inside the `testgen/src/main/scala` directory. The test
-suite generators are named in the form `ProblemNameTestGenerator.scala`. Where
-`ProblemName` is a close match for the Exercism problem name.
+`testgen` contains a project for generating test suites from [canonical test data](https://github.com/exercism/problem-specifications).
 
-[the shared problem metadata](https://github.com/exercism/x-common).
+You can run it as follows:
+```
+sbt testgen / run <exercise-slug> <path-to-canonical-data> <optional-path-to-generated-file>
+```
 
-For example, take a look at the `bob/canonical-data.json` file in the x-common repository, as well
-as the following files in the xscala repository:
+where:
+- `exercise-slug` is the slug of one of the exercises listed in the [config.json](config.json) file.
+- `path-to-canonical-data` is a local path to the canonical data, which could be obtained by running `bin/fetch-configlet` and `bin/configlet info -v d`
+- `optional-path-to-generated-file` an optional path for the generated file like `./TestSuite.scala`. 
 
-1. `testgen/src/main/scala/BobTestGenerator.scala` - test suite generator for bob
-1. `exercises/bob/src/test/scala/BobTest.scala`- generated test suite
-
-Since a generator was used, the`exercises/bob/src/test/scala/BobTest.scala` will never be edited directly. 
-If there's a missing test case, then additional inputs/outputs should be submitted to the x-common repository.
-
-When submitting new exercises we encourage that a test suite generator and generated test suite is
-included. 
+Note, that existing iteration of the `testgen` is not _yet_ used.
 
 ## Pull Requests
 
