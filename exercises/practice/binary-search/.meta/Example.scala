@@ -1,4 +1,5 @@
 import scala.annotation.tailrec
+import scala.math.Ordered.orderingToOrdered
 
 object BinarySearch {
   def find[T](seq: Seq[T], value: T)(implicit ord: T => Ordered[T]): Option[Int]

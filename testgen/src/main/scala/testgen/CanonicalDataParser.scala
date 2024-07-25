@@ -1,106 +1,126 @@
 package testgen
 
-import scala.io.Source
-import play.api.libs.json.Json
-import CanonicalDataParser._
-import scala.util.Try
-import scala.Left
-import scala.Right
+import play.api.libs.json.*
+import play.api.libs.functional.syntax.*
 import java.io.File
 
-object CanonicalDataParser {
-  type ParseResult = Map[String,Any]
+import Exercise.*
 
-  type Description = String
-  type Comments = Seq[String]
-  type Cases = Seq[LabeledTestItem]
-  type Property = String
-  type Result = Any
-  type Error = String
-  type Expected = Either[Error, Result]
-  type Properties = Option[Map[String,Any]]
+object CanonicalDataParser:
+  def parse[Input: Reads, Success: Reads](fileContents: String): Result[Exercise[Input, Success]] =
+    Json
+      .parse(fileContents)
+      .validate[Exercise[Input, Success]]
+      .asEither
+      .left
+      .map(v => TestGenError.ParserError(v.toString))
 
-  def getOptional[T](result: ParseResult, key: String): Option[T] =
-    result.get(key).asInstanceOf[Option[T]]
-  def getRequired[T](result: ParseResult, key: String): T =
-    getOptional(result, key) getOrElse (throw new Exception(s"missing: $key"))
+/** Represents a single exercise in the canonical data.
+  *
+  * Based on the JSON schema at: https://github.com/exercism/problem-specifications/blob/9c864c448fc1cc85cf2959ccffe9c768001a7a39/canonical-data.schema.json#L11
+  *
+  * @param name
+  *   the name of the exercise
+  * @param version
+  *   not provided in the current schema (!)
+  * @param cases
+  *   a list of test cases
+  * @param comments
+  *   a list of multiline comments
+  */
+final case class Exercise[Input, Success](
+  name: String,
+  version: Option[String],
+  cases: Cases[Input, Success],
+  comments: Option[Comments], // TODO: flatten the None comments to empty collection?
+)
+object Exercise:
+  type Description           = String
+  type Comments              = Vector[String]
+  type Cases[Input, Success] = Seq[LabeledTestItem[Input, Success]]
+  type Property              = String
+  type Error                 = String
 
-  def parse(file: File): Exercise = {
-    val fileContents = Source.fromFile(file).getLines.mkString
-    val rawParseResult =
-      Json.parse(fileContents).asInstanceOf[ParseResult]
-    val parseResult = rawParseResult mapValues restoreInts
-    Exercise.fromParseResult(parseResult.toMap)
-  }
+  opaque type Expected[S] = Either[Error, S]
+  object Expected:
+    inline def apply[R](value: R): Expected[R]     = Right(value)
+    inline def apply[R](error: Error): Expected[R] = Left(error)
 
-  private def restoreInts(any: Any): Any =
-    any match {
-      case double: Double if (double.toInt.toDouble == double) => double.toInt
-      case map: Map[_,_] => map mapValues restoreInts
-      case seq: Seq[_] => seq map restoreInts
-      case any => any
-    }
+    extension [S](e: Expected[S])
+      def toCode(fromSuccess: S => String): String =
+        e.fold(identity, fromSuccess)
 
-  def main(args: Array[String]): Unit = {
-    val path = "src/main/resources"
-//    val name = "hello-world.json"
-//    val name = "sum-of-multiples.json"
-    val name = "bowling.json"
-    val result = parse(new File(s"$path/$name"))
-    println(result)
-  }
-}
+  given [I: Reads, S: Reads]: Reads[Exercise[I, S]] = (
+    (__ \ "exercise").read[String] and
+      (__ \ "version").readNullable[String] and
+      (__ \ "cases").read[Seq[LabeledTestItem[I, S]]].map(flattenCases(_, parentDescriptions = Nil)) and
+      (__ \ "comments").readNullable[Comments]
+  )(Exercise.apply(_, _, _, _))
 
-case class Exercise(name: String, version: String, cases: Cases,
-    comments: Option[Comments])
-object Exercise {
-  implicit def fromParseResult(result: ParseResult): Exercise = {
-    val cases: Cases =
-      getRequired[Seq[ParseResult]](result, "cases") map LabeledTestItem.fromParseResult
-    Exercise(getRequired(result, "exercise"), getRequired(result, "version"),
-        flattenCases(cases, List()), getOptional(result, "comments"))
-  }
+  // Flattens the nested LabeledTestGroups into a flat list of LabeledTests
+  // So far there are too few LabeledTestGroups to handle them separately
+  private def flattenCases[I, S](cases: Seq[LabeledTestItem[I, S]], parentDescriptions: List[String]): Seq[LabeledTestItem[I, S]] =
+    cases match
+      case Seq()                               => Seq()
+      case (ltg: LabeledTestGroup[?, ?]) +: xs =>
+        flattenCases(ltg.cases, ltg.description :: parentDescriptions) ++
+          flattenCases(xs, parentDescriptions)
+      case (lt: LabeledTest[?, ?]) +: xs       =>
+        lt.copy(parentDescriptions = parentDescriptions) +:
+          flattenCases(xs, parentDescriptions)
 
-  // so far there are to few LabeledTestGroups to handle them separately
-  private def flattenCases(cases: Cases, parentDescriptions: List[String]): Cases =
-    cases match {
-      case Seq() => Seq()
-      case (ltg: LabeledTestGroup) +: xs => flattenCases(ltg.cases, ltg.description :: parentDescriptions) ++
-        flattenCases(xs, parentDescriptions)
-      case (lt: LabeledTest) +: xs => LabeledTest(lt.description, lt.property, lt.expected, lt.result, parentDescriptions) +:
-        flattenCases(xs, parentDescriptions)
-    }
-}
+enum LabeledTestItem[+Input, +Success]:
+  /** A single test case.
+    * @param uuid
+    *   test case identifier
+    * @param description
+    *   a description of the test case
+    * @param property
+    *   the property being tested
+    * @param expected
+    *   the expected result of the test
+    * @param result
+    *   not available in the schema, JsObject of the whole test case
+    * @param parentDescriptions
+    *   not available in the schema, used for flattening
+    */
+  case LabeledTest[Input, Success](
+    uuid: String,
+    // scenario
+    description: Description,
+    property: Property,
+    expected: Expected[Success],
+    input: Input,
+    parentDescriptions: List[String] = List(),
+  ) extends LabeledTestItem[Input, Success]
 
-sealed trait LabeledTestItem
-object LabeledTestItem {
-  implicit def fromParseResult(result: ParseResult): LabeledTestItem =
-    if (result.contains("cases")) result: LabeledTestGroup
-    else result: LabeledTest
-}
+  /** A group of test cases.
+    *
+    * @param description
+    *   the description of the group
+    * @param cases
+    *   the test cases in the group
+    */
+  case LabeledTestGroup[Input, Success](description: Description, cases: Cases[Input, Success]) extends LabeledTestItem[Input, Success]
 
-case class LabeledTest(description: Description, property: Property,
-    expected: Expected, result: ParseResult, parentDescriptions: List[String] = List()) extends LabeledTestItem
-object LabeledTest {
-  implicit def fromParseResult(result: ParseResult): LabeledTest = {
-    val expected: Expected = {
-      val any = getOptional[Any](result, "expected").getOrElse("unknown")
-      val error = Try {
-        Left(any.asInstanceOf[Map[String,String]]("error"))
-      }
-      error.getOrElse(Right(any))
-    }
-    LabeledTest(getRequired(result, "description"), getRequired(result, "property"),
-        expected, result)
-  }
-}
+export LabeledTestItem.*
 
-case class LabeledTestGroup(description: Description, cases: Cases) extends LabeledTestItem
-object LabeledTestGroup {
-  implicit def fromParseResult(result: ParseResult): LabeledTestGroup = {
-    val description = getRequired[String](result, "description")
-    val cases =
-      getRequired[Seq[ParseResult]](result, "cases") map LabeledTestItem.fromParseResult
-    LabeledTestGroup(description, cases)
-  }
-}
+object LabeledTestItem:
+  given [S: Reads]: Reads[Expected[S]] = Reads[Expected[S]]: json =>
+    (json \ "error").asOpt[String] match
+      case Some(error) => JsSuccess(Expected(error))
+      case None        => json.validate[S].map(Expected(_))
+
+  given labeledTestReads[I: Reads, S: Reads]: Reads[LabeledTest[I, S]] =
+    Json.reads[LabeledTest[I, S]]
+
+  given labeledTestGroupReads[I: Reads, S: Reads]: Reads[LabeledTestGroup[I, S]] =
+    Json.reads[LabeledTestGroup[I, S]]
+
+  given [I: Reads, S: Reads]: Reads[LabeledTestItem[I, S]] =
+    labeledTestGroupReads[I, S].widen[LabeledTestItem[I, S]] orElse
+      labeledTestReads[I, S].widen[LabeledTestItem[I, S]]
+
+// add `derives` syntax
+extension [A](reads: Reads.type)
+  inline def derived: Reads[A] =  Json.reads[A]

@@ -65,21 +65,21 @@ class SimpleLinkedListTest extends AnyFlatSpec with Matchers with ScalaCheckDriv
 
   it should "handle arbitrary list fromSeq toSeq" in {
     pending
-    forAll { seq: Seq[Int] =>
+    forAll { (seq: Seq[Int]) =>
       assert(SimpleLinkedList.fromSeq(seq).toSeq == seq)
     }
   }
 
   it should "handle reverse arbitrary list " in {
     pending
-    forAll { seq: Seq[Int] =>
+    forAll { (seq: Seq[Int]) =>
       assert(SimpleLinkedList.fromSeq(seq).reverse.toSeq == seq.reverse)
     }
   }
 
   it should "reverse arbitrary list back to original" in {
     pending
-    forAll { list: SimpleLinkedList[Int] =>
+    forAll { (list: SimpleLinkedList[Int]) =>
       assert(list.reverse.reverse.toSeq == list.toSeq)
     }
   }
@@ -90,7 +90,7 @@ class SimpleLinkedListTest extends AnyFlatSpec with Matchers with ScalaCheckDriv
       (0 until i).foldLeft(list)((acc, j) => acc.next).value
     }
 
-    forAll { xs: Seq[Int]  =>
+    forAll { (xs: Seq[Int]) =>
       whenever(xs.nonEmpty) {
         val list = SimpleLinkedList.fromSeq(xs)
         xs.indices.foreach {
@@ -102,7 +102,7 @@ class SimpleLinkedListTest extends AnyFlatSpec with Matchers with ScalaCheckDriv
 
   it should "return original arbitrary list from added list elements" in {
     pending
-    forAll { xs: Seq[Int] =>
+    forAll { (xs: Seq[Int]) =>
       val list = xs.foldLeft(SimpleLinkedList[Int]())(_.add(_))
       assert(list.toSeq == xs)
     }
@@ -110,7 +110,7 @@ class SimpleLinkedListTest extends AnyFlatSpec with Matchers with ScalaCheckDriv
 
   it should "handle arbitrary generics" in {
     pending
-    forAll { xs: Seq[String] =>
+    forAll { (xs: Seq[String]) =>
       assert(SimpleLinkedList.fromSeq(xs).toSeq == xs)
     }
   }

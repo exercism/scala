@@ -1,5 +1,5 @@
-scalaVersion := "2.13.6"
+scalaVersion := "3.4.2"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.10" % "test"
-libraryDependencies += "org.scalatestplus" %% "scalacheck-1-15" % "3.2.9.0" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % Test
+libraryDependencies += "org.scalatestplus" %% "scalacheck-1-18" % "3.2.19.0" % Test
 
