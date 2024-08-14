@@ -1,12 +1,14 @@
-scalaVersion := "2.13.6"
+scalaVersion := "3.4.2"
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.10" % "test"
+libraryDependencies += "org.scalatest" %% "scalatest" % "3.2.19" % Test
 
-val monocleVersion = "2.0.0"
+val monocleVersion = "3.2.0"
 
 libraryDependencies ++= Seq(
-  "com.github.julien-truffaut" %%  "monocle-core"  % monocleVersion,
-  "com.github.julien-truffaut" %%  "monocle-macro" % monocleVersion)
+  "dev.optics" %%  "monocle-core"  % monocleVersion,
+  "dev.optics" %%  "monocle-macro" % monocleVersion
+)
 
-libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.2.28"
+// used for solution example only, not provided in the test runner
+libraryDependencies += "org.scalaz" %% "scalaz-core" % "7.3.8"
 

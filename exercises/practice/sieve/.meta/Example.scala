@@ -6,7 +6,7 @@ object Sieve {
     val primes = mutable.HashSet.empty ++ (2 to upperBound)
 
     // Remove multiples of a possiblePrime from the primes set.
-    def checkPrime(possiblePrime: Int) {
+    def checkPrime(possiblePrime: Int) = {
       if (primes contains possiblePrime) {
         // remove multiples of possiblePrime from set
         val possibleSquared = possiblePrime * possiblePrime
