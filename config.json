@@ -1288,7 +1288,7 @@
   "key_features": [
     {
       "title": "Modern",
-      "content": "Scala is relatively young, and design decisions are aimed to address criticisms of Java.",
+      "content": "Scala is a constantly evolving language, bringing research and industry together.",
       "icon": "evolving"
     },
     {
@@ -1297,18 +1297,18 @@
       "icon": "multi-paradigm"
     },
     {
-      "title": "Statically typed",
-      "content": "Scala is statically typed and supports type inference, catching errors early.",
+      "title": "Advanced type system",
+      "content": "Static typing with inference, traits, type classes, higher-kinded types and typed macros",
       "icon": "statically-typed"
     },
     {
-      "title": "Lazy computation",
-      "content": "Scala evaluates expressions only when required, this increases performance.",
-      "icon": "fast"
+      "title": "Multi-platform",
+      "content": "Scala can run and interop with JVM, JavaScript (browser and Node.js), and native code.",
+      "icon": "cross-platform"
     },
     {
       "title": "Immutability",
-      "content": "Scala uses an immutability concept. Each declared variable is immutable by default.",
+      "content": "Scala provides a strong emphasis on immutable data structures.",
       "icon": "immutable"
     },
     {
@@ -1327,10 +1327,13 @@
     "platform/web",
     "platform/windows",
     "runtime/jvm",
+    "runtime/standalone_executable",
     "typing/static",
     "typing/strong",
     "used_for/backends",
     "used_for/financial_systems",
-    "used_for/frontends"
+    "used_for/frontends",
+    "used_for/scripts",
+    "used_for/web_development"
   ]
 }
