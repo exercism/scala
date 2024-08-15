@@ -24,5 +24,5 @@
       "build.sbt"
     ]
   },
-  "blurb": "Compute the result for a game of Hex / Polygon"
+  "blurb": "Compute the result for a game of Hex / Polygon."
 }
