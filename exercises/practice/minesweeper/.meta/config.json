@@ -1,5 +1,4 @@
 {
-  "blurb": "Add the numbers to a minesweeper board.",
   "authors": [
     "ricemery"
   ],
@@ -21,5 +20,6 @@
     "invalidator": [
       "build.sbt"
     ]
-  }
+  },
+  "blurb": "Add the numbers to a minesweeper board."
 }

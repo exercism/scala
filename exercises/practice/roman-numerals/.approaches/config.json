@@ -1,7 +1,8 @@
 {
   "introduction": {
-    "authors": ["bobahop"],
-    "contributors": []
+    "authors": [
+      "bobahop"
+    ]
   },
   "approaches": [
     {
@@ -9,21 +10,27 @@
       "slug": "iterate-takewhile-last",
       "title": "iterate with takeWhile and last",
       "blurb": "Use iterate with takeWhile and last to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "8cee72f4-489d-4cd5-9931-2cff3709f2bc",
       "slug": "vectors-recursion",
       "title": "Vectors recursion",
       "blurb": "Use recursion with Vectors to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "567a3c53-c340-4449-b8a2-9aef458edf16",
       "slug": "map-recursion",
       "title": "Map recursion",
       "blurb": "Use recursion with a Map to return the answer.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     }
   ]
 }

@@ -1,7 +1,8 @@
 {
   "introduction": {
-    "authors": ["bobahop"],
-    "contributors": []
+    "authors": [
+      "bobahop"
+    ]
   },
   "approaches": [
     {
@@ -9,35 +10,45 @@
       "slug": "boolean-chain",
       "title": "Boolean chain",
       "blurb": "Use a chain of boolean expressions.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "ec67dae7-6709-4ee9-af82-ce90520b0199",
       "slug": "ternary-expression",
       "title": "Ternary expression",
       "blurb": "Use a ternary expression of boolean conditions.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "bf3c02ca-5082-4eee-a580-ce1d72f522d9",
       "slug": "match-on-a-tuple",
       "title": "match on a tuple",
       "blurb": "Use a match on a tuple made from boolean expressions.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "7d9baeca-be7b-4c3b-b56f-e033dbe3a8c8",
       "slug": "localdate-plusdays",
       "title": "LocalDate plusDays",
       "blurb": "Use LocalDate plusDays.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     },
     {
       "uuid": "d22e54b1-ff48-49ff-b069-4e55210c1d19",
       "slug": "built-in-method",
       "title": "Built-in method",
       "blurb": "Use the built-in method.",
-      "authors": ["bobahop"]
+      "authors": [
+        "bobahop"
+      ]
     }
   ]
 }

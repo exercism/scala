@@ -11,6 +11,9 @@
     ],
     "example": [
       ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
     ]
   },
   "blurb": "Reverse a given string.",

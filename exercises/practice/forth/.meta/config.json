@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement an evaluator for a very simple subset of Forth.",
   "authors": [
     "ricemery"
   ],
@@ -21,5 +20,6 @@
     "invalidator": [
       "build.sbt"
     ]
-  }
+  },
+  "blurb": "Implement an evaluator for a very simple subset of Forth."
 }

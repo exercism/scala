@@ -1,5 +1,4 @@
 {
-  "blurb": "Implement a doubly linked list.",
   "authors": [
     "ricemery"
   ],
@@ -22,5 +21,6 @@
       "build.sbt"
     ]
   },
+  "blurb": "Implement a doubly linked list.",
   "source": "Classic computer science topic"
 }

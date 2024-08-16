@@ -1,5 +1,4 @@
 {
-  "blurb": "Parsing a Smart Game Format string.",
   "authors": [
     "abo64"
   ],
@@ -22,5 +21,6 @@
     "invalidator": [
       "build.sbt"
     ]
-  }
+  },
+  "blurb": "Parsing a Smart Game Format string."
 }
