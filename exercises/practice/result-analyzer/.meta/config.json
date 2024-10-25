@@ -1,0 +1,25 @@
+{
+  "authors": [
+    "mrtob"
+  ],
+  "contributors": [
+    "mrtob"
+  ],
+  "files": {
+    "solution": [
+      "src/main/scala/ResultsAnalysis.scala"
+    ],
+    "test": [
+      "src/test/scala/ResultsAnalysisTest.scala"
+    ],
+    "example": [
+      ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
+    ]
+  },
+  "blurb": "Analyze the points of students in a class to ´genrate statistics.",
+  "source": "Exercism",
+  "source_url": ""
+}
