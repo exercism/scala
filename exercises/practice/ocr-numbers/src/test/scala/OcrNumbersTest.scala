@@ -9,7 +9,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
     OcrNumbers.convert(List(" _ ",
                             "| |",
                             "|_|",
-                            "   ")) should be("0")
+                            "   ")) should be(Some("0"))
   }
 
   test("Recognizes 1") {
@@ -17,7 +17,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
     OcrNumbers.convert(List("   ",
                             "  |",
                             "  |",
-                            "   ")) should be("1")
+                            "   ")) should be(Some("1"))
   }
 
   test("Unreadable but correctly sized inputs return ?") {
@@ -25,24 +25,24 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
     OcrNumbers.convert(List("   ",
                             "  _",
                             "  |",
-                            "   ")) should be("?")
+                            "   ")) should be(Some("?"))
   }
 
   test(
-    "Input with a number of lines that is not a multiple of four raises an error") {
+    "Input with a number of lines that is not a multiple of four returns None") {
     pending
     OcrNumbers.convert(List(" _ ",
                             "| |",
-                            "   ")) should be("?")
+                            "   ")) should be(None)
   }
 
   test(
-    "Input with a number of columns that is not a multiple of three raises an error") {
+    "Input with a number of columns that is not a multiple of three returns None") {
     pending
     OcrNumbers.convert(List("    ",
                             "   |",
                             "   |",
-                            "    ")) should be("?")
+                            "    ")) should be(None)
   }
 
   test("Recognizes 110101100") {
@@ -51,7 +51,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
       List("       _     _        _  _ ",
            "  |  || |  || |  |  || || |",
            "  |  ||_|  ||_|  |  ||_||_|",
-           "                           ")) should be("110101100")
+           "                           ")) should be(Some("110101100"))
   }
 
   test("Garbled numbers in a string are replaced with ?") {
@@ -60,7 +60,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
       List("       _     _           _ ",
            "  |  || |  || |     || || |",
            "  |  | _|  ||_|  |  ||_||_|",
-           "                           ")) should be("11?10?1?0")
+           "                           ")) should be(Some("11?10?1?0"))
   }
 
   test("Recognizes 2") {
@@ -68,7 +68,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
     OcrNumbers.convert(List(" _ ",
                             " _|",
                             "|_ ",
-                            "   ")) should be("2")
+                            "   ")) should be(Some("2"))
   }
 
   test("Recognizes 3") {
@@ -76,7 +76,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
     OcrNumbers.convert(List(" _ ",
                             " _|",
                             " _|",
-                            "   ")) should be("3")
+                            "   ")) should be(Some("3"))
   }
 
   test("Recognizes 4") {
@@ -84,7 +84,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
     OcrNumbers.convert(List("   ",
                             "|_|",
                             "  |",
-                            "   ")) should be("4")
+                            "   ")) should be(Some("4"))
   }
 
   test("Recognizes 5") {
@@ -92,7 +92,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
     OcrNumbers.convert(List(" _ ",
                             "|_ ",
                             " _|",
-                            "   ")) should be("5")
+                            "   ")) should be(Some("5"))
   }
 
   test("Recognizes 6") {
@@ -100,7 +100,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
     OcrNumbers.convert(List(" _ ",
                             "|_ ",
                             "|_|",
-                            "   ")) should be("6")
+                            "   ")) should be(Some("6"))
   }
 
   test("Recognizes 7") {
@@ -108,7 +108,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
     OcrNumbers.convert(List(" _ ",
                             "  |",
                             "  |",
-                            "   ")) should be("7")
+                            "   ")) should be(Some("7"))
   }
 
   test("Recognizes 8") {
@@ -116,7 +116,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
     OcrNumbers.convert(List(" _ ",
                             "|_|",
                             "|_|",
-                            "   ")) should be("8")
+                            "   ")) should be(Some("8"))
   }
 
   test("Recognizes 9") {
@@ -124,7 +124,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
     OcrNumbers.convert(List(" _ ",
                             "|_|",
                             " _|",
-                            "   ")) should be("9")
+                            "   ")) should be(Some("9"))
   }
 
   test("Recognizes string of decimal numbers") {
@@ -133,7 +133,7 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
       List("    _  _     _  _  _  _  _  _ ",
            "  | _| _||_||_ |_   ||_||_|| |",
            "  ||_  _|  | _||_|  ||_| _||_|",
-           "                              ")) should be("1234567890")
+           "                              ")) should be(Some("1234567890"))
   }
 
   test(
@@ -151,6 +151,6 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
            " _  _  _ ",
            "  ||_||_|",
            "  ||_| _|",
-           "         ")) should be("123,456,789")
+           "         ")) should be(Some("123,456,789"))
   }
 }
