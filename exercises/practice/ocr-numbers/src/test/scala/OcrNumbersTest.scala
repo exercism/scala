@@ -28,6 +28,11 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
                             "   ")) should be(Some("?"))
   }
 
+  test("Input with no lines returns None") {
+    pending
+    OcrNumbers.convert(List()) should be(None)
+  }
+
   test(
     "Input with a number of lines that is not a multiple of four returns None") {
     pending
@@ -35,6 +40,12 @@ class OcrNumbersTest extends AnyFunSuite with Matchers {
                             "| |",
                             "   ")) should be(None)
   }
+
+  test("Input with empty columns returns None") {
+    pending
+    OcrNumbers.convert(List("", "", "", "")) should be(None)
+  }
+
 
   test(
     "Input with a number of columns that is not a multiple of three returns None") {
