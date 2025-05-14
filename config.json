@@ -1289,13 +1289,7 @@
         "uuid": "0c786feb-8653-4215-9281-2e1c83afeefe",
         "practices": [],
         "prerequisites": [],
-        "difficulty": 3,
-        "topics": [
-          "algorithms",
-          "control_flow",
-          "strings",
-          "text_formatting"
-        ]
+        "difficulty": 3
       }
     ]
   },
