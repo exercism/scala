@@ -13,6 +13,7 @@ class BottleSongTest extends AnyFunSuite with Matchers {
   }
 
   test("last generic verse") {
+    pending
     BottleSong.recite(3, 1) shouldBe
       """Three green bottles hanging on the wall,
         |Three green bottles hanging on the wall,
@@ -22,6 +23,7 @@ class BottleSongTest extends AnyFunSuite with Matchers {
   }
 
   test("verse with two bottles") {
+    pending
     BottleSong.recite(2, 1) shouldBe
       """Two green bottles hanging on the wall,
         |Two green bottles hanging on the wall,
@@ -31,6 +33,7 @@ class BottleSongTest extends AnyFunSuite with Matchers {
   }
 
   test("verse with one bottle") {
+    pending
     BottleSong.recite(1, 1) shouldBe
       """One green bottle hanging on the wall,
         |One green bottle hanging on the wall,
@@ -40,6 +43,7 @@ class BottleSongTest extends AnyFunSuite with Matchers {
   }
 
   test("first two verses") {
+    pending
     BottleSong.recite(10, 2) shouldBe
       """Ten green bottles hanging on the wall,
         |Ten green bottles hanging on the wall,
@@ -54,6 +58,7 @@ class BottleSongTest extends AnyFunSuite with Matchers {
   }
 
   test("last three verses") {
+    pending
     BottleSong.recite(3, 3) shouldBe
       """Three green bottles hanging on the wall,
         |Three green bottles hanging on the wall,
@@ -73,6 +78,7 @@ class BottleSongTest extends AnyFunSuite with Matchers {
   }
 
   test("all verses") {
+    pending
     BottleSong.recite(10, 10) shouldBe
       """Ten green bottles hanging on the wall,
         |Ten green bottles hanging on the wall,
