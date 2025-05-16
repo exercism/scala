@@ -213,12 +213,7 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 3,
-        "topics": [
-          "algorithms",
-          "control_flow",
-          "strings",
-          "text_formatting"
-        ]
+        "status": "deprecated"
       },
       {
         "slug": "house",
