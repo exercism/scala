@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "rabestro"
+  ],
+  "files": {
+    "solution": [
+      "src/main/scala/KillerSudokuHelper.scala"
+    ],
+    "test": [
+      "src/test/scala/KillerSudokuHelperTest.scala"
+    ],
+    "example": [
+      ".meta/Example.scala"
+    ],
+    "invalidator": [
+      "build.sbt"
+    ]
+  },
+  "blurb": "Write a tool that makes it easier to solve Killer Sudokus",
+  "source": "Created by Sascha Mann, Jeremy Walker, and BethanyG for the Julia track on Exercism.",
+  "source_url": "https://github.com/exercism/julia/pull/413"
+}
