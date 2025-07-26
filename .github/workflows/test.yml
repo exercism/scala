@@ -14,5 +14,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
 
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: sbt
+
+      - name: Setup SBT
+        uses: sbt/setup-sbt@v1
+        with:
+          sbt-runner-version: 1.9.9
+
       - name: Run tests for all exercises
         run: bin/test
