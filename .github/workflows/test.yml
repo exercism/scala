@@ -23,8 +23,6 @@ jobs:
 
       - name: Setup SBT
         uses: sbt/setup-sbt@v1
-        with:
-          sbt-runner-version: 1.9.9
 
       - name: Run tests for all exercises
         run: bin/test
