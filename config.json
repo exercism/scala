@@ -1193,12 +1193,21 @@
         ]
       },
       {
+        "slug": "flower-field",
+        "name": "Flower Field",
+        "uuid": "33043a5a-4360-43c6-a5bd-0e9c3f4b9069",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 7
+      },
+      {
         "slug": "minesweeper",
         "name": "Minesweeper",
         "uuid": "04c3197c-cd3d-4853-af3f-50c189af80c7",
         "practices": [],
         "prerequisites": [],
         "difficulty": 7,
+        "status": "deprecated",
         "topics": [
           "lists",
           "parsing",
