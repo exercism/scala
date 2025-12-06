@@ -1,0 +1,23 @@
+{
+  "authors": [
+    "ricemery"
+  ],
+  "contributors": [
+    "ErikSchierboom",
+    "keiravillekode",
+    "ppartarr",
+    "rajeshpg"
+  ],
+  "files": {
+    "solution": [
+      "src/main/scala/FlowerField.scala"
+    ],
+    "test": [
+      "src/test/scala/FlowerFieldTest.scala"
+    ],
+    "example": [
+      ".meta/Example.scala"
+    ]
+  },
+  "blurb": "Mark all the flowers in a garden."
+}
