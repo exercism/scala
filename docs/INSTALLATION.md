@@ -4,7 +4,7 @@ In addition to the exercism CLI and your favorite text editor, practicing with E
 
 All of them could be installed automatically by the `Coursier` tool. 
 
-See: https://www.scala-lang.org/download/ for more details.
+See: [the download page](https://www.scala-lang.org/download/) for more details.
 
 ---
 
