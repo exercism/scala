@@ -1,6 +1,6 @@
 # Instructions append
 
-## Hints
+## Track specific instructions
 
 For simplicity and readability: Consider using the Scala collection functions instead of Java's `String` methods.
 Remember that in Scala a `String` is implicitly also a `Seq[Char]`, so you can call them as easily as the `String` methods.

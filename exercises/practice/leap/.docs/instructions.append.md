@@ -1,6 +1,6 @@
 # Hints
 
-## Implementation
+## Track specific instructions
 
 Try to avoid code repetition, use private helper functions if you can.
 

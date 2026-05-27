@@ -1,6 +1,6 @@
 # Instructions append
 
-## Hints
+## Track specific instructions
 
 According to [this terminology][terminology] you should write a *parallel* and *deterministic* program and (by all means!) let Scala deal with the *concurrency* aspect.
 Or else your code could quickly get messy and error-prone with all kinds of nasty concurrency bugs.

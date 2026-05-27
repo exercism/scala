@@ -1,6 +1,6 @@
 # Instructions append
 
-## Hints
+## Track specific instructions
 
 For something a little different you might also try a solution with an `unfold` function.
 You are probably already familiar with `foldLeft/Right`: "map" a whole collection into something else (usually a non-collection).

@@ -1,6 +1,6 @@
 # Instructions append
 
-## Hints
+## Track specific instructions
 
 You may notice that some test cases seem unfair.
 However, they may be legitimately so.
