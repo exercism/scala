@@ -29,6 +29,16 @@ class SayTest extends AnyFunSuite with Matchers {
     Say.inEnglish(22) should be(Some("twenty-two"))
   }
 
+  test("thirty") {
+    pending
+    Say.inEnglish(30) should be(Some("thirty"))
+  }
+
+  test("ninety-nine") {
+    pending
+    Say.inEnglish(99) should be(Some("ninety-nine"))
+  }
+
   test("one hundred") {
     pending
     Say.inEnglish(100) should be(Some("one hundred"))
@@ -37,6 +47,16 @@ class SayTest extends AnyFunSuite with Matchers {
   test("one hundred twenty-three") {
     pending
     Say.inEnglish(123) should be(Some("one hundred twenty-three"))
+  }
+
+  test("two hundred") {
+    pending
+    Say.inEnglish(200) should be(Some("two hundred"))
+  }
+
+  test("nine hundred ninety-nine") {
+    pending
+    Say.inEnglish(999) should be(Some("nine hundred ninety-nine"))
   }
 
   test("one thousand") {
