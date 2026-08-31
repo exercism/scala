@@ -17,6 +17,7 @@ bin/configlet.exe
 project/*
 !project/build.properties
 !project/plugins.sbt
+!project/Exercises.scala
 project/target
 src/test/scala/project/
 target

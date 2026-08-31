@@ -1,64 +1,43 @@
 #!/usr/bin/env bash
 
 # Synopsis:
-# Test the track's exercises.
+# Test the track's exercises: every test of an exercise is run against its
+# example/exemplar solution.
+#
+# Every exercise is a subproject of the build (see project/Exercises.scala), so all of
+# them are tested in a single sbt session. The exercises are left untouched: the sources
+# that are compiled - the example solution, and the tests with their `pending` markers
+# blanked out - are assembled under target/.
 
 # Arguments:
-# $1: exercise slug: only this exercise will be tested (optional)
+# $@: exercise slugs: only these exercises will be tested (optional)
 
 # Examples:
 # ./bin/test
 # ./bin/test two-fer
+# ./bin/test two-fer bob
 
-exercise_slug_filter="$1"
-exit_code=0
+set -eu -o pipefail
 
-function test_exercise() {
-    exercise_dir="${1}"
-    exercise_slug=$(basename "${exercise_dir}")
-    example_file_key="${2}"
-
-    if [ -z "${exercise_slug_filter}" ] ||
-       [ "${exercise_slug}" == "${exercise_slug_filter}" ]; then
-        echo "Checking ${exercise_slug} exercise..."        
-        pushd "${exercise_dir}" > /dev/null
-
-        solution_file=$(jq -r '.files.solution[0]' '.meta/config.json')
-        test_file=$(jq -r '.files.test[0]' '.meta/config.json')
-        example_file=$(jq -r ".files.${example_file_key}[0]" '.meta/config.json')
-        tmp_solution_file=$(mktemp --suffix '-solution.scala')
-        tmp_test_file=$(mktemp --suffix '-test.scala')
-
-        cp "${solution_file}" "${tmp_solution_file}"
-        cp "${test_file}" "${tmp_test_file}"
-        cp "${example_file}" "${solution_file}"
-
-        sed -i -e '/^\s*pending\s*$/d' "${test_file}"
-
-        sbt test
-        if [ $? -ne 0 ]; then
-            exit_code=1
-        fi
-
-        mv "${tmp_solution_file}" "${solution_file}"
-        mv "${tmp_test_file}" "${test_file}"
-
-        popd > /dev/null
-    fi
+die() {
+    echo "$*" >&2
+    exit 1
 }
 
-# Verify the Concept Exercises
-for concept_exercise_dir in ./exercises/concept/*/; do
-    if [ -d $concept_exercise_dir ]; then
-        test_exercise "${concept_exercise_dir}" "exemplar"
-    fi
-done
+command -v sbt > /dev/null ||
+    die "sbt is required but not installed. See https://www.scala-sbt.org/download."
 
-# Verify the Practice Exercises
-for practice_exercise_dir in ./exercises/practice/*/; do
-    if [ -d $practice_exercise_dir ]; then
-        test_exercise "${practice_exercise_dir}" "example"
-    fi
-done
+cd "$(dirname "$0")/.."
 
-exit $exit_code
+sbt_commands=()
+if (( $# )); then
+    for exercise_slug; do
+        [ -d "exercises/concept/${exercise_slug}" ] || [ -d "exercises/practice/${exercise_slug}" ] ||
+            die "No such exercise: ${exercise_slug}"
+        sbt_commands+=( "${exercise_slug}/test" )
+    done
+else
+    sbt_commands+=( "exercises/test" )
+fi
+
+exec sbt -batch "${sbt_commands[@]}"
