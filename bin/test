@@ -32,7 +32,7 @@ cd "$(dirname "$0")/.."
 sbt_commands=()
 if (( $# )); then
     for exercise_slug; do
-        [ -d "exercises/concept/${exercise_slug}" ] || [ -d "exercises/practice/${exercise_slug}" ] ||
+        [[ -d "exercises/concept/${exercise_slug}" || -d "exercises/practice/${exercise_slug}" ]] ||
             die "No such exercise: ${exercise_slug}"
         sbt_commands+=( "${exercise_slug}/test" )
     done
