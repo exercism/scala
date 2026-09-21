@@ -34,7 +34,7 @@ object Change {
         case _ => bestResult
       }
 
-    minChange(target, coins.sorted(Ordering.Int.reverse), List(), None)
+    minChange(target, coins.sorted(using Ordering.Int.reverse), List(), None)
   }
 }
 
