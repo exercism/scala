@@ -50,7 +50,7 @@ object Exercise:
       def toCode(fromSuccess: S => String): String =
         e.fold(identity, fromSuccess)
 
-  given [I: Reads, S: Reads]: Reads[Exercise[I, S]] = (
+  given [I: Reads, S: Reads] => Reads[Exercise[I, S]] = (
     (__ \ "exercise").read[String] and
       (__ \ "version").readNullable[String] and
       (__ \ "cases").read[Seq[LabeledTestItem[I, S]]].map(flattenCases(_, parentDescriptions = Nil)) and
@@ -106,18 +106,18 @@ enum LabeledTestItem[+Input, +Success]:
 export LabeledTestItem.*
 
 object LabeledTestItem:
-  given [S: Reads]: Reads[Expected[S]] = Reads[Expected[S]]: json =>
+  given [S: Reads] => Reads[Expected[S]] = Reads[Expected[S]]: json =>
     (json \ "error").asOpt[String] match
       case Some(error) => JsSuccess(Expected(error))
       case None        => json.validate[S].map(Expected(_))
 
-  given labeledTestReads[I: Reads, S: Reads]: Reads[LabeledTest[I, S]] =
+  given labeledTestReads: [I: Reads, S: Reads] => Reads[LabeledTest[I, S]] =
     Json.reads[LabeledTest[I, S]]
 
-  given labeledTestGroupReads[I: Reads, S: Reads]: Reads[LabeledTestGroup[I, S]] =
+  given labeledTestGroupReads: [I: Reads, S: Reads] => Reads[LabeledTestGroup[I, S]] =
     Json.reads[LabeledTestGroup[I, S]]
 
-  given [I: Reads, S: Reads]: Reads[LabeledTestItem[I, S]] =
+  given [I: Reads, S: Reads] => Reads[LabeledTestItem[I, S]] =
     labeledTestGroupReads[I, S].widen[LabeledTestItem[I, S]] orElse
       labeledTestReads[I, S].widen[LabeledTestItem[I, S]]
 
