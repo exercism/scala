@@ -1,7 +1,6 @@
 name := "ExcercismScalaTestGenerator"
 
 ThisBuild / scalaVersion := "3.4.2"
-ThisBuild / scalacOptions ++= Seq("-source:future")
 
 lazy val root = project
   .in(file("."))
@@ -10,6 +9,7 @@ lazy val root = project
 lazy val testgen = project
   .enablePlugins(SbtTwirl)
   .settings(
+    scalacOptions ++= Seq("-source:future"),
     Compile / TwirlKeys.compileTemplates / sourceDirectories
         += (baseDirectory.value.getParentFile / "src" / "main" / "twirl")
     )
@@ -20,3 +20,12 @@ lazy val testgen = project
     libraryDependencies += "org.apache.commons" % "commons-lang3" % "3.15.0"
   )
 
+// Each exercise is a subproject of this build (see project/Exercises.scala), so all of
+// them are verified in a single sbt session: `sbt exercises/test` tests every exercise,
+// `sbt <slug>/test` a single one. `bin/test` wraps both.
+lazy val exercises = project
+  .in(file("exercises"))
+  .settings(
+    target := file("target") / "exercises",
+    Test / test := Exercises.testAll.value
+  )
