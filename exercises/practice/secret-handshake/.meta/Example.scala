@@ -1,7 +1,7 @@
 object SecretHandshake {
-  private val reverseGestures = 16
-  private def gestures = List((1, "wink"), (2, "double blink"),
-    (4, "close your eyes"), (8, "jump"))
+  private val reverseGestures = 0b10000
+  private def gestures = List((0b00001, "wink"), (0b00010, "double blink"),
+    (0b00100, "close your eyes"), (0b01000, "jump"))
 
   def commands(s: String): List[String] = {
     def isValid = s.count(c => c != '0' && c != '1') == 0
