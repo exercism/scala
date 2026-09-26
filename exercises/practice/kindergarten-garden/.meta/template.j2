@@ -1,0 +1,27 @@
+{%- import "macros.j2" as macros -%}
+{%- set PLANT = {"violets": "Plant.Violets", "clover": "Plant.Clover",
+                 "radishes": "Plant.Radishes", "grass": "Plant.Grass"} -%}
+{%- macro plants(expected) -%}
+List({% for p in expected %}{{ PLANT[p] }}{% if not loop.last %}, {% endif %}{% endfor %})
+{%- endmacro -%}
+{{ macros.header("KindergartenGarden") }}
+{% for case in cases %}
+{% set diagram = case.input.diagram | scala %}
+{% set student = case.input.student | scala %}
+{% set inline = "Garden.defaultGarden(" ~ diagram ~ ").plants(" ~ student ~ ")" %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if ("    " ~ inline ~ " should be(") | length <= 100 %}
+    {{ inline }} should be(
+{% else %}
+    Garden
+      .defaultGarden({{ diagram }})
+      .plants({{ student }}) should be(
+{% endif %}
+      {{ plants(case.expected) }})
+  }
+{% endfor %}
+}
