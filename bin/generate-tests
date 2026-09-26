@@ -1,0 +1,257 @@
+#!/usr/bin/env python3
+
+"""Render exercises' ScalaTest suites from the canonical data.
+
+Ported from the generator @IsaacG wrote for the awk, jq and tcl tracks
+(https://github.com/exercism/jq/blob/main/bin/test-generator), keeping its case
+handling - `reimplements` chains, `include = false`, the problem-specifications
+lookup and the `git pull` - and adding a `--check` mode so CI can gate on a
+suite having drifted from its template.
+
+An exercise opts in by adding `.meta/template.j2`.
+
+Usage:
+    bin/generate-tests                # every exercise that has a template
+    bin/generate-tests leap darts     # only these
+    bin/generate-tests --check        # exit 1 if any suite is out of date
+    bin/generate-tests --no-pull      # skip refreshing problem-specifications
+"""
+
+import argparse
+import json
+import os
+import pathlib
+import subprocess
+import sys
+import tomllib
+
+import jinja2
+
+MACROS_DIR = pathlib.Path(__file__).resolve().parent / "generator"
+EXERCISE_DIRS = ("exercises/concept", "exercises/practice")
+
+
+def problem_spec_dir() -> pathlib.Path:
+    """Detect and return the problem specs."""
+    cache_dir = os.getenv("XDG_CACHE_HOME", os.getenv("HOME") + "/.cache")
+    for candidate in (
+        pathlib.Path(cache_dir) / "exercism/configlet/problem-specifications",
+        # configlet on macOS caches under ~/Library/Caches.
+        pathlib.Path.home() / "Library/Caches/exercism/configlet/problem-specifications",
+    ):
+        if candidate.exists():
+            return candidate
+    for parent in pathlib.Path(os.getcwd()).parents:
+        if parent.name == "problem-specifications":
+            return parent
+    raise LookupError(
+        "Could not find problem-specifications.\n"
+        "Run bin/fetch-configlet then `bin/configlet sync --tests` to populate the cache."
+    )
+
+
+def flatten_cases(cases: list[dict]) -> list[tuple[list[str], dict]]:
+    """Recursively flatten test cases, returning individual cases with parent descriptions."""
+    for case_or_group in cases:
+        if "cases" in case_or_group:
+            for groups, child_case in flatten_cases(case_or_group["cases"]):
+                yield ([case_or_group["description"]] + groups, child_case)
+        else:
+            yield ([], case_or_group)
+
+
+def get_cases(specs: pathlib.Path, exercise: pathlib.Path) -> list[dict]:
+    """Return flattened, filtered cases with additional metadata attached."""
+    canonical_path = specs / "exercises" / exercise.name / "canonical-data.json"
+    if not canonical_path.exists():
+        sys.exit(f"{exercise.name}: no canonical data at {canonical_path}")
+    with open(canonical_path, "r", encoding="utf-8") as f:
+        canonical = json.load(f)
+    tests_toml = exercise / ".meta" / "tests.toml"
+    if not tests_toml.exists():
+        sys.exit(f"{exercise.name}: no .meta/tests.toml; run `bin/configlet sync --tests`")
+    with open(tests_toml, "rb") as f:
+        tests = tomllib.load(f)
+
+    # The `reimplements` links live in tests.toml, so a stale tests.toml would let a
+    # superseded case through. Refuse rather than generate from a partial picture.
+    missing = [
+        case["description"]
+        for _, case in flatten_cases(canonical["cases"])
+        if case["uuid"] not in tests
+    ]
+    if missing:
+        sys.exit(
+            f"{exercise.name}: .meta/tests.toml is missing {len(missing)} canonical case(s) "
+            f"({', '.join(missing)}).\nRun `bin/configlet sync --tests` before generating."
+        )
+
+    # A case that a later case reimplements is superseded and must not be emitted.
+    reimplemented = {
+        test["reimplements"]
+        for test in tests.values()
+        if test.get("include", True) and "reimplements" in test
+    }
+    cases = []
+    for groups, case in flatten_cases(canonical["cases"]):
+        # Filter out test cases with include=false or not listed.
+        if case["uuid"] not in tests or case["uuid"] in reimplemented:
+            continue
+        if not tests[case["uuid"]].get("include", True):
+            continue
+        # Add metadata.
+        case["descriptions"] = groups + [case["description"]]
+        case["expect_error"] = isinstance(case["expected"], dict) and "error" in case["expected"]
+        if case["expect_error"]:
+            case["expect_error_msg"] = case["expected"]["error"]
+        cases.append(case)
+    return cases
+
+
+def filter_scala(value) -> str:
+    """Render a canonical-data value as Scala source."""
+    if isinstance(value, bool):
+        return "true" if value else "false"
+    if value is None:
+        return "null"
+    if isinstance(value, str):
+        escaped = (
+            value.replace("\\", "\\\\")
+            .replace('"', '\\"')
+            .replace("\n", "\\n")
+            .replace("\t", "\\t")
+        )
+        return f'"{escaped}"'
+    if isinstance(value, list):
+        return "List(" + ", ".join(filter_scala(v) for v in value) + ")"
+    if isinstance(value, dict):
+        pairs = (f"{filter_scala(k)} -> {filter_scala(v)}" for k, v in value.items())
+        return "Map(" + ", ".join(pairs) + ")"
+    return str(value)
+
+
+def jinja_env(exercise: pathlib.Path) -> jinja2.Environment:
+    """Return a configured Jinja env with filters added.
+
+    Unlike the upstream generator this also loads from bin/generator, so that
+    templates can share the macros every Scala suite needs.
+    """
+    env = jinja2.Environment(
+        loader=jinja2.FileSystemLoader([exercise / ".meta", MACROS_DIR]),
+        undefined=jinja2.StrictUndefined,
+        trim_blocks=True,
+        lstrip_blocks=True,
+        keep_trailing_newline=True,
+    )
+    # Render a canonical value as Scala source.
+    env.filters["scala"] = filter_scala
+    return env
+
+
+def render(specs: pathlib.Path, exercise: pathlib.Path) -> str:
+    """Render an exercise's suite, without writing it."""
+    config = json.loads((exercise / ".meta/config.json").read_text())
+    data = {
+        "cases": get_cases(specs, exercise),
+        "exercise": exercise.name,
+        "solution": config["files"]["solution"][0],
+    }
+    try:
+        template = jinja_env(exercise).get_template("template.j2")
+        out = template.render(data)
+    except jinja2.exceptions.UndefinedError as err:
+        sys.exit(
+            f"{exercise.name}: .meta/template.j2 refers to something the canonical data "
+            f"does not have: {err}."
+        )
+    except jinja2.exceptions.TemplateAssertionError as err:
+        err.add_note(f"Error rendering template for {exercise.name}")
+        raise
+    return out if out.endswith("\n") else out + "\n"
+
+
+def test_file_of(exercise: pathlib.Path) -> pathlib.Path:
+    config = json.loads((exercise / ".meta/config.json").read_text())
+    return exercise / config["files"]["test"][0]
+
+
+def find_exercises(names: list[str]) -> list[pathlib.Path]:
+    """Exercises to act on: those named, or every one with a template."""
+    if not names:
+        return sorted(
+            path.parent.parent
+            for directory in EXERCISE_DIRS
+            for path in pathlib.Path(directory).glob("*/.meta/template.j2")
+        )
+    found = []
+    for name in names:
+        path = pathlib.Path(name)
+        if not path.exists():
+            candidates = [pathlib.Path(d) / name for d in EXERCISE_DIRS]
+            matches = [c for c in candidates if c.exists()]
+            if not matches:
+                sys.exit(f"No such exercise: {name}")
+            path = matches[0]
+        if not (path / ".meta/template.j2").exists():
+            sys.exit(f"{path.name}: no .meta/template.j2. Add one to opt the exercise in.")
+        found.append(path)
+    return found
+
+
+def argparser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--no-pull",
+        action="store_false",
+        dest="pull",
+        help="Do not run `git pull` on the problem specs repo",
+    )
+    parser.add_argument(
+        "--check",
+        action="store_true",
+        help="Do not write; exit 1 if a suite differs from what its template renders",
+    )
+    parser.add_argument(
+        "exercises",
+        nargs="*",
+        help="exercises to generate tests for; if none supplied, generate all",
+    )
+    return parser
+
+
+def main() -> int:
+    args = argparser().parse_args()
+    specs = problem_spec_dir()
+    if args.pull:
+        subprocess.check_call(["git", "pull", "--quiet"], cwd=specs)
+
+    exercises = find_exercises(args.exercises)
+    if not exercises:
+        print("No exercise has a .meta/template.j2 yet; nothing to do.")
+        return 0
+
+    stale = []
+    for exercise in exercises:
+        out = render(specs, exercise)
+        test_file = test_file_of(exercise)
+        if test_file.exists() and test_file.read_text() == out:
+            continue
+        if args.check:
+            stale.append(test_file)
+        else:
+            test_file.write_text(out)
+            print(f"regenerated {test_file}")
+
+    if args.check:
+        if stale:
+            print("These suites do not match their template:", file=sys.stderr)
+            for path in stale:
+                print(f"  {path}", file=sys.stderr)
+            print("\nRun bin/generate-tests to update them.", file=sys.stderr)
+            return 1
+        print(f"{len(exercises)} generated suite(s) are up to date.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

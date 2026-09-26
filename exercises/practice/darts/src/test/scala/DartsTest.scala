@@ -1,8 +1,10 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
-
-/** @version 1.0.0 */
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
 class DartsTest extends AnyFunSuite with Matchers {
 
   test("Missed target") {
