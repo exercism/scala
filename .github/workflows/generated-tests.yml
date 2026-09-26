@@ -1,0 +1,36 @@
+name: Generated test suites
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  check:
+    name: Suites match their templates
+    runs-on: ubuntu-26.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.13"
+
+      - name: Install the generator's dependencies
+        run: pip install -r bin/generator/requirements.txt
+
+      - name: Fetch configlet
+        run: bin/fetch-configlet
+
+      - name: Clone problem-specifications
+        # Only the side effect is wanted: configlet clones the specs that
+        # bin/generate-tests reads. It exits non-zero while any exercise is
+        # missing canonical cases, which is tracked separately in #488.
+        run: bin/configlet sync --tests || true
+
+      - name: Check the generated suites
+        run: bin/generate-tests --check --no-pull
