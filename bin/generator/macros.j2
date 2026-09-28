@@ -1,0 +1,42 @@
+{#- Shared pieces every generated suite needs. -#}
+
+{#- Imports, the generated-file notice, and the class declaration. -#}
+{%- macro header(suite) -%}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class {{ suite }}Test extends AnyFunSuite with Matchers {
+{%- endmacro -%}
+
+{#- A case's name: the canonical group path, outermost first. -#}
+{%- macro test_name(case) -%}
+{{ case.descriptions | join(" - ") }}
+{%- endmacro -%}
+
+{#- `subject should be(expected)`, wrapped the way the hand-written suites
+    wrap it: on one line while it fits, otherwise the expectation on its own.
+    Built as one string so that Jinja whitespace control cannot eat the
+    indentation. -#}
+{%- macro assert_be(subject, expected) -%}
+{%- set one_line = "    " ~ subject ~ " should be(" ~ expected ~ ")" -%}
+{%- if one_line | length <= 100 -%}
+{{ one_line }}
+{%- else -%}
+{{ "    " ~ subject ~ " should be(\n      " ~ expected ~ ")" }}
+{%- endif -%}
+{%- endmacro -%}
+
+{#- `test("name") {`, wrapped when the name makes the line too long. -#}
+{%- macro test_open(case) -%}
+{%- set name = test_name(case) -%}
+{%- set one_line = '  test("' ~ name ~ '") {' -%}
+{%- if one_line | length <= 100 -%}
+{{ one_line }}
+{%- else -%}
+{{ '  test(\n    "' ~ name ~ '") {' }}
+{%- endif -%}
+{%- endmacro -%}

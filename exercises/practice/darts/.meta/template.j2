@@ -1,0 +1,12 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("Darts") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+    Darts.score({{ case.input.x }}, {{ case.input.y }}) should be ({{ case.expected }})
+  }
+{% endfor %}
+}
