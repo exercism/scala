@@ -1,8 +1,10 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
-
-/** @version 1.1.1 */
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
 class KindergartenGardenTest extends AnyFunSuite with Matchers {
 
   test("partial garden - garden with single student") {
@@ -23,14 +25,14 @@ class KindergartenGardenTest extends AnyFunSuite with Matchers {
   }
 
   test(
-    "multiple students for the same garden with three students, partial garden - second student's garden") {
+    "partial garden - multiple students for the same garden with three students - second student's garden") {
     pending
     Garden.defaultGarden("VVCCGG\nVVCCGG").plants("Bob") should be(
       List(Plant.Clover, Plant.Clover, Plant.Clover, Plant.Clover))
   }
 
   test(
-    "multiple students for the same garden with three students, partial garden - third student's garden") {
+    "partial garden - multiple students for the same garden with three students - third student's garden") {
     pending
     Garden.defaultGarden("VVCCGG\nVVCCGG").plants("Charlie") should be(
       List(Plant.Grass, Plant.Grass, Plant.Grass, Plant.Grass))

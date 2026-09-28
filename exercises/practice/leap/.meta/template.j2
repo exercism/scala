@@ -1,0 +1,12 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("Leap") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+    Leap.leapYear({{ case.input.year }}) should be ({{ case.expected | scala }})
+  }
+{% endfor %}
+}

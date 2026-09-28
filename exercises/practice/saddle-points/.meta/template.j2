@@ -1,0 +1,17 @@
+{%- import "macros.j2" as macros -%}
+{#- The canonical data indexes rows and columns from 1; this track uses
+    zero-based (row, column) tuples, so the expectations are translated. -#}
+{%- macro points(expected) -%}
+{% if expected %}Set({% for p in expected %}({{ p.row - 1 }}, {{ p.column - 1 }}){% if not loop.last %}, {% endif %}{% endfor %}){% else %}Set(){% endif %}
+{%- endmacro -%}
+{{ macros.header("SaddlePoints") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("Matrix(" ~ (case.input.matrix | scala) ~ ").saddlePoints", points(case.expected)) }}
+  }
+{% endfor %}
+}
