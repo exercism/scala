@@ -1,8 +1,10 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
-
-/** @version 1.3.0 */
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
 class LeapTest extends AnyFunSuite with Matchers {
 
   test("year not divisible by 4 in common year") {
