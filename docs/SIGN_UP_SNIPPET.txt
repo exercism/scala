@@ -1,0 +1,7 @@
+def mostCommonWord(text: String): String =
+  val counts = mutable.Map[String, Int]().withDefaultValue(0)
+  var best = ""
+  for word <- text.toLowerCase.split(" ") do
+    counts(word) += 1
+    if counts(word) > counts(best) then best = word
+  s""""$best" appears ${counts(best)} times"""
