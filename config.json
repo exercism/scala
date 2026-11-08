@@ -1302,6 +1302,14 @@
         "practices": [],
         "prerequisites": [],
         "difficulty": 4
+      },
+      {
+        "slug": "relative-distance",
+        "name": "Relative Distance",
+        "uuid": "1c804127-3064-4a69-bd37-4ce75e781db3",
+        "practices": [],
+        "prerequisites": [],
+        "difficulty": 5
       }
     ]
   },
