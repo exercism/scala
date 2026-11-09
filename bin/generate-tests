@@ -41,9 +41,6 @@ def problem_spec_dir() -> pathlib.Path:
     ):
         if candidate.exists():
             return candidate
-    for parent in pathlib.Path(os.getcwd()).parents:
-        if parent.name == "problem-specifications":
-            return parent
     raise LookupError(
         "Could not find problem-specifications.\n"
         "Run bin/fetch-configlet then `bin/configlet sync --tests` to populate the cache."
