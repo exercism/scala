@@ -1,0 +1,41 @@
+{%- import "macros.j2" as macros -%}
+{#- Unlike the shared macros, which still emit braces, this suite is written in
+    the Scala 3 braceless style the track's .scalafmt.conf asks for, and is laid
+    out the way scalafmt would lay it out, so that formatting it changes nothing. -#}
+{#- The canonical data expects null for "no known relationship";
+    this track returns an Option[Int] instead. -#}
+{%- macro degree(expected) -%}
+{% if expected is none %}None{% else %}Some({{ expected }}){% endif %}
+{%- endmacro -%}
+{#- The family tree on one line while it fits in scalafmt's maxColumn,
+    otherwise one parent per line with the arrows aligned (align.preset = most). -#}
+{%- macro family_tree(tree) -%}
+{%- set one_line = "    val familyTree = " ~ (tree | scala) -%}
+{%- if one_line | length <= 160 -%}
+{{ one_line }}
+{%- else -%}
+{%- set width = tree.keys() | map("scala") | map("length") | max -%}
+{{ "    val familyTree = Map(\n" }}
+{%- for parent, children in tree.items() -%}
+{{ "      " ~ (parent | scala).ljust(width) ~ " -> " ~ (children | scala) ~ ",\n" }}
+{%- endfor -%}
+{{ "    )" }}
+{%- endif -%}
+{%- endmacro -%}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class RelativeDistanceTest extends AnyFunSuite with Matchers:
+{% for case in cases %}
+
+  test({{ macros.test_name(case) | scala }}):
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ family_tree(case.input.familyTree) }}
+    RelativeDistance(familyTree).degreeOfSeparation({{ case.input.personA | scala }}, {{ case.input.personB | scala }}) should be({{ degree(case.expected) }})
+{% endfor %}
