@@ -1,0 +1,19 @@
+{%- import "macros.j2" as macros -%}
+{#- Written in the Scala 3 braceless style the track's .scalafmt.conf asks for,
+    and laid out the way scalafmt would lay it out, so that formatting it changes nothing. -#}
+import org.scalatest.funsuite.AnyFunSuite
+import org.scalatest.matchers.should.Matchers
+
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class PangramTest extends AnyFunSuite with Matchers:
+{% for case in cases %}
+
+  test({{ macros.test_name(case) | scala }}):
+{% if not loop.first %}
+    pending
+{% endif %}
+    Pangrams.isPangram({{ case.input.sentence | scala }}) should be({{ case.expected | scala }})
+{% endfor %}

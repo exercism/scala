@@ -1,4 +1,2 @@
-object Pangrams {
+object Pangrams:
   def isPangram(input: String): Boolean = ???
-}
-
