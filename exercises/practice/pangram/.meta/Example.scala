@@ -1,12 +1,5 @@
-object Pangrams {
-  private val alphaLength = 26
+object Pangrams:
+  private val alphabet = ('a' to 'z').toSet
 
-  def isPangram(input: String): Boolean = {
-    val numUniqueChars = input.toStream
-      .map(_.toLower)
-      .filter(c => c >= 'a' && c <='z')
-      .toSet
-      .size
-    numUniqueChars == alphaLength
-  }
-}
+  def isPangram(input: String): Boolean =
+    alphabet.subsetOf(input.toLowerCase.toSet)
