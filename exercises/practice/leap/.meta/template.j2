@@ -6,7 +6,5 @@
 {% if not loop.first %}
     pending
 {% endif %}
-    Leap.leapYear({{ case.input.year }}) should be ({{ case.expected | scala }})
-  }
+{{ macros.assert_be("Leap.leapYear(" ~ case.input.year ~ ")", case.expected | scala) }}
 {% endfor %}
-}

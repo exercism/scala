@@ -1,7 +1,4 @@
 {%- import "macros.j2" as macros -%}
-{#- Unlike the shared macros, which still emit braces, this suite is written in
-    the Scala 3 braceless style the track's .scalafmt.conf asks for, and is laid
-    out the way scalafmt would lay it out, so that formatting it changes nothing. -#}
 {#- The canonical data expects null for "no known relationship";
     this track returns an Option[Int] instead. -#}
 {%- macro degree(expected) -%}
@@ -22,17 +19,10 @@
 {{ "    )" }}
 {%- endif -%}
 {%- endmacro -%}
-import org.scalatest.funsuite.AnyFunSuite
-import org.scalatest.matchers.should.Matchers
-
-/** Generated from the canonical data in problem-specifications.
-  *
-  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
-  */
-class RelativeDistanceTest extends AnyFunSuite with Matchers:
+{{ macros.header("RelativeDistance") }}
 {% for case in cases %}
 
-  test({{ macros.test_name(case) | scala }}):
+{{ macros.test_open(case) }}
 {% if not loop.first %}
     pending
 {% endif %}
