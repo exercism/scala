@@ -6,7 +6,5 @@
 {% if not loop.first %}
     pending
 {% endif %}
-    Darts.score({{ case.input.x }}, {{ case.input.y }}) should be ({{ case.expected }})
-  }
+{{ macros.assert_be("Darts.score(" ~ case.input.x ~ ", " ~ case.input.y ~ ")", case.expected) }}
 {% endfor %}
-}

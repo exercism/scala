@@ -12,6 +12,4 @@
     pending
 {% endif %}
 {{ macros.assert_be("Matrix(" ~ (case.input.matrix | scala) ~ ").saddlePoints", points(case.expected)) }}
-  }
 {% endfor %}
-}
