@@ -1,32 +1,24 @@
-class Board(rows: List[String]) {
-  lazy val annotate: List[String] =
-    (for (y <- 0 until numRows) yield annotateRow(y)).toList
+object FlowerField:
+  private val Flower = '*'
 
-  private lazy val numRows = rows.length
-  private lazy val numCols = if (rows.isEmpty) 0 else rows.head.length
-  private lazy val boardVector = rows.toVector.map(_.toVector)
+  def annotate(garden: List[String]): List[String] =
+    def isFlower(row: Int, column: Int): Boolean =
+      garden.lift(row).flatMap(_.lift(column)).contains(Flower)
 
-  private def annotateRow(y: Int) =
-    (for (x <- 0 until numCols) yield annotateSquare(x, y)).mkString
+    def flowersAround(row: Int, column: Int): Int =
+      val neighbours =
+        for
+          r <- row - 1 to row + 1
+          c <- column - 1 to column + 1
+          if isFlower(r, c)
+        yield ()
+      neighbours.size
 
-  private def annotateSquare(x: Int, y: Int) =
-    if (hasFlower(x, y)) flowerChar
-    else neighborsWithFlowers(x, y) match {
-      case 0 => ' '
-      case n => (n + '0').toChar
-    }
-
-  private def neighborsWithFlowers(x: Int, y: Int) = (for (
-    yNeighbor <- Math.max(0, y - 1) to Math.min(numRows - 1, y + 1);
-    xNeighbor <- Math.max(0, x - 1) to Math.min(numCols - 1, x + 1)
-      if (yNeighbor != y || xNeighbor != x) && hasFlower(xNeighbor, yNeighbor)
-  ) yield ()).length
-
-  private def hasFlower(x: Int, y: Int) = isFlowerChar(boardVector(y)(x))
-  private def isFlowerChar(c: Char) = c == flowerChar
-  private val flowerChar = '*'
-}
-
-object FlowerField {
-  def annotate(board: List[String]): List[String] = new Board(board).annotate
-}
+    garden.zipWithIndex.map: (line, row) =>
+      line.indices.map { column =>
+        if isFlower(row, column) then Flower
+        else
+          flowersAround(row, column) match
+            case 0     => ' '
+            case count => (count + '0').toChar
+      }.mkString

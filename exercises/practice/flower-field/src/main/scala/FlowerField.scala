@@ -1,3 +1,2 @@
-object FlowerField {
-  def annotate(board: List[String]): List[String] = ???
-}
+object FlowerField:
+  def annotate(garden: List[String]): List[String] = ???
