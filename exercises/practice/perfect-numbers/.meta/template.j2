@@ -1,0 +1,20 @@
+{%- import "macros.j2" as macros -%}
+{#- The track has always rejected invalid input with its own wording, "natural
+    numbers"; the canonical message says "positive integers". Keeping the
+    track's wording avoids failing existing solutions on a message change. -#}
+{%- macro classification(case) -%}
+{%- if case.expect_error -%}
+Left("Classification is only possible for natural numbers.")
+{%- else -%}
+Right(NumberType.{{ case.expected | capitalize }})
+{%- endif -%}
+{%- endmacro -%}
+{{ macros.header("PerfectNumbers") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("PerfectNumbers.classify(" ~ case.input.number ~ ")", classification(case)) }}
+{% endfor %}

@@ -1,73 +1,63 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class PerfectNumbersTest extends AnyFunSuite with Matchers:
 
-/** @version 1.1.0 */
-class PerfectNumbersTest extends AnyFunSuite with Matchers {
-
-  test("Smallest perfect number is classified correctly") {
+  test("Perfect numbers - Smallest perfect number is classified correctly"):
     PerfectNumbers.classify(6) should be(Right(NumberType.Perfect))
-  }
 
-  test("Medium perfect number is classified correctly") {
+  test("Perfect numbers - Medium perfect number is classified correctly"):
     pending
     PerfectNumbers.classify(28) should be(Right(NumberType.Perfect))
-  }
 
-  test("Large perfect number is classified correctly") {
+  test("Perfect numbers - Large perfect number is classified correctly"):
     pending
     PerfectNumbers.classify(33550336) should be(Right(NumberType.Perfect))
-  }
 
-  test("Smallest abundant number is classified correctly") {
+  test("Abundant numbers - Smallest abundant number is classified correctly"):
     pending
     PerfectNumbers.classify(12) should be(Right(NumberType.Abundant))
-  }
 
-  test("Medium abundant number is classified correctly") {
+  test("Abundant numbers - Medium abundant number is classified correctly"):
     pending
     PerfectNumbers.classify(30) should be(Right(NumberType.Abundant))
-  }
 
-  test("Large abundant number is classified correctly") {
+  test("Abundant numbers - Large abundant number is classified correctly"):
     pending
     PerfectNumbers.classify(33550335) should be(Right(NumberType.Abundant))
-  }
 
-  test("Smallest prime deficient number is classified correctly") {
+  test("Abundant numbers - Perfect square abundant number is classified correctly"):
+    pending
+    PerfectNumbers.classify(196) should be(Right(NumberType.Abundant))
+
+  test("Deficient numbers - Smallest prime deficient number is classified correctly"):
     pending
     PerfectNumbers.classify(2) should be(Right(NumberType.Deficient))
-  }
 
-  test("Smallest non-prime deficient number is classified correctly") {
+  test("Deficient numbers - Smallest non-prime deficient number is classified correctly"):
     pending
     PerfectNumbers.classify(4) should be(Right(NumberType.Deficient))
-  }
 
-  test("Medium deficient number is classified correctly") {
+  test("Deficient numbers - Medium deficient number is classified correctly"):
     pending
     PerfectNumbers.classify(32) should be(Right(NumberType.Deficient))
-  }
 
-  test("Large deficient number is classified correctly") {
+  test("Deficient numbers - Large deficient number is classified correctly"):
     pending
     PerfectNumbers.classify(33550337) should be(Right(NumberType.Deficient))
-  }
 
-  test("Edge case (no factors other than itself) is classified correctly") {
+  test("Deficient numbers - Edge case (no factors other than itself) is classified correctly"):
     pending
     PerfectNumbers.classify(1) should be(Right(NumberType.Deficient))
-  }
 
-  test("Zero is rejected (not a natural number)") {
+  test("Invalid inputs - Zero is rejected (as it is not a positive integer)"):
     pending
-    PerfectNumbers.classify(0) should be(
-      Left("Classification is only possible for natural numbers."))
-  }
+    PerfectNumbers.classify(0) should be(Left("Classification is only possible for natural numbers."))
 
-  test("Negative integer is rejected (not a natural number)") {
+  test("Invalid inputs - Negative integer is rejected (as it is not a positive integer)"):
     pending
-    PerfectNumbers.classify(-1) should be(
-      Left("Classification is only possible for natural numbers."))
-  }
-}
+    PerfectNumbers.classify(-1) should be(Left("Classification is only possible for natural numbers."))
