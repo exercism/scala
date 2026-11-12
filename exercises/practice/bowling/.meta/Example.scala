@@ -1,116 +1,63 @@
-import scala.annotation.tailrec
+case class Error(errorText: String)
 
-sealed trait Bowling {
+sealed trait Bowling:
   def roll(pins: Int): Bowling
 
   def score(): Either[Error, Int]
-}
 
-object Bowling {
-  def apply(): Bowling = new BowlingImpl(List.empty)
+object Bowling:
+  def apply(): Bowling = Game(List.empty)
 
-  private class BowlingImpl(rolls: List[Int]) extends Bowling {
-    override def roll(pins: Int): Bowling = new BowlingImpl(rolls ++ List(pins))
+  private val Pins = 10
 
-    override def score(): Either[Error, Int] =
-      if (rolls.isEmpty) {
-        Left(Error("Unstarted game cannot be scored"))
-      } else {
-        val fs = frames(rolls, 1)
-        if (fs.length != 10) {
-          Left(Error("Invalid number of frames - 10 expected"))
-        } else {
-          score(fs, 0)
-        }
-      }
+  private def invalid    = Left(Error("Pin count exceeds pins on the lane"))
+  private def incomplete = Left(Error("Score cannot be taken until the end of the game"))
+  private def gameOver   = Left(Error("Cannot roll after game is over"))
 
-    @tailrec
-    private def score(frames: List[List[Int]], acc: Int): Either[Error, Int] =
-      frames match {
-        case x::xs => val frameScore = scoreFrame(x, xs, acc)
-          frameScore match {
-            case Right(sum) => score(xs, sum)
-            case error => error
-          }
-        case _ => Right(acc)
-      }
+  private case class Game(rolls: List[Int]) extends Bowling:
+    def roll(pins: Int): Bowling = Game(rolls :+ pins)
 
-    private def scoreFrame(frame: List[Int], remainingFrames: List[List[Int]], acc: Int): Either[Error, Int] = {
-      if (frame.exists(s => s < 0)) {
-        Left(Error("rolls can not score negative points"))
-      } else if (frame.exists(s => s > 10)) {
-        Left(Error("a roll can not score more than 10 points"))
-      } else if (remainingFrames.nonEmpty && frame.sum > 10) {
-        Left(Error("two rolls in a frame can not score more than 10 points"))
-      } else if (remainingFrames.isEmpty && !isValidFinalFrame(frame)) {
-        Left(Error("invalid final frame"))
-      } else {
-        val score = if (strike(frame)) {
-          acc + frame.sum + strikeBonus(remainingFrames)
-        } else if (spare(frame)) {
-          acc + frame.sum + spareBonus(remainingFrames)
-        } else {
-          acc + frame.sum
-        }
+    def score(): Either[Error, Int] = scoreFrames(rolls, frame = 1)
 
-        Right(score)
-      }
-    }
+  private def valid(pins: Int): Boolean = 0 <= pins && pins <= Pins
 
-    private def frames(rolls: List[Int], i: Int): List[List[Int]] = {
-      if (rolls.isEmpty) {
-        List.empty
-      }
-      else {
-        val throws = numThrows(rolls, i)
-        rolls.take(throws)::frames(rolls.drop(throws), i + 1)
-      }
-    }
+  private def scoreFrames(rolls: List[Int], frame: Int): Either[Error, Int] =
+    def andThen(points: => Either[Error, Int], rest: List[Int]): Either[Error, Int] =
+      for
+        later <- scoreFrames(rest, frame + 1)
+        here  <- points
+      yield here + later
 
-    private def numThrows(rolls: List[Int], frameNum: Int): Int = {
-      if (frameNum == 10) {
-        if (strike(rolls) || spare(rolls)) 3
-        else 2
-      } else if (strike(rolls)) {
-        1
-      } else {
-        2
-      }
-    }
+    if frame == 10 then scoreLastFrame(rolls)
+    else
+      rolls match
+        case pins :: _ if !valid(pins) => invalid
+        case Pins :: rest              => andThen(withBonus(rest, 2), rest)
+        case first :: second :: rest   =>
+          if !valid(second) || first + second > Pins then invalid
+          else if first + second == Pins then andThen(withBonus(rest, 1), rest)
+          else andThen(Right(first + second), rest)
+        case _                         => incomplete
 
-    private def strike(rolls: List[Int]): Boolean =
-      rolls.headOption.getOrElse(0) == 10
+  private def withBonus(rest: List[Int], bonusRolls: Int): Either[Error, Int] =
+    if rest.sizeIs < bonusRolls then incomplete else Right(Pins + rest.take(bonusRolls).sum)
 
-    private def spare(rolls: List[Int]): Boolean =
-      rolls.take(2).sum == 10
-
-    private def strikeBonus(frames: List[List[Int]]): Int =
-      frames.take(2).flatten.take(2).sum
-
-    private def spareBonus(frames: List[List[Int]]): Int =
-      frames match {
-        case x::xs => x.head
-        case _ => 0
-      }
-
-    private def isValidFinalFrame(rolls: List[Int]): Boolean = {
-      val isStrike = strike(rolls)
-      val isSpare = spare(rolls)
-
-      if (rolls.length == 2) {
-        !isStrike && !isSpare
-      } else if (rolls.length == 3) {
-        (isStrike || isSpare) &&
-          (if (isStrike) {
-            rolls(1) == 10 || (rolls(1) + rolls(2) <= 10)
-          } else {
-            isSpare || rolls(1) + rolls(2) <= 10
-          })
-      } else {
-        false
-      }
-    }
-  }
-}
-
-case class Error(errorText: String)
+  private def scoreLastFrame(rolls: List[Int]): Either[Error, Int] =
+    if rolls.exists(!valid(_)) then invalid
+    else
+      rolls match
+        case Pins :: first :: second :: rest =>
+          if first < Pins && first + second > Pins then invalid
+          else if rest.nonEmpty then gameOver
+          else Right(Pins + first + second)
+        case Pins :: _                       => incomplete
+        case first :: second :: rest         =>
+          if first + second > Pins then invalid
+          else if first + second == Pins then
+            rest match
+              case Nil          => incomplete
+              case bonus :: Nil => Right(Pins + bonus)
+              case _            => gameOver
+          else if rest.nonEmpty then gameOver
+          else Right(first + second)
+        case _                               => incomplete
