@@ -1,0 +1,17 @@
+{%- import "macros.j2" as macros -%}
+{#- A moment with a time is a LocalDateTime; a bare date is a LocalDate. -#}
+{%- macro moment(value) -%}
+{%- if "T" in value -%}LocalDateTime{%- else -%}LocalDate{%- endif -%}.parse({{ value | scala }})
+{%- endmacro -%}
+import java.time.LocalDate
+import java.time.LocalDateTime
+
+{{ macros.header("Gigasecond") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("Gigasecond.add(" ~ moment(case.input.moment) ~ ")", moment(case.expected)) }}
+{% endfor %}
