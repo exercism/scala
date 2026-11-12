@@ -1,124 +1,183 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class FlowerFieldTest extends AnyFunSuite with Matchers:
 
-/** @version 1.1.0 */
-class FlowerFieldTest extends AnyFunSuite with Matchers {
+  test("no rows"):
+    val garden   = List()
+    val expected = List()
+    FlowerField.annotate(garden) should be(expected)
 
-  test("no rows") {
-    FlowerField.annotate(List()) should be(List())
-  }
-
-  test("no columns") {
+  test("no columns"):
     pending
-    FlowerField.annotate(List("")) should be(List(""))
-  }
+    val garden   = List(
+      "",
+    )
+    val expected = List(
+      "",
+    )
+    FlowerField.annotate(garden) should be(expected)
 
-  test("no flowers") {
+  test("no flowers"):
     pending
-    FlowerField.annotate(List("   ",
-                              "   ",
-                              "   ")) should be(
-      List("   ",
-           "   ",
-           "   "))
-  }
+    val garden   = List(
+      "   ",
+      "   ",
+      "   ",
+    )
+    val expected = List(
+      "   ",
+      "   ",
+      "   ",
+    )
+    FlowerField.annotate(garden) should be(expected)
 
-  test("garden with only flowers") {
+  test("garden full of flowers"):
     pending
-    FlowerField.annotate(List("***",
-                              "***",
-                              "***")) should be(
-      List("***",
-           "***",
-           "***"))
-  }
+    val garden   = List(
+      "***",
+      "***",
+      "***",
+    )
+    val expected = List(
+      "***",
+      "***",
+      "***",
+    )
+    FlowerField.annotate(garden) should be(expected)
 
-  test("flower surrounded by spaces") {
+  test("flower surrounded by spaces"):
     pending
-    FlowerField.annotate(List("   ",
-                              " * ",
-                              "   ")) should be(
-      List("111",
-           "1*1",
-           "111"))
-  }
+    val garden   = List(
+      "   ",
+      " * ",
+      "   ",
+    )
+    val expected = List(
+      "111",
+      "1*1",
+      "111",
+    )
+    FlowerField.annotate(garden) should be(expected)
 
-  test("space surrounded by flowers") {
+  test("space surrounded by flowers"):
     pending
-    FlowerField.annotate(List("***",
-                              "* *",
-                              "***")) should be(
-      List("***",
-           "*8*",
-           "***"))
-  }
+    val garden   = List(
+      "***",
+      "* *",
+      "***",
+    )
+    val expected = List(
+      "***",
+      "*8*",
+      "***",
+    )
+    FlowerField.annotate(garden) should be(expected)
 
-  test("horizontal line") {
+  test("horizontal line"):
     pending
-    FlowerField.annotate(List(" * * ")) should be(List("1*2*1"))
-  }
+    val garden   = List(
+      " * * ",
+    )
+    val expected = List(
+      "1*2*1",
+    )
+    FlowerField.annotate(garden) should be(expected)
 
-  test("horizontal line, flowers at edges") {
+  test("horizontal line, flowers at edges"):
     pending
-    FlowerField.annotate(List("*   *")) should be(List("*1 1*"))
-  }
+    val garden   = List(
+      "*   *",
+    )
+    val expected = List(
+      "*1 1*",
+    )
+    FlowerField.annotate(garden) should be(expected)
 
-  test("vertical line") {
+  test("vertical line"):
     pending
-    FlowerField.annotate(List(" ",
-                              "*",
-                              " ",
-                              "*",
-                              " ")) should be(
-      List("1",
-           "*",
-           "2",
-           "*",
-           "1"))
-  }
+    val garden   = List(
+      " ",
+      "*",
+      " ",
+      "*",
+      " ",
+    )
+    val expected = List(
+      "1",
+      "*",
+      "2",
+      "*",
+      "1",
+    )
+    FlowerField.annotate(garden) should be(expected)
 
-  test("vertical line, flowers at edges") {
+  test("vertical line, flowers at edges"):
     pending
-    FlowerField.annotate(List("*",
-                              " ",
-                              " ",
-                              " ",
-                              "*")) should be(
-      List("*",
-           "1",
-           " ",
-           "1",
-           "*"))
-  }
+    val garden   = List(
+      "*",
+      " ",
+      " ",
+      " ",
+      "*",
+    )
+    val expected = List(
+      "*",
+      "1",
+      " ",
+      "1",
+      "*",
+    )
+    FlowerField.annotate(garden) should be(expected)
 
-  test("cross") {
+  test("cross"):
     pending
-    FlowerField.annotate(List("  *  ",
-                              "  *  ",
-                              "*****",
-                              "  *  ",
-                              "  *  ")) should be(
-      List(" 2*2 ",
-           "25*52",
-           "*****",
-           "25*52",
-           " 2*2 "))
-  }
+    val garden   = List(
+      "  *  ",
+      "  *  ",
+      "*****",
+      "  *  ",
+      "  *  ",
+    )
+    val expected = List(
+      " 2*2 ",
+      "25*52",
+      "*****",
+      "25*52",
+      " 2*2 ",
+    )
+    FlowerField.annotate(garden) should be(expected)
 
-  test("large garden") {
+  test("large garden"):
     pending
-    FlowerField.annotate(List(" *  * ",
-                              "  *   ",
-                              "    * ",
-                              "   * *",
-                              " *  * ",
-                              "      ")) should be(
-      List("1*22*1",
-           "12*322",
-           " 123*2",
-           "112*4*",
-           "1*22*2",
-           "111111"))
-  }
-}
+    val garden   = List(
+      " *  * ",
+      "  *   ",
+      "    * ",
+      "   * *",
+      " *  * ",
+      "      ",
+    )
+    val expected = List(
+      "1*22*1",
+      "12*322",
+      " 123*2",
+      "112*4*",
+      "1*22*2",
+      "111111",
+    )
+    FlowerField.annotate(garden) should be(expected)
+
+  test("multiple adjacent flowers"):
+    pending
+    val garden   = List(
+      " ** ",
+    )
+    val expected = List(
+      "1**1",
+    )
+    FlowerField.annotate(garden) should be(expected)

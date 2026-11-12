@@ -1,0 +1,25 @@
+{%- import "macros.j2" as macros -%}
+{#- A garden one row per line, so the test reads like the grid. The caller pads
+    "garden" to the width of "expected", as scalafmt aligns the two vals. -#}
+{%- macro rows(name, garden) -%}
+{%- if garden -%}
+{{ "    val " ~ name ~ " = List(" }}
+{% for row in garden %}
+{{ "      " ~ (row | scala) ~ "," }}
+{% endfor %}
+{{ "    )" }}
+{%- else -%}
+{{ "    val " ~ name ~ " = List()" }}
+{%- endif -%}
+{%- endmacro -%}
+{{ macros.header("FlowerField") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ rows("garden  ", case.input.garden) }}
+{{ rows("expected", case.expected) }}
+    FlowerField.annotate(garden) should be(expected)
+{% endfor %}
