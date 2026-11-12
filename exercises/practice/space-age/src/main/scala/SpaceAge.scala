@@ -1,4 +1,4 @@
-object SpaceAge {
+object SpaceAge:
   def onEarth(age: Double): Double = ???
 
   def onVenus(age: Double): Double = ???
@@ -14,4 +14,3 @@ object SpaceAge {
   def onUranus(age: Double): Double = ???
 
   def onNeptune(age: Double): Double = ???
-}
