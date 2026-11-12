@@ -20,9 +20,16 @@ class {{ suite }}Test extends AnyFunSuite with Matchers:
 {{ case.descriptions | join(" - ") }}
 {%- endmacro -%}
 
-{#- `test("name"):`, opening a case's body. -#}
+{#- `test("name"):`, opening a case's body. A name too long for maxColumn (160)
+    goes on its own line with a trailing comma, as scalafmt wraps it. -#}
 {%- macro test_open(case) -%}
-{{ "  test(" ~ (test_name(case) | scala) ~ "):" }}
+{%- set name = test_name(case) | scala -%}
+{%- set one_line = "  test(" ~ name ~ "):" -%}
+{%- if one_line | length <= 160 -%}
+{{ one_line }}
+{%- else -%}
+{{ "  test(\n    " ~ name ~ ",\n  ):" }}
+{%- endif -%}
 {%- endmacro -%}
 
 {#- `subject should be(expected)` on one line while it fits in maxColumn (160),

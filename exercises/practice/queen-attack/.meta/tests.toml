@@ -44,3 +44,6 @@ description = "Test the ability of one queen to attack another -> can attack on 
 
 [0790b588-ae73-4f1f-a968-dd0b34f45f86]
 description = "Test the ability of one queen to attack another -> can attack on fourth diagonal"
+
+[543f8fd4-2597-4aad-8d77-cbdab63619f8]
+description = "Test the ability of one queen to attack another -> cannot attack if falling diagonals are only the same when reflected across the longest falling diagonal"

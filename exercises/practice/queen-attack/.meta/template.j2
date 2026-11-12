@@ -1,0 +1,18 @@
+{%- import "macros.j2" as macros -%}
+{%- macro position(queen) -%}{{ queen.position.row }}, {{ queen.position.column }}{%- endmacro -%}
+{{ macros.header("QueenAttack") }}
+
+  private def create(row: Int, column: Int): Queen =
+    Queen.create(row, column).getOrElse(fail(s"Error creating queen at ($row, $column)"))
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.property == "create" %}
+{{ macros.assert_be("Queen.create(" ~ position(case.input.queen) ~ ")", "None" if case.expect_error else "Some(Queen(" ~ position(case.input.queen) ~ "))") }}
+{% else %}
+{{ macros.assert_be("QueenAttack.canAttack(create(" ~ position(case.input.white_queen) ~ "), create(" ~ position(case.input.black_queen) ~ "))", case.expected | scala) }}
+{% endif %}
+{% endfor %}
