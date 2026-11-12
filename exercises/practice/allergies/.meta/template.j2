@@ -1,0 +1,18 @@
+{%- import "macros.j2" as macros -%}
+{%- macro allergen(item) -%}Allergen.{{ item | capitalize }}{%- endmacro -%}
+{%- macro allergens(items) -%}
+List({% for item in items %}{{ allergen(item) }}{% if not loop.last %}, {% endif %}{% endfor %})
+{%- endmacro -%}
+{{ macros.header("Allergies") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.property == "allergicTo" %}
+{{ macros.assert_be("Allergies.allergicTo(" ~ allergen(case.input.item) ~ ", " ~ case.input.score ~ ")", case.expected | scala) }}
+{% else %}
+{{ macros.assert_be("Allergies.list(" ~ case.input.score ~ ")", allergens(case.expected)) }}
+{% endif %}
+{% endfor %}
