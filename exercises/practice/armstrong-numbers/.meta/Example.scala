@@ -1,7 +1,4 @@
-object ArmstrongNumbers {
-  def isArmstrongNumber(i: Int): Boolean = {
-    val s = i.toString
-    val power = s.length
-    i == s.toStream.foldLeft(0.0)((acc, c) => acc + math.pow(c.asDigit, power))
-  }
-}
+object ArmstrongNumbers:
+  def isArmstrongNumber(number: Int): Boolean =
+    val digits = number.toString.map(_.asDigit)
+    digits.map(BigInt(_).pow(digits.length)).sum == number
