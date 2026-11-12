@@ -1,0 +1,10 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("Sublist") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("Sublist.sublist(" ~ (case.input.listOne | scala) ~ ", " ~ (case.input.listTwo | scala) ~ ")", "Sublist." ~ (case.expected | capitalize)) }}
+{% endfor %}
