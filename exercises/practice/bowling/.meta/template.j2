@@ -1,0 +1,20 @@
+{%- import "macros.j2" as macros -%}
+{%- macro game(case) -%}
+rollAll({{ case.input.previousRolls | scala }}){% if case.property == "roll" %}.roll({{ case.input.roll }}){% endif %}.score()
+{%- endmacro -%}
+{{ macros.header("Bowling") }}
+
+  private def rollAll(rolls: List[Int]): Bowling =
+    rolls.foldLeft(Bowling())((game, pins) => game.roll(pins))
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.expect_error %}
+{{ macros.assert_be(game(case) ~ ".isLeft", "true") }}
+{% else %}
+{{ macros.assert_be(game(case), "Right(" ~ case.expected ~ ")") }}
+{% endif %}
+{% endfor %}
