@@ -8,8 +8,8 @@
     {
       "uuid": "cb21dc25-c5a9-4bb1-aadc-29f798727896",
       "slug": "filter-map-stream-takewhile",
-      "title": "filter and map with Stream and takeWhile",
-      "blurb": "Use filter and map with Stream and takeWhile to return the answer.",
+      "title": "filter and map with LazyList and takeWhile",
+      "blurb": "Use filter and map with LazyList and takeWhile to return the answer.",
       "authors": [
         "bobahop"
       ]

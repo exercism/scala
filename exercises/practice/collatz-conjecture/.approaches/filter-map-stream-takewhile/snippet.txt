@@ -1,8 +1,7 @@
-def steps(start: Int): Option[Int] = {
+def steps(start: Int): Option[Int] =
   Option(start)
     .filter(_ > 0)
-    .map(collatzStream(_).takeWhile(_ != 1).length)
-}
+    .map(collatzSequence(_).takeWhile(_ != 1).length)
 
-private def collatzStream(n: Int): Stream[Int] =
-  Stream.iterate(n)(n => if (n % 2 == 0) n / 2 else (n * 3) + 1)
+private def collatzSequence(n: Int): LazyList[Int] =
+  LazyList.iterate(n)(n => if n % 2 == 0 then n / 2 else n * 3 + 1)

@@ -1,20 +1,6 @@
-import scala.annotation.tailrec
+object CollatzConjecture:
+  def steps(n: Int): Option[Int] =
+    Option.when(n > 0)(sequence(n).takeWhile(_ != 1).size)
 
-object CollatzConjecture {
-
-  def isEven(v: Int): Boolean = v % 2 == 0
-
-  @tailrec
-  def collatz_h(n: Int, acc: Int): Option[Int] = {
-    if (n <= 0)
-      None
-    else if (n == 1)
-      Some(acc)
-    else if (isEven(n))
-      collatz_h(n / 2, acc + 1)
-    else
-      collatz_h(n * 3 + 1, acc + 1)
-  }
-
-  def steps(n: Int): Option[Int] = collatz_h(n, 0)
-}
+  private def sequence(n: Int): Iterator[Long] =
+    Iterator.iterate(n.toLong)(k => if k % 2 == 0 then k / 2 else 3 * k + 1)

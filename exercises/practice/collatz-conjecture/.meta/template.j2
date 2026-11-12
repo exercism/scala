@@ -1,0 +1,15 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("CollatzConjecture") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.expected is mapping %}
+{% set expected = "None" %}
+{% else %}
+{% set expected = "Some(" ~ (case.expected | scala) ~ ")" %}
+{% endif %}
+{{ macros.assert_be("CollatzConjecture.steps(" ~ (case.input.number | scala) ~ ")", expected) }}
+{% endfor %}
