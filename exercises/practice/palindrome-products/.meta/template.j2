@@ -1,0 +1,20 @@
+{%- import "macros.j2" as macros -%}
+{%- macro palindrome(expected) -%}
+{%- if expected.error is defined or expected.value is none -%}
+None
+{%- else -%}
+Some(({{ expected.value }}, Set({% for factors in expected.factors %}({{ factors | join(", ") }}){% if not loop.last %}, {% endif %}{% endfor %})))
+{%- endif -%}
+{%- endmacro -%}
+{{ macros.header("PalindromeProducts") }}
+
+  // smallest and largest return Option[(Int, Set[(Int, Int)])]: the palindrome and every pair of factors
+  // that makes it, or None when the range has no palindrome product or min is more than max.
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("PalindromeProducts(" ~ case.input.min ~ ", " ~ case.input.max ~ ")." ~ case.property, palindrome(case.expected)) }}
+{% endfor %}
