@@ -1,8 +1,7 @@
-cleanedInput
-  .foldRight((1, 0)) { (chr, tup) =>
-    val num = chr.asDigit
-    tup match {
-      case (pos, sum) if pos % 2 == 0 =>
-        (pos + 1, sum + (if (num > 4) (num * 2) - 9 else num * 2))
-      case (pos, sum) => (pos + 1, sum + num)
-    }
+val (_, total) = cleanedInput.foldRight((1, 0)): (chr, tup) =>
+  val num = chr.asDigit
+  tup match
+    case (pos, sum) if pos % 2 == 0 =>
+      (pos + 1, sum + (if num > 4 then num * 2 - 9 else num * 2))
+    case (pos, sum) => (pos + 1, sum + num)
+cleanedInput.length > 1 && total % 10 == 0

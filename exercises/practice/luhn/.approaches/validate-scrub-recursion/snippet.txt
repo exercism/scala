@@ -1,8 +1,7 @@
-pos match {
-  case pos if pos % 2 == 0 =>
-    validRecur(
-      pos + 1,
-      sum + (if (num > 4) (num * 2) - 9 else num * 2),
-      input.init
-    )
-  case _ => validRecur(pos + 1, sum + num, input.init)
+if input.isEmpty then sum % 10 == 0
+else
+  val num = input.last.asDigit
+  pos match
+    case pos if pos % 2 == 0 =>
+      validRecur(pos + 1, sum + (if num > 4 then num * 2 - 9 else num * 2), input.init)
+    case _ => validRecur(pos + 1, sum + num, input.init)
