@@ -1,4 +1,2 @@
-object Raindrops {
+object Raindrops:
   def convert(n: Int): String = ???
-}
-
