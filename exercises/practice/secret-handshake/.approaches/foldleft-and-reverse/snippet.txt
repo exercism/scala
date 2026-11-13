@@ -1,8 +1,4 @@
-val signs =
-  (0 until SIGNS.length)
-    .foldLeft(Seq(): Seq[String])((output, index) =>
-      if ((1 << index & orders) != 0) output :+ SIGNS(index)
-      else output
-    )
+val signs = Signs.indices.foldLeft(Seq.empty[String]): (output, index) =>
+  if (1 << index & orders) != 0 then output :+ Signs(index) else output
 
-if ((orders & REVERSE_SIGNS) == 0) signs else signs.reverse
+if (orders & ReverseSigns) == 0 then signs else signs.reverse

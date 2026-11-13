@@ -1,8 +1,6 @@
-val stitch = if ((orders & REVERSE_SIGNS) == 0)
-               (coll: Seq[String], that: String) => coll.:+(that)
-             else (coll: Seq[String], that: String) => coll.+:(that)
-      
-(0 until SIGNS.length)
-  .foldLeft(Seq(): Seq[String])((output, index) =>
-    if ((1 << index & orders) != 0) stitch(output, SIGNS(index))
-    else output)
+val stitch: (Seq[String], String) => Seq[String] =
+  if (orders & ReverseSigns) == 0 then (output, sign) => output :+ sign
+  else (output, sign) => sign +: output
+
+Signs.indices.foldLeft(Seq.empty[String]): (output, index) =>
+  if (1 << index & orders) != 0 then stitch(output, Signs(index)) else output
