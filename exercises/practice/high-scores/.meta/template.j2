@@ -1,0 +1,13 @@
+{%- import "macros.j2" as macros -%}
+{#- The track keeps its older name personalTop for the canonical personalTopThree. -#}
+{%- set functions = {"personalTopThree": "personalTop"} -%}
+{{ macros.header("HighScores") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% set function = functions.get(case.property, case.property) %}
+{{ macros.assert_be("HighScores." ~ function ~ "(" ~ (case.input.scores | scala) ~ ")", case.expected | scala) }}
+{% endfor %}
