@@ -1,0 +1,20 @@
+{%- import "macros.j2" as macros -%}
+{#- Grains beyond Int's range are written as BigInt literals. -#}
+{%- macro grains(n) -%}
+{%- if n > 2147483647 -%}BigInt("{{ n }}"){%- else -%}{{ n }}{%- endif -%}
+{%- endmacro -%}
+{{ macros.header("Grains") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.property == "total" %}
+{{ macros.assert_be("Grains.total", grains(case.expected)) }}
+{% elif case.expected is mapping %}
+{{ macros.assert_be("Grains.square(" ~ case.input.square ~ ")", "None") }}
+{% else %}
+{{ macros.assert_be("Grains.square(" ~ case.input.square ~ ")", "Some(" ~ grains(case.expected) ~ ")") }}
+{% endif %}
+{% endfor %}
