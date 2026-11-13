@@ -1,8 +1,8 @@
-Iterator
-  .iterate((num, 0, List[String]()))(tup =>
-    tup match {
-      case (num, idx, digits) if num >= ArabicNum(idx) =>
-        (num - ArabicNum(idx), idx, RomanNum(idx) :: digits)
-      case (num, idx, digits) =>
-        (num, idx + 1, digits)})
-  .takeWhile(tup => tup._2 < 13)
+val (_, _, numerals) = Iterator
+  .iterate((num, 0, List.empty[String])):
+    case (num, idx, digits) if num >= ArabicNum(idx) => (num - ArabicNum(idx), idx, RomanNum(idx) :: digits)
+    case (num, idx, digits)                          => (num, idx + 1, digits)
+  .takeWhile((_, idx, _) => idx < 13)
+  .to(Seq)
+  .last
+numerals.reverse.mkString
