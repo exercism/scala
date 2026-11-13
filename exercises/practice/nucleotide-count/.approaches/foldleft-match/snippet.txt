@@ -1,8 +1,6 @@
-strand.foldLeft(("", output)) { (tup, chr) =>
-  tup match {
-    case (errStr, output) if output.contains(chr) =>
-      (errStr, output + (chr -> (output(chr) + 1)))
-    case (errStr, output) => (s"invalid nucleotide '$chr'", output)
-  }} match {
-  case (errStr, output) if errStr.isEmpty() => Right(output)
-  case (errStr, _)                          => Left(errStr)}
+strand.foldLeft(("", output)) {
+  case ((errStr, output), chr) if output.contains(chr) => (errStr, output + (chr -> (output(chr) + 1)))
+  case ((_, output), chr)                              => (s"invalid nucleotide '$chr'", output)
+} match
+  case (errStr, output) if errStr.isEmpty => Right(output)
+  case (errStr, _)                        => Left(errStr)

@@ -1,0 +1,18 @@
+{%- import "macros.j2" as macros -%}
+{%- macro counts(expected) -%}
+{% for nucleotide, count in expected | dictsort %}'{{ nucleotide }}' -> {{ count }}{% if not loop.last %}, {% endif %}{% endfor %}
+{%- endmacro -%}
+{{ macros.header("NucleotideCount") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% set subject = "DNA(" ~ (case.input.strand | scala) ~ ").nucleotideCounts" %}
+{% if case.expected.error is defined %}
+{{ macros.assert_be(subject ~ ".isLeft", "true") }}
+{% else %}
+{{ macros.assert_be(subject, "Right(Map(" ~ counts(case.expected) ~ "))") }}
+{% endif %}
+{% endfor %}
