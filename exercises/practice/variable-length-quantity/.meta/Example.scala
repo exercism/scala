@@ -1,56 +1,25 @@
 import scala.annotation.tailrec
 
-object VariableLengthQuantity {
-  private val sevenBitsMask = 0x7f
-  private val eightBitMask = 0x80
+object VariableLengthQuantity:
 
-  def encode(n: Int): List[Int] = {
-    @tailrec
-    def encode_internal(n: Int, acc: List[Int]): List[Int] = {
-      if (n == 0) {
-        acc
-      } else {
-        var tmp = n & sevenBitsMask
-        if (acc.nonEmpty) {
-          tmp = tmp | eightBitMask
-        }
+  private val Payload      = 0x7f
+  private val Continuation = 0x80
 
-        encode_internal(n >>> 7, tmp :: acc)
-      }
-    }
+  def encode(numbers: List[Int]): List[Int] = numbers.flatMap(encodeOne)
 
-    if (n == 0)
-      List(0)
+  def decode(bytes: List[Int]): Either[String, List[Int]] =
+    if bytes.lastOption.forall(_ >= Continuation) then Left("incomplete sequence")
     else
-      encode_internal(n, List())
-  }
+      val (numbers, _) = bytes.foldLeft((List.empty[Int], 0)):
+        case ((numbers, value), byte) =>
+          val next = (value << 7) | (byte & Payload)
+          if byte < Continuation then (next :: numbers, 0) else (numbers, next)
+      Right(numbers.reverse)
 
-  def encode(nums: List[Int]): List[Int] = {
-    nums.foldRight(List[Int]())((n, acc) => encode(n) ::: acc)
-  }
-
-  def decode(encoded: List[Int]): Either[String, List[Int]] = {
+  /** The last byte holds the lowest 7 bits; every byte before it has the continuation bit set. */
+  private def encodeOne(number: Int): List[Int] =
     @tailrec
-    def decode_internal(encoded: List[Int], tmp: Int, acc: List[Int]): Either[String, List[Int]] = {
-      encoded match {
-        case Nil => if (tmp == 0 && acc.nonEmpty)
-          Right(acc.reverse)
-        else
-          Left("Incomplete sequence")
-        case x::xs =>
-          if ((tmp & 0xfe000000) > 0) {
-            Left("Overflow")
-          } else {
-            val newTmp = (tmp << 7) | (x & sevenBitsMask)
-            if ((x & eightBitMask) == 0) {
-              decode_internal(xs, 0, newTmp :: acc)
-            } else {
-              decode_internal(xs, newTmp, acc)
-            }
-          }
-      }
-    }
+    def loop(rest: Int, bytes: List[Int]): List[Int] =
+      if rest == 0 then bytes else loop(rest >>> 7, ((rest & Payload) | Continuation) :: bytes)
 
-    decode_internal(encoded, 0, List())
-  }
-}
+    loop(number >>> 7, List(number & Payload))
