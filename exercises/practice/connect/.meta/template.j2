@@ -1,0 +1,19 @@
+{%- import "macros.j2" as macros -%}
+{%- set winners = {"": "None", "X": "Some(Color.Black)", "O": "Some(Color.White)"} -%}
+{{ macros.header("Connect") }}
+
+  // The canonical boards are indented like the game's rhombus; Connect takes them without spaces.
+  private def mkBoard(lines: List[String]): List[String] = lines.map(_.filterNot(_.isSpaceChar))
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ "    val board = List(" }}
+{% for row in case.input.board %}
+{{ "      " ~ (row | scala) ~ "," }}
+{% endfor %}
+{{ "    )" }}
+{{ macros.assert_be("Connect(mkBoard(board)).winner", winners[case.expected]) }}
+{% endfor %}
