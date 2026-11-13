@@ -17,54 +17,41 @@ Regardless of the approach used, one thing to consider is to generate the whole 
 
 ```scala
 import scala.annotation.tailrec
+import scala.collection.mutable
 import scala.util.Random
 
-class Robot() {
-  import Robot.addName
-  var name: String = addName
-  def reset(): Unit = name = addName
-}
+class Robot:
+  var name: String = Robot.addName
 
-object Robot {
-  private val randy = Random
-  private var savedNames = scala.collection.mutable.Set[String]()
+  def reset(): Unit = name = Robot.addName
 
-  private object CharType extends Enumeration {
-    type CharType = Value
-    val Letter, Number = Value
-  }
-  import CharType._
+object Robot:
+  private val randy      = Random
+  private val savedNames = mutable.Set.empty[String]
 
-  private def getNextRandom(base: Int, high: Int): Int =
-    base + randy.nextInt(high)
+  private enum CharType:
+    case Letter, Number
 
-  private def genChar(charType: CharType): Char = {
-    charType match {
-      case Letter => (getNextRandom(65, 26)).toChar
-      case Number => (getNextRandom(48, 10)).toChar
-    }
-  }
+  import CharType.*
+
+  private def getNextRandom(base: Int, high: Int): Int = base + randy.nextInt(high)
+
+  private def genChar(charType: CharType): Char = charType match
+    case Letter => getNextRandom(65, 26).toChar
+    case Number => getNextRandom(48, 10).toChar
 
   @tailrec
-  private def nameMe(chars: List[Char]): String = {
-    chars.length match {
-      case len if len < 2 => nameMe(genChar(Letter) :: chars)
-      case len if len < 5 => nameMe(genChar(Number) :: chars)
-      case _              => chars.reverse.mkString("")
-    }
-  }
+  private def nameMe(chars: List[Char]): String = chars.length match
+    case len if len < 2 => nameMe(genChar(Letter) :: chars)
+    case len if len < 5 => nameMe(genChar(Number) :: chars)
+    case _              => chars.reverse.mkString
 
   @tailrec
-  private def addName: String = {
-    val temp = nameMe(List[Char]())
-    temp match {
-      case name if savedNames contains name => addName
-      case name =>
-        savedNames += name
-        name
-    }
-  }
-}
+  private def addName: String = nameMe(Nil) match
+    case name if savedNames.contains(name) => addName
+    case name                              =>
+      savedNames += name
+      name
 ```
 
 For more information, check the [randomly add to used names approach][approach-random-add-to-used-names].
@@ -74,28 +61,22 @@ For more information, check the [randomly add to used names approach][approach-r
 ```scala
 import scala.util.Random
 
-class Robot {
+class Robot:
+  var name: String = genName()
 
-  var name = genName()
-
-  def reset() = name = genName()
+  def reset(): Unit = name = genName()
 
   private def genName(): String = Robot.names.next()
-}
 
-object Robot {
-  val names: Iterator[String] = {
+object Robot:
+  private val names: Iterator[String] =
     val seqNames =
-      for {
-        ltr1 <- ('A' to 'Z')
-        ltr2 <- ('A' to 'Z')
-        num <- (0 to 999)
-      } yield {
-        f"$ltr1%c$ltr2%c$num%03d"
-      }
-    Random.shuffle(seqNames).to(LazyList).iterator
-  }
-}
+      for
+        ltr1 <- 'A' to 'Z'
+        ltr2 <- 'A' to 'Z'
+        num  <- 0 to 999
+      yield f"$ltr1%c$ltr2%c$num%03d"
+    Random.shuffle(seqNames).iterator
 ```
 
 For more information, check the [sequentially take from shuffled names approach][approach-sequential-take-from-shuffled-names].
@@ -108,7 +89,7 @@ One advantage to checking randomly generated names against used names would be i
 In that case, randomly generating names would use much less processing and memory than creating a collection of all possible names.
 
 The test for "a large number of new instances have unique names" is ignored by default.
-If `ignored` is changed to `it`, then the code needs to be efficient enough to allow all 676,000 unique names to be generated
+If `ignore` is changed to `it`, then the code needs to be efficient enough to allow all 676,000 unique names to be generated
 before the tests time out.
 
 [approach-random-add-to-used-names]: https://exercism.org/tracks/scala/exercises/robot-name/approaches/random-add-to-used-names
