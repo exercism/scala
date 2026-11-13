@@ -1,0 +1,47 @@
+{%- import "macros.j2" as macros -%}
+{#- A subtree as an Option[BinTree[Int]], using the suite's leaf and node helpers. -#}
+{%- macro subtree(t) -%}
+{%- if t is none -%}None
+{%- elif t.left is none and t.right is none -%}leaf({{ t.value }})
+{%- else -%}node({{ t.value }}, {{ subtree(t.left) }}, {{ subtree(t.right) }})
+{%- endif -%}
+{%- endmacro -%}
+{%- macro tree(t) -%}BinTree({{ t.value }}, {{ subtree(t.left) }}, {{ subtree(t.right) }}){%- endmacro -%}
+{#- The operations as a chain on an Option[Zipper[Int]], so that a move off the tree gives None.
+    `sep` puts each step on its own line in the subject; the expected zipper stays on one line. -#}
+{%- macro chain(start, operations, sep="") -%}
+Some(Zipper.fromTree({{ start }}))
+{%- for op in operations -%}
+{{ sep }}
+{%- if op.operation in ["left", "right", "up"] -%}.flatMap(Zipper.{{ op.operation }})
+{%- elif op.operation == "value" -%}.map(Zipper.value)
+{%- elif op.operation == "to_tree" -%}.map(Zipper.toTree)
+{%- elif op.operation == "set_value" -%}.map(Zipper.setValue({{ op.item }}, _))
+{%- elif op.operation == "set_left" -%}.map(Zipper.setLeft({{ subtree(op.item) }}, _))
+{%- elif op.operation == "set_right" -%}.map(Zipper.setRight({{ subtree(op.item) }}, _))
+{%- endif -%}
+{%- endfor -%}
+{%- endmacro -%}
+{{ macros.header("Zipper") }}
+
+  private def leaf(value: Int): Option[BinTree[Int]] = Some(BinTree(value, None, None))
+
+  private def node(value: Int, left: Option[BinTree[Int]], right: Option[BinTree[Int]]): Option[BinTree[Int]] = Some(BinTree(value, left, right))
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+    val tree = {{ tree(case.input.initialTree) }}
+{% if case.expected.type == "tree" %}
+{% set expected = "Some(" ~ tree(case.expected.value) ~ ")" %}
+{% elif case.expected.type == "int" %}
+{% set expected = "Some(" ~ case.expected.value ~ ")" %}
+{% elif case.expected.value is defined and case.expected.value is none %}
+{% set expected = "None" %}
+{% else %}
+{% set expected = chain("tree", case.expected.operations) %}
+{% endif %}
+    {{ chain("tree", case.input.operations, "\n      ") }} should be({{ expected }})
+{% endfor %}
