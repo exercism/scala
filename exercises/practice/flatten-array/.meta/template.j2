@@ -1,0 +1,14 @@
+{%- import "macros.j2" as macros -%}
+{#- A canonical array as nested Lists, with JSON null as Scala null. -#}
+{%- macro list(values) -%}
+List({% for v in values %}{% if v is none %}null{% elif v is sequence %}{{ list(v) }}{% else %}{{ v }}{% endif %}{% if not loop.last %}, {% endif %}{% endfor %})
+{%- endmacro -%}
+{{ macros.header("FlattenArray") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("FlattenArray.flatten(" ~ list(case.input.array) ~ ")", list(case.expected)) }}
+{% endfor %}
