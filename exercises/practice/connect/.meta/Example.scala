@@ -1,63 +1,46 @@
-import Color.Color
+import scala.annotation.tailrec
 
-import scala.collection.mutable
+enum Color:
+  case White, Black
 
-object Color extends Enumeration {
-  type Color = Value
-  val White, Black = Value
-}
+case class Connect(lines: List[String]):
 
-case class Connect(lines: List[String]) {
-  require(lines.size > 0)
-  require(lines.head.length > 0)
+  private type Cell = (Int, Int)
 
-  private val height = lines.size
-  private val width = lines.head.length
+  private val board  = lines.toVector
+  private val height = board.size
+  private val width  = board.headOption.fold(0)(_.length)
 
-  private val board = lines.map(line => line.map {
-      case 'O' => Some(Color.White)
-      case 'X' => Some(Color.Black)
-      case _ => None
-    }.toVector).toVector
+  def winner: Option[Color] = Color.values.find(connects)
 
-  private val blackStartCoords = (0 until height).map((0, _))
-  private val whiteStartCoords = (0 until width).map((_, 0))
+  private def stone(color: Color): Char = color match
+    case Color.White => 'O'
+    case Color.Black => 'X'
 
-  private def isGoalEdge(coord: (Int, Int), color: Color) = color match {
-    case Color.White => coord._2 == height - 1
-    case _ => coord._1 == width - 1
-  }
+  private def owns(color: Color)(cell: Cell): Boolean =
+    val (x, y) = cell
+    x >= 0 && x < width && y >= 0 && y < height && board(y)(x) == stone(color)
 
-  private def neighbors(coord: (Int, Int)) = List(
-    (coord._1 + 1, coord._2),
-    (coord._1 - 1, coord._2),
-    (coord._1, coord._2 + 1),
-    (coord._1, coord._2 - 1),
-    (coord._1 - 1, coord._2 + 1),
-    (coord._1 + 1, coord._2 - 1)).filter{case (x, y) => x >=0 && x < width && y >=0 && y < height}
+  private def atGoal(color: Color)(cell: Cell): Boolean = color match
+    case Color.White => cell._2 == height - 1
+    case Color.Black => cell._1 == width - 1
 
-  private def seenCoords = mutable.HashSet.empty[(Int, Int)]
+  private def neighbors(cell: Cell): List[Cell] =
+    val (x, y) = cell
+    List((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1), (x - 1, y + 1), (x + 1, y - 1))
 
-  private def tryConnect(color: Color, seen: mutable.HashSet[(Int, Int)],
-                          coord: (Int, Int)): Boolean = {
-    val x = coord._1
-    val y = coord._2
-    board(y)(x) match {
-      case Some(c) if c == color =>
-        if (seen.contains(coord)) false
-        else if (isGoalEdge(coord, color)) true
-        else {
-          seen.add(coord)
-          val hood = neighbors(coord)
-          hood.exists(tryConnect(color, seen, _))
-        }
-      case _ => false
-    }
-  }
+  private def connects(color: Color): Boolean =
+    val edge = color match
+      case Color.White => (0 until width).map((_, 0))
+      case Color.Black => (0 until height).map((0, _))
 
-  def winner: Option[Color] = {
-    if (blackStartCoords.exists(tryConnect(Color.Black, seenCoords, _))) Some(Color.Black)
-    else if (whiteStartCoords.exists(tryConnect(Color.White, seenCoords, _))) Some(Color.White)
-    else None
-  }
-}
+    val start = edge.filter(owns(color)).toList
+    search(color, start, start.toSet)
+
+  @tailrec
+  private def search(color: Color, frontier: List[Cell], seen: Set[Cell]): Boolean = frontier match
+    case Nil                              => false
+    case cell :: _ if atGoal(color)(cell) => true
+    case cell :: rest                     =>
+      val next = neighbors(cell).filter(owns(color)).filterNot(seen)
+      search(color, next ++ rest, seen ++ next)
