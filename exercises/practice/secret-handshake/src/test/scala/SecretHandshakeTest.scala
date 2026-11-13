@@ -1,61 +1,51 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class SecretHandshakeTest extends AnyFunSuite with Matchers:
 
-/** @version 1.2.0 */
-class SecretHandshakeTest extends AnyFunSuite with Matchers {
+  test("wink for 1"):
+    SecretHandshake.commands(1) should be(List("wink"))
 
-  test("wink for 1") {
-    SecretHandshake.commands(1) should be (List("wink"))
-  }
-
-  test("double blink for 10") {
+  test("double blink for 10"):
     pending
-    SecretHandshake.commands(2) should be (List("double blink"))
-  }
+    SecretHandshake.commands(2) should be(List("double blink"))
 
-  test("close your eyes for 100") {
+  test("close your eyes for 100"):
     pending
-    SecretHandshake.commands(4) should be (List("close your eyes"))
-  }
+    SecretHandshake.commands(4) should be(List("close your eyes"))
 
-  test("jump for 1000") {
+  test("jump for 1000"):
     pending
-    SecretHandshake.commands(8) should be (List("jump"))
-  }
+    SecretHandshake.commands(8) should be(List("jump"))
 
-  test("combine two actions") {
+  test("combine two actions"):
     pending
-    SecretHandshake.commands(3) should be (List("wink", "double blink"))
-  }
+    SecretHandshake.commands(3) should be(List("wink", "double blink"))
 
-  test("reverse two actions") {
+  test("reverse two actions"):
     pending
-    SecretHandshake.commands(19) should be (List("double blink", "wink"))
-  }
+    SecretHandshake.commands(19) should be(List("double blink", "wink"))
 
-  test("reversing one action gives the same action") {
+  test("reversing one action gives the same action"):
     pending
-    SecretHandshake.commands(24) should be (List("jump"))
-  }
+    SecretHandshake.commands(24) should be(List("jump"))
 
-  test("reversing no actions still gives no actions") {
+  test("reversing no actions still gives no actions"):
     pending
-    SecretHandshake.commands(16) should be (List())
-  }
+    SecretHandshake.commands(16) should be(List())
 
-  test("all possible actions") {
+  test("all possible actions"):
     pending
-    SecretHandshake.commands(15) should be (List("wink", "double blink", "close your eyes", "jump"))
-  }
+    SecretHandshake.commands(15) should be(List("wink", "double blink", "close your eyes", "jump"))
 
-  test("reverse all possible actions") {
+  test("reverse all possible actions"):
     pending
-    SecretHandshake.commands(31) should be (List("jump", "close your eyes", "double blink", "wink"))
-  }
+    SecretHandshake.commands(31) should be(List("jump", "close your eyes", "double blink", "wink"))
 
-  test("do nothing for zero") {
+  test("do nothing for zero"):
     pending
-    SecretHandshake.commands(0) should be (List())
-  }
-}
+    SecretHandshake.commands(0) should be(List())
