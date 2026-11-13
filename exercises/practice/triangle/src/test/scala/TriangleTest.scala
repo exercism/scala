@@ -1,91 +1,91 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class TriangleTest extends AnyFunSuite with Matchers:
 
-/** @version 1.1.0 */
-class TriangleTest extends AnyFunSuite with Matchers {
+  test("equilateral triangle - all sides are equal"):
+    Triangle(2, 2, 2).equilateral should be(true)
 
-  test("equilateral - true if all sides are equal") {
-    Triangle(2, 2, 2).equilateral should be (true)
-  }
-
-  test("equilateral - false if any side is unequal") {
+  test("equilateral triangle - any side is unequal"):
     pending
-    Triangle(2, 3, 2).equilateral should be (false)
-  }
+    Triangle(2, 3, 2).equilateral should be(false)
 
-  test("equilateral - false if no sides are equal") {
+  test("equilateral triangle - no sides are equal"):
     pending
-    Triangle(5, 4, 6).equilateral should be (false)
-  }
+    Triangle(5, 4, 6).equilateral should be(false)
 
-  test("equilateral - All zero sides are illegal, so the triangle is not equilateral") {
+  test("equilateral triangle - all zero sides is not a triangle"):
     pending
-    Triangle(0, 0, 0).equilateral should be (false)
-  }
+    Triangle(0, 0, 0).equilateral should be(false)
 
-  test("equilateral - sides may be floats") {
+  test("equilateral triangle - sides may be floats"):
     pending
-    Triangle(0.5, 0.5, 0.5).equilateral should be (true)
-  }
+    Triangle(0.5, 0.5, 0.5).equilateral should be(true)
 
-  test("isosceles - true if last two sides are equal") {
+  test("isosceles triangle - last two sides are equal"):
     pending
-    Triangle(3, 4, 4).isosceles should be (true)
-  }
+    Triangle(3, 4, 4).isosceles should be(true)
 
-  test("isosceles - true if first two sides are equal") {
+  test("isosceles triangle - first two sides are equal"):
     pending
-    Triangle(4, 4, 3).isosceles should be (true)
-  }
+    Triangle(4, 4, 3).isosceles should be(true)
 
-  test("isosceles - true if first and last sides are equal") {
+  test("isosceles triangle - first and last sides are equal"):
     pending
-    Triangle(4, 3, 4).isosceles should be (true)
-  }
+    Triangle(4, 3, 4).isosceles should be(true)
 
-  test("isosceles - equilateral triangles are also isosceles") {
+  test("isosceles triangle - equilateral triangles are also isosceles"):
     pending
-    Triangle(4, 4, 4).isosceles should be (true)
-  }
+    Triangle(4, 4, 4).isosceles should be(true)
 
-  test("isosceles - false if no sides are equal") {
+  test("isosceles triangle - no sides are equal"):
     pending
-    Triangle(2, 3, 4).isosceles should be (false)
-  }
+    Triangle(2, 3, 4).isosceles should be(false)
 
-  test("isosceles - Sides that violate triangle inequality are not isosceles, even if two are equal") {
+  test("isosceles triangle - first triangle inequality violation"):
     pending
-    Triangle(1, 1, 3).isosceles should be (false)
-  }
+    Triangle(1, 1, 3).isosceles should be(false)
 
-  test("isosceles - sides may be floats") {
+  test("isosceles triangle - second triangle inequality violation"):
     pending
-    Triangle(0.5, 0.4, 0.5).isosceles should be (true)
-  }
+    Triangle(1, 3, 1).isosceles should be(false)
 
-  test("scalene - true if no sides are equal") {
+  test("isosceles triangle - third triangle inequality violation"):
     pending
-    Triangle(5, 4, 6).scalene should be (true)
-  }
+    Triangle(3, 1, 1).isosceles should be(false)
 
-  test("scalene - false if all sides are equal") {
+  test("isosceles triangle - sides may be floats"):
     pending
-    Triangle(4, 4, 4).scalene should be (false)
-  }
+    Triangle(0.5, 0.4, 0.5).isosceles should be(true)
 
-  test("scalene - false if two sides are equal") {
+  test("scalene triangle - no sides are equal"):
     pending
-    Triangle(4, 4, 3).scalene should be (false)
-  }
+    Triangle(5, 4, 6).scalene should be(true)
 
-  test("scalene - Sides that violate triangle inequality are not scalene, even if they are all different") {
+  test("scalene triangle - all sides are equal"):
     pending
-    Triangle(7, 3, 2).scalene should be (false)
-  }
+    Triangle(4, 4, 4).scalene should be(false)
 
-  test("scalene - sides may be floats") {
+  test("scalene triangle - first and second sides are equal"):
     pending
-    Triangle(0.5, 0.4, 0.6).scalene should be (true)
-  }
-}
+    Triangle(4, 4, 3).scalene should be(false)
+
+  test("scalene triangle - first and third sides are equal"):
+    pending
+    Triangle(3, 4, 3).scalene should be(false)
+
+  test("scalene triangle - second and third sides are equal"):
+    pending
+    Triangle(4, 3, 3).scalene should be(false)
+
+  test("scalene triangle - may not violate triangle inequality"):
+    pending
+    Triangle(7, 3, 2).scalene should be(false)
+
+  test("scalene triangle - sides may be floats"):
+    pending
+    Triangle(0.5, 0.4, 0.6).scalene should be(true)
