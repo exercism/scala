@@ -6,33 +6,31 @@ Another approach is to use the [`findAllIn()`][findallin] method to get the word
 
 ## General guidance
 
-A variant on the `split()` approach is to replace dashes with spaces and then split on the spaces, but that is a step
+A variant on the `split()` approach is to replace dashes and underscores with spaces and then split on the spaces, but that is a step
 which isn't necessary.
 
-# Approach: `split()`
+## Approach: `split()`
 
 ```scala
-object Acronym {
-  def abbreviate(phrase: String): String = raw"[\s-]+".r
-    .split(phrase)
-    .map(_.head.toUpper)
-    .mkString
-}
+object Acronym:
+  def abbreviate(phrase: String): String =
+    raw"[\s_-]+".r
+      .split(phrase)
+      .map(_.head.toUpper)
+      .mkString
 ```
 
 For more information, check the [`split()` approach][approach-split].
 
-# Approach: `findAllIn()`
+## Approach: `findAllIn()`
 
 ```scala
-object Acronym {
-  def abbreviate(phrase: String): String = {
+object Acronym:
+  def abbreviate(phrase: String): String =
     raw"[\p{L}']+".r
       .findAllIn(phrase)
       .map(_.head.toUpper)
       .mkString
-  }
-}
 ```
 
 For more information, check the [`findAllIn()` approach][approach-findallin].
@@ -41,7 +39,7 @@ For more information, check the [`findAllIn()` approach][approach-findallin].
 
 Since benchmarking is currently outside the scope of this document, the choice between approaches can be made by perceived readability.
 
-[split]: https://www.scala-lang.org/api/2.12.7/scala/util/matching/Regex.html#split(toSplit:CharSequence):Array[String]
-[findallin]: https://www.scala-lang.org/api/2.12.7/scala/util/matching/Regex.html#findAllIn(source:CharSequence):scala.util.matching.Regex.MatchIterator
+[split]: https://www.scala-lang.org/api/current/scala/util/matching/Regex.html
+[findallin]: https://www.scala-lang.org/api/current/scala/util/matching/Regex.html
 [approach-split]: https://exercism.org/tracks/scala/exercises/acronym/approaches/split
 [approach-findallin]: https://exercism.org/tracks/scala/exercises/acronym/approaches/findallin

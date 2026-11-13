@@ -1,46 +1,43 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class AcronymTest extends AnyFunSuite with Matchers:
 
-/** @version 1.6.0 */
-class AcronymTest extends AnyFunSuite with Matchers {
+  test("basic"):
+    Acronym.abbreviate("Portable Network Graphics") should be("PNG")
 
-  test("basic") {
-    Acronym.abbreviate("Portable Network Graphics") should be ("PNG")
-  }
-
-  test("lowercase words") {
+  test("lowercase words"):
     pending
-    Acronym.abbreviate("Ruby on Rails") should be ("ROR")
-  }
+    Acronym.abbreviate("Ruby on Rails") should be("ROR")
 
-  test("punctuation") {
+  test("punctuation"):
     pending
-    Acronym.abbreviate("First In, First Out") should be ("FIFO")
-  }
+    Acronym.abbreviate("First In, First Out") should be("FIFO")
 
-  test("all caps word") {
+  test("all caps word"):
     pending
-    Acronym.abbreviate("GNU Image Manipulation Program") should be ("GIMP")
-  }
+    Acronym.abbreviate("GNU Image Manipulation Program") should be("GIMP")
 
-  test("punctuation without whitespace") {
+  test("punctuation without whitespace"):
     pending
-    Acronym.abbreviate("Complementary metal-oxide semiconductor") should be ("CMOS")
-  }
+    Acronym.abbreviate("Complementary metal-oxide semiconductor") should be("CMOS")
 
-  test("very long abbreviation") {
+  test("very long abbreviation"):
     pending
-    Acronym.abbreviate("Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me") should be ("ROTFLSHTMDCOALM")
-  }
+    Acronym.abbreviate("Rolling On The Floor Laughing So Hard That My Dogs Came Over And Licked Me") should be("ROTFLSHTMDCOALM")
 
-  test("consecutive delimiters") {
+  test("consecutive delimiters"):
     pending
-    Acronym.abbreviate("Something - I made up from thin air") should be ("SIMUFTA")
-  }
+    Acronym.abbreviate("Something - I made up from thin air") should be("SIMUFTA")
 
-  test("apostrophes") {
+  test("apostrophes"):
     pending
-    Acronym.abbreviate("Halley's Comet") should be ("HC")
-  }
-}
+    Acronym.abbreviate("Halley's Comet") should be("HC")
+
+  test("underscore emphasis"):
+    pending
+    Acronym.abbreviate("The Road _Not_ Taken") should be("TRNT")
