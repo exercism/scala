@@ -1,0 +1,25 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("Dominoes") }}
+
+  private def check(input: List[(Int, Int)], hasResult: Boolean): Unit =
+    val result = Dominoes.chain(input)
+    if hasResult then checkChain(result.getOrElse(fail("should have had a chain, but didn't")), input)
+    else result should be(None)
+
+  private def checkChain(result: List[(Int, Int)], input: List[(Int, Int)]): Unit =
+    def sortDomino(domino: (Int, Int)): (Int, Int) = if domino._1 > domino._2 then domino.swap else domino
+
+    def consecutivesShouldMatch(dominoes: List[((Int, Int), Int)]): Unit =
+      for case List((a @ (_, x), i1), (b @ (y, _), i2)) <- dominoes.sliding(2) do assert(x == y, s"dominoes $i1 and $i2 don't match: $a $b")
+
+    assert(result.map(sortDomino).sorted == input.map(sortDomino).sorted, "doesn't consist of input dominoes")
+    consecutivesShouldMatch(result.zipWithIndex)
+    if result.nonEmpty then consecutivesShouldMatch(List((result.last, result.length - 1), (result.head, 0)))
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+    check(List({% for d in case.input.dominoes %}({{ d[0] }}, {{ d[1] }}){% if not loop.last %}, {% endif %}{% endfor %}), {{ case.expected | scala }})
+{% endfor %}
