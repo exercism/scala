@@ -1,28 +1,10 @@
-object Luhn {
+object Luhn:
 
-  def valid(numberStr: String): Boolean = {
-    val s = numberStr.replace(" ", "")
+  def valid(input: String): Boolean =
+    val digits = input.filterNot(_ == ' ')
+    digits.length > 1 && digits.forall(_.isDigit) && checksum(digits) % 10 == 0
 
-    s.length > 1 &&
-      s.forall(c => c.isDigit) &&
-      checksum(s.map(_.asDigit).toList) == 0
-  }
+  private def checksum(digits: String): Int =
+    digits.reverseIterator.map(_.asDigit).zipWithIndex.map((digit, i) => if i % 2 == 1 then double(digit) else digit).sum
 
-  private def checkDigit(number: Long): Int = (number % 10).toInt
-
-  private def addends(digits: List[Int]): List[Int] = {
-    val zippedDigits = digits.reverse.zipWithIndex
-
-    zippedDigits.map{case (m, i) => if (isOdd(i)) dbl(m) else m}
-  }
-
-  private def checksum(digits: List[Int]): Int = addends(digits).sum % 10
-
-  private def dbl(n: Int) = {
-    val dbled = n * 2
-
-    if (dbled < 10) dbled else dbled - 9
-  }
-
-  private def isOdd(i: Int) = i % 2 == 1
-}
+  private def double(digit: Int): Int = if digit > 4 then digit * 2 - 9 else digit * 2
