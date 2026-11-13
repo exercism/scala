@@ -1,0 +1,38 @@
+{%- import "macros.j2" as macros -%}
+{#- The texts one per line and the expected counts one per line, padded as scalafmt aligns the two vals. -#}
+{%- macro texts(values) -%}
+{%- if values -%}
+{{ "    val texts    = List(" }}
+{% for text in values %}
+{{ "      " ~ (text | scala) ~ "," }}
+{% endfor %}
+{{ "    )" }}
+{%- else -%}
+{{ "    val texts    = List()" }}
+{%- endif -%}
+{%- endmacro -%}
+{%- macro counts(expected) -%}
+{%- if expected -%}
+{{ "    val expected = Map(" }}
+{% for letter, count in expected | dictsort %}
+{{ "      '" ~ letter ~ "' -> " ~ count ~ "," }}
+{% endfor %}
+{{ "    )" }}
+{%- else -%}
+{{ "    val expected = Map()" }}
+{%- endif -%}
+{%- endmacro -%}
+{{ macros.header("Frequency") }}
+
+  // The canonical data has no number of workers, so every case uses the same one.
+  private val Workers = 4
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ texts(case.input.texts) }}
+{{ counts(case.expected) }}
+    Frequency.frequency(Workers, texts) should be(expected)
+{% endfor %}
