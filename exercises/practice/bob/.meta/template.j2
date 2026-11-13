@@ -1,0 +1,10 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("Bob") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("Bob.response(" ~ (case.input.heyBob | scala) ~ ")", case.expected | scala) }}
+{% endfor %}
