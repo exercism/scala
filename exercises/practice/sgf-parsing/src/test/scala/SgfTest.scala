@@ -1,69 +1,101 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
-import Sgf._
 
-/** @version created manually **/
-class SgfTest extends AnyFunSuite with Matchers {
-  test("parse \"\"") {
-    Sgf.parseSgf("") should be (None)
-  }
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class SgfTest extends AnyFunSuite with Matchers:
 
-  test("parse \"()\"") {
+  import Sgf.*
+
+  test("empty input"):
+    parseSgf("") should be(None)
+
+  test("tree with no nodes"):
     pending
-    Sgf.parseSgf("()") should be (None)
-  }
+    parseSgf("()") should be(None)
 
-  test("parse \";\"") {
+  test("node without tree"):
     pending
-    Sgf.parseSgf(";") should be (None)
-  }
+    parseSgf(";") should be(None)
 
-  test("parse \"(;)\"") {
+  test("node without properties"):
     pending
-    Sgf.parseSgf("(;)") should be (Some(Node(Map())))
-  }
+    parseSgf("(;)") should be(Some(Node(Map())))
 
-  test("parse \"(;A[B])\"") {
+  test("single node tree"):
     pending
-    Sgf.parseSgf("(;A[B])") should be (Some(Node(Map("A" -> List("B")))))
-  }
+    parseSgf("(;A[B])") should be(Some(Node(Map("A" -> List("B")))))
 
-  test("parse \"(;a)\"") {
+  test("multiple properties"):
     pending
-    Sgf.parseSgf("(;a)") should be (None)
-  }
+    parseSgf("(;A[b]C[d])") should be(Some(Node(Map("A" -> List("b"), "C" -> List("d")))))
 
-  test("parse \"(;a[b])\"") {
+  test("properties without delimiter"):
     pending
-    Sgf.parseSgf("(;a[b])") should be (None)
-  }
+    parseSgf("(;A)") should be(None)
 
-  test("parse \"(;Aa[b])\"") {
+  test("all lowercase property"):
     pending
-    Sgf.parseSgf("(;Aa[b])") should be (None)
-  }
+    parseSgf("(;a[b])") should be(None)
 
-  test("parse \"(;A[B];B[C])\"") {
+  test("upper and lowercase property"):
     pending
-    Sgf.parseSgf("(;A[B];B[C])") should be (
-        Some(Node(Map("A" -> List("B")), List(Node(Map("B" -> List("C")))))))
-  }
+    parseSgf("(;Aa[b])") should be(None)
 
-  test("parse \"(;A[B](;B[C])(;C[D]))\"") {
+  test("two nodes"):
     pending
-    Sgf.parseSgf("(;A[B](;B[C])(;C[D]))") should be (
-        Some(Node(Map("A" -> List("B")), List(Node(Map("B" -> List("C"))),
-                                              Node(Map("C" -> List("D")))))))
-  }
+    parseSgf("(;A[B];B[C])") should be(Some(Node(Map("A" -> List("B")), List(Node(Map("B" -> List("C")))))))
 
-  test("parse \"(;A[b][c][d])\"") {
+  test("two child trees"):
     pending
-    Sgf.parseSgf("(;A[b][c][d])") should be (Some(Node(Map("A" -> List("b", "c", "d")))))
-  }
+    parseSgf("(;A[B](;B[C])(;C[D]))") should be(Some(Node(Map("A" -> List("B")), List(Node(Map("B" -> List("C"))), Node(Map("C" -> List("D")))))))
 
-  test("""parse "(;A[\\]b\nc\\\nd\t\te\\\\ \\\n\\]])"""") {
+  test("multiple property values"):
     pending
-    Sgf.parseSgf("(;A[\\]b\nc\\\nd\t\te\\\\ \\\n\\]])") should be (
-        Some(Node(Map("A" -> List("]b cd  e\\ ]")))))
-  }
-}
+    parseSgf("(;A[b][c][d])") should be(Some(Node(Map("A" -> List("b", "c", "d")))))
+
+  test("within property values, whitespace characters such as tab are converted to spaces"):
+    pending
+    parseSgf("(;A[hello\t\tworld])") should be(Some(Node(Map("A" -> List("hello  world")))))
+
+  test("within property values, newlines remain as newlines"):
+    pending
+    parseSgf("(;A[hello\n\nworld])") should be(Some(Node(Map("A" -> List("hello\n\nworld")))))
+
+  test("escaped closing bracket within property value becomes just a closing bracket"):
+    pending
+    parseSgf("(;A[\\]])") should be(Some(Node(Map("A" -> List("]")))))
+
+  test("escaped backslash in property value becomes just a backslash"):
+    pending
+    parseSgf("(;A[\\\\])") should be(Some(Node(Map("A" -> List("\\")))))
+
+  test("opening bracket within property value doesn't need to be escaped"):
+    pending
+    parseSgf("(;A[x[y\\]z][foo]B[bar];C[baz])") should be(Some(Node(Map("A" -> List("x[y]z", "foo"), "B" -> List("bar")), List(Node(Map("C" -> List("baz")))))))
+
+  test("semicolon in property value doesn't need to be escaped"):
+    pending
+    parseSgf("(;A[a;b][foo]B[bar];C[baz])") should be(Some(Node(Map("A" -> List("a;b", "foo"), "B" -> List("bar")), List(Node(Map("C" -> List("baz")))))))
+
+  test("parentheses in property value don't need to be escaped"):
+    pending
+    parseSgf("(;A[x(y)z][foo]B[bar];C[baz])") should be(Some(Node(Map("A" -> List("x(y)z", "foo"), "B" -> List("bar")), List(Node(Map("C" -> List("baz")))))))
+
+  test("escaped tab in property value is converted to space"):
+    pending
+    parseSgf("(;A[hello\\\tworld])") should be(Some(Node(Map("A" -> List("hello world")))))
+
+  test("escaped newline in property value is converted to nothing at all"):
+    pending
+    parseSgf("(;A[hello\\\nworld])") should be(Some(Node(Map("A" -> List("helloworld")))))
+
+  test("escaped t and n in property value are just letters, not whitespace"):
+    pending
+    parseSgf("(;A[\\t = t and \\n = n])") should be(Some(Node(Map("A" -> List("t = t and n = n")))))
+
+  test("mixing various kinds of whitespace and escaped characters in property value"):
+    pending
+    parseSgf("(;A[\\]b\nc\\\nd\t\te\\\\ \\\n\\]])") should be(Some(Node(Map("A" -> List("]b\ncd  e\\ ]")))))

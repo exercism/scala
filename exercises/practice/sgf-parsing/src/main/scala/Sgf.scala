@@ -1,8 +1,8 @@
 import scala.util.parsing.combinator.RegexParsers
 
-object Sgf extends RegexParsers {
+object Sgf extends RegexParsers:
 
-  type Tree[A] = Node[A] // to separate the type from the constructor, cf. Haskell's Data.Tree
+  type Tree[A]   = Node[A] // to separate the type from the constructor, cf. Haskell's Data.Tree
   type Forest[A] = List[Tree[A]]
   case class Node[A](rootLabel: A, subForest: Forest[A] = List())
 
@@ -14,4 +14,3 @@ object Sgf extends RegexParsers {
   type SgfNode = Map[String, List[String]]
 
   def parseSgf(text: String): Option[SgfTree] = ???
-}

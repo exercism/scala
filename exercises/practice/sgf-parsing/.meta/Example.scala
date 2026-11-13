@@ -1,8 +1,8 @@
 import scala.util.parsing.combinator.RegexParsers
 
-object Sgf extends RegexParsers {
+object Sgf extends RegexParsers:
 
-  type Tree[A] = Node[A] // to separate the type from the constructor, cf. Haskell's Data.Tree
+  type Tree[A]   = Node[A] // to separate the type from the constructor, cf. Haskell's Data.Tree
   type Forest[A] = List[Tree[A]]
   case class Node[A](rootLabel: A, subForest: Forest[A] = List())
 
@@ -15,52 +15,25 @@ object Sgf extends RegexParsers {
 
   override val skipWhitespace = false
 
-  private implicit def parseResultToOption[T](parseResult: ParseResult[T]): Option[T] =
-    parseResult map (Some(_)) getOrElse None
+  def parseSgf(text: String): Option[SgfTree] = parseAll(gameTree, text) match
+    case Success(tree, _) => Some(tree)
+    case _                => None
 
-  def parseSgf(text: String): Option[SgfTree] =
-    parseAll(sgfGameTree, text)
-
-  private val sgfGameTree: Parser[SgfTree] =
-    ("(" ~ rep1(sgfNode) ~ rep(sgfGameTree) ~ ")") ^^ {
-      case _ ~ (rootNode::subNodes) ~ subTrees ~ _ =>
-        val subNodeForest: List[SgfTree] = subNodes map (Node(_))
-        Node(rootNode, subNodeForest ++ subTrees)
-    } named "sgfGameTree"
-
-  private val sgfNode: Parser[SgfNode] =
-    ";" ~ (sgfProperty | emptySgfNode) ^^ {
-      case _ ~ sgfNode => sgfNode
-    } named "sgfNode"
-
-  private val emptySgfNode: Parser[SgfNode] =
-    "" ^^ const(Map())
-
-  private def sgfProperty: Parser[SgfNode] =
-    propIdent ~ propValues ^^ {
-      case identifier ~ values => Map(identifier -> values)
-    } named "sgfProperty"
-
-  private val propIdent: Parser[String] = "[A-Z]".r named "propIdent"
-
-  private val propValues: Parser[List[String]] = rep1(propValue)
-
-  private val propValue: Parser[String] =
-    "[" ~ rep1(propValuePart) ~ "]" ^^ {
-      case _ ~ values ~ _ => values.mkString
-    } named "propValue"
-
-  private val propValuePart: Parser[String] = {
-    implicit class AsStringParser(self: String) { def p: Parser[String] = self }
-    val ignore = const("")
-
-    val escapedNewline: Parser[String] = "\\\n".p ^^ ignore
-    val escapedChar: Parser[String] = """\\.""".r ^^ (_.takeRight(1))
-    val whitespace: Parser[String] = """\s""".r ^^ const(" ")
-    val ident: Parser[String] = "[^]]".r
-
-    escapedNewline | escapedChar | whitespace | ident
+  // A sequence of nodes is a chain: each node is the only child of the one before it.
+  private def gameTree: Parser[SgfTree] = ("(" ~> rep1(node) ~ rep(gameTree) <~ ")") ^^ { case nodes ~ children =>
+    nodes.init.foldRight(Node(nodes.last, children))((properties, child) => Node(properties, List(child)))
   }
 
-  private def const[A](a: A)(ignore: Any) = a
-}
+  private def node: Parser[SgfNode] = ";" ~> rep(property) ^^ (_.toMap)
+
+  private def property: Parser[(String, List[String])] = "[A-Z]+".r ~ rep1(value) ^^ { case key ~ values => key -> values }
+
+  private def value: Parser[String] = "[" ~> rep(valuePart) <~ "]" ^^ (_.mkString)
+
+  private def valuePart: Parser[String] =
+    "\\\n" ^^^ "" |             // an escaped newline is removed
+      """\\\s""".r ^^^ " " |    // other escaped whitespace becomes a space
+      """\\.""".r ^^ (_.tail) | // any other escaped character is kept as it is
+      "\n" |                    // a newline stays
+      """\s""".r ^^^ " " |      // other whitespace becomes a space
+      """[^\]\\]""".r
