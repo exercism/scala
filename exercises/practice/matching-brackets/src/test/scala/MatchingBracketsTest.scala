@@ -1,83 +1,87 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class MatchingBracketsTest extends AnyFunSuite with Matchers:
 
-/** @version 1.3.0 */
-class MatchingBracketsTest extends AnyFunSuite with Matchers {
-
-  test("paired square brackets") {
+  test("paired square brackets"):
     MatchingBrackets.isPaired("[]") should be(true)
-  }
 
-  test("empty string") {
+  test("empty string"):
     pending
     MatchingBrackets.isPaired("") should be(true)
-  }
 
-  test("unpaired brackets") {
+  test("unpaired brackets"):
     pending
     MatchingBrackets.isPaired("[[") should be(false)
-  }
 
-  test("wrong ordered brackets") {
+  test("wrong ordered brackets"):
     pending
     MatchingBrackets.isPaired("}{") should be(false)
-  }
 
-  test("wrong closing bracket") {
+  test("wrong closing bracket"):
     pending
     MatchingBrackets.isPaired("{]") should be(false)
-  }
 
-  test("paired with whitespace") {
+  test("paired with whitespace"):
     pending
     MatchingBrackets.isPaired("{ }") should be(true)
-  }
 
-  test("partially paired brackets") {
+  test("partially paired brackets"):
     pending
     MatchingBrackets.isPaired("{[])") should be(false)
-  }
 
-  test("simple nested brackets") {
+  test("simple nested brackets"):
     pending
     MatchingBrackets.isPaired("{[]}") should be(true)
-  }
 
-  test("several paired brackets") {
+  test("several paired brackets"):
     pending
     MatchingBrackets.isPaired("{}[]") should be(true)
-  }
 
-  test("paired and nested brackets") {
+  test("paired and nested brackets"):
     pending
     MatchingBrackets.isPaired("([{}({}[])])") should be(true)
-  }
 
-  test("unopened closing brackets") {
+  test("unopened closing brackets"):
     pending
     MatchingBrackets.isPaired("{[)][]}") should be(false)
-  }
 
-  test("unpaired and nested brackets") {
+  test("unpaired and nested brackets"):
     pending
     MatchingBrackets.isPaired("([{])") should be(false)
-  }
 
-  test("paired and wrong nested brackets") {
+  test("paired and wrong nested brackets"):
     pending
     MatchingBrackets.isPaired("[({]})") should be(false)
-  }
 
-  test("math expression") {
+  test("paired and wrong nested brackets but innermost are correct"):
+    pending
+    MatchingBrackets.isPaired("[({}])") should be(false)
+
+  test("paired and incomplete brackets"):
+    pending
+    MatchingBrackets.isPaired("{}[") should be(false)
+
+  test("too many closing brackets"):
+    pending
+    MatchingBrackets.isPaired("[]]") should be(false)
+
+  test("early unexpected brackets"):
+    pending
+    MatchingBrackets.isPaired(")()") should be(false)
+
+  test("early mismatched brackets"):
+    pending
+    MatchingBrackets.isPaired("{)()") should be(false)
+
+  test("math expression"):
     pending
     MatchingBrackets.isPaired("(((185 + 223.85) * 15) - 543)/2") should be(true)
-  }
 
-  test("complex latex expression") {
+  test("complex latex expression"):
     pending
-    MatchingBrackets.isPaired(
-      """\left(\begin{array}{cc} \frac{1}{3} & x\ \mathrm{e}^{x} &... x^2 \end{array}\right)""") should be(
-      true)
-  }
-}
+    MatchingBrackets.isPaired("\\left(\\begin{array}{cc} \\frac{1}{3} & x\\\\ \\mathrm{e}^{x} &... x^2 \\end{array}\\right)") should be(true)
