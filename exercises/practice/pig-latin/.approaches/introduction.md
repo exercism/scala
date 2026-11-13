@@ -23,10 +23,9 @@ object PigLatin:
   def translate(phrase: String): String =
     phrase
       .split(" ")
-      .map { word =>
+      .map: word =>
         if vowels.contains(word.head) || specials.contains(word.slice(0, 2)) then word + "ay"
         else findVowel(word, 1)
-      }
       .mkString(" ")
 
   @tailrec

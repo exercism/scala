@@ -12,10 +12,9 @@ object PigLatin:
   def translate(phrase: String): String =
     phrase
       .split(" ")
-      .map { word =>
+      .map: word =>
         if vowels.contains(word.head) || specials.contains(word.slice(0, 2)) then word + "ay"
         else findVowel(word, 1)
-      }
       .mkString(" ")
 
   @tailrec
@@ -31,6 +30,7 @@ This approach starts by defining some [Set][set]s to hold the vowels, the vowels
 
 The input phrase is split on a space character and the word or words are chained to the [`map()`][map] method.
 Each word is passed to the [lambda][lambda] which consists of an `if`/`then`/`else` expression.
+The lambda is the last argument of `map()`, so it can follow a [colon instead of being wrapped in braces][fewer-braces].
 If the `Set` of vowels includes the first character of the word (also called the [`head`][head]), or if a [`slice()`][slice]
 of the first two characters is one of the special groups of letters, then `map()` outputs the word appended with `ay`.
 
@@ -63,6 +63,7 @@ After all of the words have been mapped, they are reassembled into a string by t
 [slice]: https://www.scala-lang.org/api/current/scala/collection/StringOps.html
 [map]: https://www.scala-lang.org/api/current/scala/collection/ArrayOps.html
 [lambda]: https://www.geeksforgeeks.org/lambda-expression-in-scala/
+[fewer-braces]: https://docs.scala-lang.org/scala3/reference/other-new-features/indentation.html#optional-braces-for-method-arguments
 [match]: https://docs.scala-lang.org/scala3/book/control-structures.html#match-expressions
 [recursion]: https://www.geeksforgeeks.org/recursion-in-scala/
 [tailrec-annotation]: https://www.scala-lang.org/api/current/scala/annotation/tailrec.html
