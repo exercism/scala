@@ -11,24 +11,23 @@ One concern is to keep all of the calculation in one place.
 Another concern is to reduce the amount of duplication.
 As always, a concern is to try to maintain [immutability][immutability].
 
-
 ## Approach: Currying
 
 ```scala
-object SpaceAge {
-  private val EARTH_SECONDS = 31_557_600.0
-  private def calculate(orbitPeriod: Double) =
-    (seconds: Double) => seconds / EARTH_SECONDS / orbitPeriod
+object SpaceAge:
+  private val EarthSeconds = 31_557_600.0
 
-  val onEarth = calculate(1.0)
+  private def calculate(orbitPeriod: Double) =
+    (seconds: Double) => seconds / EarthSeconds / orbitPeriod
+
+  val onEarth   = calculate(1.0)
   val onMercury = calculate(0.2408467)
-  val onVenus = calculate(0.61519726)
-  val onMars = calculate(1.8808158)
+  val onVenus   = calculate(0.61519726)
+  val onMars    = calculate(1.8808158)
   val onJupiter = calculate(11.862615)
-  val onSaturn = calculate(29.447498)
-  val onUranus = calculate(84.016846)
+  val onSaturn  = calculate(29.447498)
+  val onUranus  = calculate(84.016846)
   val onNeptune = calculate(164.79132)
-}
 ```
 
 For more information, check the [Currying approach][approach-currying].
@@ -36,20 +35,20 @@ For more information, check the [Currying approach][approach-currying].
 ## Approach: Partial application
 
 ```scala
-object SpaceAge {
-  private val EARTH_SECONDS = 31_557_600.0
-  private def calculate(orbitPeriod: Double, seconds: Double): Double =
-    seconds / EARTH_SECONDS / orbitPeriod
+object SpaceAge:
+  private val EarthSeconds = 31_557_600.0
 
-  val onEarth = calculate(1, _)
+  private def calculate(orbitPeriod: Double, seconds: Double): Double =
+    seconds / EarthSeconds / orbitPeriod
+
+  val onEarth   = calculate(1, _)
   val onMercury = calculate(0.2408467, _)
-  val onVenus = calculate(0.61519726, _)
-  val onMars = calculate(1.8808158, _)
+  val onVenus   = calculate(0.61519726, _)
+  val onMars    = calculate(1.8808158, _)
   val onJupiter = calculate(11.862615, _)
-  val onSaturn = calculate(29.447498, _)
-  val onUranus = calculate(84.016846, _)
+  val onSaturn  = calculate(29.447498, _)
+  val onUranus  = calculate(84.016846, _)
   val onNeptune = calculate(164.79132, _)
-}
 ```
 
 For more information, check the [Partial application approach][approach-partial-application].
@@ -59,18 +58,18 @@ For more information, check the [Partial application approach][approach-partial-
 ```scala
 import scala.language.dynamics
 
-object SpaceAge extends Dynamic {
+object SpaceAge extends Dynamic:
   private val EarthSeconds = 31_557_600.0
 
   private val PlanetRatio: Map[String, Double] = Map(
     "Mercury" -> 0.2408467,
-    "Venus" -> 0.61519726,
-    "Earth" -> 1.0,
-    "Mars" -> 1.8808158,
+    "Venus"   -> 0.61519726,
+    "Earth"   -> 1.0,
+    "Mars"    -> 1.8808158,
     "Jupiter" -> 11.862615,
-    "Saturn" -> 29.447498,
-    "Uranus" -> 84.016846,
-    "Neptune" -> 164.79132
+    "Saturn"  -> 29.447498,
+    "Uranus"  -> 84.016846,
+    "Neptune" -> 164.79132,
   )
 
   private def calculate(planet: String, seconds: Double): Double =
@@ -78,7 +77,6 @@ object SpaceAge extends Dynamic {
 
   def applyDynamic(methodCall: String)(seconds: Double): Double =
     calculate(methodCall.substring(2), seconds)
-}
 ```
 
 For more information, check the [`applyDynamic()` approach][approach-applydynamic].
@@ -94,7 +92,7 @@ A typo in the method name would not even be a runtime error, but an unexpected v
 
 [currying]: https://www.geeksforgeeks.org/currying-functions-in-scala-with-examples/
 [partial-application]: https://www.geeksforgeeks.org/scala-partially-applied-functions/
-[applydynamic]: https://www.scala-lang.org/api/2.13.3/scala/Dynamic.html
+[applydynamic]: https://www.scala-lang.org/api/current/scala/Dynamic.html
 [dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
 [immutability]: https://alvinalexander.com/scala/scala-idiom-immutable-code-functional-programming-immutability/
 [approach-currying]: https://exercism.org/tracks/scala/exercises/space-age/approaches/currying
