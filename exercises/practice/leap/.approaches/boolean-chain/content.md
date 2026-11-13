@@ -1,10 +1,9 @@
 # Chain of Boolean expressions
 
 ```scala
-object Leap {
+object Leap:
   def leapYear(year: Int): Boolean =
     year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
-}
 ```
 
 The first boolean expression uses the [modulus operator][modulus-operator] to check if the year is evenly divided by `4`.

@@ -1,19 +1,18 @@
 # Ternary expression of Boolean conditions
 
 ```scala
-object Leap {
+object Leap:
   def leapYear(year: Int): Boolean =
-    if (year % 100 == 0) year % 400 == 0
-    else year % 4 == 0
-}
+    if year % 100 == 0 then year % 400 == 0 else year % 4 == 0
 ```
 
-A [ternary expression][ternary] uses a maximum of two checks to determine if a year is a leap year.
+Scala has no `?:` ternary operator: an [`if`/`then`/`else`][if-then-else] expression plays that role, because `if` returns a value.
+The `if` expression uses a maximum of two checks to determine if a year is a leap year.
 
 It starts by testing the outlier condition of the year being evenly divisible by `100`.
 It does this by using the [modulus operator][modulus-operator].
-If the year is evenly divisible by `100`, then the expression is `true`, and the ternary expression returns if the year is evenly divisible by `400`.
-If the year is _not_ evenly divisible by `100`, then the expression is `false`, and the ternary expression returns if the year is evenly divisible by `4`.
+If the year is evenly divisible by `100`, then the expression is `true`, and the `if` expression returns if the year is evenly divisible by `400`.
+If the year is _not_ evenly divisible by `100`, then the expression is `false`, and the `if` expression returns if the year is evenly divisible by `4`.
 
 | year | year % 100 == 0 | year % 400 == 0 | year % 4 == 0  | is leap year |
 | ---- | --------------- | --------------- | -------------- | ------------ |
@@ -22,9 +21,9 @@ If the year is _not_ evenly divisible by `100`, then the expression is `false`, 
 | 2000 |           true  |            true |  not evaluated |        true  |
 | 1900 |           true  |           false |  not evaluated |        false |
 
-Although it uses a maximum of only two checks, the ternary expression tests an outlier condition first,
+Although it uses a maximum of only two checks, the `if` expression tests an outlier condition first,
 making it less efficient than another approach that would first test if the year is evenly divisible by `4`,
 which is more likely than the year being evenly divisible by `100`.
 
 [modulus-operator]: https://www.geeksforgeeks.org/operators-in-scala/
-[ternary]: https://alvinalexander.com/scala/scala-ternary-operator-syntax/
+[if-then-else]: https://docs.scala-lang.org/scala3/book/control-structures.html#the-ifthenelse-construct
