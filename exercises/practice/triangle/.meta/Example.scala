@@ -1,8 +1,8 @@
-case class Triangle(a: Double, b: Double, c: Double) {
-  private def checkInequality = a + b >= c  &&  a + c >= b && b + c >= a
+case class Triangle(a: Double, b: Double, c: Double):
+  private val sides    = List(a, b, c).sorted
+  private val valid    = sides.head > 0 && sides(0) + sides(1) >= sides(2)
+  private val distinct = sides.distinct.size
 
-  val illogical: Boolean = List(a, b, c).count(_ <= 0) > 0 || !checkInequality
-  val isosceles: Boolean = !illogical && (a == b || a == c || b == c)
-  val equilateral: Boolean = !illogical && ( a == b && b == c)
-  val scalene: Boolean = !illogical && !isosceles && !equilateral
-}
+  val equilateral: Boolean = valid && distinct == 1
+  val isosceles: Boolean   = valid && distinct <= 2
+  val scalene: Boolean     = valid && distinct == 3
