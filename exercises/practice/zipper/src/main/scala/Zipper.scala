@@ -1,4 +1,4 @@
-object Zipper {
+object Zipper:
   // A zipper for a binary tree.
   // ??? Zipper[A] ???
 
@@ -28,8 +28,6 @@ object Zipper {
 
   // Replace a right child tree.
   def setRight[A](r: Option[BinTree[A]], zipper: Zipper[A]): Zipper[A] = ???
-}
 
 // A binary tree.
 case class BinTree[A](value: A, left: Option[BinTree[A]], right: Option[BinTree[A]])
-

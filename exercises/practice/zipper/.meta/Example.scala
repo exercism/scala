@@ -1,62 +1,53 @@
-object Zipper {
-  // implementation translated from http://learnyouahaskell.com/zippers
-  type Breadcrumbs[A] = List[Crumb[A]]
-  // A zipper for a binary tree.
-  type Zipper[A] = (BinTree[A], Breadcrumbs[A])
+import scala.annotation.tailrec
+
+// A binary tree.
+case class BinTree[A](value: A, left: Option[BinTree[A]], right: Option[BinTree[A]])
+
+/** The way back up: which side we came down, the parent's value and the other subtree. */
+enum Crumb[A]:
+  case LeftCrumb(value: A, right: Option[BinTree[A]])
+  case RightCrumb(value: A, left: Option[BinTree[A]])
+
+import Crumb.*
+
+// Implementation after http://learnyouahaskell.com/zippers
+object Zipper:
+  // A zipper for a binary tree: the focus and the crumbs back to the root.
+  type Zipper[A] = (BinTree[A], List[Crumb[A]])
 
   // Get a zipper focussed on the root node.
   def fromTree[A](bt: BinTree[A]): Zipper[A] = (bt, Nil)
 
   // Get the complete tree from a zipper.
-  def toTree[A](zipper: Zipper[A]): BinTree[A] = zipper match {
-    case (bt, Nil) => bt
-    case _ => toTree(up(zipper).get)
-  }
+  @tailrec
+  def toTree[A](zipper: Zipper[A]): BinTree[A] = up(zipper) match
+    case Some(parent) => toTree(parent)
+    case None         => zipper._1
 
   // Get the value of the focus node.
   def value[A](zipper: Zipper[A]): A = zipper._1.value
 
   // Get the left child of the focus node, if any.
-  def left[A](zipper: Zipper[A]): Option[Zipper[A]] = zipper match {
-    case (BinTree(x, Some(l), r), bs) => Some((l, LeftCrumb(x, r)::bs))
-    case _ => None
-  }
+  def left[A](zipper: Zipper[A]): Option[Zipper[A]] =
+    val (BinTree(x, l, r), crumbs) = zipper
+    l.map((_, LeftCrumb(x, r) :: crumbs))
 
   // Get the right child of the focus node, if any.
-  def right[A](zipper: Zipper[A]): Option[Zipper[A]] = zipper match {
-    case (BinTree(x, l, Some(r)), bs) => Some((r, RightCrumb(x, l)::bs))
-    case _ => None
-  }
+  def right[A](zipper: Zipper[A]): Option[Zipper[A]] =
+    val (BinTree(x, l, r), crumbs) = zipper
+    r.map((_, RightCrumb(x, l) :: crumbs))
 
   // Get the parent of the focus node, if any.
-  def up[A](zipper: Zipper[A]): Option[Zipper[A]] = zipper match {
-    case (t, LeftCrumb(x, r)::bs) => Some((BinTree(x, Some(t), r), bs))
-    case (t, RightCrumb(x, l)::bs) => Some((BinTree(x, l, Some(t)), bs))
-    case _ => throw new Exception("up: called on topmost focus")
-  }
+  def up[A](zipper: Zipper[A]): Option[Zipper[A]] = zipper match
+    case (t, LeftCrumb(x, r) :: crumbs)  => Some((BinTree(x, Some(t), r), crumbs))
+    case (t, RightCrumb(x, l) :: crumbs) => Some((BinTree(x, l, Some(t)), crumbs))
+    case (_, Nil)                        => None
 
   // Set the value of the focus node.
-  def setValue[A](v: A, zipper: Zipper[A]): Zipper[A] = {
-    val (bt, bs) = zipper
-    (bt.copy(value = v), bs)
-  }
+  def setValue[A](v: A, zipper: Zipper[A]): Zipper[A] = (zipper._1.copy(value = v), zipper._2)
 
   // Replace a left child tree.
-  def setLeft[A](l: Option[BinTree[A]], zipper: Zipper[A]): Zipper[A] = {
-    val (bt, bs) = zipper
-    (bt.copy(left = l), bs)
-  }
+  def setLeft[A](l: Option[BinTree[A]], zipper: Zipper[A]): Zipper[A] = (zipper._1.copy(left = l), zipper._2)
 
   // Replace a right child tree.
-  def setRight[A](r: Option[BinTree[A]], zipper: Zipper[A]): Zipper[A] = {
-    val (bt, bs) = zipper
-    (bt.copy(right = r), bs)
-  }
-}
-
-// A binary tree.
-case class BinTree[A](value: A, left: Option[BinTree[A]], right: Option[BinTree[A]])
-
-trait Crumb[A]
-case class LeftCrumb[A](value: A, tree: Option[BinTree[A]]) extends Crumb[A]
-case class RightCrumb[A](value: A, tree: Option[BinTree[A]]) extends Crumb[A]
+  def setRight[A](r: Option[BinTree[A]], zipper: Zipper[A]): Zipper[A] = (zipper._1.copy(right = r), zipper._2)
