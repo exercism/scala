@@ -1,8 +1,7 @@
 phrase
   .split(" ")
-  .map(word =>
-    if (vowels.contains(word.head) || specials.contains(word.slice(0, 2)))
-      word + "ay"
+  .map { word =>
+    if vowels.contains(word.head) || specials.contains(word.slice(0, 2)) then word + "ay"
     else findVowel(word, 1)
-  )
-  .mkString(" "
+  }
+  .mkString(" ")
