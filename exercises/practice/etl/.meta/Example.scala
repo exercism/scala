@@ -1,5 +1,6 @@
-object Etl {
-  def transform(m: Map[Int, Seq[String]]): Map[String, Int] = m.flatMap { case (key, strings) =>
-    Map(strings.map(_.toLowerCase -> key): _*)
-  }
-}
+object Etl:
+  def transform(scoreMap: Map[Int, Seq[String]]): Map[String, Int] =
+    for
+      (score, letters) <- scoreMap
+      letter           <- letters
+    yield letter.toLowerCase -> score
