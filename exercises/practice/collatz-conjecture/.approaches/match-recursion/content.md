@@ -68,10 +68,10 @@ object CollatzConjecture:
   @tailrec
   private def collatzMeRecur(steps: Int, num: Int): Option[Int] =
     num match
-      case n if n <= 0 => None
-      case 1           => Some(steps)
+      case n if n <= 0     => None
+      case 1               => Some(steps)
       case n if n % 2 == 0 => collatzMeRecur(steps + 1, n / 2)
-      case n => collatzMeRecur(steps + 1, n * 3 + 1)
+      case n               => collatzMeRecur(steps + 1, n * 3 + 1)
 
   def steps(start: Int): Option[Int] = collatzMeRecur(0, start)
 ```
