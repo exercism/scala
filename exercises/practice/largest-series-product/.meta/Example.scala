@@ -1,21 +1,6 @@
-object Series {
-  private def digits(s: String): List[Int] = s.filter(_.isDigit).map(_.asDigit).toList
+object Series:
 
-  private def slices(n: Int, digits: List[Int]): List[List[Int]] =
-    digits.tails.filter(xs => xs.length >= n).map(_.take(n)).toList
-
-  def largestProduct(n: Int, s: String): Option[Int] =
-    if (n < 0)
-      None
-    else {
-      val ds = digits(s)
-      if (ds.length < s.length)
-        None
-      else {
-        slices(n, ds) match {
-          case Nil => None
-          case xs => Some(xs.map(_.product).max)
-        }
-      }
-    }
-}
+  def largestProduct(span: Int, digits: String): Option[Int] =
+    if span < 0 || span > digits.length || !digits.forall(_.isDigit) then None
+    else if span == 0 then Some(1)
+    else Some(digits.map(_.asDigit).sliding(span).map(_.product).max)

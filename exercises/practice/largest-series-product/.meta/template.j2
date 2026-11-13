@@ -1,0 +1,11 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("LargestSeriesProduct") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% set expected = "None" if case.expected is mapping else "Some(" ~ case.expected ~ ")" %}
+{{ macros.assert_be("Series.largestProduct(" ~ case.input.span ~ ", " ~ (case.input.digits | scala) ~ ")", expected) }}
+{% endfor %}
