@@ -11,21 +11,20 @@ One concern is to try to maintain [immutability][immutability].
 ## Approach: `SortedMap` with `filterKeys()` and `match`
 
 ```scala
-import scala.collection.SortedMap
+import scala.collection.immutable.SortedMap
 
-object Raindrops {
+object Raindrops:
+
   private val sound = SortedMap(
     3 -> "Pling",
     5 -> "Plang",
-    7 -> "Plong"
+    7 -> "Plong",
   )
-  
+
   def convert(n: Int): String =
-    sound.filterKeys(n % _ == 0).values match {
-      case drops if (!drops.isEmpty) => drops.mkString
-      case _                         => n.toString
-    }
-}
+    sound.view.filterKeys(n % _ == 0).values match
+      case drops if drops.nonEmpty => drops.mkString
+      case _                       => n.toString
 ```
 
 For more information, check the [`SortedMap` with `filterKeys()` and `match` approach][approach-sortedmap-filterkeys-match].
@@ -33,18 +32,16 @@ For more information, check the [`SortedMap` with `filterKeys()` and `match` app
 ## Approach: `List` with `foldRight()` and `match`
 
 ```scala
-object Raindrops {
+object Raindrops:
 
-  private val drops = List((3, "Pling"), (5, "Plang"), (7, "Plong"))
+  private val drops = List(3 -> "Pling", 5 -> "Plang", 7 -> "Plong")
 
   def convert(n: Int): String =
-    drops.foldRight(List[String]())((factor_drop, acc) =>
-      if (n % factor_drop._1 == 0) factor_drop._2 :: acc else acc
-    ) match {
-      case drops if !drops.isEmpty => drops.mkString
-      case _                       => n.toString()
-    }
-}
+    drops.foldRight(List.empty[String]) { case ((factor, drop), acc) =>
+      if n % factor == 0 then drop :: acc else acc
+    } match
+      case drops if drops.nonEmpty => drops.mkString
+      case _                       => n.toString
 ```
 
 For more information, check the [`List` with `foldRight()` and `match` approach][approach-list-foldright-match].
@@ -53,8 +50,8 @@ For more information, check the [`List` with `foldRight()` and `match` approach]
 
 Since benchmarking is currently outside the scope of this document, the choice between the approaches can be made by perceived readability.
 
-[sortedmap]: https://www.scala-lang.org/api/2.13.6/scala/collection/immutable/SortedMap.html
-[list]: https://www.scala-lang.org/api/2.13.6/scala/collection/immutable/List.html
+[sortedmap]: https://www.scala-lang.org/api/current/scala/collection/immutable/SortedMap.html
+[list]: https://www.scala-lang.org/api/current/scala/collection/immutable/List.html
 [immutability]: https://alvinalexander.com/scala/scala-idiom-immutable-code-functional-programming-immutability/
 [approach-sortedmap-filterkeys-match]: https://exercism.org/tracks/scala/exercises/raindrops/approaches/sortedmap-filterkeys-match
 [approach-list-foldright-match]: https://exercism.org/tracks/scala/exercises/raindrops/approaches/list-foldright-match
