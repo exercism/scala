@@ -1,0 +1,10 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("BookStore") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("BookStore.total(List(" ~ (case.input.basket | join(", ")) ~ "))", case.expected) }}
+{% endfor %}
