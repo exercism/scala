@@ -1,0 +1,28 @@
+{%- import "macros.j2" as macros -%}
+{#- A program's instructions are evaluated as one text; an error is checked with isLeft. -#}
+{%- macro check(forth, instructions, expected) -%}
+{%- set program = forth ~ ".eval(" ~ (instructions | join(" ") | scala) ~ ")" -%}
+{%- if expected is mapping -%}
+{{ macros.assert_be(program ~ ".isLeft", "true") }}
+{%- else -%}
+{{ macros.assert_be(program ~ ".fold(_ => \"\", _.toString)", expected | join(" ") | scala) }}
+{%- endif -%}
+{%- endmacro -%}
+{{ macros.header("Forth") }}
+
+  private val forth = Forth()
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.property == "evaluateBoth" %}
+    val first  = Forth()
+    val second = Forth()
+{{ check("first", case.input.instructionsFirst, case.expected[0]) }}
+{{ check("second", case.input.instructionsSecond, case.expected[1]) }}
+{% else %}
+{{ check("forth", case.input.instructions, case.expected) }}
+{% endif %}
+{% endfor %}
