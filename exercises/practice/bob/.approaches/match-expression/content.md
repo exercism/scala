@@ -1,24 +1,20 @@
 # `match` expression
 
 ```scala
-object Bob {
+object Bob:
 
-  def response(statement: String): String = {
-    val input = statement.trim()
-    if (input.isEmpty) return "Fine. Be that way!"
-    
-    val isShout =
-      input.exists(_.isLetter) && input.toUpperCase() == input
+  def response(statement: String): String =
+    val input      = statement.trim()
+    val isShout    = input.exists(_.isLetter) && input.toUpperCase() == input
     val isQuestion = input.endsWith("?")
 
-    (isQuestion, isShout) match {
-      case (true, true) => "Calm down, I know what I'm doing!"
-      case (_, true)    => "Whoa, chill out!"
-      case (true, _)    => "Sure."
-      case _            => "Whatever."
-    }
-  }
-}
+    if input.isEmpty then "Fine. Be that way!"
+    else
+      (isQuestion, isShout) match
+        case (true, true) => "Calm down, I know what I'm doing!"
+        case (_, true)    => "Whoa, chill out!"
+        case (true, _)    => "Sure."
+        case _            => "Whatever."
 ```
 
 In this approach you use a [`match`][match] to test if there is a question or a shout.
@@ -27,7 +23,8 @@ Being a question and/or a shout is [pattern-matched][pattern-matching] on a [`tu
 the `isQuestion` and `isShout` values.
 
 The `String` [`trim()`][trim] method is applied to the input to eliminate any whitespace at either end of the input.
-If the string has no characters left, it returns the response for saying nothing.
+If the string has no characters left, the `if` gives the response for saying nothing, and the `match` is not reached.
+Because `if` and `match` are expressions, there is no need to `return` early.
 
 ~~~~exercism/caution
 Note that a `null` `String` would be different from a `String` of all whitespace.
@@ -35,7 +32,7 @@ A `null` `String` would throw a `NullPointerException` if `trim()` were applied 
 ~~~~
 
 The first half of setting `isShout` uses the [`exists`][exists] and [`isLetter`][isletter] methods to look for
-at least one English alphabetic character.
+at least one letter.
 
 This is because the second half of the condition tests that the uppercased input is the same as the input.
 If the input were only `"123"` it would equal itself uppercased, but without letters it would not be a shout.
@@ -48,9 +45,9 @@ It is like `default` in a `switch` statement in other languages.
 
 [tuple]: https://docs.scala-lang.org/tour/tuples.html
 [underscore]: https://www.baeldung.com/scala/underscore
-[match]: https://docs.scala-lang.org/tour/pattern-matching.html
+[match]: https://docs.scala-lang.org/scala3/book/control-structures.html#match-expressions
 [pattern-matching]: https://docs.scala-lang.org/tour/pattern-matching.html
-[trim]: https://www.scala-lang.org/api/2.12.8/scala/collection/immutable/StringOps.html#trim():String
-[endswith]: https://www.scala-lang.org/api/2.12.8/scala/collection/immutable/StringOps.html
-[exists]: https://www.scala-lang.org/api/2.12.8/scala/collection/immutable/StringOps.html#exists(p:A=%3EBoolean):Boolean
-[isletter]: https://www.scala-lang.org/api/2.12.8/scala/Char.html#isLetter:Boolean
+[trim]: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html
+[endswith]: https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/String.html
+[exists]: https://www.scala-lang.org/api/current/scala/collection/StringOps.html
+[isletter]: https://www.scala-lang.org/api/current/scala/runtime/RichChar.html
