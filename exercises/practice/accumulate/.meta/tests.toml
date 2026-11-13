@@ -23,3 +23,9 @@ description = "accumulate reversed strings"
 
 [bee8e9b6-b16f-4cd2-be3b-ccf7457e50bb]
 description = "accumulate recursively"
+include = false
+comment = "Reimplemented by 0b357334-4cad-49e1-a741-425202edfc7c"
+
+[0b357334-4cad-49e1-a741-425202edfc7c]
+description = "accumulate recursively"
+reimplements = "bee8e9b6-b16f-4cd2-be3b-ccf7457e50bb"

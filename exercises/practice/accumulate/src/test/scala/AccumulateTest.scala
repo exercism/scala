@@ -1,41 +1,31 @@
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
-import org.scalatest.flatspec.AnyFlatSpec
 
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class AccumulateTest extends AnyFunSuite with Matchers:
 
-/** @version created manually **/
-class AccumulateTest extends AnyFlatSpec with Matchers {
+  private val accumulate = Accumulate()
 
-  it should "allow empty accumulation" in {
-    val accumulate = new Accumulate
-    val accumulation = accumulate.accumulate[Int, Int](x => x * x, List.empty)
-    accumulation should be (List.empty)
-  }
+  test("accumulate empty"):
+    accumulate.accumulate[Int, Int](x => x * x, List()) should be(List())
 
-  it should "accumulate squares" in {
+  test("accumulate squares"):
     pending
-    val accumulate = new Accumulate
-    val accumulation = accumulate.accumulate[Int, Int](x => x * x, List(1, 2, 3))
-    accumulation should be (List(1, 4, 9))
-  }
+    accumulate.accumulate[Int, Int](x => x * x, List(1, 2, 3)) should be(List(1, 4, 9))
 
-  it should "accumulate upcases" in {
+  test("accumulate upcases"):
     pending
-    val accumulate = new Accumulate
-    val accumulation = accumulate.accumulate[String, String](_.map(_.toUpper), List("hello", "world"))
-    accumulation should be (List("HELLO", "WORLD"))
-  }
+    accumulate.accumulate[String, String](_.toUpperCase, List("Hello", "world")) should be(List("HELLO", "WORLD"))
 
-  it should "accumulate reversed strings" in {
+  test("accumulate reversed strings"):
     pending
-    val accumulate = new Accumulate
-    val accumulation = accumulate.accumulate[String, String](_.reverse, List("eht", "kciuq", "nworb", "xof", "cte"))
-    accumulation should be (List("the", "quick", "brown", "fox", "etc"))
-  }
+    accumulate.accumulate[String, String](_.reverse, List("the", "quick", "brown", "fox", "etc")) should be(List("eht", "kciuq", "nworb", "xof", "cte"))
 
-  it should "allow different return type" in {
+  test("accumulate recursively"):
     pending
-    val accumulate = new Accumulate
-    val accumulation = accumulate.accumulate[Int, String](_.toString, List(1, 2, 3))
-    accumulation should be (List("1", "2", "3"))
-  }
-}
+    accumulate.accumulate[String, List[String]](x => accumulate.accumulate[String, String](y => x + y, List("1", "2", "3")), List("a", "b", "c")) should be(
+      List(List("a1", "a2", "a3"), List("b1", "b2", "b3"), List("c1", "c2", "c3")),
+    )

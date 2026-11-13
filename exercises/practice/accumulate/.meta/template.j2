@@ -1,0 +1,20 @@
+{%- import "macros.j2" as macros -%}
+{#- The canonical accumulators are pseudo-code; each one maps to its Scala type arguments and function. -#}
+{%- set accumulators = {
+  "(x) => x * x": ("Int, Int", "x => x * x"),
+  "(x) => upcase(x)": ("String, String", "_.toUpperCase"),
+  "(x) => reverse(x)": ("String, String", "_.reverse"),
+  '(x) => accumulate(["1", "2", "3"], (y) => x + y)': ("String, List[String]", 'x => accumulate.accumulate[String, String](y => x + y, List("1", "2", "3"))'),
+} -%}
+{{ macros.header("Accumulate") }}
+
+  private val accumulate = Accumulate()
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% set types, function = accumulators[case.input.accumulator] %}
+{{ macros.assert_be("accumulate.accumulate[" ~ types ~ "](" ~ function ~ ", " ~ (case.input.list | scala) ~ ")", case.expected | scala) }}
+{% endfor %}
