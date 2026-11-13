@@ -1,8 +1,8 @@
-val ANSWERS = Vector("Whatever.","Sure.","Whoa, chill out!","Calm down, I know what I'm doing!")
-def response(statement: String): String = {
-  val input = statement.trim()
-  if (input.isEmpty) return "Fine. Be that way!"
-  val isShout =
-    if (input.exists(_.isLetter) && input.toUpperCase() == input) 2 else 0
-  val isQuestion = if (input.endsWith("?")) 1 else 0
-  ANSWERS.apply(isQuestion + isShout)
+private val Answers = Vector("Whatever.", "Sure.", "Whoa, chill out!", "Calm down, I know what I'm doing!")
+
+def response(statement: String): String =
+  val input      = statement.trim()
+  val isShout    = if input.exists(_.isLetter) && input.toUpperCase() == input then 2 else 0
+  val isQuestion = if input.endsWith("?") then 1 else 0
+  if input.isEmpty then "Fine. Be that way!"
+  else Answers(isQuestion + isShout)
