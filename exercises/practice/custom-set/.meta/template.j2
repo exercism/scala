@@ -1,0 +1,36 @@
+{%- import "macros.j2" as macros -%}
+{%- set methods = {
+  "empty": "empty", "contains": "member", "subset": "isSubsetOf", "disjoint": "isDisjointFrom", "equal": "isEqual",
+  "add": "insert", "intersection": "intersection", "difference": "difference", "union": "union",
+} -%}
+{#- A `val` per set, padded as scalafmt aligns consecutive vals. -#}
+{%- macro set_val(name, width, elements) -%}
+{{ "    val " ~ (name ~ " " * (width - name | length)) ~ " = CustomSet.fromList(List(" ~ (elements | join(", ")) ~ "))" }}
+{%- endmacro -%}
+{{ macros.header("CustomSet") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% set method = "CustomSet." ~ methods[case.property] %}
+{% set width = 8 if case.expected is sequence and case.expected is not string else (3 if "set" in case.input else 4) %}
+{% if "set" in case.input %}
+{{ set_val("set", width, case.input.set) }}
+{% else %}
+{{ set_val("set1", width, case.input.set1) }}
+{{ set_val("set2", width, case.input.set2) }}
+{% endif %}
+{% if case.expected is sequence and case.expected is not string %}
+{{ set_val("expected", width, case.expected) }}
+{% set args = "set, " ~ case.input.element if "set" in case.input else "set1, set2" %}
+{{ macros.assert_be("CustomSet.isEqual(" ~ method ~ "(" ~ args ~ "), expected)", "true") }}
+{% elif "element" in case.input %}
+{{ macros.assert_be(method ~ "(set, " ~ case.input.element ~ ")", case.expected | scala) }}
+{% elif "set" in case.input %}
+{{ macros.assert_be(method ~ "(set)", case.expected | scala) }}
+{% else %}
+{{ macros.assert_be(method ~ "(set1, set2)", case.expected | scala) }}
+{% endif %}
+{% endfor %}
