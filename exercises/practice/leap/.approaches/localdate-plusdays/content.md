@@ -3,10 +3,9 @@
 ```scala
 import java.time.{LocalDate, Month}
 
-object Leap {
+object Leap:
   def leapYear(year: Int): Boolean =
     LocalDate.of(year, Month.FEBRUARY, 28).plusDays(1).getDayOfMonth() == 29
-}
 ```
 
 This approach may be considered a "cheat" for this exercise.

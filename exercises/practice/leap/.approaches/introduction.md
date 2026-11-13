@@ -2,7 +2,7 @@
 
 There are various idiomatic approaches to solve Leap.
 You can use a chain of boolean expressions to test the conditions.
-Or you can use a [ternary expression][ternary].
+Or you can use an [`if` expression][if-then-else], which Scala uses where other languages have a ternary operator.
 Another approach you can use is a [match][match] on a [tuple][tuple].
 
 ## General guidance
@@ -13,10 +13,9 @@ For determining that, you will use the [modulus operator][modulus-operator].
 ## Approach: Chain of Boolean expressions
 
 ```scala
-object Leap {
+object Leap:
   def leapYear(year: Int): Boolean =
     year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)
-}
 ```
 
 For more information, check the [Boolean chain approach][approach-boolean-chain].
@@ -24,11 +23,9 @@ For more information, check the [Boolean chain approach][approach-boolean-chain]
 ## Approach: Ternary expression of Boolean conditions
 
 ```scala
-object Leap {
+object Leap:
   def leapYear(year: Int): Boolean =
-    if (year % 100 == 0) year % 400 == 0
-    else year % 4 == 0
-}
+    if year % 100 == 0 then year % 400 == 0 else year % 4 == 0
 ```
 
 For more information, check the [Ternary expression approach][approach-ternary-expression].
@@ -36,15 +33,13 @@ For more information, check the [Ternary expression approach][approach-ternary-e
 ## Approach: `match` on a `tuple`
 
 ```scala
-object Leap {
+object Leap:
   def leapYear(year: Int): Boolean =
-    (year % 4, year % 100, year % 400) match {
+    (year % 4, year % 100, year % 400) match
       case (_, _, 0) => true
       case (_, 0, _) => false
       case (0, _, _) => true
       case (_, _, _) => false
-    }
-}
 ```
 
 For more information, check the [`match` on a `tuple` approach][approach-match-on-a-tuple].
@@ -59,22 +54,22 @@ Add a day to February 28th for the year and see if the new day is the 29th. For 
 
 ## Built-in method approach:
 
-Use the built-in method for the year. For more information, see the [`LocalDate.isLeapYear` approach][approach-localdate-isleapyear].
+Use the built-in method for the year. For more information, see the [`Year.isLeap` approach][approach-localdate-isleapyear].
 
 ## Which approach to use?
 
 Since benchmarking is currently outside the scope of this document, the choice between approaches could be made by perceived readability.
 - The chain of boolean expressions is most efficient, as it proceeds from the most likely to least likely conditions.
   It has a maximum of three checks.
-- The ternary operator has a maximum of only two checks, but it starts from a less likely condition.
-- The `switch` on a `tuple` may be considered more "functional", but it is more verbose and may be considered less readable.
-- Using LocalDate addition or using the built-in `isLeapYear` method may be considered "cheats" for the exercise,
-  but `isLeapYear` would be the idiomatic way to check if a year is a leap year in Scala.
+- The `if` expression has a maximum of only two checks, but it starts from a less likely condition.
+- The `match` on a `tuple` may be considered more "functional", but it is more verbose and may be considered less readable.
+- Using LocalDate addition or using the built-in `isLeap` method may be considered "cheats" for the exercise,
+  but `isLeap` would be the idiomatic way to check if a year is a leap year in Scala.
 
 [modulus-operator]: https://www.geeksforgeeks.org/operators-in-scala/
 [tuple]: https://docs.scala-lang.org/tour/tuples.html
 [match]: https://docs.scala-lang.org/tour/pattern-matching.html
-[ternary]: https://alvinalexander.com/scala/scala-ternary-operator-syntax/
+[if-then-else]: https://docs.scala-lang.org/scala3/book/control-structures.html#the-ifthenelse-construct
 [approach-boolean-chain]: https://exercism.org/tracks/scala/exercises/leap/approaches/boolean-chain
 [approach-ternary-expression]: https://exercism.org/tracks/scala/exercises/leap/approaches/ternary-expression
 [approach-match-on-a-tuple]: https://exercism.org/tracks/scala/exercises/leap/approaches/match-on-a-tuple

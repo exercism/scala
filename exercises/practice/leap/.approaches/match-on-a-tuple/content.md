@@ -1,15 +1,13 @@
 # `match` on a `tuple`
 
 ```scala
-object Leap {
+object Leap:
   def leapYear(year: Int): Boolean =
-    (year % 4, year % 100, year % 400) match {
+    (year % 4, year % 100, year % 400) match
       case (_, _, 0) => true
       case (_, 0, _) => false
       case (0, _, _) => true
       case (_, _, _) => false
-    }
-}
 ```
 
 A [tuple][tuple] is made from the conditions for the year being evenly divisible by `4`, `100` and `400`.
