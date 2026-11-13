@@ -1,8 +1,8 @@
 import scala.annotation.tailrec
-import scala.collection.immutable.ListMap
 
-object RomanNumerals {
-  private def numeralValues = ListMap(
+object RomanNumerals:
+
+  private val Numerals = List(
     1000 -> "M",
     900  -> "CM",
     500  -> "D",
@@ -15,16 +15,13 @@ object RomanNumerals {
     9    -> "IX",
     5    -> "V",
     4    -> "IV",
-    1    -> "I"
+    1    -> "I",
   )
 
-  def roman(n: Int) = fromNumber(n, "")
+  def roman(n: Int): String = fromNumber(n, "")
 
   @tailrec
-  private def fromNumber(n: Int, numerals: String): String = {
-    numeralValues.find(_._1 <= n) match {
-      case Some((threshold, numeral)) => fromNumber(n - threshold, numerals + numeral)
-      case None => numerals
-    }
-  }
-}
+  private def fromNumber(n: Int, numerals: String): String =
+    Numerals.find((value, _) => value <= n) match
+      case Some((value, numeral)) => fromNumber(n - value, numerals + numeral)
+      case None                   => numerals

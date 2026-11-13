@@ -1,101 +1,115 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class RomanNumeralsTest extends AnyFunSuite with Matchers:
 
-/** @version 1.2.0 */
-class RomanNumeralsTest extends AnyFunSuite with Matchers {
+  test("1 is I"):
+    RomanNumerals.roman(1) should be("I")
 
-  test("1 is a single I") {
-    RomanNumerals.roman(1) should be ("I")
-  }
-
-  test("2 is two I's") {
+  test("2 is II"):
     pending
-    RomanNumerals.roman(2) should be ("II")
-  }
+    RomanNumerals.roman(2) should be("II")
 
-  test("3 is three I's") {
+  test("3 is III"):
     pending
-    RomanNumerals.roman(3) should be ("III")
-  }
+    RomanNumerals.roman(3) should be("III")
 
-  test("4, being 5 - 1, is IV") {
+  test("4 is IV"):
     pending
-    RomanNumerals.roman(4) should be ("IV")
-  }
+    RomanNumerals.roman(4) should be("IV")
 
-  test("5 is a single V") {
+  test("5 is V"):
     pending
-    RomanNumerals.roman(5) should be ("V")
-  }
+    RomanNumerals.roman(5) should be("V")
 
-  test("6, being 5 + 1, is VI") {
+  test("6 is VI"):
     pending
-    RomanNumerals.roman(6) should be ("VI")
-  }
+    RomanNumerals.roman(6) should be("VI")
 
-  test("9, being 10 - 1, is IX") {
+  test("9 is IX"):
     pending
-    RomanNumerals.roman(9) should be ("IX")
-  }
+    RomanNumerals.roman(9) should be("IX")
 
-  test("20 is two X's") {
+  test("16 is XVI"):
     pending
-    RomanNumerals.roman(27) should be ("XXVII")
-  }
+    RomanNumerals.roman(16) should be("XVI")
 
-  test("48 is not 50 - 2 but rather 40 + 8") {
+  test("27 is XXVII"):
     pending
-    RomanNumerals.roman(48) should be ("XLVIII")
-  }
+    RomanNumerals.roman(27) should be("XXVII")
 
-  test("49 is not 40 + 5 + 4 but rather 50 - 10 + 10 - 1") {
+  test("48 is XLVIII"):
     pending
-    RomanNumerals.roman(49) should be ("XLIX")
-  }
+    RomanNumerals.roman(48) should be("XLVIII")
 
-  test("50 is a single L") {
+  test("49 is XLIX"):
     pending
-    RomanNumerals.roman(59) should be ("LIX")
-  }
+    RomanNumerals.roman(49) should be("XLIX")
 
-  test("90, being 100 - 10, is XC") {
+  test("59 is LIX"):
     pending
-    RomanNumerals.roman(93) should be ("XCIII")
-  }
+    RomanNumerals.roman(59) should be("LIX")
 
-  test("100 is a single C") {
+  test("66 is LXVI"):
     pending
-    RomanNumerals.roman(141) should be ("CXLI")
-  }
+    RomanNumerals.roman(66) should be("LXVI")
 
-  test("60, being 50 + 10, is LX") {
+  test("93 is XCIII"):
     pending
-    RomanNumerals.roman(163) should be ("CLXIII")
-  }
+    RomanNumerals.roman(93) should be("XCIII")
 
-  test("400, being 500 - 100, is CD") {
+  test("141 is CXLI"):
     pending
-    RomanNumerals.roman(402) should be ("CDII")
-  }
+    RomanNumerals.roman(141) should be("CXLI")
 
-  test("500 is a single D") {
+  test("163 is CLXIII"):
     pending
-    RomanNumerals.roman(575) should be ("DLXXV")
-  }
+    RomanNumerals.roman(163) should be("CLXIII")
 
-  test("900, being 1000 - 100, is CM") {
+  test("166 is CLXVI"):
     pending
-    RomanNumerals.roman(911) should be ("CMXI")
-  }
+    RomanNumerals.roman(166) should be("CLXVI")
 
-  test("1000 is a single M") {
+  test("402 is CDII"):
     pending
-    RomanNumerals.roman(1024) should be ("MXXIV")
-  }
+    RomanNumerals.roman(402) should be("CDII")
 
-  test("3000 is three M's") {
+  test("575 is DLXXV"):
     pending
-    RomanNumerals.roman(3000) should be ("MMM")
-  }
-}
+    RomanNumerals.roman(575) should be("DLXXV")
+
+  test("666 is DCLXVI"):
+    pending
+    RomanNumerals.roman(666) should be("DCLXVI")
+
+  test("911 is CMXI"):
+    pending
+    RomanNumerals.roman(911) should be("CMXI")
+
+  test("1024 is MXXIV"):
+    pending
+    RomanNumerals.roman(1024) should be("MXXIV")
+
+  test("1666 is MDCLXVI"):
+    pending
+    RomanNumerals.roman(1666) should be("MDCLXVI")
+
+  test("3000 is MMM"):
+    pending
+    RomanNumerals.roman(3000) should be("MMM")
+
+  test("3001 is MMMI"):
+    pending
+    RomanNumerals.roman(3001) should be("MMMI")
+
+  test("3888 is MMMDCCCLXXXVIII"):
+    pending
+    RomanNumerals.roman(3888) should be("MMMDCCCLXXXVIII")
+
+  test("3999 is MMMCMXCIX"):
+    pending
+    RomanNumerals.roman(3999) should be("MMMCMXCIX")
