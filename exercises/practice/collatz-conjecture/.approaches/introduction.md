@@ -26,39 +26,28 @@ For more information, check the
 ```scala
 import scala.annotation.tailrec
 
-object CollatzConjecture {
+object CollatzConjecture:
 
-  private object Status extends Enumeration {
-    type Status = Value
-    val ILLEGAL, EVEN, ODD, ONE = Value
-  }
-  import Status._
+  private enum Status:
+    case Illegal, Even, Odd, One
 
-  private def getStatus(num: Integer): Status = {
-    if (num <= 0)
-      ILLEGAL
-    else if (num == 1)
-      ONE
-    else if (num % 2 == 0)
-      EVEN
-    else
-      ODD
-  }
+  import Status.*
+
+  private def getStatus(num: Int): Status =
+    if num <= 0 then Illegal
+    else if num == 1 then One
+    else if num % 2 == 0 then Even
+    else Odd
 
   @tailrec
-  private def collatzMeRecur(steps: Int, num: Int): Option[Int] = {
-    getStatus(num) match {
-      case ILLEGAL => None
-      case ONE     => Some(steps)
-      case EVEN    => collatzMeRecur(steps + 1, num / 2)
-      case ODD     => collatzMeRecur(steps + 1, (num * 3) + 1)
-    }
-  }
+  private def collatzMeRecur(steps: Int, num: Int): Option[Int] =
+    getStatus(num) match
+      case Illegal => None
+      case One     => Some(steps)
+      case Even    => collatzMeRecur(steps + 1, num / 2)
+      case Odd     => collatzMeRecur(steps + 1, num * 3 + 1)
 
-  def steps(start: Int) = {
-    collatzMeRecur(0, start)
-  }
-}
+  def steps(start: Int): Option[Int] = collatzMeRecur(0, start)
 ```
 
 For more information, check the [`match` with recursion approach][approach-match-recursion].
