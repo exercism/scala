@@ -1,0 +1,19 @@
+{%- import "macros.j2" as macros -%}
+{%- macro robot(state) -%}
+Robot(Bearing.{{ state.direction | capitalize }}, ({{ state.position.x }}, {{ state.position.y }}))
+{%- endmacro -%}
+{{ macros.header("RobotSimulator") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.property == "create" %}
+    val robot = {{ robot(case.input) }}
+    robot.bearing should be(Bearing.{{ case.expected.direction | capitalize }})
+    robot.coordinates should be(({{ case.expected.position.x }}, {{ case.expected.position.y }}))
+{% else %}
+{{ macros.assert_be(robot(case.input) ~ ".simulate(" ~ (case.input.instructions | scala) ~ ")", robot(case.expected)) }}
+{% endif %}
+{% endfor %}

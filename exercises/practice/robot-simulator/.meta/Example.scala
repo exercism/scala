@@ -1,41 +1,22 @@
-case class Robot(bearing: Bearing, coordinates: (Int, Int)) {
-  val x = coordinates._1
-  val y = coordinates._2
+enum Bearing:
+  case North, East, South, West
 
-  def advance: Robot = bearing match {
-    case Bearing.North => Robot(bearing, (x, y + 1))
-    case Bearing.South => Robot(bearing, (x, y - 1))
-    case Bearing.East => Robot(bearing, (x + 1, y))
-    case Bearing.West => Robot(bearing, (x - 1, y))
-  }
+case class Robot(bearing: Bearing, coordinates: (Int, Int)):
 
-  def turnRight: Robot = bearing match {
-    case Bearing.North => Robot(Bearing.East, coordinates)
-    case Bearing.South => Robot(Bearing.West, coordinates)
-    case Bearing.East => Robot(Bearing.South, coordinates)
-    case Bearing.West => Robot(Bearing.North, coordinates)
-  }
+  private val (x, y) = coordinates
 
-  def turnLeft: Robot = bearing match {
-    case Bearing.North => Robot(Bearing.West,  coordinates)
-    case Bearing.East  => Robot(Bearing.North, coordinates)
-    case Bearing.South => Robot(Bearing.East,  coordinates)
-    case Bearing.West  => Robot(Bearing.South, coordinates)
-  }
+  def advance: Robot = bearing match
+    case Bearing.North => copy(coordinates = (x, y + 1))
+    case Bearing.South => copy(coordinates = (x, y - 1))
+    case Bearing.East  => copy(coordinates = (x + 1, y))
+    case Bearing.West  => copy(coordinates = (x - 1, y))
 
-  def simulate(instructions: String): Robot =  instructions.foldLeft(this){
-    case (acc, instruction) => instruction match {
-      case 'A' => acc.advance
-      case 'L' => acc.turnLeft
-      case 'R' => acc.turnRight
-      case _ => throw new IllegalArgumentException("Invalid instruction - " + instruction)
-    }}
-}
+  def turnRight: Robot = copy(bearing = Bearing.fromOrdinal((bearing.ordinal + 1) % 4))
 
-sealed trait Bearing
-object Bearing {
-  case object North extends Bearing
-  case object East  extends Bearing
-  case object South extends Bearing
-  case object West  extends Bearing
-}
+  def turnLeft: Robot = copy(bearing = Bearing.fromOrdinal((bearing.ordinal + 3) % 4))
+
+  def simulate(instructions: String): Robot = instructions.foldLeft(this):
+    case (robot, 'A')     => robot.advance
+    case (robot, 'L')     => robot.turnLeft
+    case (robot, 'R')     => robot.turnRight
+    case (_, instruction) => throw IllegalArgumentException(s"Invalid instruction: $instruction")
