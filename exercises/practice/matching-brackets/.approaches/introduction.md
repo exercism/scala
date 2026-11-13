@@ -11,30 +11,22 @@ One concern is to try to maintain [immutability][immutability].
 ## Approach: `foldLeft()`
 
 ```scala
-object MatchingBrackets {
-  private val brackets = Map('(' -> ')', '{' -> '}', '[' -> ']')
-  private val ends = Set(')', '}', ']')
-  def isValid(stack: List[Char], char: Char): Boolean =
-    stack.length > 0 && stack.head == char
-  def safeTail(stack: List[Char]): List[Char] = {
-    if (!stack.isEmpty) stack.tail else stack
-  }
+object MatchingBrackets:
 
-  def isPaired(input: String): Boolean = {
-    input
-      .foldLeft((List[Char](), true))((tup, chr) =>
-        tup match {
-          case (stack, valid) if ends.contains(chr) =>
-            (safeTail(stack), valid && isValid(stack, chr))
-          case (stack, valid) if (brackets.contains(chr)) =>
-            (brackets(chr) :: stack, valid)
-          case _ => tup
-        }
-      ) match {
-      case (stack, isValid) => stack.isEmpty && isValid
-    }
-  }
-}
+  private val brackets = Map('(' -> ')', '{' -> '}', '[' -> ']')
+  private val ends     = Set(')', '}', ']')
+
+  private def isValid(stack: List[Char], char: Char): Boolean = stack.nonEmpty && stack.head == char
+
+  private def safeTail(stack: List[Char]): List[Char] = if stack.nonEmpty then stack.tail else stack
+
+  def isPaired(input: String): Boolean =
+    val (finalStack, allValid) = input.foldLeft((List.empty[Char], true)): (tup, chr) =>
+      tup match
+        case (stack, valid) if ends.contains(chr)     => (safeTail(stack), valid && isValid(stack, chr))
+        case (stack, valid) if brackets.contains(chr) => (brackets(chr) :: stack, valid)
+        case _                                        => tup
+    finalStack.isEmpty && allValid
 ```
 
 For more information, check the [`foldLeft()` approach][approach-foldleft].
@@ -42,35 +34,29 @@ For more information, check the [`foldLeft()` approach][approach-foldleft].
 ## Approach: Recursion
 
 ```scala
-object MatchingBrackets {
+import scala.annotation.tailrec
+
+object MatchingBrackets:
+
   private val brackets = Map('(' -> ')', '{' -> '}', '[' -> ']')
-  private val ends = Set(')', '}', ']')
+  private val ends     = Set(')', '}', ']')
 
-  private def isValid(stack: List[Char], char: Char): Boolean =
-    stack.length > 0 && stack.head == char
-  private def safeTail(stack: List[Char]): List[Char] = {
-    if (!stack.isEmpty) stack.tail else stack
-  }
+  private def isValid(stack: List[Char], char: Char): Boolean = stack.nonEmpty && stack.head == char
 
-  def isPaired(input: String): Boolean = {
-    isPairedRecur(input, List[Char]())
-  }
+  private def safeTail(stack: List[Char]): List[Char] = if stack.nonEmpty then stack.tail else stack
 
-  @scala.annotation.tailrec
-  private def isPairedRecur(input: String, stack: List[Char]): Boolean = {
-    if (input.isEmpty) return stack.isEmpty
-    (input.head, stack) match {
-      case (chr, stack) if ends.contains(chr) =>
-        if (isValid(stack, chr))
-          isPairedRecur(input.tail, safeTail(stack))
-        else
-          false
-      case (chr, stack) if (brackets.contains(chr)) =>
-        isPairedRecur(input.tail, brackets(chr) :: stack)
-      case _ => isPairedRecur(input.tail, stack)
-    }
-  }
-}
+  def isPaired(input: String): Boolean = isPairedRecur(input, List.empty)
+
+  @tailrec
+  private def isPairedRecur(input: String, stack: List[Char]): Boolean =
+    if input.isEmpty then stack.isEmpty
+    else
+      (input.head, stack) match
+        case (chr, stack) if ends.contains(chr)     =>
+          if isValid(stack, chr) then isPairedRecur(input.tail, safeTail(stack))
+          else false
+        case (chr, stack) if brackets.contains(chr) => isPairedRecur(input.tail, brackets(chr) :: stack)
+        case _                                      => isPairedRecur(input.tail, stack)
 ```
 
 For more information, check the [Recursion approach][approach-recursion].
@@ -80,7 +66,7 @@ For more information, check the [Recursion approach][approach-recursion].
 Since benchmarking is currently outside the scope of this document,
 the choice between the approaches can be made by perceived readability.
 
-[foldleft]: https://www.scala-lang.org/api/2.12.7/scala/collection/immutable/StringOps.html#foldLeft[B](z:B)(op:(B,A)=%3EB):B
+[foldleft]: https://www.scala-lang.org/api/current/scala/collection/StringOps.html
 [recursion]: https://www.geeksforgeeks.org/recursion-in-scala/
 [immutability]: https://alvinalexander.com/scala/scala-idiom-immutable-code-functional-programming-immutability/
 [approach-foldleft]: https://exercism.org/tracks/scala/exercises/matching-brackets/approaches/foldleft

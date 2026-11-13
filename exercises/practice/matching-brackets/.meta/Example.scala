@@ -1,23 +1,9 @@
 import scala.util.parsing.combinator.RegexParsers
 
-object MatchingBrackets extends RegexParsers {
-  lazy val t = "[^\\[\\]\\(\\)\\{\\}]+".r
+object MatchingBrackets extends RegexParsers:
 
-  private def paren: Parser[String] =
-    ("(" ~ rep1(t | paren) ~ ")" |
-      "[" ~ rep1(t | paren) ~ "]" |
-      "{" ~ rep1(t | paren) ~ "}" |
-      "(" ~ ")" |
-      "[" ~ "]" |
-      "{" ~ "}" |
-      t) ^^ {
-      case _ => ""
-    }
+  private val text = """[^\[\](){}]+""".r
 
-  private def all = rep(paren)
+  private def group: Parser[Any] = "(" ~ rep(group) ~ ")" | "[" ~ rep(group) ~ "]" | "{" ~ rep(group) ~ "}" | text
 
-  def isPaired(s: String) = this.parseAll(all, s) match {
-    case NoSuccess(_, _) => false
-    case Success(_, _) => true
-  }
-}
+  def isPaired(brackets: String): Boolean = parseAll(rep(group), brackets).successful
