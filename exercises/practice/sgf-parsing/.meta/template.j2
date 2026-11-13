@@ -1,0 +1,24 @@
+{%- import "macros.j2" as macros -%}
+{#- A canonical tree as a Node; a node without children uses the default empty subForest. -#}
+{%- macro properties(props) -%}
+Map({% for key, values in props.items() %}{{ key | scala }} -> {{ values | scala }}{% if not loop.last %}, {% endif %}{% endfor %})
+{%- endmacro -%}
+{%- macro node(tree) -%}
+{%- if tree.children -%}
+Node({{ properties(tree.properties) }}, List({% for child in tree.children %}{{ node(child) }}{% if not loop.last %}, {% endif %}{% endfor %}))
+{%- else -%}
+Node({{ properties(tree.properties) }})
+{%- endif -%}
+{%- endmacro -%}
+{{ macros.header("Sgf") }}
+
+  import Sgf.*
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% set expected = "None" if case.expected.error is defined else "Some(" ~ node(case.expected) ~ ")" %}
+{{ macros.assert_be("parseSgf(" ~ (case.input.encoded | scala) ~ ")", expected) }}
+{% endfor %}
