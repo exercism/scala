@@ -1,41 +1,19 @@
-object Dominoes {
+object Dominoes:
+
   type Domino = (Int, Int)
-  type Dominoes = List[Domino]
 
-  def chain(dominoes: Dominoes): Option[Dominoes] = {
-    val solutions = dominoes.permutations map createChain
-    (solutions find (_.isDefined)).flatten
-  }
+  def chain(dominoes: List[Domino]): Option[List[Domino]] = dominoes match
+    case Nil           => Some(Nil)
+    case first :: rest => extend(List(first), rest).find(chain => chain.head._1 == chain.last._2)
 
-  private def createChain(dominoes: Dominoes): Option[Dominoes] = {
-    val matchingDomino: (Domino, Domino) => Option[Domino] = {
-      case ((_, y1), (x2, y2)) =>
-        if (y1 == x2) Some((x2, y2))
-        else if (y1 == y2) Some((y2, x2))
-        else None
-    }
-    def matchingDominoes(x: Domino, y: Domino): Option[(Domino, Domino)] = {
-      matchingDomino(x, y) map ((x, _)) orElse {
-        val sx = x.swap
-        matchingDomino(sx, y) map ((sx, _))
-      }
-    }
-    def appendDomino(mxs: Option[Dominoes], candidate: Domino): Option[Dominoes] =
-      for {
-        chainSoFar <- mxs
-        lastDomino = chainSoFar.last
-        nextDomino <- matchingDomino(lastDomino, candidate)
-      } yield chainSoFar :+ nextDomino
-
-    dominoes match {
-      case Nil => Some(Nil)
-      case ys@(x::xs) =>
-        for {
-          (rightDomino, leftDomino) <- matchingDominoes(ys.last, x)
-          startChain = Option(List(leftDomino))
-          result <- xs.foldLeft(startChain)(appendDomino) if result.last == rightDomino
-        } yield result
-      }
-  }
-}
-
+  /** Every way to lay all the remaining dominoes after the chain so far. */
+  private def extend(chain: List[Domino], remaining: List[Domino]): Iterator[List[Domino]] =
+    if remaining.isEmpty then Iterator(chain)
+    else
+      val end = chain.last._2
+      remaining.indices.iterator.flatMap: i =>
+        val rest = remaining.patch(i, Nil, 1)
+        remaining(i) match
+          case (a, b) if a == end => extend(chain :+ (a, b), rest)
+          case (a, b) if b == end => extend(chain :+ (b, a), rest)
+          case _                  => Iterator.empty
