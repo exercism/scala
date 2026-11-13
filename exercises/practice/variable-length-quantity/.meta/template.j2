@@ -1,0 +1,20 @@
+{%- import "macros.j2" as macros -%}
+{#- Bytes and integers in lower-case hex, as scalafmt writes hex literals. -#}
+{%- macro hex_list(values) -%}
+List({% for v in values %}{{ "0x%x" | format(v) }}{% if not loop.last %}, {% endif %}{% endfor %})
+{%- endmacro -%}
+{{ macros.header("VariableLengthQuantity") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.property == "encode" %}
+{{ macros.assert_be("VariableLengthQuantity.encode(" ~ hex_list(case.input.integers) ~ ")", hex_list(case.expected)) }}
+{% elif case.expected is mapping %}
+{{ macros.assert_be("VariableLengthQuantity.decode(" ~ hex_list(case.input.integers) ~ ").isLeft", "true") }}
+{% else %}
+{{ macros.assert_be("VariableLengthQuantity.decode(" ~ hex_list(case.input.integers) ~ ")", "Right(" ~ hex_list(case.expected) ~ ")") }}
+{% endif %}
+{% endfor %}
