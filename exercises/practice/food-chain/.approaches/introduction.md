@@ -6,7 +6,7 @@ Another approach could be to use code to define the data so that the code can be
 
 ## General guidance
 
-A quote by by Eric S. Raymond in _The Art of Unix Programming_  is particularly applicable to Food Chain:
+A quote by Eric S. Raymond in _The Art of Unix Programming_ is particularly applicable to Food Chain:
 
 >Fold knowledge into data so program logic can be stupid and robust.
 >Data is more tractable than program logic.
@@ -16,16 +16,15 @@ A quote by by Eric S. Raymond in _The Art of Unix Programming_  is particularly 
 For Food Chain, the pattern in the data is that, after the second verse and until the last verse, each verse takes from the third line to the end
 of the previous verse.
 
-## Approach: Move compexity to data
+## Approach: Move complexity to data
 
 ```scala
-object FoodChain {
+object FoodChain:
 
-  def recite(fromVerse: Int, toVerse: Int): String = {
+  def recite(fromVerse: Int, toVerse: Int): String =
     (fromVerse to toVerse)
       .map(verses)
       .mkString("", "\n", "\n")
-  }
 
   private def backwash(reflux: String, start: Int, end: Int): String =
     reflux.split("\n").slice(start, end).mkString("\n")
@@ -63,6 +62,7 @@ Just opened her throat and swallowed a goat!
 She swallowed the goat to catch the dog.
 ${backwash(dog, 2, 7)}
 """
+
   private val cow = s"""I know an old lady who swallowed a cow.
 I don't know how she swallowed a cow!
 She swallowed the cow to catch the goat.
@@ -74,8 +74,6 @@ She's dead, of course!
 """
 
   private val verses = Vector("", fly, spider, bird, cat, dog, goat, cow, horse)
-
-}
 ```
 
 For more information, check the [Move complexity to data approach][approach-move-complexity-to-data].

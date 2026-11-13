@@ -1,0 +1,16 @@
+{%- import "macros.j2" as macros -%}
+{#- The canonical lines one per line; the track's song ends every line with a newline and every verse with a blank line. -#}
+{{ macros.header("FoodChain") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+    val expected = List(
+{% for line in case.expected %}
+{{ "      " ~ (line | scala) ~ "," }}
+{% endfor %}
+    ).mkString("", "\n", "\n\n")
+    FoodChain.recite({{ case.input.startVerse }}, {{ case.input.endVerse }}) should be(expected)
+{% endfor %}

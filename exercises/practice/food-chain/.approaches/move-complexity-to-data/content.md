@@ -1,13 +1,12 @@
-# Move compexity to data
+# Move complexity to data
 
 ```scala
-object FoodChain {
+object FoodChain:
 
-  def recite(fromVerse: Int, toVerse: Int): String = {
+  def recite(fromVerse: Int, toVerse: Int): String =
     (fromVerse to toVerse)
       .map(verses)
       .mkString("", "\n", "\n")
-  }
 
   private def backwash(reflux: String, start: Int, end: Int): String =
     reflux.split("\n").slice(start, end).mkString("\n")
@@ -45,6 +44,7 @@ Just opened her throat and swallowed a goat!
 She swallowed the goat to catch the dog.
 ${backwash(dog, 2, 7)}
 """
+
   private val cow = s"""I know an old lady who swallowed a cow.
 I don't know how she swallowed a cow!
 She swallowed the cow to catch the goat.
@@ -56,11 +56,9 @@ She's dead, of course!
 """
 
   private val verses = Vector("", fly, spider, bird, cat, dog, goat, cow, horse)
-
-}
 ```
 
-The `recite` method uses a [Range][range] to iterate from the starting verse number through the ending verse number.
+The `recite()` method uses a [Range][range] to iterate from the starting verse number through the ending verse number.
 Each number in the `Range` is passed to the [`map()`][map] method, which in turn passes the number as the index into the [`Vector`][vector] of verses
 to get the verse at that index.
 The [IndexedSeq][indexedseq] of verses are chained from `map()` to the [`mkString()`][mkstring-triple] method, where the verse or verses are assembled
@@ -75,18 +73,18 @@ All that is left is the definition of the verses.
 
 [Multiline strings][multiline-strings] are used to define the verses.
 Except for the first and last verses, they are also [interpolated strings][interpolated-strings] (also called `s` strings).
-The second verse uses the `backwash()` method to interpolate the the last line of the first verse into the end of itself.
+The second verse uses the `backwash()` method to interpolate the last line of the first verse into the end of itself.
 After that, all of the verses, except the last verse, use the `backwash()` method to take the third line of the previous verse
 up to the end of that verse, and interpolate those lines into the end of itself.
 Using the `backwash()` method keeps the code [DRY][dry], so that a change in a previous verse will "automatically" cascade to the following verses,
 instead of having to be edited in each successive verse.
 
-[range]: https://www.scala-lang.org/api/2.12.9/scala/collection/immutable/Range.html
-[map]: https://www.scala-lang.org/api/2.12.9/scala/collection/immutable/Range.html#map[B](f:A=%3EB):scala.collection.immutable.IndexedSeq[B]
-[vector]: https://www.scala-lang.org/api/2.12.9/scala/collection/immutable/Vector.html
-[indexedseq]: https://www.scala-lang.org/api/2.12.9/scala/collection/immutable/IndexedSeq.html
-[mkstring-triple]: https://www.scala-lang.org/api/2.12.9/scala/collection/Iterable.html#mkString(start:String,sep:String,end:String):String
-[mkstring-single]: https://www.scala-lang.org/api/2.12.9/scala/collection/Iterable.html#mkString(sep:String):String
+[range]: https://www.scala-lang.org/api/current/scala/collection/immutable/Range.html
+[map]: https://www.scala-lang.org/api/current/scala/collection/immutable/Range.html
+[vector]: https://www.scala-lang.org/api/current/scala/collection/immutable/Vector.html
+[indexedseq]: https://www.scala-lang.org/api/current/scala/collection/immutable/IndexedSeq.html
+[mkstring-triple]: https://www.scala-lang.org/api/current/scala/collection/IterableOnceOps.html
+[mkstring-single]: https://www.scala-lang.org/api/current/scala/collection/IterableOnceOps.html
 [multiline-strings]: https://docs.scala-lang.org/scala3/book/first-look-at-types.html#two-notes-about-strings
 [interpolated-strings]: https://docs.scala-lang.org/overviews/core/string-interpolation.html
 [dry]: https://en.wikipedia.org/wiki/Don%27t_repeat_yourself
