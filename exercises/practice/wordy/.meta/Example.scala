@@ -1,60 +1,24 @@
-import scala.math.pow
 import scala.util.parsing.combinator.RegexParsers
 
-sealed abstract class Expression {
-  def evaluate(): Integer
-}
+object Wordy extends RegexParsers:
 
-case class Const(value: Int) extends Expression {
-  def evaluate() = value
-}
+  private val Operations = Map[String, (Int, Int) => Int](
+    "plus"          -> (_ + _),
+    "minus"         -> (_ - _),
+    "multiplied by" -> (_ * _),
+    "divided by"    -> (_ / _),
+  )
 
-case class Sum(e1: Expression, e2: Expression) extends Expression {
-  def evaluate(): Integer = e1.evaluate() + e2.evaluate()
-}
+  private def number: Parser[Int] = """-?\d+""".r ^^ (_.toInt)
 
-case class Diff(e1: Expression, e2: Expression) extends Expression {
-  def evaluate(): Integer = e1.evaluate() - e2.evaluate()
-}
+  private def operation: Parser[(Int, Int) => Int] = Operations.keys.map(literal).reduce(_ | _) ^^ Operations
 
-case class Mult(e1: Expression, e2: Expression) extends Expression {
-  def evaluate(): Integer = e1.evaluate() * e2.evaluate()
-}
-
-case class Div(e1: Expression, e2: Expression) extends Expression {
-  def evaluate(): Integer = e1.evaluate() / e2.evaluate()
-}
-
-case class Pow(e1: Expression, e2: Expression) extends Expression {
-  def evaluate(): Integer = pow(e1.evaluate().toDouble, e2.evaluate().toDouble).toInt
-}
-
-object Wordy extends RegexParsers {
-  private lazy val prefix = "What is "
-  private lazy val questionMark = "?"
-  private lazy val operators = "plus" | "minus" | "multiplied by" |
-    "divided by" | "raised to the"
-
-  private def operation = expr ~ rep(operators ~ expr) ^^ {
-    case op ~ list => list.foldLeft(op) {
-      case (x, "plus" ~ y) => Sum(x, y)
-      case (x, "minus" ~ y) => Diff(x, y)
-      case (x, "multiplied by" ~ y) => Mult(x, y)
-      case (x, "divided by" ~ y) => Div(x, y)
-      case (x, "raised to the" ~ y) => Pow(x, y)
-    }
+  private def expression: Parser[Int] = number ~ rep(operation ~ number) ^^ { case first ~ steps =>
+    steps.foldLeft(first) { case (result, op ~ n) => op(result, n) }
   }
 
-  private def operand: Parser[Const] = """-?\d+""".r ^^ {s => Const(s.toInt)}
-  private def expr: Parser[Expression] = operand | operation
+  private def problem: Parser[Int] = "What is" ~> expression <~ "?"
 
-  // Top level parser
-  private def questionParser = prefix ~> operation <~ questionMark
-
-  def parse(str: String): ParseResult[Expression] = parseAll(questionParser, str)
-
-  def answer(question: String): Option[Int] = parse(question) match {
-    case Success(result: Expression, _) => Some(result.evaluate())
-    case _ => None
-  }
-}
+  def answer(question: String): Option[Int] = parseAll(problem, question) match
+    case Success(result, _) => Some(result)
+    case _                  => None
