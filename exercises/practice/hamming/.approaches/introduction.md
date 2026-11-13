@@ -1,26 +1,22 @@
 # Introduction
 
 There are several idiomatic ways to solve Hamming.
-The first approach usually thought of is to use an `if` statement to return [`None`][none] if the strand lengths aren't equal.
-Then the function returns the result of [`zip`][zip]ping the strands and [`count`][count]ing them, enclosed by [`Some`][some]
+The first approach usually thought of is to use an `if` expression that gives [`None`][none] if the strand lengths aren't equal.
+Otherwise it gives the result of [`zip`][zip]ping the strands and [`count`][count]ing the differences, enclosed by [`Some`][some].
 
-Another approach can use a [`match`][match] on whether the strand langths are equal.
-The `false` arm returns `None` and the `true` arms returns the result of zipping the strands and counting them, enclosed by `Some`.
+Another approach can use a [`match`][match] on whether the strand lengths are equal.
+The `false` case gives `None` and the `true` case gives the result of zipping the strands and counting the differences, enclosed by `Some`.
 
 Another approach could also use `match`.
-The `false` arm returns `None` and the `true` arm calls a [recursive][recursion] function to iterate toward the result.
+The `false` case gives `None` and the `true` case calls a [recursive][recursion] function to iterate toward the result.
 
 ## Approach: `if` with `zip()` and `count()`
 
 ```scala
-object Hamming {
-
-  def distance(strand1: String, strand2: String): Option[Int] = {
-    if (strand1.length != strand2.length)
-      return None
-    Some(strand1 zip strand2 count (strand => strand._1 != strand._2))
-  }
-}
+object Hamming:
+  def distance(strand1: String, strand2: String): Option[Int] =
+    if strand1.length != strand2.length then None
+    else Some(strand1.zip(strand2).count((a, b) => a != b))
 ```
 
 For more information, check the [`if` with `zip()` and `count()` approach][approach-if-zip-count].
@@ -28,16 +24,11 @@ For more information, check the [`if` with `zip()` and `count()` approach][appro
 ## Approach: `match` with `zip()` and `count()`
 
 ```scala
-object Hamming {
-
-  def distance(strand1: String, strand2: String): Option[Int] = {
-    strand1.length == strand2.length match {
-      case true =>
-        Some(strand1 zip strand2 count (strand => strand._1 != strand._2))
+object Hamming:
+  def distance(strand1: String, strand2: String): Option[Int] =
+    strand1.length == strand2.length match
+      case true  => Some(strand1.zip(strand2).count((a, b) => a != b))
       case false => None
-    }
-  }
-}
 ```
 
 For more information, check the [`match` with `zip()` and `count()` approach][approach-match-zip-count].
@@ -47,29 +38,18 @@ For more information, check the [`match` with `zip()` and `count()` approach][ap
 ```scala
 import scala.annotation.tailrec
 
-object Hamming {
+object Hamming:
 
-  def distance(strand1: String, strand2: String): Option[Int] = {
-    strand1.length == strand2.length match {
-      case true =>
-        Some(distanceCount(0, strand1, strand2))
+  def distance(strand1: String, strand2: String): Option[Int] =
+    strand1.length == strand2.length match
+      case true  => Some(distanceCount(0, strand1, strand2))
       case false => None
-    }
-  }
 
-  @tailrec def distanceCount(acc: Int, s1: String, s2: String): Int = {
-    s1.length match {
+  @tailrec
+  private def distanceCount(acc: Int, s1: String, s2: String): Int =
+    s1.length match
       case 0 => acc
-      case _ =>
-        distanceCount(
-          (if (s1.head != s2.head) acc + 1 else acc),
-          s1.tail,
-          s2.tail
-        )
-    }
-  }
-
-}
+      case _ => distanceCount(if s1.head != s2.head then acc + 1 else acc, s1.tail, s2.tail)
 ```
 
 For more information, check the [`match` with recursion approach][approach-match-recursion].
@@ -79,11 +59,11 @@ For more information, check the [`match` with recursion approach][approach-match
 Since benchmarking is currently outside the scope of this document,
 the choice between the approaches can be made by perceived readability.
 
-[none]: https://www.scala-lang.org/api/2.13.3/scala/None$.html
-[some]: https://www.scala-lang.org/api/2.13.3/scala/Some.html
-[zip]: https://www.scala-lang.org/api/2.13.3/scala/collection/Iterable.html#zip[B](that:scala.collection.IterableOnce[B]):CC[(A@scala.annotation.unchecked.uncheckedVariance,B)]
-[count]: https://www.scala-lang.org/api/2.13.3/scala/collection/mutable/Iterable.html#count(p:A=%3EBoolean):Int
-[match]: https://docs.scala-lang.org/tour/pattern-matching.html
+[none]: https://www.scala-lang.org/api/current/scala/None$.html
+[some]: https://www.scala-lang.org/api/current/scala/Some.html
+[zip]: https://www.scala-lang.org/api/current/scala/collection/StringOps.html
+[count]: https://www.scala-lang.org/api/current/scala/collection/StringOps.html
+[match]: https://docs.scala-lang.org/scala3/book/control-structures.html#match-expressions
 [recursion]: https://www.geeksforgeeks.org/recursion-in-scala/
 [approach-if-zip-count]: https://exercism.org/tracks/scala/exercises/hamming/approaches/if-zip-count
 [approach-match-zip-count]: https://exercism.org/tracks/scala/exercises/hamming/approaches/match-zip-count

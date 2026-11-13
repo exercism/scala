@@ -1,8 +1,5 @@
-@tailrec def distanceCount(acc: Int, s1: String, s2: String): Int = {
-  s1.length match {
+@tailrec
+private def distanceCount(acc: Int, s1: String, s2: String): Int =
+  s1.length match
     case 0 => acc
-    case _ =>
-      distanceCount(
-        (if (s1.head != s2.head) acc + 1 else acc),
-        s1.tail,
-        s2.tail)}}
+    case _ => distanceCount(if s1.head != s2.head then acc + 1 else acc, s1.tail, s2.tail)
