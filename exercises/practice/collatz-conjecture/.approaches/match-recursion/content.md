@@ -1,6 +1,6 @@
 # `match` with recursion
 
-```java
+```scala
 import scala.annotation.tailrec
 
 object CollatzConjecture {
