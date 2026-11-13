@@ -1,9 +1,9 @@
-case class Matrix(matrix: String) {
-  lazy val rows: Vector[Vector[Int]] = Predef.augmentString(matrix).lines.map(_.split(' ').map(_.toInt).toVector).toVector
+case class Matrix(matrix: String):
 
-  lazy val columns: Vector[Vector[Int]] = rows.transpose
+  private val rows: Vector[Vector[Int]] = matrix.linesIterator.map(_.split(' ').map(_.toInt).toVector).toVector
 
-  def row(i: Int) = rows(i)
+  private val columns: Vector[Vector[Int]] = rows.transpose
 
-  def column(i: Int) = columns(i)
-}
+  def row(i: Int): Vector[Int] = rows(i)
+
+  def column(i: Int): Vector[Int] = columns(i)
