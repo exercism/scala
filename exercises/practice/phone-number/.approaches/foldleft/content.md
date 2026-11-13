@@ -1,72 +1,58 @@
 # `foldLeft()`
 
 ```scala
-object PhoneNumber {
+object PhoneNumber:
 
-  def clean(input: String): Option[String] = {
-    input
-      .foldLeft((List[Char](), 0))((tup, head) =>
-        tup._2 match {
-          case index if (List(0, 3).contains(index)) => {
-            head.isDigit match {
-              case true if (head > '1') => (head :: tup._1, index + 1)
-              case true if (index == 0 && head == '1') =>
-                tup
-              case false
-                  if (index == 0 && List('+', '(', ' ').contains(head)) =>
-                tup
-              case false
-                  if (index == 3 && List(')', ' ', '.').contains(head)) =>
-                tup
-              case _ => (Nil, -100)
-            }
-          }
-          case index => {
-            head.isDigit match {
-              case true => (head :: tup._1, index + 1)
-              case false
-                  if (index == 6 && List(' ', '-', '.').contains(head)) =>
-                tup
-              case false if (head == ' ') => tup
-              case _                      => (Nil, -100)
-            }
-          }
-        }
-      ) match {
-      case (output, index) =>
-        if (index == 10) Some(output.reverse.mkString) else None
-    }
-  }
-}
+  def clean(input: String): Option[String] =
+    val (digits, count) = input.foldLeft((List.empty[Char], 0)): (tup, head) =>
+      tup._2 match
+        case index @ (0 | 3) =>
+          head.isDigit match
+            case true if head > '1'                                        => (head :: tup._1, index + 1)
+            case true if index == 0 && head == '1'                         => tup
+            case false if index == 0 && List('+', '(', ' ').contains(head) => tup
+            case false if index == 3 && List(')', ' ', '.').contains(head) => tup
+            case _                                                         => (Nil, -100)
+        case index           =>
+          head.isDigit match
+            case true                                                      => (head :: tup._1, index + 1)
+            case false if index == 6 && List(' ', '-', '.').contains(head) => tup
+            case false if head == ' '                                      => tup
+            case _                                                         => (Nil, -100)
+    if count == 10 then Some(digits.reverse.mkString) else None
 ```
 
-This approach starts by calling the [`foldLeft()`][foldLeft] method in the input `String`.
-It is initialized  with an empty`List` for building the output `String` and `0` for the index, both wrapped in a [tuple][tuple].
-The tuple and each character in the input `String` are passed to the [lambda][lambda], where the tuple is passed to the [match][match].
+This approach starts by calling the [`foldLeft()`][foldLeft] method on the input `String`.
+It is initialized with an empty `List` for building the output `String` and `0` for the index, both wrapped in a [tuple][tuple].
+The tuple and each character in the input `String` are passed to the [lambda][lambda].
+The lambda is the last argument of `foldLeft()`, so it can follow a [colon instead of being wrapped in braces][fewer-braces].
+In the lambda the index in the tuple is passed to the [match][match].
 The [pattern matching][pattern-matching] checks if the index is `0` or `3`.
+The pattern `index @ (0 | 3)` matches either value and [binds][binding] it to `index`.
 
-If so, and the `head` character is a digit greater than `1`, then a new tuple is made from the the `head` prepended to the output `List`
+If so, and the `head` character is a digit greater than `1`, then a new tuple is made from the `head` prepended to the output `List`
 with the cons operator (`::`), and with the index added to by `1`.
 If the `head` is some other legal character for its index, then the tuple is passed as is.
 If the `head` is not a legal character for its index, then a new tuple is made from a `Nil` output `List`
 and with the index given a value such that it will reasonably never be valid.
 
-If the `index` is neither `0` or `3`, then the `head` is checked for being a digit.
-If it is a digit, then a new tuple is made from the the `head` prepended to the output `List`
+If the `index` is neither `0` nor `3`, then the `head` is checked for being a digit.
+If it is a digit, then a new tuple is made from the `head` prepended to the output `List`
 with the cons operator (`::`), and with the index added to by `1`.
 If the `head` is not a digit but is some other legal character, then the tuple is passed as is.
 If the `head` is not a legal character, then a new tuple is made from a `Nil` output `List`
 and with the index given a value such that it will reasonably never be valid.
 
-The result of `foldLeft()` is passed to the `match`.
-If the index is `10`, then the [`reverse`][reverse] and [`mkString`][mkstring] methods are used on the output `List` to return a `Some` value
-from the recursive method.
-If the index is not `10`, then `None` is returned from the recursive method.
+The result of `foldLeft()` is destructured into `digits` and `count`.
+If the `count` is `10`, then the [`reverse`][reverse] and [`mkString`][mkstring] methods are used on the `digits` to return a `Some` value.
+If the `count` is not `10`, then `None` is returned.
 
-[foldLeft]: https://www.scala-lang.org/api/2.13.4/scala/collection/StringOps.html#foldLeft[B](z:B)(op:(B,Char)=%3EB):B
+[foldLeft]: https://www.scala-lang.org/api/current/scala/collection/StringOps.html
 [tuple]: https://docs.scala-lang.org/tour/tuples.html
 [lambda]: https://www.geeksforgeeks.org/lambda-expression-in-scala/
-[match]: https://docs.scala-lang.org/tour/pattern-matching.html
+[fewer-braces]: https://docs.scala-lang.org/scala3/reference/other-new-features/indentation.html#optional-braces-for-method-arguments
+[match]: https://docs.scala-lang.org/scala3/book/control-structures.html#match-expressions
 [pattern-matching]: https://docs.scala-lang.org/tour/pattern-matching.html
-[reverse]: https://www.scala-lang.org/api/2.13.4/scala/collection/immutable/List.html#reverse:List[A]
-[mkstring]: https://www.scala-lang.org/api/2.13.4/scala/collection/immutable/List.html#mkString:String
+[binding]: https://docs.scala-lang.org/scala3/book/control-structures.html#binding-matched-patterns-to-variables
+[reverse]: https://www.scala-lang.org/api/current/scala/collection/immutable/List.html
+[mkstring]: https://www.scala-lang.org/api/current/scala/collection/immutable/List.html

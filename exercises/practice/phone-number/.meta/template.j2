@@ -1,0 +1,15 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("PhoneNumber") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.expected is mapping %}
+{% set expected = "None" %}
+{% else %}
+{% set expected = "Some(" ~ (case.expected | scala) ~ ")" %}
+{% endif %}
+{{ macros.assert_be("PhoneNumber.clean(" ~ (case.input.phrase | scala) ~ ")", expected) }}
+{% endfor %}
