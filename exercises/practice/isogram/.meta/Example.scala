@@ -1,8 +1,4 @@
-object Isogram {
+object Isogram:
   def isIsogram(s: String): Boolean =
-    !s.filter(_.isLetter)
-      .map(_.toLower)
-      .groupBy(identity)
-      .values
-      .exists(_.length > 1)
-}
+    val letters = s.toLowerCase.filter(_.isLetter)
+    letters.distinct.length == letters.length
