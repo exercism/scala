@@ -1,0 +1,11 @@
+{%- import "macros.j2" as macros -%}
+{#- The canonical index is 1-based; the track's row and column take a 0-based index. -#}
+{{ macros.header("Matrix") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("Matrix(" ~ (case.input.string | scala) ~ ")." ~ case.property ~ "(" ~ (case.input.index - 1) ~ ")", "Vector(" ~ (case.expected | join(", ")) ~ ")") }}
+{% endfor %}
