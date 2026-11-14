@@ -1,0 +1,15 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("NthPrime") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.expect_error %}
+{% set expected = "None" %}
+{% else %}
+{% set expected = "Some(" ~ (case.expected | scala) ~ ")" %}
+{% endif %}
+{{ macros.assert_be("NthPrime.prime(" ~ (case.input.number | scala) ~ ")", expected) }}
+{% endfor %}
