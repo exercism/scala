@@ -1,0 +1,11 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("SumOfMultiples") }}
+{% for case in cases %}
+{% set factors = "Set(" ~ case.input.factors | join(", ") ~ ")" %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("SumOfMultiples.sum(" ~ factors ~ ", " ~ case.input.limit ~ ")", case.expected) }}
+{% endfor %}
