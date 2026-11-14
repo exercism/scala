@@ -128,6 +128,30 @@ def filter_scala(value) -> str:
     return str(value)
 
 
+def filter_scala_type(value) -> str:
+    """Return the Scala type of a canonical-data value, e.g. for a type argument.
+
+    A list or map takes its element types from its first entry; an empty one
+    holds `Nothing`, so a template that needs another type checks for it first.
+    """
+    if isinstance(value, bool):
+        return "Boolean"
+    if isinstance(value, int):
+        return "Int" if -(2**31) <= value < 2**31 else "Long"
+    if isinstance(value, float):
+        return "Double"
+    if isinstance(value, str):
+        return "String"
+    if isinstance(value, list):
+        return f"List[{filter_scala_type(value[0]) if value else 'Nothing'}]"
+    if isinstance(value, dict):
+        if not value:
+            return "Map[Nothing, Nothing]"
+        key, item = next(iter(value.items()))
+        return f"Map[{filter_scala_type(key)}, {filter_scala_type(item)}]"
+    raise TypeError(f"no Scala type for {value!r}")
+
+
 def jinja_env(exercise: pathlib.Path) -> jinja2.Environment:
     """Return a configured Jinja env with filters added.
 
@@ -143,6 +167,8 @@ def jinja_env(exercise: pathlib.Path) -> jinja2.Environment:
     )
     # Render a canonical value as Scala source.
     env.filters["scala"] = filter_scala
+    # The Scala type of a canonical value.
+    env.filters["scala_type"] = filter_scala_type
     return env
 
 
