@@ -1,0 +1,15 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("BinarySearch") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.expect_error %}
+{% set expected = "None" %}
+{% else %}
+{% set expected = "Some(" ~ (case.expected | scala) ~ ")" %}
+{% endif %}
+{{ macros.assert_be("BinarySearch.find(" ~ (case.input.array | scala) ~ ", " ~ (case.input.value | scala) ~ ")", expected) }}
+{% endfor %}
