@@ -1,0 +1,33 @@
+{%- import "macros.j2" as macros -%}
+{#- A list too long for one line is bin-packed as scalafmt packs literal argument lists:
+    as many numbers per line as fit in 160 columns, continuation lines indented by 8. -#}
+{%- macro packed(values) -%}
+{%- set ns = namespace(line="      List(", lines=[]) -%}
+{%- for v in values -%}
+{%- set piece = (v ~ "),") if loop.last else (v ~ ",") -%}
+{%- set candidate = (ns.line ~ piece) if ns.line.endswith("(") else (ns.line ~ " " ~ piece) -%}
+{%- if candidate | length <= 160 -%}
+{%- set ns.line = candidate -%}
+{%- else -%}
+{%- set ns.lines = ns.lines + [ns.line] -%}
+{%- set ns.line = "        " ~ piece -%}
+{%- endif -%}
+{%- endfor -%}
+{{ (ns.lines + [ns.line]) | join("\n") }}
+{%- endmacro -%}
+{{ macros.header("Sieve") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% set expected = case.expected | scala %}
+{% if ("    Sieve.primes(" ~ case.input.limit ~ ") should be(" ~ expected ~ ")") | length <= 160 %}
+    Sieve.primes({{ case.input.limit }}) should be({{ expected }})
+{% else %}
+    Sieve.primes({{ case.input.limit }}) should be(
+{{ packed(case.expected) }}
+    )
+{% endif %}
+{% endfor %}
