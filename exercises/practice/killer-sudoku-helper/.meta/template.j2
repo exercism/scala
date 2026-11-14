@@ -1,0 +1,11 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("KillerSudokuHelper") }}
+{% for case in cases %}
+{% set cage = case.input.cage %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("KillerSudokuHelper.combinations(" ~ cage.sum ~ ", " ~ cage.size ~ ", " ~ (cage.exclude | scala) ~ ")", case.expected | scala) }}
+{% endfor %}
