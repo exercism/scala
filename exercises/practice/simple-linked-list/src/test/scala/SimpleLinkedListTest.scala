@@ -6,9 +6,9 @@ import org.scalatestplus.scalacheck.ScalaCheckDrivenPropertyChecks
 /** @version created manually **/
 class SimpleLinkedListTest extends AnyFlatSpec with Matchers with ScalaCheckDrivenPropertyChecks {
 
-  private implicit def arbitrarySimpleLinkedList[T](implicit arbitraryTs: Arbitrary[Array[T]]): Arbitrary[SimpleLinkedList[T]] =
+  private given arbitrarySimpleLinkedList[T](using arbitraryTs: Arbitrary[Array[T]]): Arbitrary[SimpleLinkedList[T]] =
     Arbitrary {
-      arbitraryTs.arbitrary map (SimpleLinkedList(_:_*))
+      arbitraryTs.arbitrary map (items => SimpleLinkedList(items*))
     }
 
   it should "handle single item list" in {
