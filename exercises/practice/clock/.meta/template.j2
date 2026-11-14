@@ -1,0 +1,28 @@
+{%- import "macros.j2" as macros -%}
+{#- This track compares clocks rather than their text: the canonical "08:00" becomes Clock(8, 0),
+    and a number of minutes to add or subtract is a Clock of its own. -#}
+{%- macro clock(time) -%}
+{%- set parts = time.split(":") -%}
+Clock({{ parts[0] | int }}, {{ parts[1] | int }})
+{%- endmacro -%}
+{{ macros.header("Clock") }}
+{% for case in cases %}
+{% set input = case.input %}
+{% if case.property == "create" %}
+{% set subject = "Clock(" ~ input.hour ~ ", " ~ input.minute ~ ")" %}
+{% set expected = clock(case.expected) %}
+{% elif case.property == "add" or case.property == "subtract" %}
+{% set operator = "+" if case.property == "add" else "-" %}
+{% set subject = "Clock(" ~ input.hour ~ ", " ~ input.minute ~ ") " ~ operator ~ " Clock(" ~ input.value ~ ")" %}
+{% set expected = clock(case.expected) %}
+{% else %}
+{% set subject = "Clock(" ~ input.clock1.hour ~ ", " ~ input.clock1.minute ~ ") == Clock(" ~ input.clock2.hour ~ ", " ~ input.clock2.minute ~ ")" %}
+{% set expected = case.expected | scala %}
+{% endif %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be(subject, expected) }}
+{% endfor %}
