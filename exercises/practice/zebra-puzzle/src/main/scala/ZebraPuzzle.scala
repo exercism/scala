@@ -1,14 +1,10 @@
-object ZebraPuzzle {
+object ZebraPuzzle:
 
-  sealed trait Resident
-  case object Englishman extends Resident
-  case object Spaniard extends Resident
-  case object Ukrainian extends Resident
-  case object Norwegian extends Resident
-  case object Japanese extends Resident
+  enum Resident:
+    case Englishman, Spaniard, Ukrainian, Norwegian, Japanese
+
+  export Resident.*
 
   case class Solution(waterDrinker: Resident, zebraOwner: Resident)
 
   lazy val solve: Solution = ???
-}
-
