@@ -45,7 +45,7 @@ a `STOP` codon is received.
 
 Once all of the valid codons have been translated, the `proteins()` method returns a sequence of the proteins.
 
-[grouped]: https://www.scala-lang.org/api/2.12.3/scala/collection/immutable/StringOps.html#grouped(size:Int):Iterator[Repr]
-[map]: https://www.scala-lang.org/api/2.12.3/scala/collection/Iterator.html#map[B](f:A=%3EB):Iterator[B]
-[takewhile]: https://www.scala-lang.org/api/2.12.3/scala/collection/Iterator.html#takeWhile(p:A=%3EBoolean):Iterator[A]
+[grouped]: https://www.scala-lang.org/api/current/scala/collection/StringOps.html#grouped-fffffbef
+[map]: https://www.scala-lang.org/api/current/scala/collection/Iterator.html#map-fffffcf6
+[takewhile]: https://www.scala-lang.org/api/current/scala/collection/Iterator.html#takeWhile-fffff1c5
 [match]: https://docs.scala-lang.org/tour/pattern-matching.html

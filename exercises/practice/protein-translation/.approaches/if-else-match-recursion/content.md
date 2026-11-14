@@ -75,9 +75,9 @@ The `take()` and `drop()` methods work here because all of the characters are [A
 [sequence]: https://www.geeksforgeeks.org/scala-sequence/
 [match]: https://docs.scala-lang.org/tour/pattern-matching.html
 [recursion]: https://www.geeksforgeeks.org/recursion-in-scala/
-[tailrec-annotation]: https://www.scala-lang.org/api/2.12.1/scala/annotation/tailrec.html
+[tailrec-annotation]: https://www.scala-lang.org/api/current/scala/annotation/tailrec.html
 [tail-opt]: https://www.baeldung.com/scala/tail-recursion
 [pattern-matching]: https://docs.scala-lang.org/tour/pattern-matching.html
-[take]: https://www.scala-lang.org/api/2.13.10/scala/collection/StringOps.html#take(n:Int):String
-[drop]: https://www.scala-lang.org/api/2.13.10/scala/collection/StringOps.html#drop(n:Int):String
+[take]: https://www.scala-lang.org/api/current/scala/collection/StringOps.html#take-78c
+[drop]: https://www.scala-lang.org/api/current/scala/collection/StringOps.html#drop-78c
 [append-operator]: https://alvinalexander.com/scala/how-to-append-prepend-items-vector-seq-in-scala/
