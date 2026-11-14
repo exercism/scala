@@ -1,0 +1,11 @@
+{%- import "macros.j2" as macros -%}
+{#- The track's toRna returns an Option, so a valid strand's complement is wrapped in Some. -#}
+{{ macros.header("RnaTranscription") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("RnaTranscription.toRna(" ~ (case.input.dna | scala) ~ ")", "Some(" ~ (case.expected | scala) ~ ")") }}
+{% endfor %}
