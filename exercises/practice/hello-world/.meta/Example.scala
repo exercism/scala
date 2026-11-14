@@ -1,4 +1,2 @@
-object HelloWorld {
-  def hello() = "Hello, World!"
-}
-
+object HelloWorld:
+  def hello(): String = "Hello, World!"
