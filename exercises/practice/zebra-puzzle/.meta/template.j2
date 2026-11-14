@@ -1,0 +1,14 @@
+{%- import "macros.j2" as macros -%}
+{#- Each canonical property is a field of the Solution that `solve` returns. -#}
+{%- set fields = {"drinksWater": "waterDrinker", "ownsZebra": "zebraOwner"} -%}
+import ZebraPuzzle.*
+
+{{ macros.header("ZebraPuzzle") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("ZebraPuzzle.solve." ~ fields[case.property], case.expected) }}
+{% endfor %}
