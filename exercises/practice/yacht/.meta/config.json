@@ -2,6 +2,9 @@
   "authors": [
     "wangxiaoxuan273"
   ],
+  "contributors": [
+    "rabestro"
+  ],
   "files": {
     "solution": [
       "src/main/scala/Yacht.scala"
