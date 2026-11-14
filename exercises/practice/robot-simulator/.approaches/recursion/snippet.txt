@@ -1,8 +1,8 @@
-final def simulate(orders: String): Robot =
-  if orders.isEmpty then this
+final def simulate(instructions: String): Robot =
+  if instructions.isEmpty then this
   else
-    val next = orders.head match
+    val next = instructions.head match
       case 'L' => turnLeft
       case 'R' => turnRight
       case 'A' => advance
-    next.simulate(orders.tail)
+    next.simulate(instructions.tail)

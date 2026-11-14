@@ -2,6 +2,9 @@
   "introduction": {
     "authors": [
       "bobahop"
+    ],
+    "contributors": [
+      "rabestro"
     ]
   },
   "approaches": [
@@ -12,6 +15,9 @@
       "blurb": "Use foldLeft for simulate.",
       "authors": [
         "bobahop"
+      ],
+      "contributors": [
+        "rabestro"
       ]
     },
     {
@@ -21,6 +27,9 @@
       "blurb": "Use recursion for simulate.",
       "authors": [
         "bobahop"
+      ],
+      "contributors": [
+        "rabestro"
       ]
     }
   ]
