@@ -1,47 +1,27 @@
 import java.time.{DayOfWeek, LocalDate}
 
-import Schedule.Schedule
-
-case class Meetup(month: Int, year: Int) {
-  private val thirteenth = LocalDate.of(year, month, 13)
+case class Meetup(month: Int, year: Int):
   private val firstDay = LocalDate.of(year, month, 1)
-  private val nextMonth = firstDay.plusMonths(1)
-
-  private val teenth: Scheduler = (dayOfWeek: Int) => thirteenth.next(dayOfWeek)
-  private val first: Scheduler = (dayOfWeek: Int) => firstDay.next(dayOfWeek)
-  private val second: Scheduler = (dayOfWeek: Int) => first.day(dayOfWeek).plusDays(7)
-  private val third: Scheduler = (dayOfWeek: Int) => second.day(dayOfWeek).plusDays(7)
-  private val fourth: Scheduler = (dayOfWeek: Int) => third.day(dayOfWeek).plusDays(7)
-  private val last: Scheduler = (dayOfWeek: Int) => nextMonth.next(dayOfWeek).minusDays(7)
-  private def schedulers: Map[Schedule, Scheduler] = Map(Schedule.Teenth -> teenth,
-    Schedule.First -> first,
-    Schedule.Second -> second,
-    Schedule.Third -> third,
-    Schedule.Fourth -> fourth,
-    Schedule.Last -> last)
 
   def day(dayOfWeek: Int, schedule: Schedule): LocalDate =
-    schedulers(schedule).day(dayOfWeek)
+    val first = firstDay.onOrAfter(dayOfWeek)
+    schedule match
+      case Schedule.First  => first
+      case Schedule.Second => first.plusWeeks(1)
+      case Schedule.Third  => first.plusWeeks(2)
+      case Schedule.Fourth => first.plusWeeks(3)
+      case Schedule.Teenth => firstDay.withDayOfMonth(13).onOrAfter(dayOfWeek)
+      case Schedule.Last   => firstDay.plusMonths(1).minusWeeks(1).onOrAfter(dayOfWeek)
 
-  implicit class LocalDateOps(self: LocalDate) {
-    def next(dayOfWeek: Int): LocalDate = self.plusDays(daysUntil(dayOfWeek))
+  extension (date: LocalDate)
+    // The first date on or after this one that falls on the given day of the week.
+    private def onOrAfter(dayOfWeek: Int): LocalDate =
+      date.plusDays(Math.floorMod(dayOfWeek - date.getDayOfWeek.getValue, 7))
 
-    def daysUntil(dayOfWeek: Int): Int = (Meetup.Sun - this.dayOfWeek + dayOfWeek) % 7
+enum Schedule:
+  case Teenth, First, Second, Third, Fourth, Last
 
-    def dayOfWeek: Int = self.getDayOfWeek.getValue
-  }
-
-  trait Scheduler {
-    def day(dayOfWeek: Int): LocalDate
-  }
-}
-
-object Schedule extends Enumeration {
-  type Schedule = Value
-  val Teenth, First, Second, Third, Fourth, Last = Value
-}
-
-object Meetup {
+object Meetup:
   val Mon = DayOfWeek.MONDAY.getValue
   val Tue = DayOfWeek.TUESDAY.getValue
   val Wed = DayOfWeek.WEDNESDAY.getValue
@@ -49,4 +29,3 @@ object Meetup {
   val Fri = DayOfWeek.FRIDAY.getValue
   val Sat = DayOfWeek.SATURDAY.getValue
   val Sun = DayOfWeek.SUNDAY.getValue
-}
