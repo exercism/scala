@@ -1,32 +1,12 @@
-object RunLengthEncoding {
-  type Plain = String
-  type Encoded = String
+object RunLengthEncoding:
+  // A run is a character followed by any repeats of it.
+  private val Run = """(.)\1*""".r
 
-  def encode(str: Plain): Encoded = {
-    def encodeGroup(xs: Seq[Char]): Seq[Char] =
-      if (xs.length > 1) s"${xs.length}${xs.head}"
-      else xs.mkString
+  // An encoded run is an optional count followed by the character.
+  private val EncodedRun = """(\d*)(\D)""".r
 
-    (splitByEquals(str) flatMap encodeGroup).mkString
-  }
+  def encode(str: String): String =
+    Run.findAllIn(str).map(run => if run.length == 1 then run else s"${run.length}${run.head}").mkString
 
-  def decode(str: Encoded): Plain = {
-    val nextChar: ((Int, Seq[Char]), Char) => (Int, Seq[Char]) = {
-      case ((n, xs), x) =>
-        if (x.isDigit) (n * 10 + x.asDigit, xs)
-        else if (n == 0) (0, x +: xs)
-        else (0, Seq.fill(n)(x) ++ xs)
-    }
-
-    val result = str.foldLeft((0, Seq.empty[Char]))(nextChar)
-    result._2.reverse.mkString
-  }
-
-  private def splitByEquals[T](xs: Seq[T]): Seq[Seq[T]] =
-    xs match {
-      case Seq() => Seq()
-      case x +: xss =>
-        val fs = xs takeWhile (_ == x)
-        fs +: splitByEquals(xs drop fs.length)
-    }
-}
+  def decode(str: String): String =
+    EncodedRun.findAllMatchIn(str).map(m => m.group(2) * m.group(1).toIntOption.getOrElse(1)).mkString

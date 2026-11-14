@@ -1,0 +1,16 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("RunLengthEncoding") }}
+{% for case in cases %}
+{% set input = case.input.string | scala %}
+{% if case.property == "consistency" %}
+{% set subject = "RunLengthEncoding.decode(RunLengthEncoding.encode(" ~ input ~ "))" %}
+{% else %}
+{% set subject = "RunLengthEncoding." ~ case.property ~ "(" ~ input ~ ")" %}
+{% endif %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be(subject, case.expected | scala) }}
+{% endfor %}
