@@ -22,7 +22,7 @@ trait BaseConverter {
     @tailrec
     def internalToBase(n: Int, acc: String): String = {
       val baseChar = ((n % base) + '0').toChar
-      val accum = baseChar + acc
+      val accum = baseChar +: acc
 
       n match {
         case 0 => if (acc.isEmpty) accum else acc
