@@ -80,9 +80,9 @@ For more information, check the [`if` and `else` with `match` with recursion app
 Since benchmarking is currently outside the scope of this document,
 the choice between the approaches can be made by perceived readability.
 
-[grouped]: https://www.scala-lang.org/api/2.12.3/scala/collection/immutable/StringOps.html#grouped(size:Int):Iterator[Repr]
-[map]: https://www.scala-lang.org/api/2.12.3/scala/collection/Iterator.html#map[B](f:A=%3EB):Iterator[B]
-[takewhile]: https://www.scala-lang.org/api/2.12.3/scala/collection/Iterator.html#takeWhile(p:A=%3EBoolean):Iterator[A]
+[grouped]: https://www.scala-lang.org/api/current/scala/collection/StringOps.html#grouped-fffffbef
+[map]: https://www.scala-lang.org/api/current/scala/collection/Iterator.html#map-fffffcf6
+[takewhile]: https://www.scala-lang.org/api/current/scala/collection/Iterator.html#takeWhile-fffff1c5
 [match]: https://docs.scala-lang.org/tour/pattern-matching.html
 [recursion]: https://www.geeksforgeeks.org/recursion-in-scala/
 [approach-grouped-map-takewhile]: https://exercism.org/tracks/scala/exercises/protein-translation/approaches/filter-map-stream-takewhile

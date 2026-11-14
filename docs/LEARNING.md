@@ -4,7 +4,7 @@ The best place to start your journey with Scala is the short [Tour of Scala](htt
 
 ## Books
 
-* [Programming in Scala - Oderksy, Spoon, Venners](http://www.artima.com/shop/programming_in_scala_3ed)
+* [Programming in Scala, Fifth Edition - Martin Odersky, Lex Spoon, Bill Venners, and Frank Sommers](https://www.artima.com/shop/programming_in_scala_5ed)
 * [Programming Scala - Dean Wampler](https://deanwampler.github.io/books/programmingscala.html)
 * [Functional Programming in Scala - Michael Pilquist, Rúnar Bjarnason, and Paul Chiusano](https://www.manning.com/books/functional-programming-in-scala-second-edition)
 * [Grokking Functional Programming - Michał Płachta](https://www.manning.com/books/grokking-functional-programming)
