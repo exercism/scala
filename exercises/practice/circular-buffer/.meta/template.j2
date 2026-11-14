@@ -1,0 +1,24 @@
+{%- import "macros.j2" as macros -%}
+{#- A failing read or write throws the track's EmptyBufferException or FullBufferException. -#}
+{{ macros.header("CircularBuffer") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+    val buffer = new CircularBuffer({{ case.input.capacity }})
+{% for op in case.input.operations %}
+{% if op.operation == "read" and op.should_succeed %}
+    buffer.read() should be({{ op.expected }})
+{% elif op.operation == "read" %}
+    assertThrows[EmptyBufferException](buffer.read())
+{% elif op.operation == "write" and not op.should_succeed %}
+    assertThrows[FullBufferException](buffer.write({{ op.item }}))
+{% elif op.operation == "clear" %}
+    buffer.clear()
+{% else %}
+    buffer.{{ op.operation }}({{ op.item }})
+{% endif %}
+{% endfor %}
+{% endfor %}
