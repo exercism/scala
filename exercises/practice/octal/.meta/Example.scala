@@ -20,7 +20,7 @@ object Octal {
     @tailrec
     def intToOct(n: Int, acc: String): String = {
       val octalChar = ((n % 8) + '0').toChar
-      val accum = octalChar + acc
+      val accum = octalChar +: acc
 
       n match {
         case 0 => if (acc.isEmpty) accum else acc
