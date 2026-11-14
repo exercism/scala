@@ -1,5 +1,4 @@
-class Lasagna {
-
+class Lasagna:
   def remainingMinutesInOven(actualMinutesInOven: Int): Int =
     expectedMinutesInOven() - actualMinutesInOven
 
@@ -9,5 +8,3 @@ class Lasagna {
     preparationTimeInMinutes(numberOfLayers) + actualMinutesInOven
 
   def preparationTimeInMinutes(numberOfLayers: Int): Int = numberOfLayers * 2
-
-}

@@ -6,13 +6,13 @@
 
 - Immutable variables (also called values) can be defined with `val`.
 - Mutable variables can be defined with `var`.
-- The variable's type can often be detected automatically by the Scala compiler (this is known as [type interference][scala-type-inference]), so that it can be omitted.
+- The variable's type can often be detected automatically by the Scala compiler (this is known as [type inference][scala-type-inference]), so that it can be omitted.
 
 ```scala
-val numberTen = 10 // vals can not be changed anymore
-var number = 1 // vars can be changed
-number += 1 // number is now 2
-var index : Int = 0 // variable with explicit type declaration
+val numberTen = 10  // vals can not be changed anymore
+var number = 1      // vars can be changed
+number += 1         // number is now 2
+var index: Int = 0  // variable with explicit type declaration
 ```
 
 **Comments**
@@ -30,14 +30,13 @@ across multiple lines
 
 **Classes**
 
-- Classes are defined with keyword `class` and are instantiated with `new`.
+- Classes are defined with keyword `class`, with their body indented after a colon, and are instantiated by calling them like a method.
 
 ```scala
-class Calculator {
-  // here comes the class implementation
-}
+class Calculator:
+  def add(x: Int, y: Int) = x + y
 
-val myCalculator = new Calculator()
+val myCalculator = Calculator()
 ```
 
 **Methods**
@@ -46,20 +45,18 @@ val myCalculator = new Calculator()
 - Methods can have multiple or no parameters.
 - The return type can often be inferred by the Scala compiler like for variables.
 - The last expression within a method is being returned (no `return` keyword required).
-- Methods in Scala can be very short and curly braces are then omitted, if the implementation fits into one line. Of course there can also be multiline methods (consisting of multiple expressions).
+- Methods in Scala can be very short, if the implementation fits into one line. Of course there can also be multiline methods (consisting of multiple expressions), with the body indented below the method.
 
 ```scala
-class Calculator {
+class Calculator:
   def add(x: Int, y: Int) = x + y
 
-  def sumOfDigits(x: Int) = {
+  def sumOfDigits(x: Int) =
     val digits = x.toString.map(_.asDigit)
     digits.sum
-  }
-}
 
-//invoking a method:
-val calculator = new Calculator()
+// invoking a method:
+val calculator = Calculator()
 println(calculator.sumOfDigits(123))
 // => prints 6
 ```
@@ -75,9 +72,8 @@ Scala has following [naming conventions]:
 - Immutable variables used as a constant value are in upper camel case.
 
 ```scala
-class FourWheelVehicle {
+class FourWheelVehicle:
   val NumberOfWheels = 4
-}
 ```
 
 **Visibility**
@@ -86,14 +82,13 @@ class FourWheelVehicle {
 - Add access modifier `private` to hide variables or methods to the outside of the class and to restrict their access to class-internal access.
 
 ```scala
-class MyClass {
+class MyClass:
   val publicValue = 42
   private val internalValue = publicValue * 2
 
   def publiclyCallableMethod() = ...
 
   private def internallyCallableMethod() = ...
-}
 ```
 
 - More about [access modifiers on tutorialspoint.com].
