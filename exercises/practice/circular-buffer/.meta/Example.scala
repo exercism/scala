@@ -1,38 +1,23 @@
-class EmptyBufferException() extends Exception {}
+import scala.collection.mutable
 
-class FullBufferException() extends Exception {}
+class EmptyBufferException() extends Exception
 
-class CircularBuffer(var capacity: Int) {
-  private var data = List[Int]()
+class FullBufferException() extends Exception
 
-  def write(value: Int): Unit = {
-    if (isFull()) {
-      throw new FullBufferException
-    }
-    data = value :: data
-  }
+class CircularBuffer(capacity: Int):
+  private val items = mutable.Queue.empty[Int]
 
-  def read(): Int = {
-    if (data.isEmpty) {
-      throw new EmptyBufferException
-    }
+  def write(value: Int): Unit =
+    if items.size == capacity then throw FullBufferException()
+    items.enqueue(value)
 
-    val last = data.last
-    data = data.init
-    last
-  }
+  def read(): Int =
+    if items.isEmpty then throw EmptyBufferException()
+    items.dequeue()
 
-  def overwrite(value: Int): Unit = {
-    if (isFull()) {
-      read()
-    }
-    
-    write(value)
-  }
+  // On a full buffer the oldest item makes room for the new one.
+  def overwrite(value: Int): Unit =
+    if items.size == capacity then items.dequeue()
+    items.enqueue(value)
 
-  def clear(): Unit = {
-    data = List[Int]()
-  }
-
-  def isFull() = data.size == capacity
-}
+  def clear(): Unit = items.clear()
