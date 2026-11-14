@@ -1,0 +1,8 @@
+@tailrec
+def loop(index: Int, seen: Set[Char]): Boolean =
+  if index == s.length then true
+  else
+    val c = s(index).toLower
+    if !c.isLetter then loop(index + 1, seen)
+    else if seen(c) then false
+    else loop(index + 1, seen + c)
