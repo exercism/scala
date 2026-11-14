@@ -1,0 +1,16 @@
+{%- import "macros.j2" as macros -%}
+{#- The expected diamond one row per line, so the test reads like the diamond. -#}
+{{ macros.header("Diamond") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+    val expected = List(
+{% for row in case.expected %}
+{{ "      " ~ (row | scala) ~ "," }}
+{% endfor %}
+    )
+    Diamond.rows('{{ case.input.letter }}') should be(expected)
+{% endfor %}
