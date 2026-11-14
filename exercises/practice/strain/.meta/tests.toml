@@ -17,7 +17,6 @@ description = "keeps everything"
 
 [950b8e8e-f628-42a8-85e2-9b30f09cde38]
 description = "keeps nothing"
-include = false
 
 [92694259-6e76-470c-af87-156bdf75018a]
 description = "keeps first and last"
@@ -36,11 +35,9 @@ description = "discard on empty list returns empty list"
 
 [2f42f9bc-8e06-4afe-a222-051b5d8cd12a]
 description = "discards everything"
-include = false
 
 [ca990fdd-08c2-4f95-aa50-e0f5e1d6802b]
 description = "discards nothing"
-include = false
 
 [71595dae-d283-48ca-a52b-45fa96819d2f]
 description = "discards first and last"

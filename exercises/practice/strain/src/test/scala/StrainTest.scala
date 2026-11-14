@@ -1,81 +1,77 @@
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
-import org.scalatest.flatspec.AnyFlatSpec
 
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class StrainTest extends AnyFunSuite with Matchers:
 
-/** @version created manually **/
-class StrainTest extends AnyFlatSpec with Matchers {
+  test("keep on empty list returns empty list"):
+    val list = List()
+    Strain.keep[Int](list, _ => true) should be(List())
 
-  it should "handle empty keep" in {
-    val result = Strain.keep[Int](List(), x => x < 10)
-    result should be(List.empty)
-  }
-
-  it should "keep everything" in {
+  test("keeps everything"):
     pending
-    val expectedList = List("a", "b", "c")
-    val result = Strain.keep[String](expectedList, _ => true)
-    result should be(expectedList)
-  }
+    val list = List(1, 3, 5)
+    Strain.keep[Int](list, _ => true) should be(List(1, 3, 5))
 
-  it should "keep first and last" in {
+  test("keeps nothing"):
     pending
-    val result = Strain.keep[Int](List(1, 2, 3), x => x % 2 != 0)
-    result should be(List(1, 3))
-  }
+    val list = List(1, 3, 5)
+    Strain.keep[Int](list, _ => false) should be(List())
 
-  it should "keep neither first or last" in {
+  test("keeps first and last"):
     pending
-    val result = Strain.keep[Int](List(1, 2, 3, 4, 5), x => x % 2 == 0)
-    result should be(List(2, 4))
-  }
+    val list = List(1, 2, 3)
+    Strain.keep[Int](list, x => x % 2 == 1) should be(List(1, 3))
 
-  it should "keep strings" in {
+  test("keeps neither first nor last"):
     pending
-    val words = List("apple",  "zebra", "banana", "zombies", "cherimoya",  "zelot")
-    val result = Strain.keep[String](words, s => s.startsWith("z"))
-    result should be(List("zebra", "zombies", "zelot"))
-  }
+    val list = List(1, 2, 3)
+    Strain.keep[Int](list, x => x % 2 == 0) should be(List(2))
 
-  it should "keep sequences" in {
+  test("keeps strings"):
     pending
-    val sequences = Seq(Seq(1, 2, 3), Seq(5, 5, 5), Seq(5, 1, 2), Seq(2, 1, 2),
-      Seq(1, 5, 2), Seq(2, 2, 1), Seq(1, 2, 5))
-    val expected = Seq(Seq(5, 5, 5), Seq(5, 1, 2), Seq(1, 5, 2), Seq(1, 2, 5))
-    val result = Strain.keep[Seq[Int]](sequences, seq => seq.contains(5))
-    result should be (expected)
-  }
+    val list = List("apple", "zebra", "banana", "zombies", "cherimoya", "zealot")
+    Strain.keep[String](list, x => x.startsWith("z")) should be(List("zebra", "zombies", "zealot"))
 
-  it should "handle empty discard" in {
+  test("keeps lists"):
     pending
-    val result = Strain.discard[Int](List(), x => x < 10)
-    result should be (List.empty)
-  }
+    val list = List(List(1, 2, 3), List(5, 5, 5), List(5, 1, 2), List(2, 1, 2), List(1, 5, 2), List(2, 2, 1), List(1, 2, 5))
+    Strain.keep[List[Int]](list, x => x.contains(5)) should be(List(List(5, 5, 5), List(5, 1, 2), List(1, 5, 2), List(1, 2, 5)))
 
-  it should "discard first and last" in {
+  test("discard on empty list returns empty list"):
     pending
-    val result = Strain.discard[Int](List(1, 2, 3), x => x % 2 != 0)
-    result should be (List(2))
-  }
+    val list = List()
+    Strain.discard[Int](list, _ => true) should be(List())
 
-  it should "discard neither first or last" in {
+  test("discards everything"):
     pending
-    val result = Strain.discard[Int](List(1, 2, 3, 4, 5), x => x % 2 == 0)
-    result should be (List(1, 3, 5))
-  }
+    val list = List(1, 3, 5)
+    Strain.discard[Int](list, _ => true) should be(List())
 
-  it should "discard strings" in {
+  test("discards nothing"):
     pending
-    val words = List("apple",  "zebra", "banana", "zombies", "cherimoya",  "zelot")
-    val result = Strain.discard[String](words, s => s.startsWith("z"))
-    result should be (List("apple", "banana", "cherimoya"))
-  }
+    val list = List(1, 3, 5)
+    Strain.discard[Int](list, _ => false) should be(List(1, 3, 5))
 
-  it should "discard sequences" in {
+  test("discards first and last"):
     pending
-    val sequences = Seq(Seq(1, 2, 3), Seq(5, 5, 5), Seq(5, 1, 2), Seq(2, 1, 2),
-      Seq(1, 5, 2), Seq(2, 2, 1), Seq(1, 2, 5))
-    val expected = Seq(Seq(1, 2, 3), Seq(2, 1, 2), Seq(2, 2, 1))
-    val result = Strain.discard[Seq[Int]](sequences, seq => seq.contains(5))
-    result should be (expected)
-  }
-}
+    val list = List(1, 2, 3)
+    Strain.discard[Int](list, x => x % 2 == 1) should be(List(2))
+
+  test("discards neither first nor last"):
+    pending
+    val list = List(1, 2, 3)
+    Strain.discard[Int](list, x => x % 2 == 0) should be(List(1, 3))
+
+  test("discards strings"):
+    pending
+    val list = List("apple", "zebra", "banana", "zombies", "cherimoya", "zealot")
+    Strain.discard[String](list, x => x.startsWith("z")) should be(List("apple", "banana", "cherimoya"))
+
+  test("discards lists"):
+    pending
+    val list = List(List(1, 2, 3), List(5, 5, 5), List(5, 1, 2), List(2, 1, 2), List(1, 5, 2), List(2, 2, 1), List(1, 2, 5))
+    Strain.discard[List[Int]](list, x => x.contains(5)) should be(List(List(1, 2, 3), List(2, 1, 2), List(2, 2, 1)))

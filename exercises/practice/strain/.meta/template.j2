@@ -1,0 +1,27 @@
+{%- import "macros.j2" as macros -%}
+{#- The canonical predicates are pseudocode; these are their Scala lambdas. -#}
+{%- set predicates = {
+  "fn(x) -> true": "_ => true",
+  "fn(x) -> false": "_ => false",
+  "fn(x) -> x % 2 == 1": "x => x % 2 == 1",
+  "fn(x) -> x % 2 == 0": "x => x % 2 == 0",
+  "fn(x) -> starts_with(x, 'z')": "x => x.startsWith(\"z\")",
+  "fn(x) -> contains(x, 5)": "x => x.contains(5)",
+} -%}
+{#- The element type, from the first element; an empty list holds Ints. -#}
+{%- macro element_type(list) -%}
+{%- if list and list[0] is string -%}String
+{%- elif list and list[0] is sequence -%}List[Int]
+{%- else -%}Int
+{%- endif -%}
+{%- endmacro -%}
+{{ macros.header("Strain") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+    val list = {{ case.input.list | scala }}
+{{ macros.assert_be("Strain." ~ case.property ~ "[" ~ element_type(case.input.list) ~ "](list, " ~ predicates[case.input.predicate] ~ ")", case.expected | scala) }}
+{% endfor %}
