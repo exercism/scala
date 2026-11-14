@@ -1,0 +1,17 @@
+{%- import "macros.j2" as macros -%}
+{#- `inEnglish` takes a Long; numbers past Int's range need the `L` suffix. -#}
+{{ macros.header("Say") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% set number = case.input.number ~ ("L" if case.input.number > 2147483647 else "") %}
+{% if case.expect_error %}
+{% set expected = "None" %}
+{% else %}
+{% set expected = "Some(" ~ (case.expected | scala) ~ ")" %}
+{% endif %}
+{{ macros.assert_be("Say.inEnglish(" ~ number ~ ")", expected) }}
+{% endfor %}
