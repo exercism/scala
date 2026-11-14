@@ -1,10 +1,9 @@
-object NthPrime {
-  // The stream will cache calculated primes. This is nice for performance,
+object NthPrime:
+  // The LazyList caches the primes it has computed. This is nice for performance,
   // but not so nice for memory utilization.
-  private lazy val primes: Stream[BigInt] =
-    Stream.cons(BigInt(2), primes.map(b => new BigInt(b.bigInteger.nextProbablePrime)))
+  private lazy val primes: LazyList[BigInt] =
+    LazyList.iterate(BigInt(2))(p => BigInt(p.bigInteger.nextProbablePrime))
 
   def prime(n: Int): Option[Int] =
-    if (n < 1) None
-    else Some(primes.drop(n - 1).head.toInt)
-}
+    if n < 1 then None
+    else Some(primes(n - 1).toInt)
