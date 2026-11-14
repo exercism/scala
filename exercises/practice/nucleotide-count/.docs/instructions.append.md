@@ -3,8 +3,8 @@ A common use of `Either` is to indicate a computation that may possibly result i
 (if the actual error is of no interest then the simpler `Option` type might be a better choice).
 In the absence of an error the result is usually a `Right` (mnemonic: the "right" value)
 whereas an error is a `Left`, for example a `Left[String]` containing an error message.
-Note that in Scala 2.12 `Either` is right-biased by default, so it works as expected for operations like `filter`, `map`, `flatMap` or in a for-comprehension.
-If you are unfamiliar with `Either` you may read [this tutorial](http://danielwestheide.com/blog/2013/01/02/the-neophytes-guide-to-scala-part-7-the-either-type.html). But be aware that this tutorial is about Scala versions prior to 2.12. For Scala 2.12 you can safely ignore `RightProjection` and omit `.right`.
+`Either` is right-biased, so operations like `map`, `flatMap` or a for-comprehension work on the `Right` value.
+If you are unfamiliar with `Either` you may read [Functional Error Handling](https://docs.scala-lang.org/scala3/book/fp-functional-error-handling.html) in the Scala 3 book.
 `Either` is a so-called [Monad](https://en.wikipedia.org/wiki/Monad_(functional_programming)) which covers a "computational aspect",
 in this case error handling.
 Proper use of Monads can result in very concise yet elegant
@@ -28,16 +28,15 @@ unwrapping are `isLeft/isRight` or pattern matching. For example, instead of
 ```scala
 val x: Either[String, Int] = ...
 
-if (x.isRight) x.right.get + 1 else x.left.get
+if x.isRight then x.toOption.get + 1 else x.swap.toOption.get
 // or
-x match {
+x match
   case Right(n) => n + 1
-  case Left(s) => s
-}
+  case Left(s)  => s
 ```
 better have
 ```scala
-x fold (identity, _ + 1)
+x.fold(identity, _ + 1)
 ```
 3. Monads can be used inside a for-comprehension FTW.
 This is advisable when you want to "compose" several `Either` instances. Instead of
@@ -49,13 +48,13 @@ val zo: Either[String, Int] = ...
 xo.flatMap(x =>
   yo.flatMap(y =>
     zo.map(z =>
-	    x + y + z)))
+      x + y + z)))
 ```
 better have
 ```scala
-for {
+for
   x <- xo
   y <- yo
   z <- zo
-} yield x + y + z
+yield x + y + z
 ```

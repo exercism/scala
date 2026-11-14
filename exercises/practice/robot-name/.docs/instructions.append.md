@@ -6,4 +6,4 @@ Make sure your solution is general enough to be easily scalable for longer names
 This usually makes for better code quality, too.
 
 Suggestion (this is not explicitly tested):
-To make sure you always have a unique name you could implement your own cache or use a `Stream` with its built-in cache.
+To make sure you always have a unique name you could remember the names already given out, or take names one by one from all of them in random order, for example from an `Iterator` or a `LazyList`.
