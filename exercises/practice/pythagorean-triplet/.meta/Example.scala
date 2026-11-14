@@ -1,23 +1,11 @@
-object PythagoreanTriplet {
-  private def sqr(x: Int) = x * x
-
-  def isPythagorean(triplet: (Int, Int, Int)): Boolean = {
-    val (a, b, c) = triplet
-    sqr(a) + sqr(b) == sqr(c)
-  }
-
-  def pythagoreanTriplets(minFactor: Int, maxFactor:Int): Seq[(Int, Int, Int)] =
-    for {a <- minFactor to maxFactor
-         b <- a to maxFactor
-         c2 = sqr(a) + sqr(b)
-         c = Math.sqrt(c2).asInstanceOf[Int]
-         if c <= maxFactor && c2 == sqr(c)} yield (a, b, c)
-
-  def pythagoreanTripletsSum(sum: Int): Seq[(Int, Int, Int)] = {
-    val max: Int = sum / 2
-      for { a <- 1 to max
-            b <- a to max
-            c = sum - a - b
-            if isPythagorean(a, b, c) } yield (a,b,c)
-  }
-}
+object PythagoreanTriplet:
+  // From a + b + c = n and a² + b² = c² follows b = n(n - 2a) / 2(n - a), so each a gives at most one triplet.
+  def pythagoreanTripletsSum(n: Int): Seq[(Int, Int, Int)] =
+    for
+      a          <- 1 until n / 3
+      numerator   = n.toLong * (n - 2 * a)
+      denominator = 2L * (n - a)
+      if numerator % denominator == 0
+      b = (numerator / denominator).toInt
+      if a < b
+    yield (a, b, n - a - b)
