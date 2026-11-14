@@ -1,12 +1,7 @@
-object AtbashCipher {
-  private def substitute(c: Char) =
-    if (c.isDigit) c.toString
-    else if (c.isLetter) ('a' + ('z' - c.toLower)).toChar.toString
-    else ""
+object AtbashCipher:
+  def encode(s: String): String = decode(s).grouped(5).mkString(" ")
 
-  def encode(s: String): String =
-    s.foldLeft("")((acc, c) => acc + substitute(c)).grouped(5).mkString(" ")
-
-  def decode(s: String): String =
-    s.foldLeft("")((acc, c) => acc + substitute(c))
-}
+  // Decoding is the same substitution, without the groups of five.
+  def decode(s: String): String = s.collect:
+    case c if c.isDigit  => c
+    case c if c.isLetter => ('a' + 'z' - c.toLower).toChar
