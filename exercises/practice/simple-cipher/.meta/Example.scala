@@ -1,32 +1,17 @@
 import scala.util.Random
 
-case class Cipher(keyOpt: Option[String]) {
-  require(keyOpt.isEmpty || keyOpt.get.matches("^[a-z]+$"))
+case class Cipher(keyOpt: Option[String]):
+  require(keyOpt.forall(_.matches("[a-z]+")), "the key must be lowercase letters")
 
-  private val alphabet = ('a' to 'z').toVector
-  private lazy val randomKey = Seq.fill(26)((Random.nextInt(25) + 'a').toChar).mkString
+  // Without a key, a random one of 100 lowercase letters.
+  val key: String = keyOpt.getOrElse(Seq.fill(100)(('a' + Random.nextInt(26)).toChar).mkString)
 
-  val key = keyOpt.getOrElse(randomKey)
+  def encode(text: String): String = shift(text, 1)
 
-  def encode(s: String): String =
-    (for (i <- 0 until s.length) yield encodeChar(s, i)).mkString
+  def decode(text: String): String = shift(text, -1)
 
-  private def encodeChar(plainText: String, index: Int) = {
-    var alphaIdx = alphabet.indexOf(plainText(index)) + alphabet.indexOf(key(index))
+  // Each letter moves by the key's letter at the same position; the key repeats as often as needed.
+  private def shift(text: String, direction: Int): String =
+    text.zipWithIndex.map((letter, i) => rotate(letter, direction * (key(i % key.length) - 'a'))).mkString
 
-    if (alphaIdx >= alphabet.length) alphaIdx -= alphabet.length
-
-    alphabet(alphaIdx)
-  }
-
-  def decode(s: String): String =
-    (for (i <- 0 until s.length) yield decodeChar(s, i)).mkString
-
-  private def decodeChar(cipherText: String, index: Int) = {
-    var alphaIdx = alphabet.indexOf(cipherText(index)) - alphabet.indexOf(key(index))
-
-    if (alphaIdx < 0) alphaIdx += alphabet.length
-
-    alphabet(alphaIdx)
-  }
-}
+  private def rotate(letter: Char, by: Int): Char = ('a' + Math.floorMod(letter - 'a' + by, 26)).toChar

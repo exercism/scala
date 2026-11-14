@@ -1,0 +1,49 @@
+{%- import "macros.j2" as macros -%}
+{#- Some canonical values are expressions on the cipher (its random key, or encode's result);
+    they are written out in Scala here. -#}
+{{ macros.header("Cipher") }}
+{% for case in cases %}
+{% set input = case.input %}
+{% if case.property == "key" %}
+{% set subject = "cipher.key" %}
+{% elif case.property == "encode" %}
+{% set subject = "cipher.encode(" ~ (input.plaintext | scala) ~ ")" %}
+{% elif input.ciphertext == "cipher.encode" %}
+{% set subject = "cipher.decode(cipher.encode(" ~ (input.plaintext | scala) ~ "))" %}
+{% elif input.ciphertext.startswith("cipher.key") %}
+{% set subject = "cipher.decode(cipher.key.substring(0, " ~ (case.expected | length) ~ "))" %}
+{% else %}
+{% set subject = "cipher.decode(" ~ (input.ciphertext | scala) ~ ")" %}
+{% endif %}
+{% if case.property == "key" %}
+{% set expected = None %}
+{% elif case.expected.startswith("cipher.key") %}
+{% set expected = "cipher.key.substring(0, " ~ (input.plaintext | length) ~ ")" %}
+{% else %}
+{% set expected = case.expected | scala %}
+{% endif %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+    val cipher = Cipher({{ "Some(" ~ (input.key | scala) ~ ")" if input.key is defined else "None" }})
+{% if case.property == "key" %}
+    cipher.key should fullyMatch regex {{ case.expected.match | scala }}
+{% else %}
+{{ macros.assert_be(subject, expected) }}
+{% endif %}
+{% endfor %}
+
+  // Not in the canonical data: the instructions ask for a key of lowercase letters only.
+  test("Invalid key - contains caps"):
+    pending
+    assertThrows[IllegalArgumentException](Cipher(Some("ABCD")))
+
+  test("Invalid key - contains numerics"):
+    pending
+    assertThrows[IllegalArgumentException](Cipher(Some("123")))
+
+  test("Invalid key - is empty"):
+    pending
+    assertThrows[IllegalArgumentException](Cipher(Some("")))
