@@ -1,0 +1,36 @@
+{
+  "introduction": {
+    "authors": [
+      "rabestro"
+    ]
+  },
+  "approaches": [
+    {
+      "uuid": "3287c179-e798-4ae1-8fdb-fa31300c5093",
+      "slug": "mutable-array",
+      "title": "Mutable Array",
+      "blurb": "Mark the multiples of each prime in an Array of Booleans.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "a8442676-be08-4b2a-9356-ec479d6bb150",
+      "slug": "immutable-set",
+      "title": "Immutable Set with foldLeft",
+      "blurb": "Remove the multiples of each prime from an immutable Set of candidates.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "3322a6e3-ab60-4b29-8ec7-4bfce14150d8",
+      "slug": "lazylist",
+      "title": "LazyList",
+      "blurb": "Build an endless LazyList of primes, and take the ones up to the limit.",
+      "authors": [
+        "rabestro"
+      ]
+    }
+  ]
+}
