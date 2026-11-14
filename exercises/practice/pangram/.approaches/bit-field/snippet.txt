@@ -1,0 +1,7 @@
+private val allLetters = (1 << 26) - 1
+
+def isPangram(input: String): Boolean =
+  val seen = input.foldLeft(0): (bits, c) =>
+    val letter = c.toLower
+    if 'a' <= letter && letter <= 'z' then bits | (1 << (letter - 'a')) else bits
+  seen == allLetters
