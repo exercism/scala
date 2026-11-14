@@ -1,0 +1,12 @@
+{%- import "macros.j2" as macros -%}
+{#- A missing name is left out of the call, so the solution needs a default argument. -#}
+{{ macros.header("Twofer") }}
+{% for case in cases %}
+{% set argument = "" if case.input.name is none else case.input.name | scala %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("Twofer.twofer(" ~ argument ~ ")", case.expected | scala) }}
+{% endfor %}
