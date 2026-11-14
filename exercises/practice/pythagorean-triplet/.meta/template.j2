@@ -1,0 +1,15 @@
+{%- import "macros.j2" as macros -%}
+{#- The canonical tripletsWithSum is this track's pythagoreanTripletsSum; a triplet is a tuple. -#}
+{{ macros.header("PythagoreanTriplet") }}
+{% for case in cases %}
+{% set triplets = [] %}
+{% for t in case.expected %}
+{% set _ = triplets.append("(" ~ t | join(", ") ~ ")") %}
+{% endfor %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("PythagoreanTriplet.pythagoreanTripletsSum(" ~ case.input.n ~ ")", "Seq(" ~ triplets | join(", ") ~ ")") }}
+{% endfor %}
