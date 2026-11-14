@@ -1,0 +1,36 @@
+{%- import "macros.j2" as macros -%}
+{#- Without a key the cipher picks a random one, so those cases check against `cipher.key`. -#}
+{{ macros.header("Cipher") }}
+{% for case in cases %}
+{% set input = case.input %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+    val cipher = Cipher({{ "Some(" ~ (input.key | scala) ~ ")" if input.key is defined else "None" }})
+{% if case.property == "key" %}
+    cipher.key should fullyMatch regex {{ case.expected.match | scala }}
+{% elif input.get("ciphertext") == "cipher.encode" %}
+    cipher.decode(cipher.encode({{ input.plaintext | scala }})) should be({{ case.expected | scala }})
+{% elif input.key is defined %}
+    cipher.{{ case.property }}({{ (input.plaintext if case.property == "encode" else input.ciphertext) | scala }}) should be({{ case.expected | scala }})
+{% elif case.property == "encode" %}
+    cipher.encode({{ input.plaintext | scala }}) should be(cipher.key.substring(0, {{ input.plaintext | length }}))
+{% else %}
+    cipher.decode(cipher.key.substring(0, {{ case.expected | length }})) should be({{ case.expected | scala }})
+{% endif %}
+{% endfor %}
+
+  // Not in the canonical data: the instructions ask for a key of lowercase letters only.
+  test("Invalid key - contains caps"):
+    pending
+    assertThrows[IllegalArgumentException](Cipher(Some("ABCD")))
+
+  test("Invalid key - contains numerics"):
+    pending
+    assertThrows[IllegalArgumentException](Cipher(Some("123")))
+
+  test("Invalid key - is empty"):
+    pending
+    assertThrows[IllegalArgumentException](Cipher(Some("")))
