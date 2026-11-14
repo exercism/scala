@@ -1,24 +1,18 @@
 import scala.annotation.tailrec
-import scala.math.Ordered.orderingToOrdered
+import scala.math.Ordering.Implicits.infixOrderingOps
 
-object BinarySearch {
-  def find[T](seq: Seq[T], value: T)(implicit ord: T => Ordered[T]): Option[Int]
-    = searchInternal(seq, value, 0, seq.size - 1)
+object BinarySearch:
+  def find[T: Ordering](seq: Seq[T], value: T): Option[Int] =
+    val items = seq.toIndexedSeq
 
-  @tailrec
-  def searchInternal[T](seq: Seq[T], value: T,
-                        start: Int, end: Int)(implicit ord: T => Ordered[T]): Option[Int] = {
-    if (end < start || start < 0)
-      None
-    else {
-      val middle = Math.floor(0.5 * (start + end)).asInstanceOf[Int]
-      val elem = seq(middle)
-      if (elem == value)
-        Some(middle)
-      else if (value < elem)
-        searchInternal(seq, value, start, middle - 1)
+    @tailrec
+    def search(start: Int, end: Int): Option[Int] =
+      if end < start then None
       else
-        searchInternal(seq, value, middle + 1, end)
-    }
-  }
-}
+        val middle = (start + end) / 2
+        val elem   = items(middle)
+        if elem == value then Some(middle)
+        else if value < elem then search(start, middle - 1)
+        else search(middle + 1, end)
+
+    search(0, items.size - 1)
