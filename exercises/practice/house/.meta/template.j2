@@ -1,0 +1,17 @@
+{%- import "macros.j2" as macros -%}
+{#- The canonical data gives a list of verses; this track's recite returns them as one string,
+    a verse per line followed by an empty line. -#}
+{{ macros.header("House") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+    val verses = List(
+{% for verse in case.expected %}
+{{ "      " ~ (verse | scala) ~ "," }}
+{% endfor %}
+    )
+    House.recite({{ case.input.startVerse }}, {{ case.input.endVerse }}) should be(verses.mkString("", "\n", "\n\n"))
+{% endfor %}
