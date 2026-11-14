@@ -1,0 +1,12 @@
+{%- import "macros.j2" as macros -%}
+{{ macros.header("PrimeFactors") }}
+{% for case in cases %}
+{#- A value above Int.MaxValue needs the `L` suffix to be a Long literal. -#}
+{% set value = case.input.value ~ ("L" if case.input.value > 2147483647 else "") %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{{ macros.assert_be("PrimeFactors.factors(" ~ value ~ ")", case.expected | scala) }}
+{% endfor %}
