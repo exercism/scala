@@ -1,77 +1,94 @@
-import org.scalatest.flatspec.AnyFlatSpec
+import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class BstTest extends AnyFunSuite with Matchers:
 
-/** @version created manually **/
-class BstTest extends AnyFlatSpec with Matchers {
-  val bst4 = Bst(4)
+  test("data is retained"):
+    val tree = Bst(4)
+    tree.value should be(4)
+    tree.left should be(None)
+    tree.right should be(None)
 
-  it should "retain data" in {
-    bst4.value should equal(4)
-  }
-
-  it should "retain data - char" in {
+  test("insert data at proper node - smaller number at left node"):
     pending
-    Bst('d').value should equal('d')
-  }
+    val tree = Bst(4).insert(2)
+    tree.value should be(4)
+    tree.left.get.value should be(2)
+    tree.left.get.left should be(None)
+    tree.left.get.right should be(None)
+    tree.right should be(None)
 
-  it should "insert less" in {
+  test("insert data at proper node - same number at left node"):
     pending
-    bst4.insert(2).left.get.value should equal(2)
-  }
+    val tree = Bst(4).insert(4)
+    tree.value should be(4)
+    tree.left.get.value should be(4)
+    tree.left.get.left should be(None)
+    tree.left.get.right should be(None)
+    tree.right should be(None)
 
-  it should "insert less - char" in {
+  test("insert data at proper node - greater number at right node"):
     pending
-    Bst('d').insert('a').left.get.value should equal('a')
-  }
+    val tree = Bst(4).insert(5)
+    tree.value should be(4)
+    tree.left should be(None)
+    tree.right.get.value should be(5)
+    tree.right.get.left should be(None)
+    tree.right.get.right should be(None)
 
-  it should "insert same" in {
+  test("can create complex tree"):
     pending
-    bst4.insert(4).left.get.value should equal(4)
-  }
+    val tree = Bst.fromList(List(4, 2, 6, 1, 3, 5, 7))
+    tree.value should be(4)
+    tree.left.get.value should be(2)
+    tree.left.get.left.get.value should be(1)
+    tree.left.get.left.get.left should be(None)
+    tree.left.get.left.get.right should be(None)
+    tree.left.get.right.get.value should be(3)
+    tree.left.get.right.get.left should be(None)
+    tree.left.get.right.get.right should be(None)
+    tree.right.get.value should be(6)
+    tree.right.get.left.get.value should be(5)
+    tree.right.get.left.get.left should be(None)
+    tree.right.get.left.get.right should be(None)
+    tree.right.get.right.get.value should be(7)
+    tree.right.get.right.get.left should be(None)
+    tree.right.get.right.get.right should be(None)
 
-  it should "insert greater than" in {
+  test("can sort data - can sort single number"):
     pending
-    bst4.insert(5).right.get.value should equal(5)
-  }
+    Bst.toList(Bst(2)) should be(List(2))
 
-  it should "handle complex tree - sort out of order list" in {
+  test("can sort data - can sort if second number is smaller than first"):
     pending
-    val bst = Bst.fromList(List(4, 2, 6, 1, 3, 7, 5))
-    Bst.toList(bst) should equal((1 to 7).toList)
+    Bst.toList(Bst(2).insert(1)) should be(List(1, 2))
 
-    bst.value should equal(4)
-    bst.left.get.value should equal(2)
-    bst.left.get.left.get.value should equal(1)
-    bst.left.get.right.get.value should equal(3)
-    bst.right.get.value should equal(6)
-    bst.right.get.left.get.value should equal(5)
-    bst.right.get.right.get.value should equal(7)
-  }
-
-  it should "iterating one element" in {
+  test("can sort data - can sort if second number is same as first"):
     pending
-    Bst.toList(bst4) should equal(List(4))
-  }
+    Bst.toList(Bst(2).insert(2)) should be(List(2, 2))
 
-  it should "iterating over smaller element" in {
+  test("can sort data - can sort if second number is greater than first"):
     pending
-    Bst.toList(Bst.fromList(List(4, 2))) should equal(List(2, 4))
-  }
+    Bst.toList(Bst(2).insert(3)) should be(List(2, 3))
 
-  it should "iterating over larger element" in {
+  test("can sort data - can sort complex tree"):
     pending
-    Bst.toList(Bst.fromList(List(4, 5))) should equal(List(4, 5))
-  }
+    Bst.toList(Bst.fromList(List(2, 1, 3, 6, 7, 5))) should be(List(1, 2, 3, 5, 6, 7))
 
-  it should "iterating over complex tree" in {
-    pending
-    Bst.toList(Bst.fromList(List(4, 2, 1, 3, 6, 7, 5))) should equal((1 to 7).toList)
-  }
+  // Not in the canonical data: the tree is generic, so it must work for other ordered types too.
 
-  it should "iterating over complex tree - chars" in {
+  test("data is retained - chars"):
     pending
-    Bst.toList(Bst.fromList(List('d', 'b', 'a', 'c', 'f', 'g', 'e'))) should
-      equal(('a' to 'g').toList)
-  }
-}
+    Bst('d').value should be('d')
+
+  test("insert data at proper node - smaller char at left node"):
+    pending
+    Bst('d').insert('a').left.get.value should be('a')
+
+  test("can sort data - can sort complex tree of chars"):
+    pending
+    Bst.toList(Bst.fromList(List('d', 'b', 'a', 'c', 'f', 'g', 'e'))) should be(List('a', 'b', 'c', 'd', 'e', 'f', 'g'))
