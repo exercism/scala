@@ -1,12 +1,4 @@
-object PascalsTriangle {
+object PascalsTriangle:
+  // Each row is the previous one added to itself shifted by one place.
   def rows(n: Int): List[List[Int]] =
-    (for (row <- 1 to n) yield triRow(row)).toList
-
-  private def triRow(row: Int): List[Int] = {
-    var m = 1
-    List(1) ::: (for (j <- 1 until row) yield {
-      m = m * (row - j) / j
-      m
-    }).toList
-  }
-}
+    List.iterate(List(1), n)(row => (0 :: row).lazyZip(row :+ 0).map(_ + _))

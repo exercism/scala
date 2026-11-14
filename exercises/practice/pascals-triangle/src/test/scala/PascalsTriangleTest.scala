@@ -1,75 +1,85 @@
 import org.scalatest.funsuite.AnyFunSuite
 import org.scalatest.matchers.should.Matchers
 
+/** Generated from the canonical data in problem-specifications.
+  *
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  */
+class PascalsTriangleTest extends AnyFunSuite with Matchers:
 
-/** @version 1.3.0 */
-class PascalsTriangleTest extends AnyFunSuite with Matchers {
+  test("zero rows"):
+    val expected = List()
+    PascalsTriangle.rows(0) should be(expected)
 
-  test("zero rows") {
-    PascalsTriangle.rows(0) should be(List())
-  }
-
-  test("single row") {
+  test("single row"):
     pending
-    PascalsTriangle.rows(1) should be(List(List(1)))
-  }
+    val expected = List(
+      List(1),
+    )
+    PascalsTriangle.rows(1) should be(expected)
 
-  test("two rows") {
+  test("two rows"):
     pending
-    PascalsTriangle.rows(2) should be(List(List(1), List(1, 1)))
-  }
+    val expected = List(
+      List(1),
+      List(1, 1),
+    )
+    PascalsTriangle.rows(2) should be(expected)
 
-  test("three rows") {
+  test("three rows"):
     pending
-    PascalsTriangle.rows(3) should be(List(List(1), List(1, 1), List(1, 2, 1)))
-  }
+    val expected = List(
+      List(1),
+      List(1, 1),
+      List(1, 2, 1),
+    )
+    PascalsTriangle.rows(3) should be(expected)
 
-  test("four rows") {
+  test("four rows"):
     pending
-    PascalsTriangle.rows(4) should be(
-      List(List(1), List(1, 1), List(1, 2, 1), List(1, 3, 3, 1)))
-  }
+    val expected = List(
+      List(1),
+      List(1, 1),
+      List(1, 2, 1),
+      List(1, 3, 3, 1),
+    )
+    PascalsTriangle.rows(4) should be(expected)
 
-  test("five rows") {
+  test("five rows"):
     pending
-    PascalsTriangle.rows(5) should be(
-      List(List(1),
-           List(1, 1),
-           List(1, 2, 1),
-           List(1, 3, 3, 1),
-           List(1, 4, 6, 4, 1)))
-  }
+    val expected = List(
+      List(1),
+      List(1, 1),
+      List(1, 2, 1),
+      List(1, 3, 3, 1),
+      List(1, 4, 6, 4, 1),
+    )
+    PascalsTriangle.rows(5) should be(expected)
 
-  test("six rows") {
+  test("six rows"):
     pending
-    PascalsTriangle.rows(6) should be(
-      List(List(1),
-           List(1, 1),
-           List(1, 2, 1),
-           List(1, 3, 3, 1),
-           List(1, 4, 6, 4, 1),
-           List(1, 5, 10, 10, 5, 1)))
-  }
+    val expected = List(
+      List(1),
+      List(1, 1),
+      List(1, 2, 1),
+      List(1, 3, 3, 1),
+      List(1, 4, 6, 4, 1),
+      List(1, 5, 10, 10, 5, 1),
+    )
+    PascalsTriangle.rows(6) should be(expected)
 
-  test("ten rows") {
+  test("ten rows"):
     pending
-    PascalsTriangle.rows(10) should be(
-      List(
-        List(1),
-        List(1, 1),
-        List(1, 2, 1),
-        List(1, 3, 3, 1),
-        List(1, 4, 6, 4, 1),
-        List(1, 5, 10, 10, 5, 1),
-        List(1, 6, 15, 20, 15, 6, 1),
-        List(1, 7, 21, 35, 35, 21, 7, 1),
-        List(1, 8, 28, 56, 70, 56, 28, 8, 1),
-        List(1, 9, 36, 84, 126, 126, 84, 36, 9, 1)
-      ))
-  }
-
-  test("negative rows") {
-    pending
-    PascalsTriangle.rows(-1) should be(List())
-  }
-}
+    val expected = List(
+      List(1),
+      List(1, 1),
+      List(1, 2, 1),
+      List(1, 3, 3, 1),
+      List(1, 4, 6, 4, 1),
+      List(1, 5, 10, 10, 5, 1),
+      List(1, 6, 15, 20, 15, 6, 1),
+      List(1, 7, 21, 35, 35, 21, 7, 1),
+      List(1, 8, 28, 56, 70, 56, 28, 8, 1),
+      List(1, 9, 36, 84, 126, 126, 84, 36, 9, 1),
+    )
+    PascalsTriangle.rows(10) should be(expected)

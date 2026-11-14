@@ -1,0 +1,20 @@
+{%- import "macros.j2" as macros -%}
+{#- The expected triangle one row per line, so the test reads like the triangle. -#}
+{{ macros.header("PascalsTriangle") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.expected %}
+    val expected = List(
+{% for row in case.expected %}
+{{ "      " ~ (row | scala) ~ "," }}
+{% endfor %}
+    )
+{% else %}
+    val expected = List()
+{% endif %}
+    PascalsTriangle.rows({{ case.input.count }}) should be(expected)
+{% endfor %}
