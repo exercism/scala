@@ -1,6 +1,5 @@
-def simulate(orders: String): Robot =
-  orders.foldLeft(this): (robbie, cmd) =>
-    cmd match
-      case 'L' => robbie.turnLeft
-      case 'R' => robbie.turnRight
-      case 'A' => robbie.advance
+def simulate(instructions: String): Robot = instructions.foldLeft(this): (robot, instruction) =>
+  instruction match
+    case 'L' => robot.turnLeft
+    case 'R' => robot.turnRight
+    case 'A' => robot.advance
