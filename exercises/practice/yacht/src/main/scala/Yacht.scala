@@ -1,4 +1,2 @@
-object Yacht {
-
-def score(dices: List[Int], category: String): Int = ???
-}
+object Yacht:
+  def score(dice: List[Int], category: String): Int = ???
