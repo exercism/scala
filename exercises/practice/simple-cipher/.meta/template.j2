@@ -1,38 +1,24 @@
 {%- import "macros.j2" as macros -%}
-{#- The random-key cases are written out by hand: their canonical values are expressions on the cipher.
-    The cases with a key are generated. -#}
+{#- Without a key the cipher picks a random one, so those cases check against `cipher.key`. -#}
 {{ macros.header("Cipher") }}
-
-  test("Random key cipher - Can encode"):
-    val cipher = Cipher(None)
-    cipher.encode("aaaaaaaaaa") should be(cipher.key.substring(0, 10))
-
-  test("Random key cipher - Can decode"):
-    pending
-    val cipher = Cipher(None)
-    cipher.decode(cipher.key.substring(0, 10)) should be("aaaaaaaaaa")
-
-  test(
-    "Random key cipher - Is reversible. I.e., if you apply decode in a encoded result, you must see the same plaintext encode parameter as a result of the decode method",
-  ):
-    pending
-    val cipher = Cipher(None)
-    cipher.decode(cipher.encode("abcdefghij")) should be("abcdefghij")
-
-  test("Random key cipher - Key is made only of lowercase letters"):
-    pending
-    val cipher = Cipher(None)
-    cipher.key should fullyMatch regex "^[a-z]+$"
-{% for case in cases if case.input.key is defined %}
-{% set text = case.input.plaintext if case.property == "encode" else case.input.ciphertext %}
+{% for case in cases %}
+{% set input = case.input %}
 
 {{ macros.test_open(case) }}
+{% if not loop.first %}
     pending
-    val cipher = Cipher(Some({{ case.input.key | scala }}))
-{% if text == "cipher.encode" %}
-    cipher.decode(cipher.encode({{ case.input.plaintext | scala }})) should be({{ case.expected | scala }})
+{% endif %}
+    val cipher = Cipher({{ "Some(" ~ (input.key | scala) ~ ")" if input.key is defined else "None" }})
+{% if case.property == "key" %}
+    cipher.key should fullyMatch regex {{ case.expected.match | scala }}
+{% elif input.get("ciphertext") == "cipher.encode" %}
+    cipher.decode(cipher.encode({{ input.plaintext | scala }})) should be({{ case.expected | scala }})
+{% elif input.key is defined %}
+    cipher.{{ case.property }}({{ (input.plaintext if case.property == "encode" else input.ciphertext) | scala }}) should be({{ case.expected | scala }})
+{% elif case.property == "encode" %}
+    cipher.encode({{ input.plaintext | scala }}) should be(cipher.key.substring(0, {{ input.plaintext | length }}))
 {% else %}
-    cipher.{{ case.property }}({{ text | scala }}) should be({{ case.expected | scala }})
+    cipher.decode(cipher.key.substring(0, {{ case.expected | length }})) should be({{ case.expected | scala }})
 {% endif %}
 {% endfor %}
 
