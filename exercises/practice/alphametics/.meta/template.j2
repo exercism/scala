@@ -1,0 +1,28 @@
+{%- import "macros.j2" as macros -%}
+{#- The expected solution maps each letter, as a Char, to its digit, in letter order. -#}
+{%- macro solution(expected) -%}
+{%- if expected is none -%}
+None
+{%- else -%}
+Some(Map({% for letter, digit in expected | dictsort %}'{{ letter }}' -> {{ digit }}{% if not loop.last %}, {% endif %}{% endfor %}))
+{%- endif -%}
+{%- endmacro -%}
+{{ macros.header("Alphametics") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% set puzzle = case.input.puzzle | scala %}
+{% if ("    Alphametics.solve(" ~ puzzle ~ ") should be(") | length <= 160 %}
+{{ macros.assert_be("Alphametics.solve(" ~ puzzle ~ ")", solution(case.expected)) }}
+{% else %}
+{#- A puzzle too long for one line goes on its own, as scalafmt wraps it. #}
+    Alphametics.solve(
+      {{ puzzle }},
+    ) should be(
+      {{ solution(case.expected) }},
+    )
+{% endif %}
+{% endfor %}
