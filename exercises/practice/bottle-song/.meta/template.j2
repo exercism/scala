@@ -1,0 +1,17 @@
+{%- import "macros.j2" as macros -%}
+{#- The canonical data gives the lines of the song, with an empty line between verses;
+    this track's recite returns them as one string, each line ending in a newline. -#}
+{{ macros.header("BottleSong") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+    val lines = List(
+{% for line in case.expected %}
+{{ "      " ~ (line | scala) ~ "," }}
+{% endfor %}
+    )
+    BottleSong.recite({{ case.input.startBottles }}, {{ case.input.takeDown }}) should be(lines.mkString("", "\n", "\n"))
+{% endfor %}

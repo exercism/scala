@@ -14,4 +14,4 @@ object BottleSong:
     "And if one green bottle should accidentally fall,\n" + lastLine(bottles - 1)
 
   def recite(startBottles: Int, takeDown: Int): String =
-    startBottles until startBottles - takeDown by -1 map verse mkString "\n"
+    (startBottles until startBottles - takeDown by -1).map(verse).mkString("\n")
