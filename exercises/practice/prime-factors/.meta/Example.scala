@@ -1,29 +1,13 @@
 import scala.annotation.tailrec
 
-// Algorithm from - http://fldit-www.cs.uni-dortmund.de/~peter/PS07/HR.pdf
-object PrimeFactors {
-  def factors(n: Long): List[Long] = {
-    assert(n >= 1, "Argument must be positive")
-
+object PrimeFactors:
+  // Trial division: a divisor that divides n is always prime, because every smaller prime has already been divided out.
+  def factors(n: Long): List[Long] =
     @tailrec
-    def primeAcc(n: Long, xs: List[Long]): List[Long] = {
-      if (n == 1) xs
-      else {
-        val p = ld(n)
-        primeAcc(n / p, p :: xs)
-      }
-    }
+    def loop(n: Long, divisor: Long, found: List[Long]): List[Long] =
+      if n == 1 then found.reverse
+      else if divisor * divisor > n then (n :: found).reverse
+      else if n % divisor == 0 then loop(n / divisor, divisor, divisor :: found)
+      else loop(n, divisor + 1, found)
 
-    primeAcc(n, List()).reverse
-  }
-
-  private def ld(n: Long) = ldf(2, n)
-
-  @tailrec
-  private def ldf(k: Long, n: Long): Long =
-    if (n % k == 0) k
-    else if (k * k > n) n
-    else ldf(k + 1, n)
-}
-
-
+    loop(n, 2, Nil)
