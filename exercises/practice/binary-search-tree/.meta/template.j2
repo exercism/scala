@@ -1,0 +1,51 @@
+{%- import "macros.j2" as macros -%}
+{#- The canonical data gives the tree data as strings; this track's trees hold Ints.
+    One value is built with `Bst(x)`, two with `insert`, more with `fromList`. -#}
+{%- macro build(data) -%}
+{%- if data | length == 1 -%}
+Bst({{ data[0] }})
+{%- elif data | length == 2 -%}
+Bst({{ data[0] }}).insert({{ data[1] }})
+{%- else -%}
+Bst.fromList(List({{ data | join(", ") }}))
+{%- endif -%}
+{%- endmacro -%}
+{#- One assertion per node of the expected tree, and one per missing child. -#}
+{%- macro nodes(path, node) -%}
+{{ "    " ~ path ~ ".value should be(" ~ node.data ~ ")" }}
+{% for side in ["left", "right"] %}
+{% if node[side] is none %}
+{{ "    " ~ path ~ "." ~ side ~ " should be(None)" }}
+{% else %}
+{{ nodes(path ~ "." ~ side ~ ".get", node[side]) }}
+{%- endif %}
+{% endfor %}
+{%- endmacro -%}
+{{ macros.header("Bst") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% if case.property == "data" %}
+    val tree = {{ build(case.input.treeData) }}
+{{ nodes("tree", case.expected) }}
+{%- else %}
+{{ macros.assert_be("Bst.toList(" ~ build(case.input.treeData) ~ ")", "List(" ~ (case.expected | join(", ")) ~ ")") }}
+{% endif %}
+{% endfor %}
+
+  // Not in the canonical data: the tree is generic, so it must work for other ordered types too.
+
+  test("data is retained - chars"):
+    pending
+    Bst('d').value should be('d')
+
+  test("insert data at proper node - smaller char at left node"):
+    pending
+    Bst('d').insert('a').left.get.value should be('a')
+
+  test("can sort data - can sort complex tree of chars"):
+    pending
+    Bst.toList(Bst.fromList(List('d', 'b', 'a', 'c', 'f', 'g', 'e'))) should be(List('a', 'b', 'c', 'd', 'e', 'f', 'g'))
