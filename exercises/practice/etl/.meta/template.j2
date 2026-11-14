@@ -1,0 +1,23 @@
+{%- import "macros.j2" as macros -%}
+{#- One entry per line, with the arrows aligned as scalafmt aligns them. -#}
+{{ macros.header("Etl") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% set scores = case.input.legacy.keys() | map("int") | sort %}
+{% set width = scores | map("string") | map("length") | max %}
+    val legacy   = Map(
+{% for score in scores %}
+{{ "      " ~ score ~ " " * (width - (score | string | length)) ~ " -> Seq(" ~ (case.input.legacy[score | string] | map("scala") | join(", ")) ~ ")," }}
+{% endfor %}
+    )
+    val expected = Map(
+{% for letter, score in case.expected | dictsort %}
+{{ "      " ~ (letter | scala) ~ " -> " ~ score ~ "," }}
+{% endfor %}
+    )
+    Etl.transform(legacy) should be(expected)
+{% endfor %}
