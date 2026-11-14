@@ -1,0 +1,18 @@
+{%- import "macros.j2" as macros -%}
+{#- Days of the week are the Meetup.Mon ... Meetup.Sun constants, weeks the Schedule cases. -#}
+{%- macro date(iso) -%}
+{%- set parts = iso.split("-") -%}
+LocalDate.of({{ parts[0] | int }}, {{ parts[1] | int }}, {{ parts[2] | int }})
+{%- endmacro -%}
+import java.time.LocalDate
+
+{{ macros.header("Meetup") }}
+{% for case in cases %}
+
+{{ macros.test_open(case) }}
+{% if not loop.first %}
+    pending
+{% endif %}
+{% set subject = "Meetup(" ~ case.input.month ~ ", " ~ case.input.year ~ ").day(Meetup." ~ case.input.dayofweek[:3] ~ ", Schedule." ~ (case.input.week | capitalize) ~ ")" %}
+{{ macros.assert_be(subject, date(case.expected)) }}
+{% endfor %}
