@@ -11,10 +11,10 @@ suite having drifted from its template.
 An exercise opts in by adding `.meta/template.j2`.
 
 Usage:
-    bin/generate-tests                # every exercise that has a template
-    bin/generate-tests leap darts     # only these
-    bin/generate-tests --check        # exit 1 if any suite is out of date
-    bin/generate-tests --no-pull      # skip refreshing problem-specifications
+    bin/generate_tests                # every exercise that has a template
+    bin/generate_tests leap darts     # only these
+    bin/generate_tests --check        # exit 1 if any suite is out of date
+    bin/generate_tests --no-pull      # skip refreshing problem-specifications
 """
 
 import argparse
@@ -271,7 +271,7 @@ def main() -> int:
             print("These suites do not match their template:", file=sys.stderr)
             for path in stale:
                 print(f"  {path}", file=sys.stderr)
-            print("\nRun bin/generate-tests to update them.", file=sys.stderr)
+            print("\nRun bin/generate_tests to update them.", file=sys.stderr)
             return 1
         print(f"{len(exercises)} generated suite(s) are up to date.")
     return 0

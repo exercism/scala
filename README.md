@@ -40,26 +40,26 @@ An exercise's test suite can be generated from the [canonical data][probspecs].
 A generated suite cannot silently drift away from the spec: CI regenerates it and fails if the committed file differs.
 
 An exercise opts in by adding a Jinja2 template at `.meta/template.j2`.
-`bin/generate-tests` renders the cases `.meta/tests.toml` records, skipping those marked `include = false` and those a later case `reimplements`.
+`bin/generate_tests` renders the cases `.meta/tests.toml` records, skipping those marked `include = false` and those a later case `reimplements`.
 
 ```
 pip install -r bin/generator/requirements.txt
 bin/fetch-configlet
 bin/configlet sync --tests      # clones problem-specifications; see the note below
 
-bin/generate-tests              # regenerate every exercise that has a template
-bin/generate-tests darts        # just one
-bin/generate-tests --check      # what CI runs
-bin/generate-tests --no-pull    # skip refreshing problem-specifications
+bin/generate_tests              # regenerate every exercise that has a template
+bin/generate_tests darts        # just one
+bin/generate_tests --check      # what CI runs
+bin/generate_tests --no-pull    # skip refreshing problem-specifications
 ```
 
 `bin/fetch-configlet` only downloads configlet itself.
-The problem-specifications clone that `bin/generate-tests` reads is made by running a configlet command that needs it, such as `configlet sync`.
-Afterwards `bin/generate-tests` keeps that clone current with `git pull` unless `--no-pull` is passed.
+The problem-specifications clone that `bin/generate_tests` reads is made by running a configlet command that needs it, such as `configlet sync`.
+Afterwards `bin/generate_tests` keeps that clone current with `git pull` unless `--no-pull` is passed.
 
 Generated suites must not be edited by hand - change the template and regenerate.
 
-To convert an exercise, write `.meta/template.j2` and run `bin/generate-tests <slug>`.
+To convert an exercise, write `.meta/template.j2` and run `bin/generate_tests <slug>`.
 See `exercises/practice/leap/.meta/template.j2` for a short one.
 Templates get `cases`, each with `input`, `expected`, `descriptions`, `expect_error` and `expect_error_msg`, plus a `scala` filter that renders a canonical value as Scala source.
 The exercise must be in sync with problem-specifications first: the generator refuses to run when `.meta/tests.toml` is missing canonical cases, because the `reimplements` links it needs live there.

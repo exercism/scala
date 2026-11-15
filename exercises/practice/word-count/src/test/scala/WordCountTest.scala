@@ -3,7 +3,7 @@ import org.scalatest.matchers.should.Matchers
 
 /** Generated from the canonical data in problem-specifications.
   *
-  * Do not edit by hand: change .meta/template.j2 and run bin/generate-tests.
+  * Do not edit by hand: change .meta/template.j2 and run bin/generate_tests.
   */
 class WordCountTest extends AnyFunSuite with Matchers:
 
