@@ -15,5 +15,5 @@ class School {
     db.getOrElse(g, Vector.empty)
   }
 
-  def sorted: DB = SortedMap(db.toSeq: _*).mapValues(_.sorted).toMap
+  def sorted: DB = SortedMap(db.toSeq*).view.mapValues(_.sorted).toMap
 }

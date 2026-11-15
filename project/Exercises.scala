@@ -71,6 +71,9 @@ object Exercises {
         // Exercise directories are shipped to students and copied around by
         // bin/verify-exercises-in-docker, so keep sbt's output out of them.
         target := repoRoot / "target" / exercise.kind / exercise.slug,
+        // Fail on deprecation and feature warnings, so that no new ones creep into the
+        // examples and tests (#914). Students' builds don't use these settings.
+        scalacOptions ++= Seq("-deprecation", "-feature", "-Wconf:cat=deprecation:e,cat=feature:e"),
         // Compile the exemplar/example solution rather than the stub a student starts from,
         Compile / unmanagedSourceDirectories := Nil,
         Compile / unmanagedSources := solution(exercise),
