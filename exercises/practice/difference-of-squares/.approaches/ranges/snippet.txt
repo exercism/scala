@@ -1,0 +1,5 @@
+def sumOfSquares(n: Int): Int = (1 to n).map(i => i * i).sum
+
+def squareOfSum(n: Int): Int =
+  val sum = (1 to n).sum
+  sum * sum

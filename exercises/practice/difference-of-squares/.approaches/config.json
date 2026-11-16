@@ -1,0 +1,36 @@
+{
+  "introduction": {
+    "authors": [
+      "rabestro"
+    ]
+  },
+  "approaches": [
+    {
+      "uuid": "33561a6d-2ea3-482b-9608-92aae60d3bd1",
+      "slug": "ranges",
+      "title": "Ranges with map and sum",
+      "blurb": "Add up the numbers of a range, and their squares, with map and sum.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "49c3e74a-fc19-451f-8c58-a0cc92521a0a",
+      "slug": "formulas",
+      "title": "Formulas",
+      "blurb": "Calculate both sums directly with their closed formulas.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "64ea548d-71fd-4817-b0c4-3876baf8dcf7",
+      "slug": "foldleft",
+      "title": "One pass with foldLeft",
+      "blurb": "Collect both sums in one traversal of the range with foldLeft and a tuple.",
+      "authors": [
+        "rabestro"
+      ]
+    }
+  ]
+}

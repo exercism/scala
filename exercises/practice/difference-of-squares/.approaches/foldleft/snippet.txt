@@ -1,0 +1,7 @@
+def differenceOfSquares(n: Int): Int =
+  val (sum, squares) = sums(n)
+  sum * sum - squares
+
+private def sums(n: Int): (Int, Int) =
+  (1 to n).foldLeft((0, 0)):
+    case ((sum, squares), i) => (sum + i, squares + i * i)
