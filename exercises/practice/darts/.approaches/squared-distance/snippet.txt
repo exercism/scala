@@ -1,0 +1,6 @@
+def score(x: Double, y: Double): Int =
+  val distanceSquared = x * x + y * y
+  if distanceSquared <= 1 then 10
+  else if distanceSquared <= 25 then 5
+  else if distanceSquared <= 100 then 1
+  else 0

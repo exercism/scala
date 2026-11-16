@@ -1,0 +1,6 @@
+def score(x: Double, y: Double): Int =
+  math.hypot(x, y) match
+    case distance if distance <= 1  => 10
+    case distance if distance <= 5  => 5
+    case distance if distance <= 10 => 1
+    case _                          => 0
