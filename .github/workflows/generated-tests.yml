@@ -28,9 +28,9 @@ jobs:
 
       - name: Clone problem-specifications
         # Only the side effect is wanted: configlet clones the specs that
-        # bin/generate-tests reads. It exits non-zero while any exercise is
+        # bin/generate_tests reads. It exits non-zero while any exercise is
         # missing canonical cases, which is tracked separately in #488.
         run: bin/configlet sync --tests || true
 
       - name: Check the generated suites
-        run: bin/generate-tests --check --no-pull
+        run: bin/generate_tests --check --no-pull
