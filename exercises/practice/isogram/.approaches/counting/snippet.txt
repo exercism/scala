@@ -1,0 +1,6 @@
+def isIsogram(s: String): Boolean =
+  s.toLowerCase
+    .filter(_.isLetter)
+    .groupMapReduce(identity)(_ => 1)(_ + _)
+    .values
+    .forall(_ == 1)
