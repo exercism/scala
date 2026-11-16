@@ -1,0 +1,4 @@
+def square(n: Int): Option[BigInt] =
+  Option.when(1 <= n && n <= 64)(BigInt(2).pow(n - 1))
+
+def total: BigInt = BigInt(2).pow(64) - 1
