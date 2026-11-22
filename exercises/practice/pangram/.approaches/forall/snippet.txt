@@ -1,0 +1,5 @@
+import java.util.Locale
+
+def isPangram(input: String): Boolean =
+  val lowercase = input.toLowerCase(Locale.ROOT)
+  ('a' to 'z').forall(lowercase.contains)

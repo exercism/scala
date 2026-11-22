@@ -1,0 +1,45 @@
+{
+  "introduction": {
+    "authors": [
+      "rabestro"
+    ]
+  },
+  "approaches": [
+    {
+      "uuid": "3de8cc97-31b1-4609-8eec-1b2d85b5a6f4",
+      "slug": "set-subset",
+      "title": "Set with subsetOf",
+      "blurb": "Check that the alphabet is a subset of the letters in the sentence.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "fbdc5a50-3589-4c28-a7ff-d85aaa9c79fe",
+      "slug": "forall",
+      "title": "forall with contains",
+      "blurb": "Check that the sentence contains every letter of the alphabet.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "03c23d55-ebae-4803-a3e1-ee8d23a45629",
+      "slug": "distinct-count",
+      "title": "filter with distinct",
+      "blurb": "Keep the letters, remove the duplicates and count what is left.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "4bb926ac-c1f5-44bb-9c2f-acda8c1698db",
+      "slug": "bit-field",
+      "title": "Bit field with foldLeft",
+      "blurb": "Set one bit of an Int for each letter that is seen.",
+      "authors": [
+        "rabestro"
+      ]
+    }
+  ]
+}
