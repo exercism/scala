@@ -71,7 +71,7 @@ For a sentence that is a line of text this does not matter; for a very long inpu
 The `distinct` approach is a single chain of calls, but it has to filter out everything that is not a letter from `a` to `z`,
 which the first two approaches get for free.
 
-The bit field visits each character once and allocates nothing.
+The bit-field approach visits each character once and stores the letters seen in a single `Int`.
 It is also the hardest to read, so it is best kept for code where that cost has been measured.
 
 [set]: https://www.scala-lang.org/api/current/scala/collection/immutable/Set.html
