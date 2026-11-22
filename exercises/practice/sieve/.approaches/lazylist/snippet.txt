@@ -1,0 +1,7 @@
+private def sieve(n: Long, composites: Map[Long, List[Long]]): LazyList[Long] =
+  composites.get(n) match
+    case None         => n #:: sieve(n + 1, composites + (n * n -> List(n)))
+    case Some(primes) =>
+      val moved = primes.foldLeft(composites - n): (marked, p) =>
+        marked.updatedWith(n + p)(found => Some(p :: found.getOrElse(Nil)))
+      sieve(n + 1, moved)

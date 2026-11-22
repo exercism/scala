@@ -1,0 +1,5 @@
+def primes(limit: Int): List[Int] =
+  val candidates = 2 to limit
+  val unmarked   = (2 to math.sqrt(limit).toInt).foldLeft(candidates.toSet): (numbers, n) =>
+    if numbers(n) then numbers -- (n * n to limit by n) else numbers
+  candidates.filter(unmarked).toList
