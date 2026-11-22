@@ -1,2 +1,4 @@
+import java.util.Locale
+
 def isPangram(input: String): Boolean =
-  input.toLowerCase.filter(c => 'a' <= c && c <= 'z').distinct.length == 26
+  input.toLowerCase(Locale.ROOT).filter(c => 'a' <= c && c <= 'z').distinct.length == 26

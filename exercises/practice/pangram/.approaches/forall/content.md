@@ -1,9 +1,11 @@
 # `forall()` with `contains()`
 
 ```scala
+import java.util.Locale
+
 object Pangrams:
   def isPangram(input: String): Boolean =
-    val lowercase = input.toLowerCase
+    val lowercase = input.toLowerCase(Locale.ROOT)
     ('a' to 'z').forall(lowercase.contains)
 ```
 

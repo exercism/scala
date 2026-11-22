@@ -1,11 +1,13 @@
 # `Set` with `subsetOf()`
 
 ```scala
+import java.util.Locale
+
 object Pangrams:
   private val alphabet = ('a' to 'z').toSet
 
   def isPangram(input: String): Boolean =
-    alphabet.subsetOf(input.toLowerCase.toSet)
+    alphabet.subsetOf(input.toLowerCase(Locale.ROOT).toSet)
 ```
 
 This approach starts by defining the alphabet as a private value of the `Pangrams` object, so it is built only once.

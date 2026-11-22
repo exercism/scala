@@ -3,6 +3,8 @@
 A pangram uses every letter of the alphabet at least once, and upper and lower case count as the same letter.
 So a solution has to answer one question: are all 26 letters from `a` to `z` in the sentence?
 
+The examples that lowercase the whole string use `Locale.ROOT` so that uppercase `I` becomes `i` even when the JVM’s default locale is Turkish.
+
 There are several idiomatic ways to answer it.
 One approach turns the sentence into a [`Set`][set] and checks that the alphabet is a subset of it.
 Another asks, for every letter of the alphabet, whether the sentence contains it.
@@ -12,11 +14,13 @@ The last one does not build a collection at all: it records the letters in the b
 ## Approach: `Set` with `subsetOf()`
 
 ```scala
+import java.util.Locale
+
 object Pangrams:
   private val alphabet = ('a' to 'z').toSet
 
   def isPangram(input: String): Boolean =
-    alphabet.subsetOf(input.toLowerCase.toSet)
+    alphabet.subsetOf(input.toLowerCase(Locale.ROOT).toSet)
 ```
 
 For more information, check the [`Set` with `subsetOf()` approach][approach-set-subset].
@@ -24,9 +28,11 @@ For more information, check the [`Set` with `subsetOf()` approach][approach-set-
 ## Approach: `forall()` with `contains()`
 
 ```scala
+import java.util.Locale
+
 object Pangrams:
   def isPangram(input: String): Boolean =
-    val lowercase = input.toLowerCase
+    val lowercase = input.toLowerCase(Locale.ROOT)
     ('a' to 'z').forall(lowercase.contains)
 ```
 
@@ -35,9 +41,11 @@ For more information, check the [`forall()` with `contains()` approach][approach
 ## Approach: `filter()` with `distinct`
 
 ```scala
+import java.util.Locale
+
 object Pangrams:
   def isPangram(input: String): Boolean =
-    input.toLowerCase.filter(c => 'a' <= c && c <= 'z').distinct.length == 26
+    input.toLowerCase(Locale.ROOT).filter(c => 'a' <= c && c <= 'z').distinct.length == 26
 ```
 
 For more information, check the [`filter()` with `distinct` approach][approach-distinct-count].

@@ -1,9 +1,11 @@
 # `filter()` with `distinct`
 
 ```scala
+import java.util.Locale
+
 object Pangrams:
   def isPangram(input: String): Boolean =
-    input.toLowerCase.filter(c => 'a' <= c && c <= 'z').distinct.length == 26
+    input.toLowerCase(Locale.ROOT).filter(c => 'a' <= c && c <= 'z').distinct.length == 26
 ```
 
 This approach is a chain of calls, each of which works on the result of the one before it.
