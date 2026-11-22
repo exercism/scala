@@ -4,6 +4,8 @@ An isogram is a word or phrase in which no letter is repeated.
 Spaces and hyphens may appear more than once, and upper and lower case count as the same letter.
 So a solution has to ignore everything that is not a letter, treat `A` and `a` alike, and then find out whether any letter occurs twice.
 
+The examples that lowercase the whole string use `Locale.ROOT` so that `I` and `i` count as the same letter even when the JVM’s default locale is Turkish.
+
 There are several idiomatic ways to do that.
 One approach removes the duplicates and checks that nothing was removed.
 Another counts how often each letter occurs.
@@ -13,9 +15,11 @@ The last one records the letters in the bits of an `Int`.
 ## Approach: `filter()` with `distinct`
 
 ```scala
+import java.util.Locale
+
 object Isogram:
   def isIsogram(s: String): Boolean =
-    val letters = s.toLowerCase.filter(_.isLetter)
+    val letters = s.toLowerCase(Locale.ROOT).filter(_.isLetter)
     letters.distinct.length == letters.length
 ```
 
@@ -24,9 +28,11 @@ For more information, check the [`filter()` with `distinct` approach][approach-d
 ## Approach: counting with `groupMapReduce()`
 
 ```scala
+import java.util.Locale
+
 object Isogram:
   def isIsogram(s: String): Boolean =
-    s.toLowerCase
+    s.toLowerCase(Locale.ROOT)
       .filter(_.isLetter)
       .groupMapReduce(identity)(_ => 1)(_ + _)
       .values
@@ -59,9 +65,11 @@ For more information, check the [recursion with a `Set` approach][approach-recur
 ## Approach: bit field with `bitCount()`
 
 ```scala
+import java.util.Locale
+
 object Isogram:
   def isIsogram(s: String): Boolean =
-    val letters = s.toLowerCase.filter(c => 'a' <= c && c <= 'z')
+    val letters = s.toLowerCase(Locale.ROOT).filter(c => 'a' <= c && c <= 'z')
     val seen    = letters.foldLeft(0)((bits, c) => bits | (1 << (c - 'a')))
     Integer.bitCount(seen) == letters.length
 ```
@@ -84,7 +92,7 @@ The recursion stops at the first repeated letter, which pays off only when the i
 It is also the longest of the four.
 
 The bit field builds no collection for the letters it has seen, but it handles only the letters from `a` through `z`.
-The other three approaches use `isLetter`, so they work for letters of any alphabet.
+The other three approaches also recognize letters such as `é` and `я`.
 
 [approach-distinct]: https://exercism.org/tracks/scala/exercises/isogram/approaches/distinct
 [approach-counting]: https://exercism.org/tracks/scala/exercises/isogram/approaches/counting

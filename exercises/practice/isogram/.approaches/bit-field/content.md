@@ -1,9 +1,11 @@
 # Bit field with `bitCount()`
 
 ```scala
+import java.util.Locale
+
 object Isogram:
   def isIsogram(s: String): Boolean =
-    val letters = s.toLowerCase.filter(c => 'a' <= c && c <= 'z')
+    val letters = s.toLowerCase(Locale.ROOT).filter(c => 'a' <= c && c <= 'z')
     val seen    = letters.foldLeft(0)((bits, c) => bits | (1 << (c - 'a')))
     Integer.bitCount(seen) == letters.length
 ```
@@ -27,7 +29,7 @@ If it is equal to the number of letters, then no letter is repeated.
 ~~~~exercism/caution
 The bits stand for the letters from `a` through `z` only, so the filter cannot be `isLetter`.
 A letter such as `é` or `я` is dropped like a space, and a word that repeats one of them would be taken for an isogram.
-Use one of the other approaches if the input is not limited to English letters.
+The other three approaches detect repeated letters in words such as `été`.
 ~~~~
 
 [int]: https://www.scala-lang.org/api/current/scala/Int.html

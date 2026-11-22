@@ -1,9 +1,11 @@
 # `filter()` with `distinct`
 
 ```scala
+import java.util.Locale
+
 object Isogram:
   def isIsogram(s: String): Boolean =
-    val letters = s.toLowerCase.filter(_.isLetter)
+    val letters = s.toLowerCase(Locale.ROOT).filter(_.isLetter)
     letters.distinct.length == letters.length
 ```
 

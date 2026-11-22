@@ -1,9 +1,11 @@
 # Counting with `groupMapReduce()`
 
 ```scala
+import java.util.Locale
+
 object Isogram:
   def isIsogram(s: String): Boolean =
-    s.toLowerCase
+    s.toLowerCase(Locale.ROOT)
       .filter(_.isLetter)
       .groupMapReduce(identity)(_ => 1)(_ + _)
       .values
