@@ -14,9 +14,8 @@ The distance of the dart from the center of the target is the square root of `x 
 This approach does not calculate it.
 It stops at `x * x + y * y`, which is the distance squared, and compares that with the squares of the radii: `1`, `25` and `100`.
 
-That gives the same answers, because a distance and a radius are never negative.
-For two numbers that are not negative, the smaller one also has the smaller square,
-so `distance <= 5` is `true` exactly when `distance * distance <= 25` is.
+In exact arithmetic, comparing squared distances gives the same result because distances and radii are non-negative.
+With `Double`, rounding can make the two approaches score a dart differently when it lands extremely close to a circle.
 
 The comparisons are made in a chain of [`if` expressions][if], starting with the smallest circle.
 A dart inside the inner circle is also inside the other two, so the first comparison that is `true` has to be the one that decides.
