@@ -27,7 +27,7 @@
       "uuid": "3322a6e3-ab60-4b29-8ec7-4bfce14150d8",
       "slug": "lazylist",
       "title": "LazyList",
-      "blurb": "Build an endless LazyList of primes, and take the ones up to the limit.",
+      "blurb": "Generate primes on demand with a LazyList and take the ones up to the limit.",
       "authors": [
         "rabestro"
       ]

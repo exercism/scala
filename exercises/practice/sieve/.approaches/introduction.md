@@ -5,20 +5,20 @@ It never asks whether one number divides another.
 It takes each prime in turn and marks its multiples, which it reaches by adding the prime again and again.
 The numbers that are still unmarked at the end are the primes.
 
-Two observations keep the work down, and all the approaches here use them:
+All three approaches start marking the multiples of a prime `p` at `p * p`.
+Any composite multiple below `p * p` has a smaller prime factor and was marked earlier.
 
-- The multiples of a prime `p` can be marked starting from `p * p`.
-  A smaller multiple, such as `2 * p` or `3 * p`, has a factor smaller than `p`, so it was marked earlier.
-- Only the primes up to the square root of the limit have multiples left to mark, because for a larger prime `p * p` is already above the limit.
-
-The approaches differ in where the marks are kept:
-in a mutable `Array`, in an immutable `Set`, or in a `Map` that travels along an endless `LazyList` of primes.
+The `Array` and `Set` approaches know the limit in advance.
+They only need to mark multiples of primes up to its square root, because larger primes have squares above the limit.
+The `LazyList` generates primes on demand and keeps track of upcoming multiples in a `Map`.
+For example, when asked for primes up to `10`, it schedules `25` as the first multiple of `5` to mark.
 
 ## Approach: mutable `Array`
 
 ```scala
 object Sieve:
   def primes(limit: Int): List[Int] =
+    require(limit < Int.MaxValue, "limit + 1 must fit in an Int")
     val composite = Array.fill(limit + 1)(false)
     for
       n        <- 2 to math.sqrt(limit).toInt
@@ -90,7 +90,8 @@ The array is created inside the method and never leaves it, so the method is sti
 It is the approach to prefer when the limit is known.
 
 The immutable `Set` is the same algorithm without any mutation.
-It is shorter, but every step builds a new set, which is more work than setting a mark in an array.
+When `n` is prime, the fold removes its multiples from the set.
+When `n` is composite, it reuses the same set.
 
 The `LazyList` approach does not need a limit to produce primes, which is its reason to exist.
 When the limit is given, as it is in this exercise, the other two approaches are simpler.

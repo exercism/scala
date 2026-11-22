@@ -3,6 +3,7 @@
 ```scala
 object Sieve:
   def primes(limit: Int): List[Int] =
+    require(limit < Int.MaxValue, "limit + 1 must fit in an Int")
     val composite = Array.fill(limit + 1)(false)
     for
       n        <- 2 to math.sqrt(limit).toInt
@@ -16,6 +17,7 @@ This approach keeps a mark for every number in an [`Array`][array] of `Boolean`s
 
 [`Array.fill()`][array-companion] creates an array of the given size with the same value in every position.
 The size is `limit + 1`, so that the number `n` has its mark at the index `n`, and the last index is `limit`.
+At `Int.MaxValue`, adding one would overflow, so `require` rejects that limit before the array is allocated.
 Every mark starts as `false`: no number is known to be composite yet.
 
 The marking is done by a [`for` loop][for] with two generators and a guard:

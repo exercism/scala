@@ -15,7 +15,7 @@ object Sieve:
 ```
 
 The other approaches need the limit before they start, because they mark numbers up to it.
-This one produces the primes one after another, without an end.
+This one generates each successive prime on demand.
 `primes()` takes the ones it needs: [`takeWhile()`][lazylist] stops at the first prime above the limit.
 
 A [`LazyList`][lazylist] makes that possible.
@@ -53,7 +53,8 @@ For the primes up to `10` it works like this.
 ## Why `Long`?
 
 The first multiple that is marked for a prime is its square.
-The square of a prime above `46340` does not fit in an `Int`, and the list has no limit that would keep the primes below that.
+For a prime above `46340`, its square exceeds `Int.MaxValue` even when the prime itself fits in an `Int`.
+A `Long` can hold the square of every prime within the exercise’s `Int` limit.
 So the sieve counts in `Long`, and `primes()` turns the numbers it takes back into `Int`s with `map(_.toInt)`.
 
 [lazylist]: https://www.scala-lang.org/api/current/scala/collection/immutable/LazyList.html
