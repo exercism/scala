@@ -1,0 +1,6 @@
+import java.util.Locale
+
+def isIsogram(s: String): Boolean =
+  val letters = s.toLowerCase(Locale.ROOT).filter(c => 'a' <= c && c <= 'z')
+  val seen    = letters.foldLeft(0)((bits, c) => bits | (1 << (c - 'a')))
+  Integer.bitCount(seen) == letters.length

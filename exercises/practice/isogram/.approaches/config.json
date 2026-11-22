@@ -1,0 +1,45 @@
+{
+  "introduction": {
+    "authors": [
+      "rabestro"
+    ]
+  },
+  "approaches": [
+    {
+      "uuid": "a26ba686-84ec-47ce-b402-d80da04282a9",
+      "slug": "distinct",
+      "title": "filter with distinct",
+      "blurb": "Compare the number of letters with the number of different letters.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "11bf6b2d-9cb1-407e-b144-8684fe180de4",
+      "slug": "counting",
+      "title": "Counting with groupMapReduce",
+      "blurb": "Count how often each letter occurs, and check that no count is above 1.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "862e695b-b8fb-4da9-a632-5efdbbee367f",
+      "slug": "recursion-set",
+      "title": "Recursion with a Set",
+      "blurb": "Walk the string with a tail-recursive method and stop at the first repeated letter.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "0a25a5bf-ab2f-42cb-b4e3-98069423dd44",
+      "slug": "bit-field",
+      "title": "Bit field with bitCount",
+      "blurb": "Set one bit of an Int for each letter, and count the bits that are set.",
+      "authors": [
+        "rabestro"
+      ]
+    }
+  ]
+}
