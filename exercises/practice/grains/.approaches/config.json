@@ -1,0 +1,36 @@
+{
+  "introduction": {
+    "authors": [
+      "rabestro"
+    ]
+  },
+  "approaches": [
+    {
+      "uuid": "cb5177cd-4372-4d30-bffb-3b122c51d30f",
+      "slug": "bigint-pow",
+      "title": "BigInt with pow",
+      "blurb": "Raise 2 to a power with the pow method of BigInt.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "6a6ca678-4eed-4357-a642-f9874404b79c",
+      "slug": "bit-shifting",
+      "title": "Bit shifting",
+      "blurb": "Shift the single bit of 1 to the left to get a power of 2.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "72cfc9ad-593b-44bb-a8f4-9ef22f5d407f",
+      "slug": "summing-squares",
+      "title": "Summing the squares",
+      "blurb": "Add up the grains on all 64 squares with flatMap and sum.",
+      "authors": [
+        "rabestro"
+      ]
+    }
+  ]
+}
