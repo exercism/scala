@@ -28,7 +28,9 @@ For more information, check the [ranges with `map()` and `sum` approach][approac
 ```scala
 object DifferenceOfSquares:
 
-  def sumOfSquares(n: Int): Int = n * (n + 1) * (2 * n + 1) / 6
+  def sumOfSquares(n: Int): Int =
+    val last = n.toLong
+    (last * (last + 1) * (2 * last + 1) / 6).toInt
 
   def squareOfSum(n: Int): Int =
     val sum = n * (n + 1) / 2
@@ -68,10 +70,10 @@ the choice between the approaches can be made by perceived readability.
 
 The ranges approach reads like the instructions, and nothing in it has to be looked up or proved.
 
-The formulas do a fixed number of multiplications however large `n` is, where the other two approaches do more work as `n` grows.
+The formulas calculate the difference with a fixed number of arithmetic operations.
 The price is that a reader has to know the formulas, or trust them.
 
-The `foldLeft()` approach goes through the numbers once instead of twice.
+The `foldLeft()` approach accumulates both sums in one traversal without building a collection of squares.
 It is longer and harder to read than the ranges approach, and it is shown here mainly as a contrast:
 collecting two results in one traversal is a technique worth knowing, but this exercise does not need it.
 

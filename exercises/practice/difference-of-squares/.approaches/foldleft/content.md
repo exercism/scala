@@ -37,8 +37,9 @@ In Scala 3 an element of a tuple can be read by its index, starting from `0`:
 `sums(n)(0)` is the sum of the numbers, and `sums(n)(1)` is the sum of the squares.
 `differenceOfSquares()` needs both, so it takes the tuple apart into two values with `val (sum, squares) = sums(n)`.
 
-Going through the numbers once instead of twice is the point of this approach, and `differenceOfSquares()` is the method that gains from it.
-The other two methods each use only one of the sums, so for them the [ranges approach][approach-ranges] does the same work with less code.
+For `differenceOfSquares()`, the fold accumulates both sums in one traversal and avoids building the intermediate collection of squares used by the [ranges approach][approach-ranges].
+When either sum is requested on its own, the fold still computes both.
+For `squareOfSum()` alone, `(1 to n).sum` is especially convenient because Scala computes the sum of this integer range using the arithmetic series formula.
 
 [tuple]: https://docs.scala-lang.org/tour/tuples.html
 [range]: https://www.scala-lang.org/api/current/scala/collection/immutable/Range.html
