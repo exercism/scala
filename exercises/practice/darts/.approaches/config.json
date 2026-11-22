@@ -1,0 +1,54 @@
+{
+  "introduction": {
+    "authors": [
+      "rabestro"
+    ]
+  },
+  "approaches": [
+    {
+      "uuid": "a4ec7170-0ba2-4cf7-810c-e8165f34bb17",
+      "slug": "if-chain",
+      "title": "if expressions",
+      "blurb": "Compare the distance with each radius in a chain of if expressions.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "cdcfdabe-489a-4e37-bf6e-287456d0f7c8",
+      "slug": "match-guards",
+      "title": "match with guards",
+      "blurb": "Compare the distance with each radius in the guards of a match expression.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "ef0f8d31-d591-4018-8df3-951973d59a4a",
+      "slug": "hypot",
+      "title": "math.hypot",
+      "blurb": "Let math.hypot calculate the distance from the center.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "b80d6617-792e-4886-989a-cbdac113b8b0",
+      "slug": "squared-distance",
+      "title": "Squared distance",
+      "blurb": "Compare the squared distance with the squared radii, with no square root.",
+      "authors": [
+        "rabestro"
+      ]
+    },
+    {
+      "uuid": "58226318-12cb-413b-99e5-2ef4ccaa1f62",
+      "slug": "lookup-table",
+      "title": "Lookup table",
+      "blurb": "Keep the radii and their points in a list, and take the first ring that fits.",
+      "authors": [
+        "rabestro"
+      ]
+    }
+  ]
+}
