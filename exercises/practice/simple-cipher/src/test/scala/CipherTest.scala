@@ -17,7 +17,7 @@ class CipherTest extends AnyFunSuite with Matchers:
     cipher.decode(cipher.key.substring(0, 10)) should be("aaaaaaaaaa")
 
   test(
-    "Random key cipher - Is reversible. I.e., if you apply decode in a encoded result, you must see the same plaintext encode parameter as a result of the decode method",
+    "Random key cipher - Is reversible. I.e., if you apply decode to an encoded result, you must see the same plaintext encode parameter as a result of the decode method",
   ):
     pending
     val cipher = Cipher(None)
@@ -39,7 +39,7 @@ class CipherTest extends AnyFunSuite with Matchers:
     cipher.decode("abcdefghij") should be("aaaaaaaaaa")
 
   test(
-    "Substitution cipher - Is reversible. I.e., if you apply decode in a encoded result, you must see the same plaintext encode parameter as a result of the decode method",
+    "Substitution cipher - Is reversible. I.e., if you apply decode to an encoded result, you must see the same plaintext encode parameter as a result of the decode method",
   ):
     pending
     val cipher = Cipher(Some("abcdefghij"))
