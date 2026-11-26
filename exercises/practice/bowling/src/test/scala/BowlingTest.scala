@@ -93,7 +93,7 @@ class BowlingTest extends AnyFunSuite with Matchers:
     pending
     rollAll(List(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 10, 6)).score() should be(Right(26))
 
-  test("the second bonus rolls after a strike in the last frame cannot be a strike if the first one is not a strike"):
+  test("the second bonus roll after a strike in the last frame cannot be a strike if the first one is not a strike"):
     pending
     rollAll(List(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 6)).roll(10).score().isLeft should be(true)
 

@@ -26,7 +26,7 @@ class FlattenArrayTest extends AnyFunSuite with Matchers:
     pending
     FlattenArray.flatten(List(0, 2, List(List(2, 3), 8, 100, 4, List(List(List(50)))), -2)) should be(List(0, 2, 2, 3, 8, 100, 4, 50, -2))
 
-  test("6 level nesting"):
+  test("5 level nesting with multiple nested arrays"):
     pending
     FlattenArray.flatten(List(1, List(2, List(List(3)), List(4, List(List(5))), 6, 7), 8)) should be(List(1, 2, 3, 4, 5, 6, 7, 8))
 
@@ -42,7 +42,7 @@ class FlattenArrayTest extends AnyFunSuite with Matchers:
     pending
     FlattenArray.flatten(List(1, null, null, 4)) should be(List(1, 4))
 
-  test("6 level nested array with null values"):
+  test("4 level nested array with null values"):
     pending
     FlattenArray.flatten(List(0, 2, List(List(2, 3), 8, List(List(100)), null, List(List(null))), -2)) should be(List(0, 2, 2, 3, 8, 100, -2))
 
