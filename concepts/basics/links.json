@@ -1,0 +1,26 @@
+[
+  {
+    "url": "https://docs.scala-lang.org/scala3/book/taste-vars-data-types.html",
+    "description": "Scala 3 Book: variables and data types"
+  },
+  {
+    "url": "https://docs.scala-lang.org/scala3/book/taste-methods.html",
+    "description": "Scala 3 Book: methods"
+  },
+  {
+    "url": "https://docs.scala-lang.org/scala3/book/taste-objects.html",
+    "description": "Scala 3 Book: singleton objects"
+  },
+  {
+    "url": "https://docs.scala-lang.org/tour/type-inference.html",
+    "description": "Tour of Scala: type inference"
+  },
+  {
+    "url": "https://docs.scala-lang.org/scala3/reference/other-new-features/indentation.html",
+    "description": "Scala 3 reference: optional braces"
+  },
+  {
+    "url": "https://docs.scala-lang.org/style/naming-conventions.html",
+    "description": "Scala style guide: naming conventions"
+  }
+]

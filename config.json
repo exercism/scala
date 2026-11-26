@@ -38,8 +38,8 @@
   "exercises": {
     "concept": [
       {
-        "slug": "basics",
-        "name": "Lucians Luscious Lasagna",
+        "slug": "lucians-luscious-lasagna",
+        "name": "Lucian's Luscious Lasagna",
         "uuid": "ea9ee1b7-26e4-4612-839d-fc6a9ecc2e7c",
         "concepts": [
           "basics"
@@ -1313,6 +1313,13 @@
       }
     ]
   },
+  "concepts": [
+    {
+      "uuid": "8fc8d9ea-0e8e-453e-93f9-0b107c5d5055",
+      "slug": "basics",
+      "name": "Basics"
+    }
+  ],
   "key_features": [
     {
       "title": "Modern",
